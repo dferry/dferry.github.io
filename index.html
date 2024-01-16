@@ -1,0 +1,201 @@
+<head>
+<title>David Ferry's Homepage</title>
+
+<style>
+body, html
+{
+height: 100%;
+width: 1024px;
+padding: 0;
+}
+#navmenu
+{
+list-style-type:none;
+margin:0;
+padding:0;
+}
+.namelist
+{
+list-style-type:none;
+}
+.navlink
+{
+display:block;
+font-size:14pt;
+text-decoration:none;
+}
+.pub
+{
+text-decoration:underline;
+}
+.great
+{
+color:red;
+font-weight:bold;
+}
+a
+{
+text-decoration:none;
+}
+h2
+{
+font-style:italic;
+}
+.inactive {
+  pointer-events: none;
+  cursor: default;
+  color: black;
+  text-decoration: none;
+}
+</style>
+</head>
+
+
+<body>
+
+<table  align="left" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody>
+<tr>
+<img src="SLU_logo.png" alt="SLU logo" style="float:right; height:1in; margin-top:0.25em; margin-right:1em"/>
+<div style="background-color:#BFBFBF;height:20px;margin-bottom:0;"></div>
+<div id="header" style="background-color:#BFBFBF;">
+<h1 style="margin-left:20px;margin-bottom:0;margin-top:0;">David Ferry</h1>
+<h2 style="margin-left:35px;margin-top:0;margin-bottom:0;">Associate Professor of Computer Science</h2>
+</div>
+<div style="background-color:#BFBFBF;height:20px;margin-bottom:0;"></div>
+</tr>
+
+<tr>
+<td align="lrft" bgcolor="#dddddd" height="100%" valign="top" width="10%">
+<div id="navbar" style="margin-top:20px;margin-right:20px;margin-left:20px;background-color:#dddddd;width:120px;float:left;height:220%;">
+<ul id="navmenu"> 
+<!--<li style="font-weight:bold">Menu</li>-->
+<li><a class="navlink" href="schedule.html">My Schedule</a></li>
+<li><a class="navlink" href="courses.html">Courses</a></li>
+<li><a class="navlink" href="assets/ferry-cv.pdf">Resume/CV</a></li>
+<hr />
+<li><a class="navlink" href="#about">About Me</a></li>
+<li><a class="navlink" href="#research">Research</a></li>
+<li><a class="navlink" href="#publications">Publications</a></li>
+<li><a class="navlink" href="#contact">Contact</a></li>
+</ul>
+</div>
+</td>
+
+<td style="background-color:#EEEEEE;" height="100%" width="85%">
+<div id="content" style="margin-left:20px;margin-right:20px;">
+
+<img src="assets/im_on_a_boat.jpg" alt="Myself and my wife Laura" style="float:right; height:3in;"/>
+<div id="about" >
+<h2>About Me</h2>
+
+<p>I am an associate professor in the <a href="http://cs.slu.edu/">Department of Computer Science</a> at the <a href="http://www.slu.edu">St. Louis University</a> <a href="https://www.slu.edu/arts-and-sciences/index.php">College of Arts and Sciences</a>. I did my Ph.D. at <a href="http://www.wustl.edu">Washington University in St. Louis</a>, advised by <a href="https://www.cse.wustl.edu/~kunal/">Kunal Agrawal</a> and <a href="https://www.cse.wustl.edu/~cdgill/">Chris Gill</a>.
+I have a broad interest in computer systems research, but I specialize in real-time systems, parallel runtime systems, and cyber-physical systems design.</p>
+
+<p><h3>Quick Links:</h3></p>
+<!--
+
+<p><a href="http://cs.slu.edu/~ferry/courses/csci3500">CSCI 3500 - Operating Systems</a></p>
+<p><a href="http://cs.slu.edu/~ferry/schedule.html">Current Semester's Schedule</a></p>
+-->
+
+<!--<p><a href="http://cs.slu.edu/~dferry/courses/csci2400">CSCI 2400 - Computer Architecture</a></p>-->
+
+<!--<p><a href="http://cs.slu.edu/~ferry/courses/csci1060">CSCI 1060 - Scientific Programming</a></p>
+<p><a href="http://cs.slu.edu/~dferry/courses/csci3250">CSCI 3250/5250 - Compilers</a></p>
+-->
+<!--
+<p><a href="http://cs.slu.edu/~dferry/courses/csci3500">CSCI 3500 - Operating Systems</a></p>
+-->
+<!--<p><a href="http://cs.slu.edu/~ferry/courses/capstone">CSCI 4961/4962/5960/5961 - Capstone Project</a></p>-->
+
+<!--<p><a href="http://cs.slu.edu/~dferry/courses/csci5030">CSCI 5030 - Principles of Software Development</a></p>-->
+<p><a href="http://cs.slu.edu/~dferry/courses/ignite">CORE 1000 - The Most Human Computer</a></p>
+<p><a href="http://cs.slu.edu/~dferry/courses/csci2510">CSCI 2510 - Principles of Computer Systems</a></p>
+<p><a href="http://cs.slu.edu/~ferry/schedule.html">Current Semester's Schedule</a></p>
+
+
+</div>
+
+<hr>
+
+<div id="research">
+<h2>Research Interests</h2>
+<h3>Real-Time Concurrency Platforms for Parallel Tasks</h3>
+<p>During the last decade, the performance increase of processors has come primarily from increasing numbers of cores. It is important for real-time programs to take advantage of real-time scheduling techniques that can exploit multicore and multiprocessor systems. In order to enable tasks with higher execution demands and tighter deadlines, such as those used in autonomous vehicles, video surveillance, computer vision, radar tracking and advanced real-time testing, we must enable parallelism within tasks. I design and implement such parallel real-time concurrency platforms and mechanisms for the same.</p>
+
+<h3>Real-Time Hybrid Simulation (RTHS)</h3>
+<p>RTHS is a structural test and validation technique with the goal of allowing testing to be conducted at a fraction of the cost of traditional validation techniques. There has been an increased emphasis on designing modern structures to be capable of surviving in multi-threat environments. With an increased emphasis on testing and validation, more efficient techniques such as RTHS are more valuable than ever before. I help build and maintain real-time middleware platforms that allow engineers to include large real-time parallel numerical models in their RTHS experimentation.</p>
+
+</div>
+
+<hr>
+
+<div id="publications">
+<h2>Publications</h2>
+<ul class="namelist">
+
+<h3>Refereed Journals</h3>
+<ul>
+<!--<li><p>D. Ferry, A. Maghareh, G. Bunting, A. Prakash, K. Agrawal, C. Gill, C. Lu, and S. Dyke,
+CyberMech: A Highly Parallel Concurrency Platform for Enhancing Performance of Real-Time
+Hybrid Simulations, <b>pending review</b></p></li>-->
+<li><p>J. Li, Z. Luo, D. Ferry, K. Agrawal, C. Gill and C. Lu, 
+<a class="pub" href="http://link.springer.com/article/10.1007/s11241-014-9213-9">Global EDF Scheduling for Parallel Real-Time
+Tasks, Real-Time Systems</a>, <span class="great">Special Issue on Best Papers of ECRTS'13</span>, 51(4): 395-
+439, July 2015.</p></li>
+<li><p>A. Saifullah, D. Ferry, J. Li, K. Agrawal, C. Lu and C. Gill, 
+<a class="pub" href="http://www.cse.wustl.edu/~lu/papers/tpds-dags.pdf">Parallel Real-Time Scheduling of
+DAGs</a>, IEEE Transactions on Parallel and Distributed Systems, 25(12): 3242-3252,
+December 2014.</p></li>
+</ul>
+
+<h3>Refereed Conferences</h3>
+<ul>
+<li><p>J. Li, D. Ferry, S. Ahuja, K. Agrawal, C. Gill and C. Lu, 
+	<a href="http://www.cse.wustl.edu/%7Elu/papers/rtsj17-parallel.pdf">Mixed-Criticality Federated Scheduling for Parallel Real-Time Tasks</a>, IEEE Real-Time and Embedded Technology and Applications Symposium (RTAS'16), April 2016.<span class="great">Outstanding Paper Award</span></p></li>
+<li><p>D. Ferry, G. Bunting, A. Megareh, S. Dyke, A. Prakash, K. Agrawal, C. Gill and C. Lu, 
+<a class="pub" href="http://www.cse.wustl.edu/~lu/papers/emsoft14-rths.pdf">Real-Time
+System Support for Hybrid Structural Simulation</a>, ACM International Conference on
+Embedded Software (EMSOFT'14), October 2014.</p></li>
+<li><p>D. Ferry, A. Megareh, G. Bunting, A. Prakash, K. Agrawal, C. Gill, C. Lu and S. Dyke, 
+<a class="pub" href="http://www.cse.wustl.edu/~lu/papers/6wcscm.pdf">On
+the Performance of a Highly Parallelizable Concurrency Platform for Real-Time Hybrid
+Simulation</a>, World Conference on Structural Control and Monitoring (6WCSCM), July
+2014.</p></li>
+<li><p>D. Ferry, J. Li, M. Mahadevan, K. Agrawal, C.D. Gill and C. Lu, <a class="pub" href="http://www.cse.wustl.edu/~lu/papers/rtas13.pdf">A Real-Time Scheduling Service for Parallel Tasks</a>, IEEE Real-Time and Embedded Technology and Applications Symposium (RTAS'13), April 2013.</p></li>
+</ul>
+</div>
+
+<!--
+<hr>
+<h2>Office Window</h2>
+<img src="current.jpg" alt="The view outside my office window." style="width:80%">
+-->
+<hr>
+
+
+<div id="contact">
+<h2>Contact</h2>
+<p>Email: dferry@slu.edu</p>
+<p>Office: Interdisciplinary Science and Engineering Building (ISE) 234C</p>
+<p>Mailing address:<br>
+Department of Computer Science<br>
+St. Louis University<br>
+220 North Grand Blvd.<br>
+St. Louis, MO 63103</p>
+<br></br>
+</div>
+</td>
+</tr>
+
+</div> <!-- end main content -->
+</tbody>
+</table>
+
+<div id="footer" style="background-color:#BFBFBF;clear:both;text-align:center;">
+<br>Saint Louis University
+<br></br></div>
+
+</body>
+</html>
