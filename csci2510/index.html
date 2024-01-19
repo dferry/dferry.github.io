@@ -1,0 +1,725 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+<style>
+table.schedule td th {
+	height: 4em;
+	overflow: visible;
+}
+
+.due {
+	background-color:yellow;
+}
+.inactive {
+  pointer-events: none;
+  cursor: default;
+  color: black;
+  text-decoration: none;
+}
+.holiday {
+	color: red;
+	font-weight: bold;
+}
+</style>
+
+
+
+?>
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSCI 2510: Principles of Computer Systems - Class Page</title></head>
+
+<body><h2 style="text-align: center;"><img alt="SLU logo" src="https://cs.slu.edu/~dferry/SLU_logo_horz.png" style="height:5em"><br></h2><h2 style="text-align: center;">CSCI 2510: Principles of Computer Systems - Class Page<br>
+
+</h2><h2 style="text-align: center;">Spring 2024</h2>
+
+<table style="width: 100%; text-align: left;" border="0" cellpadding="2" cellspacing="2"> <tbody> <tr>
+    <td style="vertical-align: top; font-weight: bold; width: 163px;">Instructor</td> 
+    <td style="vertical-align: top; width: 1019px;"><span style="font-family: monospace;"><a href="mailto:david.ferry@slu.edu">David Ferry</a>,  <a href="https://dferry.github.io">Homepage</a></span></td> 
+</tr>
+
+<tr>
+    <td style="vertical-align: top; font-weight: bold; width: 163px;">Course Web Site</td> 
+    <td style="vertical-align: top; width: 1019px;"><span style="font-family: monospace;"><a href="https://dferry.github.io/csci2510/">https://dferry.github.io/csci2510/</a></span></td>
+</tr>
+
+<tr>
+    <td style="vertical-align: top; font-weight: bold; width: 163px;">Course meeting times</td> 
+    <td style="vertical-align: top; width: 1019px;">Section 1: Monday, Wednesday, &amp; Friday from 9:00 am - 9:50 am, Ritter Hall 115<br>Section 2: Monday, Wednesday, &amp; Friday from 10:00 am - 10:50 am, Ritter Hall 115</td> 
+</tr> 
+
+<tr>
+    <td style="vertical-align: top; width: 163px;"><span style="font-weight: bold;">Midterm exam</span><br> </td> 
+    <td style="vertical-align: top; width: 1019px;">TBD, During Class<br> </td>
+</tr> 
+
+<tr>
+    <td style="vertical-align: top; width: 163px;"><span style="font-weight: bold;">Final exam</span><br> </td> 
+    <td style="vertical-align: top; width: 1019px;">9:00 am Section: Wednesday, May. 8th, 8:00 am - 9:50 am<br>10:00 am Section: Wednesday, May. 8th, 12:00 - 1:50 pm </td>
+</tr> 
+
+<tr>
+    <td style="vertical-align: top; font-weight: bold; width: 163px;">Office hours</td>
+    <td style="vertical-align: top; width: 1019px;">See <a href="https://dferry.github.io/schedule.html">my schedule</a></td> 
+</tr> 
+
+<tr>
+    <td style="vertical-align: top; font-weight: bold; width: 163px;">Contact</td>
+    <td style="vertical-align: top; width: 1019px;">You may contact me in person during office hours or during class time, or you may email me at <a href="mailto:dferry@slu.edu">dferry@slu.edu</a>. I am also available to meet by appointment, see <a href="http://cs.slu.edu/~dferry/schedule.html">my schedule</a>.</td> 
+</tr> 
+
+</table>
+
+<hr style="width: 100%; height: 2px;">
+
+<font size=+2><strong>Contents</strong></font>
+<ol>
+  <li><a href="#Course Description">Course Description</a>
+  <li><a href="#Prerequisites">Prerequisites</a>
+  <li><a href="#Lecture">Lecture</a>
+  <li><a href="#Studios">Studios</a>
+  <li><a href="#Labs">Labs</a>
+  <li><a href="#Schedule">Course Schedule</a>
+  <li><a href="#gitinfo">Git Repository</a>
+  <li><a href="#Textbooks">Textbooks and Other Resources</a>
+  <li><a href="#Grading">Grading</a>
+  <li><a href="#Attendance Policy">Attendance</a>
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Course Description">Course Description</a></h3>
+
+<p>
+Modern software architects and engineers care every bit as much about
+<i>where</i> and <i>how</i> software executes as they do about <i>what</i>
+the software does. Modern systems are expected to be <i>performant</i>,
+<i>scalable</i>, <i>efficient</i>, <i>maintainable</i>, <i>secure</i>, 
+and more. These are
+challenging problems, because they are less concerned with <i>what</i> the
+system does, and much more concerned about <i>how</i> a system does it. 
+</p>
+
+<p>Most requirements for software systems are written as a set of of
+<i>functional constraints</i> in the sense of a mathematical function. A
+program is seen as a tool for transforming inputs into outputs, and the program 
+is the function that accomplishes that transformation. However, the challenges
+listed above are <i>non-functional constraints</i> and cannot be expressed in
+such a manner. If they were, our life would be easier! We could simply write
+the bit of code that ensures our system is scalable, and then we'd be done.
+Instead, verifying that a system is scalable requires checking that the
+entire system is scalable- which is not only a global qualification, but
+an entirely non-obvious one at that.
+</p>
+
+<p><b>Course "Big Questions"</b></p>
+
+<ul>
+<li>What does a modern, medium-scale software system look like?</li>
+<li>What tools does an engineer have at their disposal to manage <i>how</i>
+and <i>where</i> code executes?</li>
+<li>What is concurrency and concurrent programming, and how can it be used?</li>
+<li>What is parallel programming, and how can it be used?</li>
+<li>At the low technical level, how are medium-scale systems composed out of
+collections of components?</li>
+</ul>
+
+<p>The four elements of this course are lectures, studios, labs, 
+and exams.
+Studios are short assignments intended to be completed primarily within class 
+time and to augment lecture topics. 
+Labs are longer assignments that will ask students to apply and analyze
+system mechanisms. Expect a lab assignment approximately every two weeks.</p>
+
+<p>
+Topical outline:
+<ul>
+  <li>C programming</li>
+  <!--<li>Component management and deployment</li>
+  <li>Benchmarking</li>
+  <li>Tracing, telemetry, and system health</li>
+  <li>Service oriented architecture and distributed systems</li>-->
+  <li>User programs, processes, threads, and processor sharing</li>
+  <li>Parallel programming</li>
+  <li>Analysis of parallel algorithms</li>
+  <li>Race conditions, locks, mutual exclusion</li>
+  <li>Deadlock</li>
+  <li>Sockets programming</li>
+  <li>7-layer OSI networking model</li>
+</ul>
+</p>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3>Course Activities</h3>
+
+<!--<p><b>Readings-</b> We will do readings out of course texts as well as from
+other sources. These are to be completed by class on the day they are listed on the schedule, as they may form the basis for the activities in class that day.</p>-->
+
+<!--<p><b>Quizzes-</b> These are short, in-class assignments designed to test your
+knowlege and comprehension of out-of-class readings.-->
+
+<p><b>Studios-</b> Computer Science is an eminently <i>practical</i>
+discipline, and studios are daily assignments intended to complement and
+reinforce class material with daily practice.</p>
+
+<p><b>Labs-</b> A major experiential learning component of
+this course is for each student to do substantial programming activities
+themselves. A technical understanding of how distributed medium-scale
+systems are implemented will show students for themselves how such systems
+really work at a technical level.</p>
+
+
+
+<hr style="width: 100%; height: 2px;"><p>
+<p><i><b>Catalog Description:</b>An exploration of computing systems with a strong emphasis on how systems interact with each other. Topics will include concurrent and parallel programming, network communication, and computer security. In addition to foundational knowledge, the course includes simulating, benchmarking, and testing such systems.</i></p>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Prerequisites">Prerequisites</a></h3>
+<ul>
+  <li>(CSCI 2500 - Computer Organization and Systems, with a grade of C- or
+higher) OR (ECE 2205, ECE 3217, and ECE 3225)</li>
+  <li>A basic knowledge of Linux programming and the Linux command line</li>
+</ul>
+
+<p>Please see the instructor if you're uncertain
+about your preparation for this course.</p>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Schedule">Course Schedule</a></h3>
+
+A tentative course schedule is below. <b>Note that this schedule may change
+over the course of the semester.</b> When changes occur, students will be 
+given enough advance notice so that readings and 
+other preparation may be accommodated. 
+
+
+
+<center><table class="schedule" style="border-collapse: collapse; border: 4px solid black;" style="width:100%">
+
+
+<tr style="border-bottom: 4px solid black; background-color:White">
+	<th style="width:10%">Date</th>
+	<th style="width:10%">Day</th>
+	<th>Topic</th>
+	<th>Readings</th>
+	<th>Studios</th>
+	<th>Labs</th>
+</tr>
+
+<tr style="border-bottom: 1.25px solid black; background-color:#e6e6e6;">
+	<th>Aug 23</th>
+	<th>Wed</th>
+	<th>Introduction</th>
+	<th></th>
+	<th><i>Make sure you can login for next time</i></th>
+	<th></th>
+</tr>
+<tr style="border-bottom: 4px solid black; background-color:#e6e6e6;">
+	<th>Aug 25</th>
+	<th>Fri</th>
+	<th>Intro to Systems Programming in C</th>
+	<th></th>
+	<th><a href="studios/01_hello_world.html">Studio 01</a></th>
+	<th></th>
+</tr>
+<tr style="border-bottom: 1.25px solid black; background-color:White;">
+	<th>Aug 28</th>
+	<th>Mon</th>
+	<th>Syllabus<br>
+Intro to Hopper, Git, and Gitlab</th>
+	<th></th>
+	<th></th>
+	<th></th>
+</tr>
+<tr style="border-bottom: 1.25px solid black; background-color:White;">
+	<th>Aug 30</th>
+	<th>Wed</th>
+	<th>Intro to Hopper, Git, and Gitlab</th>
+	<th></th>
+	<th><a href="studios/02_in_out.html">Studio 02</a></th>
+	<th></th>
+</tr>
+<tr style="border-bottom: 4px solid black; background-color:White;">
+	<th>Sep 01</th>
+	<th>Fri</th>
+	<th>Intro to C</th>
+	<th></th>
+	<th><a href="studios/03_pointers.html">Studio 03</a><br>
+<i>Studio 1 Due</i></th>
+	<th>Lab 1 Assigned</th>
+</tr>
+<tr style="border-bottom: 1.25px solid black; background-color:#e6e6e6;">
+	<th>Sep 04</th>
+	<th>Mon</th>
+	<th>Lab 1 Discussion</th>
+	<th></th>
+	<th><a href="studios/04_errors.html">Studio 04</a><br>
+<i>Studio 2 Due</i></th>
+	<th><a href="labs/01_input_output.html">Lab 1 - File Compression</a></th>
+</tr>
+<tr style="border-bottom: 1.25px solid black; background-color:#e6e6e6;">
+	<th>Sep 06</th>
+	<th>Wed</th>
+	<th><a href="slides/System_Calls.pdf">System Calls</a></th>
+	<th></th>
+	<th></th>
+	<th></th>
+</tr>
+<tr style="border-bottom: 4px solid black; background-color:#e6e6e6;">
+	<th>Sep 08</th>
+	<th>Fri</th>
+	<th>System Calls - Continued</th>
+	<th></th>
+	<th><i>Studio 3 Due</i></th>
+	<th></th>
+</tr>
+<tr style="border-bottom: 1.25px solid black; background-color:White;">
+	<th>Sep 11</th>
+	<th>Mon</th>
+	<th>No class - Out sick</th>
+	<th></th>
+	<th></th>
+	<th></th>
+</tr>
+<tr style="border-bottom: 1.25px solid black; background-color:White;">
+	<th>Sep 13</th>
+	<th>Wed</th>
+	<th><a href="slides/03_Processes.pptx">Processes</a></th>
+	<th></th>
+	<th><i>Studio 4 Due</i></th>
+	<th class="due">
+<i>Lab 1 Due</i></th>
+</tr>
+<tr style="border-bottom: 4px solid black; background-color:White;">
+	<th>Sep 15</th>
+	<th>Fri</th>
+	<th><a href="slides/04_Fork_Exec.pptx">fork(), exec(), wait(), <br>Process Creation</a></th>
+	<th></th>
+	<th><a href="studios/05_fork.html">Studio 5</a></th>
+	<th><a href="labs/02_processes.html">Lab 2 -<br>SLU Shell</a></th>
+</tr>
+<tr style="border-bottom: 1.25px solid black; background-color:#e6e6e6;">
+	<th>Sep 18</th>
+	<th>Mon</th>
+	<th><a href="slides/SLUSH_Discussion.pptx">Lab 2 Discussion</a></th>
+	<th></th>
+	<th><a href="studios/06_strtok.html">Studio 6</a></th>
+	<th></th>
+</tr>
+<tr style="border-bottom: 1.25px solid black; background-color:#e6e6e6;">
+	<th>Sep 20</th>
+	<th>Wed</th>
+	<th>Pipes, <code>stdin</code>, <code>stdout</code><br>
+<a href="code/fork_demo.c">fork_demo.c</a><br>
+<a href="code/pipe_demo.c">pipe_demo.c</a><br>
+<a href="code/strtok_demo.c">strtok_demo.c</a></th>
+	<th></th>
+	<th><a href="studios/07_pipes.html">Studio 7</a></th>
+	<th></th>
+</tr>
+<tr style="border-bottom: 4px solid black; background-color:#e6e6e6;">
+	<th>Sep 22</th>
+	<th>Fri</th>
+	<th>File descriptors, <code>dup2()</code><br>
+<a href="code/dup2_demo.c">dup2_demo.c</a></th>
+	<th></th>
+	<th></th>
+	<th></th>
+</tr>
+<tr style="border-bottom: 1.25px solid black; background-color:White;">
+	<th>Sep 25</th>
+	<th>Mon</th>
+	<th><a href="slides/Threads.pptx">Threads, Concurrent Programming</a></th>
+	<th></th>
+	<th><a href="studios/08_signals.html">Studio 8</a></th>
+	<th></th>
+</tr>
+<tr style="border-bottom: 1.25px solid black; background-color:White;">
+	<th>Sep 27</th>
+	<th>Wed</th>
+	<th>Pthreads Interface<br>
+<a href="code/threads.c">threads.c</a></th>
+	<th></th>
+	<th><a href="studios/09_threads.html">Studio 9</a></th>
+	<th class="due">
+<i>Lab 2 Due</i></th>
+</tr>
+<tr style="border-bottom: 4px solid black; background-color:White;">
+	<th>Sep 29</th>
+	<th>Fri</th>
+	<th>Catch Up Day</th>
+	<th></th>
+	<th></th>
+	<th></th>
+</tr>
+<tr style="border-bottom: 1.25px solid black; background-color:#e6e6e6;">
+	<th>Oct 02</th>
+	<th>Mon</th>
+	<th>Catch Up Day</th>
+	<th></th>
+	<th></th>
+	<th></th>
+</tr>
+<tr style="border-bottom: 1.25px solid black; background-color:#e6e6e6;">
+	<th>Oct 04</th>
+	<th>Wed</th>
+	<th>Exam Review</th>
+	<th></th>
+	<th></th>
+	<th></th>
+</tr>
+<tr style="border-bottom: 4px solid black; background-color:#e6e6e6;">
+	<th>Oct 06</th>
+	<th>Fri</th>
+	<th class="due">
+Midterm Exam</th>
+	<th></th>
+	<th><i>Studio 5 Due</i><br><i>Studio 6 Due</i><br><i>Studio 7 Due</i><br><i>Studio 8 Due</i><br><i>Studio 9 Due</i></th>
+<br />
+<b>Notice</b>:  Undefined index: class in <b>/www/faculty/dferry/public_html/courses/csci2510/index.php</b> on line <b>134</b><br />
+	<th></th>
+</tr>
+<tr style="border-bottom: 1.25px solid black; background-color:White;">
+	<th>Oct 09</th>
+	<th>Mon</th>
+	<th>Lab 3 Discussion<br>
+<a href="code/crypt_demo.c">crypt_demo.c</a></th>
+	<th></th>
+	<th></th>
+	<th><a href="labs/03_threads.html">Lab 3 - Brute Force Password Cracking</a></th>
+</tr>
+<tr style="border-bottom: 1.25px solid black; background-color:White;">
+	<th>Oct 11</th>
+	<th>Wed</th>
+	<th><a href="slides/Race_Conditions.pptx">Race Conditions</a><br>
+<a href="slides/Race_Conditions.pdf">(PDF)</a></th>
+	<th></th>
+	<th><a href="studios/10_race.html">Studio 10</a><br>
+</th>
+	<th></th>
+</tr>
+<tr style="border-bottom: 4px solid black; background-color:White;">
+	<th>Oct 13</th>
+	<th>Fri</th>
+	<th><a href="slides/Atomicity_Mutex.pptx">Locks, Mutexes, Atomicity</a></th>
+	<th></th>
+	<th><a href="studios/11_mutex.html">Studio 11</a><br>
+</th>
+	<th></th>
+</tr>
+<tr style="border-bottom: 1.25px solid black; background-color:#e6e6e6;">
+	<th>Oct 16</th>
+	<th>Mon</th>
+	<th>Deadlock, Deadlock Detection</th>
+	<th></th>
+	<th><i>Studio 10 Due</i></th>
+	<th></th>
+</tr>
+<tr style="border-bottom: 1.25px solid black; background-color:#e6e6e6;">
+	<th>Oct 18</th>
+	<th>Wed</th>
+	<th>Parallel Algorithms,<br>Work and Critical Path</th>
+	<th></th>
+	<th><i>Studio 11 Due</i></th>
+	<th></th>
+</tr>
+<tr style="border-bottom: 4px solid black; background-color:#e6e6e6;">
+	<th>Oct 20</th>
+	<th>Fri</th>
+	<th>Parallel Matrix-Multiply<br>Parallel Array-Sum<br>(Associative Reduce)</th>
+	<th></th>
+	<th></th>
+	<th></th>
+</tr>
+<tr style="border-bottom: 1.25px solid black; background-color:White;">
+	<th>Oct 23</th>
+	<th>Mon</th>
+	<th>Lab 3 Discussion</th>
+	<th></th>
+	<th></th>
+	<th></th>
+</tr>
+<tr style="border-bottom: 1.25px solid black; background-color:White;">
+	<th>Oct 25</th>
+	<th>Wed</th>
+	<th>C++ Threads and Atomics,<br>OpenMP</th>
+	<th></th>
+	<th><a href="studios/openmp.html">OpenMP Studio</a></th>
+	<th></th>
+</tr>
+<tr style="border-bottom: 4px solid black; background-color:White;">
+	<th>Oct 27</th>
+	<th>Fri</th>
+	<th><!--Lock-Free<br>and Wait-Free Semantics--></th>
+	<th></th>
+	<th></th>
+	<th class="due">
+<i>Lab 3 Due</i></th>
+</tr>
+<tr style="border-bottom: 1.25px solid black; background-color:#e6e6e6;">
+	<th>Oct 30</th>
+	<th>Mon</th>
+	<th>Lab 4 Discussion</th>
+	<th></th>
+	<th><i>OpenMP Studio Due</i></th>
+	<th><a href="labs/04_malloc.html">Lab 4 - Malloc</a></th>
+</tr>
+<tr style="border-bottom: 1.25px solid black; background-color:#e6e6e6;">
+	<th>Nov 01</th>
+	<th>Wed</th>
+	<th><a href="slides/Networks.pptx">OSI Model of Networking</a></th>
+	<th></th>
+	<th></th>
+	<th></th>
+</tr>
+<tr style="border-bottom: 4px solid black; background-color:#e6e6e6;">
+	<th>Nov 03</th>
+	<th>Fri</th>
+	<th><a href="slides/Physical_and_Data_Link.pptx">Physical and Data-Link Layers</a></th>
+	<th></th>
+	<th></th>
+	<th></th>
+</tr>
+<tr style="border-bottom: 1.25px solid black; background-color:White;">
+	<th>Nov 06</th>
+	<th>Mon</th>
+	<th><a href="slides/Network_Layer.pptx">Network Layer</a></th>
+	<th></th>
+	<th></th>
+	<th></th>
+</tr>
+<tr style="border-bottom: 1.25px solid black; background-color:White;">
+	<th>Nov 08</th>
+	<th>Wed</th>
+	<th><a href="slides/Transport_Layer.pptx">Transport Layer</a></th>
+	<th></th>
+	<th></th>
+	<th></th>
+</tr>
+<tr style="border-bottom: 4px solid black; background-color:White;">
+	<th>Nov 10</th>
+	<th>Fri</th>
+	<th>Sockets Demo<br>
+<a href="code/server.c">server.c</a><br>
+<a href="code/client.c">client.c</a></th>
+	<th></th>
+	<th></th>
+	<th><i>Lab 4 Due</i></th>
+</tr>
+<tr style="border-bottom: 1.25px solid black; background-color:#e6e6e6;">
+	<th>Nov 13</th>
+	<th>Mon</th>
+	<th>Lab 5 Discussion</th>
+	<th></th>
+	<th><a href="studios/24_sockets.html">Linux Sockets</a></th>
+	<th><a href="labs/05_chat.html">Lab 5 - Network Chat Client</a></th>
+</tr>
+<tr style="border-bottom: 1.25px solid black; background-color:#e6e6e6;">
+	<th>Nov 15</th>
+	<th>Wed</th>
+	<th><a href="slides/Userspace_Layers.pptx">Session, Presentation, and Application Layers</a></th>
+	<th></th>
+	<th><a href="studios/25_applications.html">Fileserver</a></th>
+	<th></th>
+</tr>
+<tr style="border-bottom: 4px solid black; background-color:#e6e6e6;">
+	<th>Nov 17</th>
+	<th>Fri</th>
+	<th>Security Concerns - CIA</th>
+	<th></th>
+	<th></th>
+	<th></th>
+</tr>
+<tr style="border-bottom: 1.25px solid black; background-color:White;">
+	<th>Nov 20</th>
+	<th>Mon</th>
+	<th>Permission Domains and Permission Management</th>
+	<th></th>
+	<th></th>
+	<th></th>
+</tr>
+<tr style="border-bottom: 1.25px solid black; background-color:White;">
+	<th>Nov 22</th>
+	<th>Wed</th>
+	<th>Bell-LaPadula and Biba Models for security</th>
+	<th></th>
+	<th></th>
+	<th></th>
+</tr>
+<tr style="border-bottom: 4px solid black; background-color:White;">
+	<th>Nov 24</th>
+	<th>Fri</th>
+	<th>Code Security</th>
+	<th></th>
+	<th></th>
+	<th>Lab 5 Due</th>
+</tr>
+
+<tr style="background-color:#e6e6e6;">
+	<th>Dec 13th</th>
+	<th>Wednesday</th>
+	<th class="due" colspan="4">Final Exam</th> 
+</tr>
+<!--
+<tr style="background-color:#e6e6e6;">
+	<th>May 12</th>
+	<th>Friday</th>
+	<th class="due" colspan="4">Lab 4 Due</th>
+</tr>
+-->
+
+</table></center>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="gitinfo">Git Repository</a></h3>
+
+<p>All studios and labs will be submitted via individual Git repositories
+with Gihub Classroom. Use the provided directory structure 
+for all lab and studio assignments. Your work must be in the
+appropriate location for the instructor to find it and count it
+for credit.</p>
+
+<!--<p><a href="git-info.pdf">A short guide to using SLU's git resources</a></p>-->
+
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Textbooks">Textbook and Class Resources</a></h3>
+
+<p>No course textbook.</p>
+
+<!--<p>Preferred Course Book: <i><a href="https://rust-book.cs.brown.edu/">Improving
+the Rust Book</a></i> by Will Crichton and Shriram Krishnamurthi, based on
+<i>The Rust Programming Language</i> by Steve Klabnik and Carol Nichols, with
+contributions from the Rust Community.</p>
+
+<p>Alternative Course Book: <i><a href="https://doc.rust-lang.org/book/">The
+Rust Programming Language</a></i> by Steve Klabnik and Carol Nichols, with
+contributions from the Rust Community.</p>-->
+
+<hr style="width: 100%; height: 2px;"><p>
+
+<h3>Grading Policy</h3>
+
+
+<table border="3">
+<tr>
+	<th>Activity</th>
+	<th>Grade Percentage</th>
+</tr>
+<tr>
+	<td>Attendance</td>
+	<td>10%</td>
+</tr>
+<tr>
+	<td>Labs</td>
+	<td>50%</td>
+</tr>
+<tr>
+	<td>Studios</td>
+	<td>20%</td>
+</tr>
+<tr>
+	<td>Midterm and Final Exams</td>
+	<td>10% each</td>
+</tr>
+
+</table>
+
+<p>Grading is done on a straight scale (uncurved). The following scores are guaranteed. The grading scale may be curved upwards (in your favor)
+at the discretion of the instructor.
+
+<ul>
+<li> 93% guarantees an A
+<li> 90% guarantees an A-
+<li> 87% guarantees a B+
+<li> 83% guarantees a B
+<li> 80% guarantees a B-
+<li> 77% guarantees a C+
+<li> 73% guarantees a C
+<li> 70% guarantees a C-
+<li> 60% guarantees a D
+</ul>
+
+</p>
+
+<p>Work assigned in this course, is expected to be completed individually. 
+The sharing of written work or significant portions of code between students is strictly prohibited. </p>
+
+<hr style="width: 100%; height: 2px;"><p>
+
+
+<H2>
+<a name="Attendance Policy">Attendance</a>
+</H2>
+
+<p>Successful students attend all or mostly all class sessions. This is true
+in my experience <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0187078">and has been demonstrated in large scale studies</a> as well.
+In that study, even students who attended nine out of ten class periods had
+measurably lower class performance than those who attended all classes. However,
+there is no attendance requirement for this class, and you do not need to
+get permission when you do miss class. You are an adult and have
+the freedom to manage your time in whatever way you feel is most useful.
+Job interviews, conferences, tests in other courses, etc. are all reasonable
+cases for being absent.</p> 
+
+<p>Note that in-class assignments such as tests or quizes cannot be made
+up outside of class without prior approval from the instructor.</p>
+
+<p>Attendance grade will be determined by taking roll call at the start of
+class. For credit, you must be in class and respond when your name is called.
+This will happen approximately 10 times over the course of the semester.</p>
+
+<p>If you do miss class you should refer to the course schedule to see what was
+missed and arrange to get course notes from another student. I am always happy
+to answer questions but I do not repeat full class periods in office hours.</p> 
+
+<hr style="width: 100%; height: 2px;"><p>
+<p><strong>Student Success Center</strong></p>
+<p>The Student Success Center (SSC) supports students in reaching their goals in and out of the classroom. Providing a variety of resources, the Student Success Center houses both the Center for Accessibility and Disability Resources (CADR) and Academic Support, which includes Tutoring, Supplemental Instruction, University Writing Services, and Student Success Coaching. The Student Success Center is located in the Busch Student Center, Suite 331, and students can make an appointment with any SSC resource via EAB Navigate. To learn more about the Student Success Center and its resources, please visit: <a data-fr-linked="true" href="https://www.slu.edu/life-at-slu/student-success-center/index.php">https://www.slu.edu/life-at-slu/student-success-center/index.php</a></p>
+
+<hr style="width: 100%; height: 2px;"><p>
+<p style='margin-bottom: 0in;line-height: 100%;text-align: left;background: transparent;font-family: "Times New Roman", serif;font-size:16px;'><strong>University Writing Services&nbsp;</strong></p>
+<p style='margin-bottom: 0in;line-height: 100%;text-align: left;background: transparent;font-family: "Times New Roman", serif;font-size:16px;'><strong><br></strong><span style="color: rgb(0, 0, 0);">University Writing Services offers one-on-one consultations with trained writing consultants who help with everything from brainstorming, outlining, and proposing research questions to documenting sources, revising, and implementing feedback. These consultations can take place in-person, asynchronously, or via Zoom and can be scheduled through EAB Navigate &ndash; Student. Getting feedback benefits writers at all skill levels on different writing projects (including but not limited to class assignments, conference papers, cover letters, dissertations, group projects, multimedia assignments, personal statements, senior capstone projects, short answer questions on applications, speeches, and theses). For additional information, visit<a href="https://www.slu.edu/life-at-slu/student-success-center/academic-support/university-writing-services/index.php">&nbsp;</a></span><a href="https://www.slu.edu/life-at-slu/student-success-center/academic-support/university-writing-services/index.php"><span style="color: rgb(17, 85, 204);">https://www.slu.edu/life-at-slu/student-success-center/academic-support/university-writing-services/index.php</span></a><span style="color: rgb(0, 0, 0);">&nbsp;or send an email to&nbsp;</span><a href="mailto:writing@slu.edu"><span style="color: rgb(17, 85, 204);">writing@slu.edu</span></a><span style="color: rgb(0, 0, 0);">.</span></p>
+
+<hr style="width: 100%; height: 2px;"><p>
+<p style='margin-bottom: 0in;line-height: 100%;text-align: left;background: transparent;font-family: "Times New Roman", serif;font-size:16px;'><strong>University Counseling Center</strong></p>
+<p style='margin-bottom: 0in;line-height: 100%;text-align: left;background: transparent;font-family: "Times New Roman", serif;font-size:16px;'><strong><br>&nbsp;</strong><span style="color: rgb(0, 0, 0);">The University Counseling Center (UCC) offers free, short-term, solution-focused counseling to Saint Louis University undergraduate and graduate students. UCC counselors are highly trained clinicians who can assist with a variety of issues, such as adjustment to college life, troubling changes in mood, and chronic psychological conditions. To make an appointment, call 314-977-8255 (TALK), or visit the clinic on the second floor of Wuller Hall. For after hours needs, please press #9 after dialing the clinic number.</span></p>
+
+<hr style="width: 100%; height: 2px;"><p>
+<p style='margin-bottom: 0in;line-height: 100%;text-align: left;background: #ffffff;font-family: "Times New Roman", serif;font-size:16px;'><span style="color: rgb(0, 0, 0);"><strong>Wellness</strong></span></p>
+<p style="margin-bottom: 0in;line-height: 100%;text-align: left;background: transparent;"><span style="color: rgb(0, 0, 0);">All students experience stressors and challenges at some point, and seeking support is beneficial. Such challenges may be the result of academic concerns (such as those related to particular assignments or content in a course), or they may be more personal in nature (such as concerns related to relationships, mental health, loss, identities, alcohol or drugs, housing or food security, or finances, among other things). If you experience these or other difficulties, please consider seeking support from the resources available to you.&nbsp;</span><br>&nbsp;</p>
+<ul>
+    <li>
+        <p style="margin-bottom: 0in;line-height: 100%;text-align: left;background: transparent;"><span style="color: rgb(0, 0, 0);">For concerns related to this course, please contact me. I am invested in your success and will support your success in the ways I can.&nbsp;</span></p>
+    </li>
+    <li>
+        <p style="margin-bottom: 0in;line-height: 100%;text-align: left;background: transparent;"><span style="color: rgb(0, 0, 0);">Additionally, you have access to the many resources SLU provides in support of your personal wellness. You will find a list of available resources on</span><a href="https://www.slu.edu/wellbeing/index.php"><span style="color: rgb(17, 85, 204);">the Well-being page of the SLU website</span></a><span style="color: rgb(0, 0, 0);">.&nbsp;</span></p>
+    </li>
+</ul>
+<p style="margin-bottom: 0in;line-height: 100%;text-align: left;background: transparent;"><span style="color: rgb(0, 0, 0);"><strong>If you or someone you know is experiencing a crisis</strong></span><span style="color: rgb(0, 0, 0);">: please consult</span><a href="https://www.slu.edu/life-at-slu/university-counseling/crisis-resources.php"><span style="color: rgb(0, 0, 0);">&nbsp;</span><span style="color: rgb(17, 85, 204);">the Crisis Support and Warning Signs on the University Counseling Center website</span></a><span style="color: rgb(0, 0, 0);">.</span></p>
+<p style="margin-bottom: 0in;line-height: 100%;text-align: left;background: transparent;"><br><span style="color: rgb(0, 0, 0);">In the spirit of&nbsp;</span><span style="color: rgb(0, 0, 0);"><em>cura personalis</em></span><span style="color: rgb(0, 0, 0);">, the University sees your academic success as connected to your health and well-being and provides resources to support your holistic wellness.</span></p>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h2 style='margin-top: 0in;margin-bottom: 0in;line-height: 100%;text-align: left;background: transparent;font-family: "Corbel", serif;font-weight: bold;'><span size="3" style="font-size:16px;">Basic Needs Security</span></h2>
+<p style="margin-bottom: 0.17in;line-height: 100%;text-align: left;background: transparent;"><span style="background: #ffffff;">Students experiencing food insecurity, housing insecurity, and any other challenges that are impacting their personal and/or academic wellbeing are encouraged to contact the Dean of Students Office for support. Students can submit an&nbsp;</span><a href="https://cm.maxient.com/reportingform.php?SaintLouisUniv&layout_id=35"><span style="background: #ffffff;">intake</span></a><span style="background: #ffffff;">&nbsp;form, email&nbsp;</span><a href="mailto:deanofstudents@slu.edu"><span style="background: #ffffff;">deanofstudents@slu.edu</span></a><span style="background: #ffffff;">, or call 314-977-9378 to connect with their office. Students may also communicate directly with their instructors about any challenges they are experiencing to receive support and resource referrals.</span></p>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h2 style='margin-top: 0in;margin-bottom: 0in;line-height: 100%;text-align: left;background: transparent;font-family: "Corbel", serif;font-weight: bold;'><span size="3" style="font-size:16px;">Academic Integrity</span></h2>
+<p><em>Academic integrity is honest, truthful and responsible conduct in all academic endeavors.</em> The mission of Saint Louis University is &ldquo;the pursuit of truth for the greater glory of God and for the service of humanity.&rdquo; Accordingly, all acts of falsehood demean and compromise the corporate endeavors of teaching, research, health care, and community service through which SLU fulfills its mission. The University strives to prepare students for lives of personal and professional integrity, and therefore regards all breaches of academic integrity as matters of serious concern. The full University-level Academic Integrity Policy can be found on the Provost&apos;s Office website at: <a href="https://www.slu.edu/provost/policies/academic-and-course/academic-integrity-policy.pdf">https://www.slu.edu/provost/policies/academic-and-course/academic-integrity-policy.pdf</a>. &nbsp;</p>
+<p>Additionally, each SLU College, School, and Center has its own academic integrity policies, available on their respective websites.</p>
+
+<p>The School of Science and Engineering Academic Integrity policy may be found at: <a href="https://www.slu.edu/science-and-engineering/_pdfs/sse-temporary-academic-integrity-policy.pdf">https://www.slu.edu/science-and-engineering/_pdfs/sse-temporary-academic-integrity-policy.pdf</a></p>
+
+
+<hr style="width: 100%; height: 2px;"><p>
+<h2 style='margin-top: 0in;margin-bottom: 0in;line-height: 100%;text-align: left;background: transparent;font-family: "Corbel", serif;font-weight: bold;'><span size="3" style="font-size:16px;">Disability Accommodations&nbsp;</span></h2>
+<p style="margin-bottom: 0in;line-height: 100%;text-align: left;background: transparent;">Students with a documented disability who wish to request academic accommodations must formally register their disability with the University. Once successfully registered, students also must notify their course instructor that they wish to use their approved accommodations in the course.</p>
+<p style="margin-bottom: 0in;line-height: 100%;text-align: left;background: transparent;">Please contact the Center for Accessibility and Disability Resources (CADR) to schedule an appointment to discuss accommodation requests and eligibility requirements. Most students on the St. Louis campus will contact CADR, located in the Student Success Center and available by email at <a href="mailto:accessibility_disability@slu.edu">accessibility_disability@slu.edu</a> or by phone at 314.977.3484. Once approved, information about a student&rsquo;s eligibility for academic accommodations will be shared with course instructors by email from CADR and within the instructor&rsquo;s official course roster. Students who do not have a documented disability but who think they may have one also are encouraged to contact to CADR. Confidentiality will be observed in all inquiries.</p>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h2 style='margin-top: 0in;margin-bottom: 0in;line-height: 100%;text-align: left;background: transparent;font-family: "Corbel", serif;font-weight: bold;'><span size="3" style="font-size:16px;">Title IX&nbsp;</span></h2>
+<p style="margin-bottom: 0in;line-height: 100%;text-align: left;background: #ffffff;margin-right: -0.13in;">Saint Louis University and its faculty are committed to supporting our students and seeking an environment that is free of bias, discrimination, and harassment. If you have encountered any form of sexual harassment, including sexual assault, stalking, domestic or dating violence, we encourage you to report this to the University. If you speak with a faculty member about an incident that involves a Title IX matter, <strong>that faculty member must notify SLU&rsquo;s Title IX Coordinator that you shared an experience relating to Title IX.&nbsp;</strong> This is true even if you ask the faculty member not to disclose the incident. The Title IX Coordinator will then be available to assist you in understanding all of your options and in connecting you with all possible resources on and off campus.</p>
+<p style="margin-bottom: 0in;line-height: 100%;text-align: left;background: #ffffff;margin-right: -0.13in;">Anna Kratky is the Title IX Coordinator at Saint Louis University (DuBourg Hall, room 36;<u>&nbsp;</u>anna.kratky@slu.edu; 314-977-3886). If you wish to speak with a confidential source, you may contact the counselors at the University Counseling Center at 314-977-TALK or make an anonymous report through SLU&rsquo;s Integrity Hotline by calling 1-877-525-5669 or online at<a href="http://www.lighthouse-services.com/slu">&nbsp;</a><a href="http://www.lighthouse-services.com/slu">http://www.lighthouse-services.com/slu</a><span style="background: #ffffff;">.</span> To view SLU&rsquo;s policies, and for resources, please visit the following web addresses:<a href="https://www.slu.edu/about/safety/sexual-assault-resources/index.php">&nbsp;</a><a href="https://www.slu.edu/about/safety/sexual-assault-resources/index.php">https://www.slu.edu/about/safety/sexual-assault-resources/index.php</a>.</p>
+
+
+
+</body>
+</html>
