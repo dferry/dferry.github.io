@@ -13,13 +13,13 @@ int main() {
 		return -1;
 	}
 
-	//Step 2: Make the children
+	//Step 2: Parent forks two children
 	pid_t process1 = fork();
 	if( process1 == 0 ){//Child 1 process
 
 		printf("The first child started\n");
 
-		//Step 3a: Redirect stdout into pipefd[1]
+		//Step 3a: First child redirects stdout into pipefd[1]
 		int ret = dup2( pipefd[1], STDOUT_FILENO );
 		if( ret == -1 ){
 			perror("Could not redirect stdout to pipefd[1]");
@@ -30,7 +30,7 @@ int main() {
 		// that a process is not going to use
 		close( pipefd[0] );
 
-		//All of this should go into the pipe
+		//Now everything written normally will go into our pipe
 		printf("My favorite number is %d\n", 42 );
 		printf("We're using streams\n");
 		printf("Horray\n");
@@ -43,7 +43,7 @@ int main() {
 	
 		printf("The second child started\n");
 
-		//Step 3b: Redirect stdin from pipefd[0]
+		//Step 3b: Second child redirects stdin from pipefd[0]
 		int ret = dup2( pipefd[0], STDIN_FILENO );
 		if( ret == -1 ){
 			perror("Could not redirect stdin from pipefd[0]");
@@ -54,6 +54,7 @@ int main() {
 		// that a process is not going to use
 		close( pipefd[1] );
 
+		//Now everything read from stdin comes from our pipe
 		char buffer[256];
 		while(1) {
 			char* ret = fgets( buffer, 256, stdin );
@@ -71,6 +72,7 @@ int main() {
 	close( pipefd[0] ); //Closes in the parent
 	close( pipefd[1] ); //Closes in the parent
 
+	//Step 4: Parent waits for both children
 	printf("The parent is about to wait\n");
 	waitpid( process1, NULL, 0 );
 	waitpid( process2, NULL, 0 );

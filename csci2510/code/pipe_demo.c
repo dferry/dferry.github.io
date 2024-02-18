@@ -13,9 +13,11 @@ int main() {
 		return -1;
 	}
 
+	//Step 2: Parent forks processes
 	pid_t process1 = fork();
 	if( process1 == 0 ){//Child 1 process
 
+		//Step 3a: First child writes to pipe
 		printf("The first child started\n");
 
 		//Example using syscalls
@@ -34,6 +36,7 @@ int main() {
 	pid_t process2 = fork();
 	if( process2 == 0 ){ //Child 2 process
 	
+		//Step 3b: Second child reads from pipe
 		printf("The second child started\n");
 
 		//Reading from pipe with syscalls
@@ -52,6 +55,7 @@ int main() {
 		return 0;		
 	}
 
+	//Step 4: Parent waits for both children to finish
 	printf("The parent is about to wait\n");
 	waitpid( process1, NULL, 0 );
 	waitpid( process2, NULL, 0 );
