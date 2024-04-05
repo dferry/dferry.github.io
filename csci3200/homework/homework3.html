@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+  <HEAD>
+    <TITLE>Assignment:  Using the Lex/Flex Scanner Generators
+    </TITLE>
+  </HEAD>
+
+  <BODY>
+
+    <CENTER>
+      <H2>Assignment:  Using the Lex/Flex Scanner Generators</H2>
+      <br>
+    </CENTER>
+
+
+<h3>Contents:</h3>
+<UL>
+  <LI>
+      <a href="#overview">Overview</a>
+  </LI>
+  <LI>
+      <a href="#submit">Problems to be Submitted</a>
+  </LI>
+</UL>
+
+<HR>
+
+<a name="overview"><h3>Overview</h3></a>
+
+<P>
+<b>Topic(s):</b>  Lexical Analysis, Lexical Analysis Generators, Lex/Flex
+<br>
+<dt><b>Related Reading:</b>  Section 2.1-2.2, and the following websites:</dt>
+<ul>
+<li><a href="http://web.mit.edu/gnu/doc/html/flex_1.html">Flex man pages</a> <i>(Note that there are multiple pages here, so click on the 'next' link at the top/bottom of each section to go to the next page)</i></li>
+<li><a href="http://dinosaur.compilertools.net/">The Lex & Yacc Page</a><li>
+<li><a href="http://tldp.org/HOWTO/Lex-YACC-HOWTO.html#toc3">Lex and YACC primer/HOWTO</a> by Bert Hubert</li>
+<li><a href="http://www.ibm.com/developerworks/library/l-lexyac.html">Build code with lex and yacc</a> by IBM</li>
+<li><a href="http://epaperpress.com/lexandyacc/download/lexyacc.pdf">A Compact Guild to Lex & Yacc</a> by Tom Niemann</li>
+</ul>
+<P>
+
+<hr>
+
+<a name="submit"><h3>Problems to be Submitted (25 points)</h3></a>
+
+
+<p> Please submit your solution via email to the instructor by midnight on the due date.
+
+<OL type=A>  
+  <LI> (10 points)
+    <P>
+      The Swedish Chef is a character from Jim Henson's "The Muppet 
+Show" that is well known for his comically-extreme Swedish accent.  In a 
+similar comical vein, in 1993 John Hagerman wrote a Lex program that 
+transforms regular English text into an equivalent version of the text 
+as it would be pronounced by the Swedish Chef.  The Lex code for this 
+program is <a href="./chef.l">chef.l</a>.
+    </P>
+    <P>
+      The Swedish Chef text converter (along with a few similar 
+"linguistic" converters) has also been rendered into an applet by John 
+Chambers, which can be found via the following <a 
+href="http://www.cs.utexas.edu/users/jbc/home/chef.html">link</a>.
+    </P>
+    <P>
+      <b>Your task in this problem</b> is to figure out how this Lex 
+program works, and provide comments for each of the rules in the 
+translation rules section, describing what English text it converts, and 
+what it converts it to.  Be sure to pay attention to the INW and NIW 
+start conditions, as these impact when and/or how the subsequent text is 
+converted.
+    </P>
+    <P>
+      When you are uncertain how a particular rule works, you can 
+experiment with the Swedish Chef converter program to gain better 
+understanding as to how/when particular English strings are converted to 
+Swedish Chef-isms.  You can do this via the applet, or by compiling the 
+chef.l program into an executable via the following Linux commands:
+    </P>
+    <P>
+      <dd><tt>flex chef.l</tt></dd>
+      <dd><tt>gcc -o chef lex.yy.c -lfl</tt></dd>
+    </P>
+  </LI>
+
+  <LI> (10 points)
+    <P>
+      Text messaging has become a very popular mechanism for communicating over cell phones and the Internet in recent years.  Over time, a shorthand <a href="http://en.wikipedia.org/wiki/Text_messaging">text messaging</a> language (aka "texting"; <a href="http://en.wiktionary.org/wiki/Appendix:Internet_slang">"Internet slang"</a> is also related) has come to be developed that minimizes the amount of typing individuals have to do in order to communicate their messages.
+    </P>
+      Some common <i>texting</i> shorthands include:
+      <dd><b>lol</b> &nbsp;&nbsp; - &nbsp;&nbsp; "laugh out loud" (or less commonly, "lots of luck")</dd>
+      <dd><b>sry</b> &nbsp;&nbsp; - &nbsp;&nbsp; "sorry"</dd>
+      <dd><b>plz</b> &nbsp;&nbsp; - &nbsp;&nbsp; "please"</dd>
+      <dd><b>b4</b> &nbsp;&nbsp; - &nbsp;&nbsp; "before"</dd>
+      <dd>etc.</dd>
+    <P>
+      A list of common text abbreviations is available under those two links on Wikipedia. 
+    </P>
+    <P>
+      <b>Your task for this problem</b> is to create a Lex program that translates some of these <i>texting</i> shorthands to their full English equivalents.  Please have your program convert at least 20 <i>texting</i> shorthands to their regular English equivalent.  Please avoid offensive or inappropriate terms (i.e.  please don't use "wtf", "omfg", or similar shorthands...).
+    </P>
+    <P>
+      <i>Note:</i>  Those of you who are experienced with <i>texting</i> surely know that some <i>texting</i> shorthands, such as "lol", are usually not used to convey their literal translation, but are used more like <a href="">emoticons</a>, which are shorthands that convey emotions.  "Lol" is so commonly used that it is more correctly interpreted as a chuckle (/chuckle) than a loud laugh.  If you wish, you may provide your own interpretations for some of the <i>texting</i> shorthands that fall into this category (but please don't do this for all shorthands;  also be sure to translate some shorthands literally).
+    </P>
+  </LI>
+
+  <LI> (5 points)
+    <P>
+      <b>Your task for this problem</b> is to extend the <i>texting</i> 
+converter that you created in Problem #2 to properly perform 
+capitalization at the beginning of a sentence.  For example, if the 
+<i>texting</i> shorthand "sry" appears at the beginning of a sentence, 
+it should be converted to "Sorry", whereas if it appears in the middle 
+of a sentence, it will be converted to "sorry".
+    </P>
+    <P>
+      <i>Note:</i> You need to have a full understanding of how the 
+Swedish Chef converter in Problem #1 works in order to accomplish this 
+task.
+    </P>
+  </LI>
+</OL>
+
+<hr>
+
+  </body>
+</html>
+
