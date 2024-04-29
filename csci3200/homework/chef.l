@@ -61,3 +61,4 @@ NW		[^A-Za-z']
 "W"		{ BEGIN INW; printf("V"); }
 
 .		{ BEGIN INW; ECHO; }
+
