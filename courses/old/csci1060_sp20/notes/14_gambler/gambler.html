@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+
+<HTML>
+<HEAD>
+<TITLE>Lecture Notes: The Gambler
+</TITLE>
+</HEAD>
+
+<BODY>
+
+
+<HR>
+
+<H2>
+Stochastic Simulation: The Gambler
+</H2>
+
+<p>
+Consider the following simulation.  A gambler starts with an initial
+bankroll (e.g., $50) and a target goal (e.g., $100).  He or she then
+makes a series of $1 bets (winning each with independent probability
+0 &le; p &le; 1 until reaching the goal or going broke.
+
+<p>
+We are interested in simulating this experiment to approximate two
+results:
+<ul>
+  <li>
+      The chance of the gambler reaching the goal.
+  </li>
+  <li>
+      The average number of bets until the simulation ends.
+  </li>
+</ul>
+
+
+
+
+<p>
+To do so, we wish to have you implement a function, documented as follows.
+<pre>
+function [success bets] = gambler(goal, initial, p)
+   % Performs independent trials for a gambling simulation.
+   % USAGE: [success round] = gambler(goal, initial, p)
+   %   A gambler begins with a bankroll designated as initial
+   %   and repeatedly bets $1 with a winning percentage of p
+   %   continuing until either meeting the goal or going broke.
+   %
+   %   If not otherwise specified,
+   %       initial = goal/2
+   %       p = 0.5
+</pre>
+
+
+
+<h4>Challenge for Class</h4>
+<p>
+Implement the <tt>gambler</tt> function, as parameterized above.
+Then write separate scripts to estimate the answer to each of the
+following (using a minimum of 1000 trials).
+<ul>
+  <li>
+      For a goal of $100 and an initial bankroll of $50,
+      what is the probability of success if the gambler has a 49%
+      chance of winning each individual bet?
+  </li>
+  <li>
+      How many bets, on average, will be made for the above simulation?
+  </li>
+  <li>
+      For a goal of $100 and a probability of 49%, what is the minimum
+      initial bankroll needed to provide at least a 50% chance of
+      achieve the goal?
+  </li>
+</ul>
+
+
+<p>
+In the long run, we will use this <tt>gambler</tt> function to perform
+broader analysis where we allow one or more of the parameters to
+vary.  For example, here is a graph showing the experiment done with a
+fixed goal and p-value but varying initial bankroll.
+<br>
+<img src="bankrollAnalysis_10_0.45_10000.jpg" width="100%">
+<br>
+This shows that with an initial bankroll of 5, the chance of success
+is only 23% or so.  To have the chance of success near 50%, given the
+p-value, we would need an initial bankroll of 7.
+
+
+
+<p>To do these tests, modify your function to perform a series of trials, as such:
+
+<pre>
+function [success bets] = gambler(goal, initial, p, trials)
+   % Performs independent trials for a gambling simulation.
+   % USAGE: [success round] = gambler(goal, initial, p, trials)
+   %   A gambler begins with a bankroll designated as initial
+   %   and repeatedly bets $1 with a winning percentage of p
+   %   continuing until either meeting the goal or going broke.
+   %
+   %   success will be the fraction of times in which goal was reached
+   %   bets will be the average number of bets placed before the outcome
+   %
+   %   If not otherwise specified,
+   %       initial = goal/2
+   %       p = 0.5
+   %       trials = 1
+</pre>
+
+
+<HR>
+
+<!--
+Originally by
+<ADDRESS>
+<a href="/~goldwasser">Michael Goldwasser</a>
+</ADDRESS>
+<br>
+-->
+
+
+</BODY>
+</HTML>
+

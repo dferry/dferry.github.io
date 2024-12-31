@@ -1,0 +1,49 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+	<title>Kernel Timing and Timers Source Code Pointers</title>
+
+	<style>
+	.hang{
+		padding-left: 3em ;
+		text-indent: -3em ;
+	}
+	</style>
+
+</head>
+
+<body>
+
+<h3>Kernel Timing and Timers Source Code Pointers</h3>
+
+<hr />
+
+<p>These are some pointers to timing and timer related files in the Linux
+kernel.</p>
+
+<p class="hang"><b>kernel/time/time.c</b>- Contains basic time related system
+calls: <code>time</code>, <code>stime</code>, 
+<code>gettimeofday</code>, <code>settimeofday</code>, etc.</p> 
+
+<p class="hang"><b>kernel/time/timer.c</b>- Legacy timer subsystem based on
+timer wheels.</p>
+
+<p class="hang"><b>kernel/time/hrtimer.c</b>- High resolution timers subsystem
+(this is the basis for high resolution kernel timers as well as most current
+userspace timer iterfaces: <code>itimers</code>, <code>nanosleep</code>,
+and POSIX timers)</p>
+
+<p class="hang"><b>kernel/time/tick-common.c</b>- Functions for handling of
+ticks when they occur, including <code>tick_periodic</code> for periodic
+tick systems.</p>
+
+<p class="hang"><b>kernel/time/tick-oneshot.c</b>- Functions for handling of
+ticks on oneshot based systems.</p>
+
+<p class="hang"><b>kernel/time/tick-broadcast.c</b>- Functions for handling
+the broadcast of tick events for SMP systems, including functions for
+handling ticks in oneshot mode.</p>
+
+</body>
+</html>

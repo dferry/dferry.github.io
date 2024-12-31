@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSCI 3500 - Operating Systems</title></head>
+
+<h2 style="text-align: center;">CSCI 3500: Studio 10<br></h2>
+<h2 style="text-align: center;">Race Conditions</h2>
+
+<hr style="width: 100%; height: 2px;">
+
+<p>Race conditions are a common problem of multi-threaded and parallel
+programming. Our goal today is to create a race condition and observe
+its behavior.</p>
+
+<p>In this studio, you will:</p>
+
+<ol>
+<li>Create a shared global variable
+<li>Access this variable from a single thread
+<li>Access this variable from multiple threads
+<li>Demonstrate a race under parallel execution (simultaneous execution)
+<li>Demonstrate a race under sequential execution (concurrent execution)
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>
+<p>
+Please complete the required exercises below, as well as any optional
+enrichment exercises that you wish to complete.</p> 
+
+<p>
+As you work through these exercises, please record your answers in a text
+file. When finished, submit your work by sending your text file and
+source code to <strong>dferry_submit@slu.edu</strong>
+with the phrase <strong>
+Race Condition
+</strong> in the subject line.</p>
+
+<p><strong> Make sure that the name of each person who worked on these exercises
+is listed in the first answer, and make sure you number each of your responses
+so it is easy to match your responses with each exercise.</strong></p>
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Required Exercises</h3></p>
+
+<ol>
+<p><li>As the answer to the first exercise, list the names of the people who
+worked together on this studio.</p>
+
+<p><li>Create a new program, and create a global variable of type
+<code>int</code> and called <code>race</code> at the top of your program
+(in global scope, not in the <code>main()</code> function). Then
+write two functions, called <code>adder</code> and <code>subtractor</code>,
+which increment and decrement the variable <code>race</code> two million
+times each. Each function should perform two million additions or
+subtractions by one. Copy and paste these functions.</p>
+
+<p><li>What do you think 
+would happen if you executed these functions directly in
+<code>main()</code>? Test your hypothesis by doing so. What happens?</p>
+
+<p><li>What do you think will happen if these two functions were executed
+simultaneously by two different threads? What specific value do you think
+the variable <code>race</code> would have?</p>
+
+<p><li>Modify your program so that each function is executed 
+concurrently by its own
+thread via <code>pthread_create()</code>. Make sure that you
+create both threads before you wait for either thread.What is the result? 
+Copy and paste several executions of your program.
+</p>
+
+<p><li>Can you explain the program's behavior? What do you think the maximum
+or minimum value could ever be?</p>
+
+<p><li>Try changing the number of iterations from two million to one million,
+and then from one million to 500,000. Does your program still exhibit this
+behavior? Try your program with 1000 iterations and try your program ten or
+fifteen times. What about now?</p>
+
+<p><li>Could your race condition still exhibit itself if your machine had only
+one processor core? Why or why not?</p>
+
+<p><li>We can simulate this by running your program and only allowing it to
+execute on one processor. Set the number of iterations back to
+two million, and then execute the command:</p>
+
+<p><code>taskset -c 0 ./race_program</code></p>
+
+<p>This restricts the program <code>race_program</code> to only execute on
+processor zero. What happens?</code>
+
+<p><li>Modify your program so that each function performs two hundred million
+operations (200,000,000). Run your program on one processor core, what
+happens?</p>
+
+<p><li>Give a reasonable explanation of the behavior in the previous exercise.</p>
+
+</ol>
+
+<p><h3>Optional Enrichment Exercises</h3></p>
+<ol>
+<li>No optional exercises
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>

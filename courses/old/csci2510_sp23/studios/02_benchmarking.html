@@ -1,0 +1,222 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSCI 2510 - Principles of Computing Systems</title></head>
+
+<h2 style="text-align: center;">CSCI 2510: Studio 2<br></h2>
+<h2 style="text-align: center;">Benchmarking</h2>
+
+<hr style="width: 100%; height: 2px;">
+
+<p>Language: Rust</p>
+
+<hr style="width: 100%; height: 2px;">
+
+<p>In this studio, you will:</p>
+
+<ol>
+        <li>Declare mutable and immutable variables</li>
+	<li>Declare variables with data types</li>
+	<li>Declare functions</li>
+	<li>Time the execution of code to a high degree of precision</li>
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>
+<p>
+Please complete the required exercises below, as well as any optional
+enrichment exercises that you wish to complete.</p> 
+
+<p>
+For this studio, please create a new Rust project with the name 
+<strong>benchmarking</strong> (note, case sensitive). 
+As you work through these exercises, 
+please record your answers in a text file in the root level of that
+project. When finished, please add the entire project and push it
+to the SLU Git repository.
+</p>
+
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Required Exercises</h3></p>
+
+<ol>
+<li><p>In Rust, variables are declared using the <code>let</code> keyword. </li>
+	Try it with a statement like, "<code>let x = 10;</code>". Then, print the
+	value of <code>x</code> with <code>println!()</code>.</p>
+
+	<p>With <code>println!()</code>, you can print the value of a variable by
+	enclosing it in curly braces:</p>
+
+	<pre>
+	println!("My value: {x}");
+	</pre></li>
+
+<li><p>Next, change the value of x with the line 
+	<code>x = 20;</code> after your call to <code>println!()</code>. 
+	Try to build and run your program- what happens? What does the 
+	compiler error say? Copy and paste the compiler error as
+	the answer to this question.</li></p>
+
+<li><p>If we want a different value of <code>x</code>, one solution is
+	is to use <i>variable shadowing</i>. Replace the line
+	<code>x = 20;</code> with the line <code>let x = 20;</code>
+	and then print the value of <code>x</code> again. Try to
+	run your program now, what happens?</li></p>
+
+<li><p>Why does this work? <code>x</code> is supposed to be an immutable,
+	read-only variable. Why are we allowed to redefine <code>x</code>
+	so that it takes a new value? Technically, we're not changing the
+	value of <code>x</code>, we're creating a second variable that also
+	has the name <code>x</code>. It might sound like we're splitting hairs, but
+	we're not. A shadowed variable is equivalent to declaring two separate
+	immutable variables, while any mutable variable is mutable. The compiler
+	doesn't actually care about what name we give a variable- the compiler
+	thinks of variables as the contents of a memory location.</p>
+
+	<p>Shadowing an	immutable variable creates two separate variables in
+	two separate memory locations. A single mutable variable creates a single
+	variable in memory that changes.</p>
+
+	<p>Try thinking up a situation where this distinction matters. In one program
+	you have two immutable variables with the same name, in another program you have
+	a single mutable variable. Be creative, and don't be afraid of being wrong-
+	if you can't come up with a good example, ask the instructor or just take your
+	best guess.</p></li>
+
+<li><p>Now let's try creating a mutable variable, which is done with the <code>mut</code>
+	keyword. Declare it as such: <code>let mut y = 20;</code>. Then, print the value
+	of <code>y</code>, change the value, and print it again. Copy-paste your output
+	as the answer to this exercise.</p></li>
+
+<li><p>One more distinction to make clear- Rust also supports <i>constant</i> values that
+are truly constant and never allowed to change. By convention, constant values are capitalized
+in Rust. Try copy-pasting this code at the top of your program, above <code>main()</code>.</p>
+
+	<pre>
+	const TRIALS: u32 = 10000;
+	const TRIALS: u32 = 20000;
+	</pre>
+
+	<p>What happens when you build and run this? Go ahead and remove one of the two definitions,
+	and leave the answer to this question blank.</p></li>
+
+<li><p>Rust variables also support data types. Rust is an <i>implicitly typed</i> language, which
+	means the compiler will try to infer what data type to use, and most of the time it
+	can get it right. However, you have the control to set an explicit data type, and it's a
+	good idea to do so. This is done by putting a colon ":" after the name of the variable,
+	and then placing the type after the colon.</p>
+
+	<p>Look at the code below and make a prediction about what the output
+	will be when the code runs. Then copy-paste this code into your program, run the code, 
+	and record your reaction as the answer to this exercise.
+	</p>
+
+	<pre>
+	let mut signed : i32 = 0;
+	signed = signed - 1;
+	println!("Signed result: {signed}");
+	
+	let mut unsigned : u32 = 0;
+	unsigned = unsigned - 1;
+	println!("Unsigned result: {unsigned}");
+	</pre>
+	</li>
+
+<li><p>Go ahead and remove the code from the previous exercise. Leave this answer blank.</p></li>
+
+<li><p>Last, let's write a benchmarking loop. Timing in Rust can be done with the <code>time</code>
+	module. Copy and paste the following lines at the very top of your file.</p>
+
+	<pre>
+	use std::time::Duration;
+	use std::time::Instant;
+	</pre>
+
+	<p>Then, copy and paste the following code inside your program :</p>
+
+	<pre>
+	let start = Instant::now();
+
+	//Code to be benchmarked 
+        
+	let end = Instant::now();
+        let runtime = end.duration_since(start);
+	println!("Running time: {:?}", runtime);
+	</pre>
+</li>
+
+<li><p>When running this code, you should get a printout of how long it took to run,
+	and that time should be very quick. It is very likely measured in nanoseconds,
+	or one billionth of a second. Write down how long it takes to run zero code.</p></li>
+
+<li><p>There is actually some variation in how long code runs at this level. Copy and paste
+	the above code three or four times. Run your program several times- do you notice
+	anything unusual? For example, it is common that the first time a piece of timing
+	code is invoked in a program, it may take a little longer to run. Discard any
+	outliers and compute an average for the last measurement. This is essentially
+	how long it takes to create a timestamp, and represents a lower-limit on what
+	we can measure with this technique.</p></li>
+
+<li><p>Now we will write a function and measure how long it takes. Outside of your
+	<code>main()</code> function, write a function called <code>add()</code>
+	which takes two integers and returns nothing. The signature should be:</p>
+
+	<pre>
+	fn add( a:i32, b:i32 ) {
+
+	}
+	</pre>
+
+	<p>You can add <code>a</code> and <code>b</code> with <code>a+b</code>, but
+	a single addition isn't enough to measure on its own. Write a for-loop around
+	<code>a+b</code> using the <code>TRIALS</code> constant from before, and measure
+	that. Once you have a good timing measurement for the <code>add()</code> function,
+	divide that number by <code>TRIALS</code> to get a per-addition measurement.
+</li>
+
+<li><p>Does your per-addition measurement make sense? How many nanoseconds would you expect
+	an add to take? Make an argument for or against why your number makes sense.</p></li>
+
+<li><p>Try increasing the TRIALS value to see if your reported number changes. 
+	On Hopper, I can go up to 10 million without too much of a delay.
+	What happens? Why do you think that is?</p></li>
+
+<li><p>Lastly, try timing how long it takes to execute a <code>println!()</code> statement.
+	(Don't try doing this 10 million times- a handful is enough.) Write down what you
+	printed and how long it took</p></li>
+
+<li><p>Did any of these benchmarks surprise you? Why or why not? Write down one question you still
+	have after finishing the exercises above.</p></li>
+
+</ol>
+
+<p><h3>Optional Enrichment Exercises</h3></p>
+<ol>
+	<p><li>std::time::Duration can be added together and operated on with multiplication
+	and division. Try writing a for-loop that executes a snippet of code multiple times,
+	discards the first five timings it gets, and for the rest it adds each computed
+	std::time::Duration to a running total. Then at the end, divide the accumulated
+	running total by the number of timings. This can be used to measure any operation
+	a specified number of times- for example rather than having the <code>add()</code>
+	function use a for-loop and iterate many times inside the function, you could just call the whole
+	function multiple times.</li></p>
+
+	<li><p>The terminal we use on Hopper has a built-in command called <code>time</code> which
+		times how long a program runs. It produces output that looks like this:</p>
+
+	<pre>
+	real    0m3.140s
+	user    0m2.915s
+	sys     0m0.029s
+	</pre>
+
+	<p>What do you think "real", "user", and "sys", mean here? Try looking them up.</p>
+
+	<p>You can even use this with <code>cargo run</code> by typing, "<code>time cargo run</code>". This is
+	easy and convenient, and you can use it to time any program or command that runs on the
+	terminal. Does it work for what we're attempting to do here? What are the pros and cons?</p>
+	</li>
+
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>

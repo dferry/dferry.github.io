@@ -1,0 +1,120 @@
+Book Chapter 2 Notes: Authenticating
+
+Chapter Summary
+  - What does it mean to authenticate?
+  - Computers - Fact and data-driven authentication
+    * Passwords
+    * Security questions for account recovery
+    * ID Codes
+  - Humans - Physical characteristics
+    * Prefer sight, sound, touch
+    * Computers don't have that
+    * Digital communication doesn't convey that (mostly, e.g. profile picture)
+  - Meeting in the middle
+    * What can you do when you only have written statements?
+    * If you know them - fallback to data & fact authentication
+    * What if you don't know them?
+
+  - Spam pervades the world
+    * We're always doing a little turing test
+  - Speed dating
+    * Getting someone's list of stats vs. getting to know them
+    * Fall into trap of describing yourself instead of acting like yourself & looking for chemistry
+    * Not allowed to talk about job or hometown
+
+  - Telling human from machine
+    * Internal consistency
+    * People automatically have a specific notion of "self" that is generally consistent
+    * Bots do not, for various reasons
+      - Different authors
+      - Many bots use human inputs to form future outputs
+
+  - Therefore, a "more human experience" is to have a single, consistent experience
+    * True for chatbots
+    * True for companies
+      - Dehumanizing experience of calling support or customer service
+
+
+Activity possibilities:
+
+* 5 Minute conversation
+  - Like what we did for chapter one, but now you're not allowed to talk about major, hometown, or the weather
+  - What do you really talk about?
+  - Could do survey we had from last time, and compare how the answers change?
+
+* Speed dating: Describe Yourself vs. Act Like Yourself
+  - What are the things someone would use to describe you?
+  - What would someone else do if they were told to act like you?
+    * (Imagine you were going to act like me, the professor.)
+
+* What would you say if you really had to convince someone over Facebook that you were stranded and really needed $500?
+  - How would you "break through" the spam barrier?
+  - What if you knew the person on the other end?
+  - What if you didn't really know the person?
+    - This is the really hard part
+    - Could really happen: one time I was at a conference in Barcelona
+    - Stupidly did not get any currency before I left and only had my credit card
+    - Quite a few places (small shops, subway) did not accept credit cards, cash only
+    - Thought about asking some "friend of a friends" for a short term loan
+
+* Authenticating identity - Characterization Exercises
+  - This might do better as a part of next time's class
+  - Might want to do this one outside
+  - Pick a character, or be given one on a index card sheet
+    * Can be from anything, fiction or nonfiction:
+    * Luke Skywalker, Darth Vader, Han Solo
+    * Samwise Gamgee, Gandalf
+    * Sherlock Holmes, Shaggy from Scooby Doo, Velma from Scooby Doo
+    * Harry Potter, Hermionie Grangier
+    * Mario, Bowser
+    * Donald Trump, Hillary Clinton
+    * Abraham Lincoln, Martin Luther King Jr.
+
+  Mental characterization:
+  - Close eyes, relax and clear mind without losing physical characterization
+  - Consider biases and discard them
+    * E.g. think about how you would answer the following questions, and DO NOT do it like that
+    * How is the weather?
+    * What do you think is important?
+    * What people do you see in your daily life?
+    * Now explicitly discard those answers from your mind
+  - In a few minutes, you'll walk around and have a few conversations in character, and before that
+      you want to mentally get into your character.
+  - We explicitly do not want to fall back to factual or form authenticating content
+  - Some questions to get into the mental state of your character
+    * What do you listen to on the drive to work?
+      - What do you like about it? What music do you dislike and why?    
+    * Is it better to start projects, or to finish projects?
+    * How do you deal with failure?
+    * What is the greatest lesson you live your life by?
+    * What do you think about when you're alone?
+    * What is something you'd be uncomfortable saying out loud? Why is it uncomfortable?
+
+  Physical characterization:
+  - Start in a neutral, relaxed stance. Hips over feet, feet slightly spread apart, shake out arms and shoulders
+  - First step- think about how the character stands and adopt that stance
+  - Second step- think about how the character walks and move around the space
+
+  Find a partner and have a conversation in character
+  - DO NOT accent your voice- not a part of character's mental state, easy way to fake characterization
+  - If you're Darth Vader, don't find ways to bring up the Death Star and the Rebel Alliance
+  - Some "non-content, non-factual" questions to talk about: 
+    
+  
+* The Most Human Computer
+  - If you were to write a chatbot, you would need to create a character to be that "person"
+  - A character is more than a backstory
+  - A characterization dictates how your character behaves in different circumstances and why
+    - Characterization is not a set of facts and goals e.g. they're an athlete and they want to go to the olympics.
+    - Characterization is a set of motivations and a narrative that connects them.
+       * E.g. I feel like I would be letting my family down if I don't succeed
+       * E.g. My bookie is going to break my legs if I don't pull this off.
+       * E.g. I love the sport and want to challenge myself.
+    - What is going through your character's mind as they go about the day?
+    - What do they like to talk about? What do they dislike?
+    - What are they comfortable talking about? What makes them uncomfortable?
+    - What kinds of things do they know really well? What don't they know really well?
+    - Why does your character feel about things the way they do?
+  - Now, after all of the above? How does your character actually act and what do they say in a conversation?
+
+

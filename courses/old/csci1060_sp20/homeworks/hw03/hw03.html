@@ -1,0 +1,454 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+  <HEAD>
+    <TITLE>Assignment
+03
+</TITLE></HEAD>
+
+  <BODY>
+<HR>
+
+<center>
+<h2>Computer Science 1060<br>
+Scientific Programming<br>
+Assignment 03 - Plotting Data</h2>
+</center>
+
+
+<h3>Contents:</h3>
+<UL>
+  <LI>
+      <a href="#overview">Overview</a>
+  </LI>
+  <LI>
+      <a href="#submit">Problems to be Submitted</a>
+  </LI>
+  <LI>
+      <a href="#extra">Extra Credit</a>
+  </LI>
+</UL>
+
+<hr>
+
+<a name="overview"><h3>Overview</h3></a>
+
+<P>
+<b>Topic:</b>  Plotting Data
+<br>
+<b>Related Reading:</b>  Ch.&nbsp;5 as well as <a
+href="../../notes/04_plots/04_plots.html">coverage from
+lecture</a>.
+
+</P>
+
+<P>
+For each of the following problems, your goal is to create a script
+that precisely replicates the figure that we demonstrate.  Please make
+sure to pay attention to issues like axis bounds, labels, titles,
+legends, and other such aesthetics.
+You should be submitting four separate fies: <tt>arch.m</tt>,
+<tt>sunflower.m</tt>, <tt>population.m</tt>, and <tt>stock.m</tt>.</p>
+
+<p>
+Please submit your homework files via the Git repository.
+</p>
+
+<!--<b><a href="https://docs.google.com/forms/d/e/1FAIpQLScdQVB7y_b5Phe1JyvBCUV8-t5cBrEtiSzKw7BvGXZmVOwwdg/viewform?usp=sf_link">Submit your m-files via web form here.</a></b>
+-->
+<!--
+Submit those m-files to 
+<a href="mailto:dferry_submit@slu.edu">dferry_submit@slu.edu</a>.
+-->
+
+<hr>
+
+<a name="submit"><h3>Problems to be Submitted (20 points)</h3></a>
+
+
+<DL COMPACT>
+<DT>Problem A)
+<DD>(5 points)
+<BR>
+The Gateway Arch is shaped according to the equation:
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+y = 693.8 - 68.8\cosh\left(\frac{x}{99.7}\right) ft.
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="279" HEIGHT="45" BORDER="0"
+ SRC="img1.png"
+ ALT="\begin{displaymath}y = 757.7 - 127.7 \cosh\left(\frac{x}{127.7}\right) ft.\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+for <tt>x</tt> ranging from -330 to 330 and using MATLAB's hyperbolic
+cosine function (<tt>cosh</tt>).  
+Create a script <TT>arch.m</TT> that produces a figure of the arch
+matching the following style. Note that there is a grid in the background
+and that the aspect ratio of the graph is square.
+<br>
+<img width=600 src="arch.png">
+    
+<P>
+<DT>Problem B)
+<DD>(5 points)
+<BR>
+Consider the following rendition of the seeds in a sunflower.    
+<br>
+<img width=600 src="sunflower.png">
+<br>
+We used the following mathematical model to produce this image.  We fix a constant <IMG
+ WIDTH="91" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$d = 137.51$"> and
+have <IMG
+ WIDTH="16" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img3.png"
+ ALT="$n$"> ``seeds'' numbered from 1 to 1000.  Seed <IMG
+ WIDTH="22" HEIGHT="33" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$s_k$"> is plotted at
+a location
+<P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{eqnarray*}
+x_k & = & r_k \cdot sin(\theta_k)\\
+y_k & = & r_k \cdot cos(\theta_k)
+\end{eqnarray*}
+ -->
+<IMG
+ WIDTH="151" HEIGHT="61" BORDER="0"
+ SRC="img5.png"
+ ALT="\begin{eqnarray*}
+x_k &amp; = &amp; r_k \cdot sin(\theta_k)\\
+y_k &amp; = &amp; r_k \cdot cos(\theta_k)
+\end{eqnarray*}"></DIV>
+<BR CLEAR="ALL"><P></P>
+where <!-- MATH
+ $r_k = \sqrt{k}$
+ -->
+<IMG
+ WIDTH="73" HEIGHT="43" ALIGN="MIDDLE" BORDER="0"
+ SRC="img6.png"
+ ALT="$r_k = \sqrt{k}$"> and <!-- MATH
+ $\theta_k = \frac{\pi \cdot d}{180} k$
+ -->
+<IMG
+ WIDTH="81" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img7.png"
+ ALT="$\theta_k = \frac{\pi \cdot d}{180} k$">.
+
+<p>
+    Create a script <tt>sunflower.m</tt> that produces such a figure
+    (note well that displayed axes are intentionally omitted from the figure,
+    and that the image aspect ratio is square).
+
+
+    
+<P>
+    For your own amusement you might see what kind of
+    patterns you get by slightly modifying the value of <IMG
+ WIDTH="14" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img8.png"
+ ALT="$d$">, but submit the version with the prescribed value.
+
+<P>
+<DT>Problem C)
+<DD>(5 points)
+<BR>
+<P>
+Population growth can often be modeled with the following function:
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+population = \frac{a}{b + e^{ct}}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="168" HEIGHT="43" BORDER="0"
+ SRC="img9.png"
+ ALT="\begin{displaymath}population = \frac{a}{b + e^{ct}}\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+where <IMG
+ WIDTH="15" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img10.png"
+ ALT="$a$">, <IMG
+ WIDTH="13" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img11.png"
+ ALT="$b$">, and <IMG
+ WIDTH="13" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img12.png"
+ ALT="$c$"> are well-chosen constants, and <IMG
+ WIDTH="12" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img13.png"
+ ALT="$t$"> measures
+time. For example, a reasonable model for the population of the United
+States over time uses the values <TT>a = 1.313e-18</TT>, <TT>b =
+  4.667e-27</TT> and <TT>c = -0.03134</TT>, with 
+<IMG
+ WIDTH="12" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img13.png"
+ ALT="$t$"> measured in years.
+
+<P>
+For this problem, we want you to graph the population estimate when
+compared to the actual data for the U.S. population for the period
+from 1650 up to 2000.  We are providing
+a text file with the actual raw data
+(statistics taken from
+<a href="http://en.wikipedia.org/wiki/Demographic_history_of_the_United_States">wikipedia</a>).
+Our file has a simple format, starting as
+<PRE>
+1650        50400
+1670       111900
+1690       210400
+1700       250900
+</PRE>
+
+You may download the file <tt><a
+    href="population.txt">population.txt</a></tt> to save in your
+working directory. It can be loaded from within a MATLAB script with a
+command such as
+<pre>
+pop = load('population.txt');
+</pre>
+in which case the variable <tt>pop</tt> will be set to an array with
+n&nbsp;rows and 2&nbsp;columns.
+
+<P>
+Write a script <TT>population.m</TT> that reproduces the following
+figure, with the blue dots being the actual data read from the file
+and the red line being the estimating function (you can plot the blue
+dots in MATLAB by using a line specification of <TT>'b.'</TT>).
+
+<br>    
+<img width=600 src="population.png">
+
+<P>
+<DT>Problem D)
+<DD>(5 points)
+<BR>
+
+<P>
+Many financial web sites will display charts similar to the one shown
+below showing the price of the Dow Jones Industrial Average as well as
+the overall market volume for each day of the most recent year (figure
+courtesy of
+<a
+    href="http://finance.yahoo.com/echarts?s=%5EDJI#chart1:symbol=^dji;range=1y;indicator=volume;charttype=line;crosshair=on;ohlcvalues=0;logscale=on;source=undefined">Yahoo
+    Finance</a>).
+<br>
+<img width=600 src="yahoo.gif">
+<br>
+Yahoo also shares its <a
+href="http://finance.yahoo.com/q/hp?s=%5EDJI">raw data</a>, not
+just for the year but for its full history.  For this assignment, we
+have downloaded the raw data for the Dow Jones going back to 1928.
+Our goal is to use MATLAB to reproduce a similar view of the above
+timeframe.
+    
+<p>
+We are providing the raw data in a text file (<a
+    href="djia.txt">download here</a>), wih one row for each day
+of market activity.  It is arranged in columns that designate
+    <br>
+    <br>
+    <table border=1>
+      <tr>
+	<th>Year</th>
+	<th>Month</th>
+	<th>Day</th>
+	<th>Daily Opening Price</th>
+	<th>Daily High Price</th>
+	<th>Daily Low Price</th>
+	<th>Daily Closing Price</th>
+	<th>Daily Volume</th>
+      </tr>
+      <tr>
+	<td>1928</td>
+	<td>10</td>
+	<td>01</td>
+	<td align=right>239.43</td>
+	<td align=right>242.46</td>
+	<td align=right>238.24</td>
+	<td align=right>240.01</td>
+	<td align=right>3500000</td>
+      </tr>
+      <tr>
+	<td>1928</td>
+	<td>10</td>
+	<td>02</td>
+	<td align=right>240.01</td>
+	<td align=right>241.54</td>
+	<td align=right>235.42</td>
+	<td align=right>238.14</td>
+	<td align=right>3850000</td>
+      </tr>
+      <tr><td colspan=8>&nbsp;...</td></tr>
+      <tr>
+	<td>2009</td>
+	<td>01</td>
+	<td>29</td>
+	<td align=right>8373.06</td>
+	<td align=right>8373.06</td>
+	<td align=right>8092.14</td>
+	<td align=right>8149.01</td>
+	<td align=right>5067060000</td>
+      </tr>
+      <tr>
+	<td>2009</td>
+	<td>01</td>
+	<td>30</td>
+	<td align=right>8149.01</td>
+	<td align=right>8243.95</td>
+	<td align=right>7924.88</td>
+	<td align=right>8000.86</td>
+	<td align=right>5350580000</td>
+      </tr>
+   </table>
+
+   <p>
+   <b>Your goal:</b>
+   <br>
+   You should create a script <tt>stocks.m</tt> that generates a figure
+   mimicking the one shown above, as best possible (I do not expect
+   you to be able to match all of the aestetics for this one).  The following
+   advice will help you.
+   <ul>
+     <li>
+	 The precise figure above was based on the data from
+	 2008-01-30 through 2009-01-29.   The <tt>djia.txt</tt> file
+	 contains much more historical data than this particular
+	 range.  In another week, we will learn to use control
+	 structures to build such figures with more general
+	 techniques.
+
+	 <p>
+	 For this week, feel free to use advanced knowledge about the
+	 data set to mimic the figure.  In particular, 
+	 the entry for 2008-01-30 is on
+	 <b>row&nbsp;19919</b> of that file.
+     </li>
+	 <br>
+     <li>
+	 There are two subplots. You will need to use the
+	<code>subplot()</code> function to create one graph with
+	two plots.   Although they are drawn with
+	 different heights by Yahoo, you may draw them with equal
+	 heights in MATLAB (that is the default for subplots).
+
+	 <p>
+	 The top portion of the figure is a line graph based upon
+	 plotting the <b>daily closing prices</b>.
+	 <ul>
+	   <li>
+	       Notice that the y-axis is plotted on a logarithmic
+	       scale while the x-axis is plotted on a linear scale.
+	       This can be accomplished in MATLAB with the
+	       <tt>semilogy</tt> function.
+	   </li>
+	       <br>
+	   <li>
+	       By default, the semilogy function draws tick marks for
+	       the y-axis at powers of ten.  This can be adjusted to
+	       be at each thousand by using the command
+	       <pre>
+	       set(gca, 'YTick', 1000 .* [1:20]);
+	       set(gca, 'YTickLabel', 1000 .* [1:20]);
+	       </pre>
+
+	   </li>
+	       <br>
+	   <li>
+	       While we're at it, the tick marks for the y-axis can be
+	       moved to the right-hand side with the command.
+	       <pre>
+	       set(gca, 'YaxisLocation', 'right');
+	       </pre>
+	   </li>
+	 </ul>
+	 <p>
+	 The bottom figure is a bar graph based upon the daily volume.
+	 <ul>
+	   <li>
+	       The separation between columns of the bar graph can be
+	       achieved in part by sending an extra parameter to the
+	       <tt>bar</tt> function that is the width value (by
+	       default, it is 0.8).
+	   </li>
+	 </ul>
+     </li>
+	 <br>
+     <li>
+	 For both portions of the figure, the most difficult aspect to
+	 duplicate will be the month labels for the x-axis.  Don't
+	 worry about this for now, but for those interested we will
+	 learn how to do this using control structures.
+     </li>
+   </ul>
+
+   
+</DD>
+</DL>
+
+
+
+
+
+<hr>
+
+<a name="extra"><h3>Extra Credit (2 points)</h3></a>
+
+<DL COMPACT>
+<DT>Problem E)
+<DD>
+<P>
+<b>
+Extra credit about stock market graph with high/low error bars.
+</b>
+    Produce a graph analogous to the one below, based
+    on use of the <tt>errorbar</tt> command and the daily open/high/low/close values.
+    The <tt>errorbar</tt> command is capable of producing the vertical boxes denoting
+    the high and low prices for the market that day. 
+    The three-argument version of the <tt>errorbar</tt> command in particular allows
+    you to specify a central x and y coordinate for each box, as well as the height
+    of the box.
+    The stems to the left and right
+    of the boxes denote the open and closing prices, respectively, and will need
+    to be plotted separately. There are multiple ways to achieve this, but I would
+    suggest using the left and right arrow data labels with the regular <tt>plot</tt>
+    command.
+
+    <p>
+<br>
+<img width=600 src="marketwatch.gif">
+<br>
+<a
+    href="http://bigcharts.marketwatch.com/quickchart/quickchart.asp?symb=djia&sid=1643&o_symb=djia&freq=1&time=4&x=25&y=15">(figure
+    courtesy of marketwatch.com)</a>
+
+    <P>
+</DD>
+</DL>
+
+
+<p>
+<hr>
+Originally by
+<ADDRESS>
+<a href="/~goldwasser">Michael Goldwasser</a>
+</ADDRESS>
+<HR>
+
+  </body>
+</html>
+

@@ -1,0 +1,1121 @@
+#These strings are displayed verbatim on the web page
+CourseNum: "CSCI 2510"
+CourseName: "Principles of Computer Systems"
+CourseWebsite: '<a href="http://cs.slu.edu/~dferry/courses/csci2510">http://cs.slu.edu/~dferry/courses/csci2510/</a>'
+ClassTime : "Monday, Wednesday, &amp; Friday from 9:00 am - 9:50 am, Ritter Hall 115<br>Monday, Wednesday, &amp; Friday from 10:00 am - 10:50 am, Ritter Hall 115"
+Semester : "Spring 2023"
+MidtermTime : "March 10th, In Class"
+FinalTime : "9:00 AM Section: Wednesday, May 10th, 8:00 AM - 9:50 AM<br>10:00 AM Section: Wednesday, May 10th, 12:00 PM - 1:50 PM" #Displayed at top of page
+FinalDay: "May 10th"          #Displayed at bottom of schedule
+FinalDayOfWeek: "Wednesday"  #Displayed at bottom of schedule
+
+#These strings control the behavior of the scheduler generator
+StartDate: "January 18th, 2023"
+ClassType : "MWF"
+LinkActivationHours: "96" #Links activate on the schedule approx this number of hours
+                          #before the real time gets there
+SchedHeaderColor: 'White' #Colors can be any CSS color
+SchedColor1: '#e6e6e6' 
+SchedColor2: 'White'
+
+
+Holidays :
+  -
+    name: "Wellness Day"
+    date: "February 10th"
+    text: "Wellness Day - No Class"
+  -
+    name: "Spring Break"
+    date: "March 13th"
+    text: "Spring Break - No Class"
+  -
+    name: "Spring Break"
+    date: "March 15th"
+    text: "Spring Break - No Class"
+  -
+    name: "Spring Break"
+    date: "March 17th"
+    text: "Spring Break - No Class"
+  -
+    name: "Easter Break"
+    date: "April 7th"
+    text: "Easter Break - No Class"
+  -
+    name: "Easter Break"
+    date: "April 10th"
+    text: "Easter Break - No Class"
+
+FixedDays:
+### New Day ###
+  - 
+    date: "November 7th"
+    topics:  
+      - 
+        text: "Library with Megan Toups"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+### New Day ###
+  - 
+    date: "November 9th"
+    topics:  
+      - 
+        text: "Library with Megan Toups"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+
+
+Schedule :
+
+#Note, any day can have multiple items, e.g. the following
+# template has two topics, one reading, one studio, and one lab
+
+### New Day ###
+#  - 
+#    topics:  
+#      - 
+#        text: ""
+#        link: ""
+#        class: ""
+#      - 
+#        text: ""
+#        link: ""
+#        class: ""
+#    readings: 
+#      - 
+#        text: ""
+#        link: ""
+#        class: ""
+#    studios: 
+#      - 
+#        text: ""
+#        link: ""
+#        class: ""
+#    labs:
+#      - 
+#        text: ""
+#        link: ""
+#        class: ""
+          
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Introduction"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: "<i>Make sure you can login for next time</i>"
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Systems Programming in Rust"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: "RPL (<i>The Rust Programming Language</i>) - Chapter 1"
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: "Studio 01 - cat"
+        link: "studios/01_in_out.html"
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Benchmarking in Rust"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: "RPL Ch. 3.1 - 3.3"
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: "Studio 02 - benchmarking"
+        link: "studios/02_benchmarking.html"
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Strings in Rust"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: "RPL Ch. 3.4 - 3.5"
+        link: ""
+        class: ""
+      - 
+        text: "RPL Ch. 8.2"
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: "Studio 03 - strings"
+        link: "studios/03_strings.html"
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Work Day"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Pattern Matching"
+        link: ""
+        class: ""
+      - 
+        text: ""
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+      -
+        text: "RPL Ch. 9.2"
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: "Studio 04 - print_file"
+        link: "studios/04_print_file.html"
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Twitter Case Study"
+        link: "slides/Twitter.pdf"
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Service Oriented Architectures"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: "RPL Ch. 4-4.2"
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: "Studio 05 - ownership"
+        link: "studios/05_ownership.html"
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Networking - Sockets Programming"
+        link: ""
+        class: ""
+      - 
+        text: "Server (match statements)"
+        link: "./code/server.rs"
+        class: ""
+      - 
+        text: "Server (? macro)"
+        link: "./code/server2.rs"
+        class: ""
+      - 
+        text: "Client (match statements)"
+        link: "./code/client.rs"
+        class: ""
+      - 
+        text: "Client (? macro)"
+        link: "./code/client2.rs"
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: "Studio 06 - fileserver"
+        link: "./studios/06_fileserver.html"
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Networking - OSI Model"
+        link: "./slides/Networks.pptx"
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: "Studio 07 - Rust Vectors"
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ##
+  - 
+    topics:  
+      - 
+        text: "Lab 1 Discussion"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: "Lab 1 Assigned<br>Logging Service"
+        link: "./labs/01_logger.html"
+        class: ""
+
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Networking - OSI Physical and Data Link Layers"
+        link: "./slides/Physical_and_Data_Link.pptx"
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: "Studio 08 - Data Link Layer"
+        link: "./studios/08_datalink.html"
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Networking - OSI Network Layer"
+        link: "./slides/Network_Layer.pptx"
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Networking - OSI Transport Layer"
+        link: "./slides/Transport_Layer.pptx"
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Networking - OSI Layers 5-7"
+        link: "./slides/Userspace_Layers.pptx"
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: "Lab 1 Due"
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Concurrent Programming, Blocking,"
+        link: ""
+        class: ""
+      - 
+        text: ""
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Processes and Threads"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: ""
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Locks, Mutexes, Deadlock"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Atomic Instructions, Lock-Free and Wait-Free Semantics"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: ""
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+ ### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Lab 2 Discussion"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: "Lab 2 - Deadlock Detection"
+        link: "./labs/02_deadlock.html"
+        class: ""
+
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Explicit Lifetimes"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: "RPL 10.3, 15-15.1"
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: "Studio 09 - structs"
+        link: "./studios/09_structs.html"
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Stack-based linked list"
+        link: "https://slu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c94bea40-307e-4712-9b25-afd000409e81"
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Heap allocation in Rust"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Linked list & Lab 2 ownership concerns"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Heap-based linked list"
+        link: "https://slu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=419e1ac6-6441-4105-8142-afd1005a3121"
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Ownership in-class work and quiz"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: "Lab 2 Due"
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Parallel algorithm analysis, work and critical path"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Parallel matrix-multiply, parallel array-sum (associative reduce)"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Lab 3 Discussion"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: "Lab 3 - Password Cracking"
+        link: "labs/03_crack.html"
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Rust Threads, Join Semantics, Return Values"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Thread and Variable Lifetimes, Thread Scopes"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Shared Variables, ARCs, Atomics"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Parallelism and Threading Review"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "The Modern Security Context"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Security Objectives - CIA Triad"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: "Lab 3 Due"
+        link: ""
+        class: ""
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Formal Verification/Validation, Practical Security"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Lab 4 Discussion"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: "Lab 4 - Fuzzing"
+        link: "labs/04_fuzzer.html"
+        class: ""
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Organizational Security, Protection Domains, Bell-LaPadula and Biba Models"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Out of Town - No Class"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Class Conclusion"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+

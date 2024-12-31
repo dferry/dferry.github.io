@@ -1,0 +1,179 @@
+
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+
+<HTML>
+<HEAD>
+<TITLE>Lecture Notes: Introduction to MATLAB
+</TITLE>
+</HEAD>
+
+<BODY>
+
+
+
+
+<HR>
+
+<H2>
+Notes 01: Introduction to MATLAB
+</H2>
+
+
+<hr>
+
+<h3>Components of MATLAB's Desktop</h3>
+
+<ul>
+  <li>
+      <p>
+      <b>Command Window</b><br>
+      This is the primary interface for MATLAB's interpreter.
+      It is where commands are entered in order to be executed.
+      With octave, this is the only component.
+  </li>
+  <li>
+      <p>
+      <b>Command History</b><br>
+      This provides a history of all commands that were entered into
+      the Command Window, including from previous sessions. You may
+      click/drag past commands to re-execute them in the Command Window.
+      It is also possible to revisit past commands directly at the
+      Command Window prompt by using the up/down arrows.
+
+  </li>
+  <li>
+      <p>
+      <b>Workspace</b><br>
+      This provides a view of all currently defined variables during a
+      MATLAB session.  For each variable it can display the name, the
+      data class, the array size, and the values.  It is also possible
+      to edit an existing variable graphically by double clicking on
+      its name, invoking the spreadsheet-like Variable Editor.
+  </li>
+  <li>
+      <p>
+      <b>Current Directory</b><br>
+      Script and function m-files from the current directory can be
+      used directly from the command window.  The current directory is
+      also relevant when saving and loading data.
+  </li>
+</ul>
+
+<hr>
+
+<h3>Managing the Workspace</h3>
+
+Some useful commands
+
+<ul>
+  <li>
+      <p>
+      <b><tt>
+      x = value;
+      </tt></b><br>
+      assigns the variable name <tt>x</tt> to whatever value is
+      expressed on the righthand side of the assignment operator&nbsp(<tt>=</tt>).
+      If <tt>x</tt> had previously been defined, this assignment
+      reassigns the name to the new value.
+      <p>
+      If an expression is ever entered without an explicit assignment,
+      the result will automatically be assigned the the variable
+      <tt>ans</tt>.
+      <p>
+      By default, the result of each command is automatically echoed
+      by MATLAB.  To avoid that output, a command must be followed by
+      a semicolon&nbsp;(<tt>;</tt>).
+  </li>
+  <li>
+      <p>
+      <b><tt>
+      who
+      </tt></b><br>
+      lists the names of all variables currently defined in the workspace.
+  </li>
+  <li>
+      <p>
+      <b><tt>
+      whos
+      </tt></b><br>
+      lists the names and associated data for all variables currently defined in the workspace.
+  </li>
+  <li>
+      <p>
+      <b><tt>
+      clear x
+      </tt></b><br>
+      removes the variable <tt>x</tt> from the current workspace.
+  </li>
+  <li>
+      <p>
+      <b><tt>
+      clear
+      </tt></b><br>
+      clears the workspace of all previously defined variables.
+  </li>
+  <li>
+      <p>
+      <b><tt>
+      clc
+      </tt></b><br>
+      visibly clears the command window (but leaves the underlying
+      workspace unchanged).
+  </li>
+  <li>
+      <p>
+      <b><tt>
+      disp(x)
+      </tt></b><br>
+      displays the value of x (but without displaying the variable name).
+  </li>
+  <li>
+      <p>
+      <b><tt>
+      help x
+      </tt></b><br>
+      prints informational text about x in the command window.
+  </li>
+  <li>
+      <p>
+      <b><tt>
+      doc x
+      </tt></b><br>
+      brings up the MATLAB documentation viewer with (typically) more extensive
+      information about topic x.
+  </li>
+
+
+</ul>
+
+
+<hr>
+
+<h3>Creating and using an "m-file"</h3>
+
+<p>
+While the interactive Command Window is convenient, we do not always
+want to restart from scratch or to have to retype a long series of
+commands.  We can save a series of commands in a text file that is
+traditionally known as an "m-file" in MATLAB lingo (because it is
+saved using a filename such as <tt>myproject.m</tt>).
+
+
+
+<p>
+The percent sign is used in MATLAB to designate the remainder of
+any line as a comment.  This provides a convenient way for
+documenting portions of your source code.  For example, you might
+write
+<pre>
+gravity = 9.8;       % measured in meters/second^2
+</pre>
+
+
+<HR>
+
+
+  </BODY>
+</HTML>
+
+

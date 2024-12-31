@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSCI 2510 - Principles of Computer Systems</title></head>
+
+<h2 style="text-align: center;">CSCI 2510: Studio 5<br></h2>
+<h2 style="text-align: center;">Fork and Exec</h2>
+
+<hr style="width: 100%; height: 2px;">
+
+
+<p>Executing processes is fundamentally the reason why operating systems
+exist. Beyond that, it's an extremely common activity in modern systems- every
+time you look at a file, compile a program, or execute a terminal command
+you're probably creating at least one process, if not more. 
+Understanding the <code>fork()</code> and <code>exec()</code> mechanisms
+provided by the operating system will give you insight to the
+process lifecycle in Linux.</p>
+
+
+<p>In this studio, you will:</p>
+
+<ol>
+	<li>Get process IDs with <code>getpid()</code>
+	<li>Create new processes with <code>fork()</code>
+	<li>Wait for child processes with <code>wait()</code>
+	<li>Execute programs with <code>exec()</code>
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>
+<p>
+Please complete the required exercises below, as well as any optional
+enrichment exercises that you wish to complete.</p> 
+
+<p>
+As you work through these exercises, please record your answers in a text
+file. When finished, submit your work via the Git repository.</p>
+<!--
+by sending your text file and
+source code to <strong>dferry_submit@slu.edu</strong>
+with the phrase <strong>
+Fork and Exec
+</strong> in the subject line.</p>-->
+
+<p><strong> Make sure that the name of each person who worked on these exercises
+is listed in the first answer, and make sure you number each of your responses
+so it is easy to match your responses with each exercise.</strong></p>
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Required Exercises</h3></p>
+
+<ol>
+<p><li>As the answer to the first exercise, list the names of the people who
+worked together on this studio.</p>
+
+<p><li>Every process in Linux (and other OSes) has a unique identifying
+number called a <i>Process Identifier</i> (or PID). This number is used
+whenever you need to programmatically reference or interact with a specific
+process in the system.</p>
+
+<p>Create a new program called <code>fork.c</code>. Use <code>printf()</code> 
+and <code>getpid()</code> to print out the process' PID. Run the program
+three times and copy-paste the output as the answer to this exercise.</p>
+
+
+<p><li>Now we will create a new process. Recall from lecture that
+this involves two different operations: <i><code>fork()</code>-ing</i> and
+<i><code>exec()</code>-ing</i>. The <code>fork()</code> step creates a new
+process (the "container" for executing a program), and the <code>exec()</code>
+step loads and executes a desired program within that new process. </p>
+
+<p>When <code>fork()</code> is called, the
+system creates a near-identical replica of the calling process. After the
+fork you will have two processes that both execute the same program. Insert
+the call "<code>fork();</code>" immediately after the start of 
+<code>main()</code> in your program <code>fork.c</code>, and
+before the lines where you get the program PID and the print it out.</p>
+
+<p>What happens when you run your program now? Copy and paste the output.</p>
+
+<p><li>Look up the man page for <code>fork()</code>. This is a unique function
+in that you get <i>two</i> return values for each valid call to
+<code>fork()</code> (one in the parent, and another in the child). What are the
+return values listed?</p>
+
+<p><li>Use <code>fork()</code>'s return values to modify your program so that
+the parent and child processes identify themselves as such when they print out
+their PIDs. Copy and paste your program output. </p>
+
+<p><li>Sometimes it is useful for a parent process to <i>wait</i> for one or
+more child processes to finish executing. Otherwise, you might get undesirable
+behavior, or behavior that doesn't make sense. The <code>sleep()</code>
+function causes a program to suspend for a specified length of time before
+continuting, and we can use it to pretend that the child process takes a long
+time to execute. Modify your program so the child process executes the following call before it
+prints out its PID:</p>
+
+<p><code>sleep(3);</code></p>
+
+<p>This will cause your child process to go to sleep for about three seconds
+before printing its output. Now run your program... what happens? Does it
+behave the way you would expect?</p>
+
+
+
+<p><li>Because the child process takes a while to execute, we're in a situation
+where it might make sense for the parent process to explicitly wait for the
+child to finish. The <code>waitpid()</code> function will halt the parent until 
+a desired child process returns. Modify your program so the parent process executes the following
+call before it  prints out its PID:</p>
+
+<p><code>waitpid( child_PID, NULL, 0 );</code></p>
+
+<p>(The second and third parameters allow us some extra control over how this
+function operates, but we don't need them for now.)</p>
+
+<p>Execute your program again. How is the behavior different?</p>
+
+<p><li>Lastly, we can use the exec family of functions so that the child
+process can load and execute a new program on behalf of the parent. In
+particular we will use the <code>execvp()</code> function. (There are many
+forms of <code>exec()</code>, but this one is arguably the easiest to get
+started with, see the rest at <code>man 3 exec</code>.)</p>
+
+<p>Before we use <code>execvp()</code>, you should execute the command we
+want to run so that you know what to expect. We're going to have our
+child process execute the <code>ls</code> program in list-mode. Execute the
+command "<code>ls -l</code>" and copy-paste the output as the answer to this
+question.</p>
+
+<p><li>Now we will create a new, <i>static</i>, argv variable for the
+child. This is only useful when you know exactly what you're going
+to execute when you're writing your program, but we will explore more flexible
+methods in future studios. Create the following variables:</p>
+
+<p><code>char* child_argv[] = {"ls", "-l", NULL};</code><br>
+<code>char* child_prog = child_argv[0];</code></p>
+
+<p>Notice that <code>child_argv</code> has the exact same layout as if you were
+to try and access <code>argv</code> in a regular program. Now, in the child 
+process, insert the call:</p>
+
+<p><code>execvp( child_prog, child_argv );</code></p>
+
+<p>If everything is correct, you should see your child process execute the
+"<code>ls -l</code>" command, and then your parent process should wait and
+print out its PID. Copy and paste your program output as the answer to this
+exercise.</p>
+
+</ol>
+
+<p><h3>Optional Enrichment Exercises</h3></p>
+<ol>
+<p><li>Rearrange your call to the <code>execvp()</code> function so that
+you can call a different program with different arguments.</p>
+
+<p><li>Rearrange your <code>execvp()</code> call so that you can execute an
+arbitrary program, for example as a result of user input. This is a vital
+part of Lab 2, and we will explore it further in a future studio.</p>
+
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>

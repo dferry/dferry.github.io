@@ -1,0 +1,168 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+
+<HTML>
+<HEAD>
+<TITLE>Lecture Notes: Watermarks
+</TITLE>
+</HEAD>
+
+<BODY>
+
+
+
+<HR>
+
+<H2>
+Watermarks
+</H2>
+
+<hr>
+
+<p>
+Consider the following image
+<br>
+<br>
+<a href="original.png"><img src="original.png"></a>
+
+<p>
+Now, consider this second image
+<br>
+<br>
+<a href="watermarked.png"><img src="watermarked.png"></a>
+
+<p>
+While they may look the same, they are not.  The first version is an
+original photo downloaded from SLU's website.  The second version
+is a modified version in which we have hidden additional information
+using a technique known as digital watermarking, explained below.
+
+<hr>
+
+<p>
+This particular photo has 800&nbsp;x&nbsp;600 pixels, with each pixel
+having "true color".  Namely, each pixel has its own "rgb" value, with
+8&nbsp;bits to describe the intensity of red, 8&nbsp;bits to describe
+the green, and 8&nbsp;bits to describe the blue.  This means that each
+color is described using a magnitude from 0 to 255.  In MATLAB, the
+array representing this image is such that <tt>A(:, :, 1)</tt>
+contains the red channel intensities, <tt>A(:, :, 2)</tt> green, and
+<tt>A(:, :, 3)</tt> blue.
+
+
+<p>
+Our watermarking scheme is based on the fact that a viewer is very
+unlikely to notice minor discrepencies in those magnitudes.  In
+particular, it is nearly impossible to visually detect the difference, for
+example, between a red magnitude of 187 versus 188.   So we can reset
+the lowest-order bit for each of the three colors, for each of the
+pixels in the image.   This allows us to embed additional binary data.
+
+<p>
+For today's exercise, you are to retrieve the following three types of
+information from the watermarked version of the above photo.
+
+<ol type=1>
+  <li>
+      <em>red channel</em><br>
+      We have used the lowest order bits of the red channel to embed a
+      bitmap image.  For each (row,column) of the original photo, if
+      that low order bit is a zero it represents white in the hidden
+      image, and if the low order bit is one it represents black in
+      the hidden image.
+  </li>
+      <br>
+  <li>
+      <em>green channel</em><br>
+      In the green channel, we manipulate the low order bits to encode
+      a text representation.  In particular, the 600x800 pixel image
+      gives us 480000 low-order bits in the green channel.  So we have
+      used those bits to write a message in ASCII.
+
+      <p>
+      Specifically, we consider the one-dimensional sequence of bits
+      that results if taking the low-order green bit in "column major"
+      order (that is, the first column from top to bottom, then the
+      second colum from top to bottom).  Our reason for using that
+      convention is that it is exactly what you get is you "reshape"
+      the green subarray into a one-dimensional array.  That is, if
+      you have the green "subarray" as an array <tt>G</tt>, syntax
+      <tt>G(r,c)</tt> can be used to index the array by row and
+      column, but <tt>G(k)</tt> is the k<sup><small>th</small></sup>
+      entry of the array when viewed one-dimesionally.
+
+      <p>
+      The text can be reassembled by taking each group of
+      8&nbsp;consecutive bits and recomputing the binary integer value
+      that they represent (each being from 0 to 255).  Once you have
+      those integers, you can have MATLAB view those as characters
+      using the <tt>char(&nbsp;)</tt> function.
+      
+  </li>
+      <br>
+  <li>
+      <em>blue channel</em><br>
+      In the blue channel, we again use the column-major order of
+      pixels to hide a binary sequence, this time encoding an audio
+      clip (in mono).  The audio clip uses 16&nbsp;bits per sample and
+      a sample rate of 8000 samples per second.
+      While similar in style to our ASCII encoding of characters,
+      there is an additional challenge for retrieving the audio.  
+
+      <p>
+      When dealing with text, the 8-bit integers were interpretted
+      naturally as "unsigned" integers, namely having non-negative
+      value from 0 to 255.
+      In the case of audio, the 16-bits represent the amplitude
+      of a sample as a <em>signed integer</em>, allowing for the
+      possibility of negative numbers.  The standard representation
+      for signed integers uses a convention known as
+      <em>twos-complement</em>.
+
+      <p>
+      In short, if you first compute the unsigned interpretation of a
+      16&nbsp;bit number, you can convert it to the signed
+      interpretation as follows:
+      <ul>
+	<li>
+	    If the unsigned integer is a value <em>val</em> that is
+	    strictly less than 
+	    2<sup><small>15</small></sup>, the signed interpretation
+	    is also <em>val</em>.
+	</li>
+	<li>
+	    If the unsigned integer is a value <em>val</em> that is
+	    greater than or equal to  2<sup><small>15</small></sup>,
+	    then it should be interpretted as the negative number
+	    <nobr><em>(val - 2<sup><small>16</small></sup>)</em></nobr>.
+	</li>
+      </ul>
+      
+  </li>
+</ol>
+
+<hr>
+
+<h3>Other digital watermarking techniques</h3>
+
+<p>
+Although our algorithm for watermarking worked for hiding information
+within the photo, this would not suffice for the purpose of copyright
+protection.   The problem is that the owner of the photograph could
+trivially randomize those lower order bits, destroying our information
+without significantly degrading the image quality.  The goal of
+watermarks in industry is to embed information in a file in a way that
+remains permanent, even when non-destrutive modifications are made.
+For more information, see additonal resources such as the
+<a href="http://en.wikipedia.org/wiki/Digital_watermarking">Wikipedia entry</a>.
+
+<HR>
+Originally by
+<ADDRESS>
+<a href="/~goldwasser">Michael Goldwasser</a>
+</ADDRESS>
+<br>
+
+
+</BODY>
+</HTML>
+

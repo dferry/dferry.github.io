@@ -1,0 +1,1013 @@
+#These strings are displayed verbatim on the web page
+CourseNum: "CSCI 3250 / 5250"
+CourseName: "Compilers"
+CourseWebsite: '<a href="http://cs.slu.edu/~dferry/courses/csci3250">http://cs.slu.edu/~dferry/courses/csci3250/</a>'
+ClassTime : "Monday, Wednesday, &amp; Friday from 1:10 - 2:00, Ritter Hall Rm. 346"
+Semester : "Spring 2022"
+MidtermTime : "TBD"
+FinalTime : "Monday, May 16th, 12:00 noon"
+
+#These strings control the behavior of the scheduler generator
+StartDate: "January 19th, 2022"
+ClassType : "MWF"
+LinkActivationHours: "24" #Links activate on the schedule approx this number of hours
+                          #before the real time gets there
+SchedHeaderColor: 'White' #Colors can be any CSS color
+SchedColor1: '#e6e6e6' 
+SchedColor2: 'White'
+
+
+Holidays :
+  -
+    name: "Snow Day"
+    date: "February 2nd"
+    text: "Snow Day - No Class"
+  -
+    name: "Snow Day"
+    date: "February 4th"
+    text: "Snow Day - No Class"
+  -
+    name: "Health Day"
+    date: "February 11th"
+    text: "Mental Health Day - No Class"
+  -
+    name: "Spring Break"
+    date: "March 14th"
+    text: "Spring Break - No Class"
+  -
+    name: "Spring Break"
+    date: "March 16th"
+    text: "Spring Break - No Class"
+  -
+    name: "Spring Break"
+    date: "March 18th"
+    text: "Spring Break - No Class"
+  -
+    name: "Good Friday"
+    date: "April 15th"
+    text: "Good Friday - No Class"
+  -
+    name: "Easter Monday"
+    date: "April 18th"
+    text: "Easter Monday - No Class"
+
+Schedule :
+
+#Note, any day can have multiple items, e.g. the following
+# template has two topics, one reading, one studio, and one lab
+
+### New Day ###
+#  - 
+#    topics:  
+#      - 
+#        text: ""
+#        link: ""
+#        class: ""
+#      - 
+#        text: ""
+#        link: ""
+#        class: ""
+#    readings: 
+#      - 
+#        text: ""
+#        link: ""
+#        class: ""
+#    studios: 
+#      - 
+#        text: ""
+#        link: ""
+#        class: ""
+#    labs:
+#      - 
+#        text: ""
+#        link: ""
+#        class: ""
+          
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Class Intro"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: "<i>Make sure you can login for next time</i>"
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Intro to ML and Functional Programming"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Intro to ML: Functions"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Intro to ML: Recursion"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: "Homework 1 Assigned"
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Class Exercises - Classes 1 - 3"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Intro to ML: Basis Library and Trees"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Intro to Compilers"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: "Appel pp 1-12"
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: "Homework 2 Assigned"
+        link: ""
+        class: ""
+      - 
+        text: "Lab 1 - Straight Line Interpreter"
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Program 1 Work Day"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Lexical Analysis and RegEx"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: "Appel pp 14-19"
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "DFAs"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: "Appel pp 19-28"
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "NFAs"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "ML-Lex and Program 2"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: "Appel pp 28-33"
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: "Lab 2 - Lexer"
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "CFGs"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: "Appel pp 38-45"
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Program 2 Work Day"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Predictive Parsing / LL Parsing"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: "Appel pp 45-54"
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "LR Parsing"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: "Appel pp 55-67"
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "ML-Yacc"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: "Appel pp 68-83"
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: "Lab 3 - Parser Grammar"
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Lab 3 Discussion"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Lab 3 Discussion"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Abstract Syntax"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: "Appel pp 87-101"
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: "Lab 4 - Abstract Syntax"
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Semantic Analysis and Symbol Tables"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: "Appel pp 103-114"
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Lab 4 Discussion"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Lab 4 Discussion"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Type Checking"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: "Appel pp 114-122"
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Activation Records"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: "Appel pp 124-134"
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Activation in Tiger"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: "Appel pp 134-144"
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Exam Review"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Midterm Exam"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: ""
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: ""
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Intermediate Representation"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: "Appel pp 148-170"
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Intermediate Representation"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: "Appel pp 148-170"
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Basic Blocks and Traces"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: "Appel pp 173-183"
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Instruction Selection"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: "Appel pp 186-200"
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Instruction Selection for Tiger"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: "Appel pp 200-209"
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Liveness Analysis"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: "Appel pp 211-222"
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Liveness in Tiger"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: "Appel pp 222-226"
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Register Allocation"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: "Appel pp 228-241"
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Graph Coloring Implementation"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: "Appel pp 241-255"
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Putting It All Together"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: "Appel pp 258-262"
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+

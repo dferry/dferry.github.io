@@ -1,0 +1,267 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+
+<HTML>
+<HEAD>
+<TITLE>Lecture Notes: Processing Sound
+</TITLE>
+</HEAD>
+
+<BODY>
+
+
+
+<HR>
+
+<H2>
+Processing Sound
+</H2>
+
+<p>
+<b>Reading:</b>  none
+</p>
+
+<hr>
+
+<p>Code from class:</p>
+<ul>
+<li><a href="soundLecture.m">soundLecture.m</a>
+<li><a href="pureNote.m">pureNote.m</a>
+<li><a href="rampNote.m">rampNote.m</a>
+<li><a href="organ.m">organ.m</a>
+<li><a href="playSong.m">playSong.m</a> (uses canon.txt)
+<li><a href="backmaskLecture.m">backmaskLecture.m</a>
+<li><a href="reverb.m">reverb.m</a>
+</ul>
+
+<p>
+We will be using the following file in lecture: <a href="canon.txt" download>canon.txt</a>.
+This file contains the notes of Pachelbel's Canon represented in an unusual format. Each
+row is a separate note to be played: the first column is the note's frequency, the
+second column is the note's starting time (in seconds), and the third column is the note's 
+duration. </a>
+
+<p>
+Wav files:
+<ul>
+<li><a href="Beatles.wav">Beatles.wav</a> (backmasking at 2:25 through 2:37)
+<li><a href="instr_flute.wav">instr_flute.wav</a>
+<li><a href="instr_piano.wav">instr_piano.wav</a>
+</ul>
+</p>
+
+<!--
+We are distributing various supporting files related to these topics:
+<ul>
+  <li>
+      <a href="files/wav">sample WAV files</a>
+      <br>
+      Includes a Beatles song with backmasking (2:25 through 2:37 of
+      the song), as well as Led Zeppelin's Stairway to Heaven
+      (controversial for claim of backmasking from 4:19 through 4:42).
+      <p>
+      There are also two sample files providing instrument samples for
+      a single note (piano, and violin).
+  </li>
+      <br>
+  <li>
+      <a href="files/midi">sample MIDI files</a>
+      <br>
+      A simple one (coldplay.mid) is a "format&nbsp;0" midi file, having a
+      single track.
+      <p>
+      A more complex one (LetItBe.mid) is a "format&nbsp;1" having
+      multiple, synchronous tracks.
+      <p>
+      We will not consider the more complex "format&nbsp;2" files,
+      that use asynchronious tracks.
+  </li>
+      <br>
+  <li>
+      <a href="files/code">sample m-files</a>
+      <br>
+      Here are polished verisons for all of the source code we've
+      examined during lecture.
+  </li>
+</ul>
+-->
+
+<hr>
+
+<h3>MATLAB support for sound</h3>
+
+Digitized sounds can be manipulated as a one-dimensional array of
+numbers per channel.  We will rely on MATLAB's builtin support
+
+<ul>
+  <li>
+      <a
+  href="http://www.mathworks.com/access/helpdesk/help/techdoc/index.html?/access/helpdesk/help/techdoc/ref/audioread.html&http://www.mathworks.com/access/helpdesk/help/techdoc/ref/audioread.html">audioread</a>
+      <br>
+      Sample usage:
+      <pre>
+      [samples freq bitsPerSample aux] = audioread(filename)
+      </pre>
+  </li>
+  <li>
+      <a
+  href="http://www.mathworks.com/access/helpdesk/help/techdoc/index.html?/access/helpdesk/help/techdoc/ref/audiowrite.html&http://www.mathworks.com/access/helpdesk/help/techdoc/ref/audiowrite.html">audiowrite</a>
+      <br>
+      Sample usages:
+      <pre>
+      audiowrite(samples, filename)
+      audiowrite(samples, freq, filename)
+      audiowrite(samples, freq, bitsPerSample, filename)
+      </pre>
+  </li>
+  <li>
+      <a
+  href="http://www.mathworks.com/access/helpdesk/help/techdoc/index.html?/access/helpdesk/help/techdoc/ref/audioplay.html&http://www.mathworks.com/access/helpdesk/help/techdoc/ref/audioplay.html">audioplay</a>
+      <br>
+      Sample usages:
+      <pre>
+      audioplay(samples, freq)
+      audioplay(samples, freq, 'async')    %  call returns even while sound is still playing
+      audioplay(samples, freq, 'sync')     %  call waits until sound is complete before returning
+      </pre>
+  </li>
+</ul>
+
+<hr>
+
+<h3>Plotting audio waves</h3>
+
+A simple function for plotting stereo sound
+
+<pre>
+function plotStereo(y, fs)
+  subplot(2,1,1);
+  x = linspace(0, length(y)/fs, length(y));
+  plot(x,y(:,1), 'b');      % plot in blue
+  ylabel('Left');
+  xlabel('seconds');
+  axis([0 length(y)/fs -1 1]);
+  grid on;
+  subplot(2,1,2);
+  plot(x,y(:,2), 'r');       % plot in red
+  ylabel('Right');
+  xlabel('seconds');
+  axis([0 length(y)/fs -1 1]);
+  grid on;
+</pre>
+
+<hr>
+
+<h3>Synthesizing sounds</h3>
+
+<p>
+We examined how to develop pure tones of a given frequency as a cosine
+wave, how to create other waves such as square or sawtooth waves, and how to
+combine different harmonics of a note to create a more realistic sounding
+instrument.
+We then examined
+high-level approaches to representing songs as a series of notes, or
+as a composition of overlayed notes.
+
+
+<!--
+<p>
+All of our full source code is available at the link near the top of
+this page.  But a highlight of the signatures we used are as follows.
+
+<ul>
+  <li>
+<pre>function hz = midiFreq(note)
+    % Returns the frequency for a given note on midi scale.
+    % For example, MIDI 60 is middle C (261.626HZ)</pre>
+  </li>
+      <br>
+  <li>
+<pre>function Y = pureTone(freq, duration, amplitude, fs)
+    % Generates a cosine wave representing a pure tone.
+    % freq specifies the audio frequency (in Hertz)
+    % duration specifies the length of the tone (in seconds)
+    % amplitude of sound (with 127 being the loudest)
+    % fs desginates the playback frequency (samples per second)
+    %    (fs is 8000 by default)</pre>
+  </li>
+      <br>
+  <li>
+<pre>function Y = ramp(Y, leadTime, trailTime, fs)
+    % linear ramps the given signal.
+    % Y can be a row vector or column vector.
+    % leadTime (in seconds) will be ramped from zero to full attentuation
+    % trailTime (in seconds) will be ramped from full attentuation to zero
+    % fs is sample rate</pre>
+  </li>
+      <br>
+  <li>
+<pre>function Y = buildNote(freq, duration, amplitude, fs, instr)
+    % Produces waveform for single note.
+    % freq specifies the audio frequency (in Hertz)
+    % duration specifies the length of the tone (in seconds)
+    % amplitude of sound (with 127 being the loudest)
+    % fs desginates the playback frequency (samples per second)
+    % instr is a waveform for the instrument (at 260HZ and 44100fs)
+    %   (if not given, pureTone will be formed)</pre>
+  </li>
+</ul>
+
+-->
+<hr>
+<!--
+<h3>MIDI format</h3>
+
+
+Here are some external links to information about MIDI format:
+<br>
+<a href="http://cnx.org/content/m15049/latest">http://cnx.org/content/m15049/latest</a>
+<br>
+<a href="http://faydoc.tripod.com/formats/mid.htm">http://faydoc.tripod.com/formats/mid.htm</a>
+
+
+<p>
+Our goal is to write a MATLAB program that can process authentic midi
+files and produce a sound wave for the music (at least a simplified
+one that ignores changes in instruments).
+
+
+<p>
+This lead to the following additional functionality.
+<ul>
+  <li>
+<pre>
+function song = parseMidi(filename)
+    % returns a song structure with the following fields
+    %  format   (0=single track, 1=multiple syncronized tracks, 2=multiple asyncronous)
+    %  ticksPerQuarter   tick units per quarter note
+    %  tracks   cell array of individual tracks, each of which is an array
+    %           of "event" structures.
+    %
+    % Each event structure has the following fields
+    %   delta     the lead time (measured in ticks) between preceding event and this
+    %   status    a code for the event type (e.g., 8 = NoteOff, 9 = NoteOn)
+    %   channel   what channel should the note be played on
+    %   note      the midi number for the note
+    %   amplitude the midi number for the note
+</pre>
+  </li>
+      <br>
+  <li>
+<pre>
+function Y = composeMidiSong(song, tempo, fs)
+    % Create a wave for the given song structure.
+    % tempo is measured in beats per second
+    %     (assume that a quarter note is one beat)
+    % fs is the desired sample rate for the waveform
+
+</pre>
+  </li>
+</ul>
+
+-->
+
+<HR>
+
+  </BODY>
+</HTML>
+

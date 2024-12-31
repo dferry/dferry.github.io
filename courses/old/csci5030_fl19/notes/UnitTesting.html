@@ -1,0 +1,390 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSCI 5030 - Unit Testing</title></head>
+
+<h2 style="text-align: center;">CSCI 5030: Unit Testing<br></h2>
+
+<hr style="width: 100%; height: 2px;">
+
+<p>Unit testing is a central part of modern software testing and Test-Driven
+Development (TDD). Every language has some kind of unit testing support. Some
+are separate libraries or frameworks (such as JUnit or Pytest), while others
+are integrated into the language or in an IDE (such as with Microsoft
+Visual Studio). Many of the concepts and IDEs are similar, though different
+language capabilities (objects, exceptions, etc.) result in different
+unit testing capabilities.</p>
+
+<p><b>This exercise is written in Python using <code>pytest</code>, but
+you are free to use any language or test suite you prefer.</b> These
+exercises as written should be doable on hopper.slu.edu without any effort
+on your part.</p>
+
+<p>In this exercise you will:</p>
+
+<ol>
+  <li>Explore basic unit testing using logical assertions
+  <li>Learn the difference between dummies, stubs, mocks, spies,and fakes
+  <li>Write a short piece of software using Test-Driven Development
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Exercises</h3></p>
+
+<ol>
+
+<p><li>Before we start you should create a new directory and move into it.
+<code>pytest</code> by default will recursively search directories visible from
+the current directory when it looks for tests. Running the following
+exercises from your default home directory may take a long time or could
+result in unwanted behavior.</p>
+
+<p><li>First, we will explore the basic unit testing interface provided by
+<code>pytest</code>. Imagine you are writing a software library, meaning you
+are authoring a collection of functions, but you are not trying to write a
+finished executable. If you're like me, traditionally you test your software
+by running it in a traditional executable and printing lots of input/output 
+pairs. This works, but unit testing with <code>pytest</code> is a better
+solution: pytest lets you run tests independent of any particular finished
+program, and it assesses correctness for you. Moreover, a good set of unit
+tests then become a <b>regression test suite</b>- if you ever refactor your code
+you can re-run your unit tests and verify that the overall behavior has not
+changed.</p>
+
+<p>Start by creating a file called <code>myLibrary.py</code> and writing a
+trivial function inside. For example, the contents of your file might be:
+
+<pre>
+def myFunction(x):
+	return x + 1;
+</pre>
+
+<p><b>Remember:</b> Correct indentation in Python is non-optional. The 
+function definition should start at the beginning of a line and the return
+statement should have a tab in front of it.</p>
+
+
+
+
+<p><li>Second, let's test that your function runs the way you expect. You can
+invoke your code directly from the python interpreter. To do so, run the
+python interpreter with the "python" command from the terminal. Then, you will
+need to import your code with "<code>import myLibrary</code>" and finally you
+can run it with (for example) "<code>myLibrary.myFunction(5)</code>". In total,
+your output might look something like this:</p>
+
+<pre>
+[username@hopper directory]$python
+
+Python 2.7.5 (default, Aug  7 2019, 00:51:29) 
+[GCC 4.8.5 20150623 (Red Hat 4.8.5-39)] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+
+>>> import myLibrary
+
+>>> myLibrary.myFunction(5)
+6
+
+>>> 
+</pre>
+
+<p>Make sure your code runs as expected. You will have to press CTRL-D to quit
+the Python interpreter.</p>
+
+
+
+
+<p><li>Now let's use <code>pytest</code> to create a test suite for this
+function. There are several ways you can specify tests to be run, but for
+now we will separate all our tests into another file. However, be warned
+that there are some considerations when constructing test suites for
+large or complicated projects. <a href="https://docs.pytest.org/en/latest/goodpractices.html#test-discovery">
+See the following documentation on <code>pytest</code> test discovery
+for full details.</a></p>
+
+<p>Create a file called <code>test_example.py</code>. The "<code>test_</code>"
+tells <code>pytest</code> that this file contains a unit test. Then, we can
+create a unit test by defining a function within that file that also has the
+"<code>test_</code>" preface. For example, we can create a unit test assertion
+with the following:</p>
+
+<pre>
+import myLibrary
+
+def test_case1():
+        assert myLibrary.myFunction(2) == 3
+</pre>
+
+<p>Then, since both the file and the test within the file should be
+automatically discoverable by <code>pytest</code>, we can run the unit test
+just by typing "<code>pytest</code>" at the termina. Do so now, and the test
+should run successfully.</p>
+
+
+
+<p><li>Of course, the goal of unit testing is to catch failing tests. Let's
+create a test that is designed to fail. Add the following to your
+<code>test_example.py</code>:</p>
+
+<pre>
+def test_case2():
+        assert myLibrary.myFunction(5) == 7
+</pre>
+
+<p>Since both test cases are prefaced with "<code>test_</code>" we can execute
+the entire test suite just by typing "<code>pytest</code>" at the terminal.</p>
+
+<pre>
+[username@hopper directory]$pytest
+============================= test session starts ==============================
+platform linux -- Python 3.6.8, pytest-5.1.2, py-1.8.0, pluggy-0.13.0
+rootdir: /student/username/directory
+collected 1 item                                                               
+
+test_example.py F                                                         [100%]
+=================================== FAILURES ===================================
+</pre>
+<pre style="color:red">
+__________________________________ test_case1 __________________________________
+
+    def test_case2():
+>       assert myLibrary.myFunction(5) == 7
+E    assert 6 == 7
+E     +  where 6 = &lt;function myFunction at 0x7f8779561e18&gt;(5)
+E     +    where &lt;function myFunction at 0x7f8779561e18&gt; = myLibrary.myFunction
+
+test_example.py:7: AssertionError
+============================== 1 failed in 0.41s ===============================
+</pre>
+<pre>
+[username@hopper directory]$
+</pre>
+
+
+
+<p><li>Our test failed, as expected. Note that <code>pytest</code> is trying to
+be as helpful as possible. The failure message indicates the test case that
+failed as well as the values in the assertion, and even gives us a stack trace
+of where the value "6" came from above.</p>
+
+<p>Go ahead and fix the failing test, and confirm that you can run
+<code>pytest</code> without errors.</p>
+
+
+
+
+<p><li>Of course, the file <code>myLibrary.py</code> can have more than one
+function and the file <code>test_example.py</code> can have more unit tests.
+Write a few functions and try out various logical assertions ( ==, !=, &lt;, 
+&gt;, etc).</p>
+
+
+
+<p><li>Now we will introduce a series of test objects called "test doubles."
+These are made just for the purpose of testing, and their purpose is to stand
+in for other software components. Sometimes software units are interdependent
+on each other and there's no getting away from it, but in general, you want to
+minimize your test's dependence on other pieces of software.</p>
+
+<p>Why? First, that other software may not be written yet, especially if you 
+are doing TDD. Second, there's no guarantee that other software is correct.
+Suppose that software A depends on software B to function, and software A's
+tests are failing. Where does the error come from? At first glance it's not
+obvious if the error stems from A, or from B, or from the interface between
+them. However, if the software B is actually a fake test double, then you
+can rule it out as a source of error. Moreover, you can do system integration
+tests later whose sole purpose is to test A with B, so it's just fine if the
+unit tests for A don't really test A with B.</p>
+
+<p>The test doubles we will look at are called dummies, stubs, spies, mocks,
+and fakes. The first four are related to each other, and each builds upon 
+the others (in the order given above). Using the simplest possible test
+double makes your tests easier to write, and makes it obvious
+exactly what is and is not tested.<p>
+
+<p>We saw <a href="https://blog.cleancoder.com/uncle-bob/2014/05/14/TheLittleMocker.html">
+this article</a> about these test doubles earlier that describes
+each of these in a simple, conversational style. Go ahead and read it,
+if you have not already.</p>
+
+<p><li>To discuss test doubles we will write a series of unit tests for
+<code>car.py</code>, a simple class for representing your everyday automobile.
+You can download <code>car.py</code> to the current directory of your Linux
+terminal with the following command:</p>
+
+<p><code>wget https://cs.slu.edu/~dferry/courses/csci5030/notes/car.py</code></p>
+
+<p>Or, you can access it directly 
+<a href="https://cs.slu.edu/~dferry/courses/csci5030/notes/car.py">with this
+link</a>. Do so, and take a moment to read over the code. Hopefully nothing
+there should be terribly surprising.</p>
+
+<p><li>Now, let's write our first unit test. In particular, let's assert
+that a newly constructed car object should always have its distance counter
+set to zero. To do so we can use a line like:</p>
+
+<p><code>assert myCarInstance.distance == 0</code></p>
+
+<p>Easy to say, but we can't actually run this test yet. Why? First we need
+to call the constructor for the car class, and the constructor expects an
+<code>engine</code> object and a <code>fuel_tank</code> object. We don't have
+those objects yet... so what are we to do? We could give up on testing
+<code>car</code> until we actually have implementations for <code>engine</code>
+and <code>fuel_tank</code>, but that's a bad solution. This is exactly the
+situation for a test double, and in particular we need a <b>dummy</b> double.</p>
+
+<p>A dummy double is used whenever we need to pass an argument, but we know
+that the argument is never actually used. That's the case here. If you look
+at the code for <code>car.py</code> you can see that the <code>distance</code>
+attribute is set in the constructor, and <code>engine</code> and
+<code>fuel_tank</code> objects are not actually used.</p>
+
+<p>Try to write a unit test using dummy objects. If you get stumped, or when
+you're done, you can see <a href="test_car1.py">my solution</a>.</p>
+
+
+
+
+<p><li>Two remarks about my solution to the previous problem. First,
+the structure of the empty class doesn't really matter. The dummy is not used
+by definition. We don't even need a constructor, since our dummy objects will
+automatically inherit the default constructor.</p>
+
+<p>However, the second point is that we don't actually even need dummy classes
+to begin with, but only because we're using Python. Python is a very flexible 
+language, and in particular there are no strong data types. The result is that
+Python doesn't really care what we pass to the <code>car</code> constructor...
+we can pass anything we want and Python will just throw us an error if we try
+to use it incorrectly. However, since <code>engine</code> and
+<code>fuel_tank</code> are never used, they can't be used incorrectly either.
+I would still suggest the first solution because it's only a few extra
+keystrokes and it makes it obvious what you're doing, but you could have
+gotten away with a solution <a href="test_car2.py">that looks like this</a></p>
+
+<p>In a more strongly typed language, such as Java, you'd always have to create
+a proper dummy object.</p>
+
+<p><li>Now, let's think about testing the <code>computeRange()</code> function.
+Now mere dummy objects are no longer enough because we need to access the
+<code>fuel_tank.size</code> and <code>engine.MPG</code> attributes. However,
+the actual values returned can be chosen by you, the tester. This is the
+purpose of a <b>stub</b> test double.</p>
+
+<p>Create a stub test double for the <code>engine</code> and
+</code>fuel_tank</code> classes by giving them the appropriate attributes.
+Then, write a unit test or two for the <code>computeRange()</code> function.
+<a href="test_car3.py">My solution is here when you're done.</a></p>
+
+<p>In particular, note that an empty class is no longer acceptable for testing
+this new function. If you try to use the dummy classes from before you'll get
+errors about accessing the <code>size</code> and <code>MPG</code> attributes.
+</p>
+
+<p><li>Third, now we would like to create a <b>spy</b> test double. Unlike the
+previous two, the purpose of the spy is to inspect the state of the system.
+Now- why is this useful? Consider the <code>fillGasTank()</code> function.
+This is a difficult function to test, because all that happens is that we 
+call a method in the <code>fuel_tank</code> class. From the point of view
+of the person testing <code>car.py</code>, the <code>fillGasTank()</code>
+function is essentially a black box. All we really can do is verify that
+<code>fuel_tank.refill()</code> is called. Hence, we use a spy
+test double to verify exactly that.</p>
+
+<p>Now, we could implement our own spy similar to what is shown in <i>The
+Little Mocker</i>, but Python includes support for creating spies and other
+mock objects in the <code>unittest</code> module. This module is an alternative
+to <code>pytest</code> in many respects, and while <code>pytest</code> is perhaps more
+intuitive than <code>unittest</code>, the <code>unittest</code> module includes
+some indispensible functionality that is not provided by <code>pytest</code>.
+One of these features is the ability to create and use mock objects.</p>
+
+<p>In particular, you can import the <code>unittest.mock</code> module, and
+take a brief look <a href="https://docs.python.org/3/library/unittest.mock.html">
+at the documentation here</a>. The basic workflow is to create an instance
+of the class you want, and then create mock methods using the 
+<code>unittest.mock</code> module. Then, the module automatically logs if and
+how the mocked methods are called, and allows you to use a set of assert 
+statements to confirm the behavior.</p>
+
+<p>You can see <a href="test_car4.py">my implementation of a spy object here
+</a>. If you run this test case as-is, you should get an assertion error
+at line 19 because the call to <code>fillGasTank()</code> is commented
+out. Once you uncomment that line the test case should run successfully.</p>
+
+<p><li>Another method to spy on is the call to <code>fuel_tank.subtract()</code>
+in the <code>drive()</code> function. One feature of the 
+<code>unittest.mock</code> module is that you can spy on what specific values
+a function is called with. Use the documentation above to write a set of
+stubs and spies that verifies the value passed to
+<code>fuel_tank.subtract()</code>. In particular, if <code>miles = 60</code>
+and <code>engine.MPG = 30</code>, then the value passed to 
+<code>fuel_tank.subtract()</code> should be <code>2</code>.</p>
+
+<p>Make sure that your code passes correctly, and then fails if you change some
+of the numbers involved. <a href="test_car5.py">My solution is here</a>.</p>
+
+<p><li>Surprise! The previous exercise had you create a <b>true mock object</b>.
+The spy we created first merely verified that the function
+<code>fuel_tank.refill()</code> was called. That spy looked at actions happening
+in the system, but it was oblivious to the actual behavior of the system. This
+last exercise created a mock object that expects a certain behavior... given a
+certain initial state (attribute values) and an input (<code>drive(60)</code>)
+the mock object knew that <code>fuel_tank.subtract()</code> should be called
+with value <code>2</code>.</p>
+
+<p><li>The last test double we will look at today are <b>fakes</b>. These are
+so-called because they imitate the system under test, but they're not the
+system. Another name for a fake might be a simulation. A fake simulates elements
+of the system under test, with the goal that whatever simulation is provided is
+accurate enough to be informative without requiring prohibitive development
+time itself.</p>
+
+<p>The last method in <code>car.py</code> computes the total weight of the
+vehicle dependent on how much gas is in the fuel tank. Suppose we want to
+validate that driving our vehicle does in fact consume gas, and that it
+should weigh less after calling the <code>drive()</code> function than it did
+before. To do so we need some kind of logic implementing the
+<code>computeWeight()</code> function. We don't necessarily need the full or
+completely accurate implementation of the <code>fuel_tank</code> class, we just
+need something approximate. We need a fake. 
+
+<p>Write a fake <code>fuel_tank</code> that includes an implementation of
+the <code>subtract()</code> and <code>computeWeight()</code> functions. Then,
+verify that the weight after driving is less than the weight that was before
+driving. You can see <a href="test_car6.py">my solution here</a>. If you modify
+the <code>drive(60)</code> line to drive a negative number of miles then you
+can induce a test failure to prove to yourself that the test works. (And 
+that we can magically grow gasoline just by driving in
+reverse. I guess we should have had a unit test for that, huh?)</p>
+
+<p><li>Now, armed with your knowledge of unit testing in Python, I'd like you
+to engage in test-driven development (TDD). As we said in class, in TDD you:</p>
+
+<ol>
+<li>Write down a list of features
+<li>Pick one feature
+<li>Write down a set of tests that verify/accept that feature
+<li>Write a set of test cases, and just enough code for your program to run
+<li>Run the test cases and verify that they fail
+<li>Then, write just enough code to make all tests pass
+<li>Go back to part 2, unless we have no more features
+</ol>
+
+<p><li>Create a file called <code>shapes.py</code>. Then, create a class called
+<code>rectangle</code>. The constructor should take two arguments: the length
+and the width of the rectangle. You should implement functions called
+<code>computeArea()</code> and <code>computePerimeter()</code>. Develop this
+code using TDD. Remember that writing good test cases in TDD is tantamount to
+requirements analysis in traditional software development. Make sure to consider
+edge cases such as what happens if a user passes negative numbers for length
+or width, (or both), or if they pass non-numeric data such as <code>None</code>
+or a string. What happens if the user passes zeros to your constructor- does
+the code behave how you'd like, or were you surprised?</p>
+
+<p><li>If you would like, repeat the above exercise for triangles, circles,
+cylinders, etc.</p>
+
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>

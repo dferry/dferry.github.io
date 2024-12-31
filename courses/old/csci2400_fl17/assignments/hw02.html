@@ -1,0 +1,268 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+  <HEAD>
+    <TITLE>Assignment #2:  Integer Operations, Floating-Point, and C
+    </TITLE>
+  </HEAD>
+
+  <BODY>
+
+
+    <CENTER>
+      <H2>Assignment #2:  Integer Operations, Floating-Point, and C</H2>
+    </CENTER>
+
+
+<h3>Contents:</h3>
+<UL>
+  <LI>
+      <a href="#overview">Overview</a>
+  </LI>
+  <LI>
+      <a href="#practice">Practice Problems</a>
+  </LI>
+  <LI>
+      <a href="#submit">Problems to be Submitted</a>
+  </LI>
+<!--
+  <LI>
+      <a href="#extra_credit">Extra Credit</a>
+  </LI>
+-->
+</UL>
+
+<HR>
+
+<a name="overview"><h3>Overview</h3></a>
+
+<P>
+<!--
+<b>Topic:</b>  Operating on binary integer numbers.  Arithmetic (&#43;, &#45;, &#42;, &#47;, &#37;), Boolean (&amp;, &#124;, &#94;, &#126;), and shifts (&gt;&gt;, &lt;&lt;)
+-->
+<b>Topic:</b>  Operating on binary integer and floating point numbers.  Arithmetic (+, -, *, /, %), Boolean (&, |, ^, ~), and shifts (<<, >>)
+<br>
+<b>Related Reading:</b>  Section 2.3 and class notes
+</P>
+
+<hr>
+
+<a name="practice"><h3>Practice Problems</h3></a>
+
+<p>
+Practice problems from the textbook <i>(answers are at the end of the chapter)</i>:
+<ul>
+  <li>
+    Practice Problem 2.1, on p. 37.
+  </li>
+  <p>
+  <li>
+    Practice Problem 2.4, on p. 39.
+  </li>
+  <p>
+  <li>
+    Practice Problem 2.8, on p. 51.
+  </li>
+  <p>
+  <li>
+    Practice Problem 2.14, on p. 57.
+  </li>
+  <p>
+  <li>
+    Practice Problem 2.16, on p. 58.
+  </li>
+  <p>
+  <li>
+    Practice Problem 2.40, on p. 103.
+  </li>
+  <p>
+  <li>
+    Practice Problem 2.44, on p. 108.
+  </li>
+</ul>
+
+<p>
+
+<HR>
+
+<a name="submit"><h3>Problems to be Submitted (25 points)</h3></a>
+
+When you turn in your assignment, you must include a signed <a href="./cover-sheet.html">cover sheet</a> (<a href="./cover-sheet.pdf">PDF version</a>) with your assignment (<i>you're assignment will not be graded without a completed cover sheet</i>).
+
+<p>
+You are allowed to submit your assignment via email, but if you choose to do so, you must bring a hardcopy of your assignment along with a completed cover sheet to the instructor at the next class.  (<i>Note:  Do not email the instructor any .zip file attachments, as SLU's email may not accept these emails; i.e. the instructor may not receive your email.</i>)
+
+
+<h3>Answers without work will recieve zero credit.</h3>
+
+<!--
+<P>
+  <b>Please type your answers to all of the problems in a single document, and email it
+   to the instructor by midnight on the due date.</b>
+</P>
+-->
+
+<OL type=1>
+  <LI> <b>(5 points) &nbsp;&nbsp; Operations on Data:</b></br>
+        &nbsp; Compute results for the following data operations.
+    <h4>Give your answer in <u>binary</u> or <u>hex</u>, and be sure to <u>show your work</u></h4>
+    <OL type=a>
+<!--
+      <LI> &nbsp; 1011100101101101<sub>2</sub> &nbsp; + &nbsp; 0001000101101011<sub>2</sub> </LI>
+-->
+      <LI> &nbsp; 0x6E42B &nbsp; - &nbsp; 0x37CA<sub> </sub> </LI>
+<!--
+      <LI> &nbsp; 100101001101<sub>2</sub> &nbsp; | &nbsp; 001110001011<sub>2</sub> </LI>
+      <LI> &nbsp; 100101001101<sub>2</sub> &nbsp; & &nbsp; 001110001011<sub>2</sub> </LI>
+-->
+      <LI> &nbsp; 1001101000101<sub>2</sub> &nbsp; >> &nbsp; 5  </LI>
+<!--
+      <LI> &nbsp; 0x07AD4 &nbsp; << &nbsp; 3<sub> </sub>  </LI>
+-->
+      <LI> &nbsp; 0x07AD4 &nbsp; ^ &nbsp; 0x03B5D </LI>
+      <LI> &nbsp; (23 &nbsp; << &nbsp; 4) - 0xFF<sub> </sub>  </LI>
+      <LI> &nbsp; 0x9C % 6 </LI>
+    </OL>
+  </LI>
+
+  <p>
+
+  <LI> <b>(6 points) &nbsp;&nbsp; Floating-Point Representations:</b>
+    <OL type=a>  
+      <p>
+      <LI>  Given the following IEEE 32-bit single-precision floating-point representation, give its equivalent decimal value:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 01000111 00110100 11010000 00000000 <br>
+      <LI>  Convert the base-2 number 10101.1100110011 into IEEE single-precision floating point.
+	
+      <LI>  Convert the decimal number  -936.4375 into IEEE double-precision floating-point.  
+      </p>
+    </OL>
+  </LI>
+
+  <p>
+
+  <LI> <b>(4 points) &nbsp;&nbsp; Shifts and Bit Manipulation for Fast Multiplies and Divides:</b>
+    <OL type=a>
+      <p>
+        <b>Note:</b>  While these four questions provide an example value for <tt>x</tt> (so that you may solve for <tt>y</tt> if desired), <b>what I'm really looking for is the value of <tt><i>K</i></tt> assuming any (valid) value of <tt>x</tt>.</b>
+      </p>
+      <LI> The following code corresponds to the mathematical equation:  <tt>y = <i>K</i> * x</tt>, for some fixed value of <tt><i>K</i></tt>.  In this case, what is <tt><i>K</i></tt>? </LI>
+<pre>
+      x = 11
+      y = (x << 4) - x
+</pre>
+      <LI> The following code similarly corresponds to:  <tt>y = <i>K</i> * x</tt>, but for what value of <tt><i>K</i></tt>? </LI>
+<pre>
+      x = 7
+      y = (x << 5) - (x << 2) + x;
+</pre>
+      <LI> The following code corresponds to the mathematical equation:  <tt>y = <i>K</i> * x</tt>, for some fixed value of <tt><i>K</i></tt> < 1.  What is the value of <tt><i>K</i></tt>? </LI>
+<pre>
+      x = 35
+      y = (x >> 1) - (x >> 3)
+</pre>
+<!--
+      <LI> Following is an alternate approach that similarly generates the mathematical equation:  <tt>y = <i>K</i> * x</tt>, for some value of <tt><i>K</i></tt> < 1.  In this case, what is the value of <tt><i>K</i></tt>? </LI>
+<pre>
+      x = 91
+      y = ((x << 3) + x) >> 5
+</pre>
+      <LI> Give the alternate version of code that produces the same mathematical equation produced in part <i>c</i> -- i.e. for <tt>x = 22</tt>, produce the same answer for <tt>y</tt> as in part <i>c</i> using both left shift(s) and right shift(s), instead of just right shifts.  </LI>
+-->
+      <LI> Relative to multiplication and division, what mathematical equation does the following code produce? </LI>
+<pre>
+      x = 102
+      y = x & 0x0f
+</pre>
+    </OL>
+  </LI>
+
+  <p>
+
+  <LI> <b>(8 points) &nbsp;&nbsp; Pseudocode using Integer Operations:</b>
+<pre>
+      a = 8
+      b = 29
+      c = 0
+
+      while (b >= a)
+      {
+         b = b - a;
+         c = c + 1;
+      }
+
+      print c
+      print b
+</pre>
+    <OL type=a>
+      <LI> For the given values of <tt>a</tt> and <tt>b</tt>, what is printed? </LI>
+      <LI> If the initial values of <tt>a</tt> and <tt>b</tt> were instead <tt>a = 4</tt> and <tt>b = 17</tt>, what would be printed? </LI>
+      <LI> How about if the initial values of <tt>a</tt> and <tt>b</tt> were <tt>a = 8</tt> and <tt>b = 4</tt> ? </LI>
+      <LI> How about if the initial values of <tt>a</tt> and <tt>b</tt> were <tt>a = 5</tt> and <tt>b = 25</tt> ? </LI>
+      <LI> What mathematical operation does this pseudocode perform?  For arbitrary values of <tt>a</tt> and <tt>b</tt>, what does the final result in <tt>b</tt> correspond to?  How about the final <tt>c</tt> value? </LI>
+      <LI> Create a C program that asks the user to enter values for <tt>a</tt> and <tt>b</tt>, then computes the values for <tt>b</tt> and <tt>c</tt>, as shown in pseudocode above, and finally print out these two results.<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Please email your .c file to instructor</b> (as well as turning in a hardcopy). </LI>
+    </OL>
+  </LI>
+
+  <p>
+
+  <LI> <b>(2 points)</b>
+    <p>
+       In image processing, a smoothing mask is sometimes used to soften hard edges and smooth out random noise.  This is done by taking a weighted average of the pixel itself with its nearest neighbors.
+    <p>
+For example, given the following common 3x3 smoothing filter like the following, when centered over a pixel at <tt><i>p[y][x]</i></tt>
+    <p>
+    <ul>
+      <table border="1" cellpadding="2" cellspacing="1">
+        <dd><tr>
+          <th width = "20"><b>0</b></td>
+          <th width = "20"><b>1</b></td>
+          <th width = "20"><b>0</b></td>
+        </tr></dd>
+        <dd><tr>
+          <th><b>1</b></td>
+          <th><b>4</b></td>
+          <th><b>1</b></td>
+        </tr></dd>
+        <dd><tr>
+          <th><b>0</b></td>
+          <th><b>1</b></td>
+          <th><b>0</b></td>
+        </tr></dd>
+      </table>
+    </ul>
+
+    <p>
+the equation/code for smoothing that pixel is expressed as:
+
+<pre>
+      p[y][x] = (4 * p[y][x] + p[y][x-1] + p[y][x+1] + p[y-1][x] + p[y+1][x]) / 8; 
+</pre>
+    Since multiplies and divides are time-consuming operations, give a version of this equation/code that uses much more efficient (i.e faster) operations.
+    <p>
+  </LI>
+</OL>
+
+<!--
+<HR>
+
+<a name="extra_credit"><h3>Extra Credit (2 points)</h3></a>
+
+<OL type=1 start=5>
+  <LI> (2 points)
+    <p>
+      Answer the <b>Challenge Question</b> (question #7) in the <a href="../software/tutorial/">Assembler and Debugger Tutorial</a>.  Clearly explain <u>all</u> modifications that need to be made, especially in the assembly code.
+    </p>
+  </LI>
+</OL>
+-->
+
+
+<hr>
+<!--
+Last modified: Friday, 10 February 2006
+-->
+
+  </body>
+</html>
+

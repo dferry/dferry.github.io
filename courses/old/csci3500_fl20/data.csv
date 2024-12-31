@@ -1,0 +1,394 @@
+Date,Topic,Readings,Studios,Labs
+Aug 27
+
+<tr>
+	<th>Aug 27</th>
+	<th>Intro to OS</th>
+	<th>MOS 1.1 - 1.3</th>
+	<th><i>Make sure you can login<br>for next time</i></th>
+	<th><a href="labs/01_syscalls.html">Lab 1 Assigned</a><br/></th>
+</tr>
+
+<tr>
+	<th>Aug 29</th>
+	<th>Types of OSes, OS concepts</th>
+	<th>MOS 1.4 and 1.5</th> 
+ 	<th><a href="studios/01_hello_world.html">Studio 1</a></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Aug 31</th>
+	<th><a href="./labs/crypt_example.c">Lab 1 Discussion<br>(ecb_crypt example)</a></th>
+	<th></th>
+ 	<th><a href="studios/02_in_out.html">Studio 2</a></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Sep 3</th>
+	<th colspan=4 style="color:red;">No class: Labor Day</th>
+</tr>
+
+<tr>
+	<th>Sep 5</th>
+	<th>System calls and OS architectures</th>
+	<th>MOS 1.6 - 1.8<br>
+	<code>man syscalls</code></th>
+	<th><a href="studios/03_pointers.html">Studio 3</a></th>
+	<th><span style="text-decoration:line-through;color:red">Lab 1 Due</span></th>
+</tr>
+
+<tr>
+	<th>Sep 7</th>
+	<th>Processes</th>
+	<th>MOS 2.1</th>
+	<th><a href="studios/04_errors.html">Studio 4</a></th>
+	<th class="due">Lab 1 Due</th>
+</tr>
+
+<tr>
+	<th>Sep 10</th>
+	<th><code>fork()</code>, <code>exec()</code>, <code>wait()</code>, and <code>kill()</code></th>
+	<th></th>
+ 	<th><a href="studios/05_fork.html">Studio 5</a></th>
+	<th><a href="labs/02_processes.html">Lab 2 Assigned</a></th>
+</tr>
+
+<tr>
+	<th>Sep 12</th>
+	<th>Lab 2 Discussion</th>
+	<th></th>
+	<th><a href="studios/06_strtok.html">Studio 6</a></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Sep 14</th>
+	<th>Pipes, <code>stdin</code>, <code>stdout</code></th>
+	<th>MOS 2.2</th>
+	<th><a href="studios/07_pipes.html">Studio 7</a></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Sep 17</th>
+	<th>Threads</th>
+	<th></th>
+ 	<th><a href="studios/08_signals.html">Studio 8</a></th> 
+	<th></th>
+</tr>
+
+<tr>
+	<th>Sep 19</th>
+	<th>Pthreads, C++11 threads</th>
+	<th>MOS 2.3</th>
+ 	<th><a href="studios/09_threads.html">Studio 9</a></th> 
+	<th></th>
+</tr>
+
+<tr>
+	<th>Sep 21</th>
+	<th>Race conditions, critical sections, locks, and atomicity</th>
+	<th>MOS 2.5.1</th>
+	<th class="due"><a href="studios/10_race.html">Studio 10</a><br>
+	Studios 1 through 7 Due</th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Sep 24</th>
+	<th>Mutexes, semaphores</th>
+	<th></th>
+	<th><a href="studios/11_mutex.html">Studio 11</a></th>
+	<th class="due">Lab 2 Due</th>
+</tr>
+
+<tr>
+	<th>Sep 26</th>
+	<th>Atomic Instructions</th>
+	<th><!--<a class="inactive" href="in_class/locks.c">locks.c</a>--></th>
+ 	<th><a href="studios/12_atomics.html">Studio 12</a></th>
+ 	<th><a href="labs/03_threads.html">Lab 3 Assigned</a><br>
+	<a href="labs/crypt_demo.c">crypt_demo.c</a></th>
+</tr>
+
+<tr>
+	<th>Sep 28</th>
+	<th>Lab 3 Discussion</th>
+	<th></th>
+	<th></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Oct 1</th>
+	<th>OpenMP, Cilk Plus</th>
+	<th>MOS 2.4</th>
+ 	<th><a href="studios/13_openmp.html">Studio 13</a></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Oct 3</th>
+	<th>Batch and interactive scheduling</th>
+	<th></th>
+	<th><a href="studios/14_openmp2.html">Studio 14</a></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Oct 5</th>
+	<th>Real-time scheduling</th>
+	<th></th>
+	<th></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Oct 8</th>
+	<th>Cooperative and Preemptive Scheduling</th>
+	<th></th>
+	<th>
+	<th class="due">Lab 3 Due</th>
+</tr>
+
+<tr>
+	<th>Oct 10</th>
+	<th>Midterm review <a class="inactive" href="in_class/csci3500_midterm_examples.pdf">(example questions)</a></th>
+	<th></th>
+	<th class="due">Studios 8 through 14 Due</th>
+	<th></th>
+</tr>
+
+<tr class="due">
+	<th>Oct 12</th>
+	<th>Midterm Exam</th>
+	<th></th>
+	<th></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Oct 15</th>
+	<th>Memory management</th>
+	<th>MOS 3.1</th>
+ 	<th><a class="inactive" href="studios/14_physical_mem.html">Studio 15-a</a></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Oct 17</th>
+	<th>Address spaces and swapping</th>
+	<th>MOS 3.2</th>
+ 	<th><a class="inactive" href="studios/15_memory.html">Studio 15-b</a></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Oct 19</th>
+	<th>Virtual memory and paging</th>
+	<th></th>
+ 	<th><a class="inactive" href="studios/16_page_tables.html">Studio 16</a></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Oct 22</th>
+	<th colspan=4 style="color:red;">No class: Fall Break</th>
+</tr>
+
+<!--
+<tr>
+	<th>Mar 12</th>
+	<th colspan=4 rowspan=3 style="color:red;">No class: Spring Break</th>
+</tr>
+<tr><th>Mar 14</th></tr>
+<tr><th>Mar 16</th></tr>
+-->	
+
+<tr>
+	<th>Oct 24</th>
+	<th>Exam Discussion</th>
+	<th></th>
+	<th></th>
+	<th><!-- <a class="inactive" href="studios/csci3500_midterm_fl_2016_reinforcement.docx">Midterm Reinforcement</a> --></th>
+</tr>
+
+<tr>
+	<th>Oct 26</th>
+	<th>Page tables and the TLB</th>
+	<th></th>
+	<th><a class="inactive" href="studios/17_tlb.html">Studio 17</a></th>
+	<th></th>
+</tr>
+
+
+<tr>
+	<th>Oct 29</th>
+	<th>Lab 4 Discussion</th>
+	<th></th>
+	<th></th>
+ 	<th><a class="inactive" href="labs/04_malloc.html">Lab 4 Assigned</a></th>
+</tr>
+
+<tr>
+	<th>Oct 31</th>
+	<th>Page Replacement Algorithms</th>
+	<th></th>
+ 	<th><a class="inactive" href="studios/18_page_replacement.html">Studio 18</a></th> 
+	<th></th>
+</tr>
+
+<tr>
+	<th>Nov 1</th>
+	<th>Linux Memory Maps</th>
+	<th></th>
+	<th></th>
+	<th></th>
+</tr>
+
+<!--
+<tr>
+	<th>Mar 30</th>
+	<th colspan=4 style="color:red;">No class: Good Friday</th>
+</tr>
+
+<tr>
+	<th>Apr 2</th>
+	<th colspan=4 style="color:red;">No class: Easter Monday</th>
+</tr>
+-->
+
+<tr>
+	<th>Nov 5</th>
+	<th>Files and the File System</th>
+	<th></th>
+	<th><a class="inactive" href="studios/19_files.html">Studio 19</a></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Nov 7</th>
+	<th>File allocation on disk</th>
+	<th></th>
+	<th class="due">Studios 15-a through 19 Due</th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Nov 9</th>
+	<th>Directory structure and Inodes</th>
+	<th></th>
+	<th><a class="inactive" href="studios/20_file_systems.html">Studio 20</a></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Nov 12</th>
+	<th>OSI and TCP/IP Models of Networking</th>
+	<th></th>
+ 	<th><a class="inactive" href="studios/21_networking.html">Studio 21</a></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Nov 14</th>
+	<th>Physical and Data Link Layers</th>
+	<th></th>
+ 	<th><a class="inactive" href="studios/22_datalink.html">Studio 22</a></th>
+	<th class="due">Lab 4 Due</th>
+</tr>
+
+<tr>
+	<th>Nov 16</th>
+	<th>Network Layer</th>
+	<th></th>
+	<th><a class="inactive" href="studios/23_network.html">Studio 23</a></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Nov 19</th>
+	<th>Transport Layer</th>
+	<th></th>
+	<th><a class="inactive" href="studios/24_sockets.html">Studio 24</a></th>
+	<th></th>
+</tr>
+
+
+<tr>
+	<th>Nov 21</th>
+	<th colspan=4 style="color:red;">No class: Thanksgiving Break</th>
+</tr>
+
+<tr>
+	<th>Nov 23</th>
+	<th colspan=4 style="color:red;">No class: Thanksgiving Break</th>
+</tr>
+
+
+<tr>
+	<th>Nov 26</th>
+	<th>Session Layer</th>
+	<th></th>
+	<th></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Nov 28</th>
+	<th>Presentation and Application Layers</th>
+	<th></th>
+ 	<th><a class="inactive" href="studios/25_applications.html">Studio 25</a></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Nov 30</th>
+	<th>Lab 5 Discussion</th>
+	<th></th>
+	<th></th>
+ 	<th><a class="inactive" href="labs/05_chat.html">Lab 5 Assigned</a></th>
+</tr>
+
+<tr>
+	<th>Dec 3</th>
+	<th>Security Concerns - CIA</th>
+	<th></th>
+	<th class="due">Studios 20 through 25 Due</th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Dec 5</th>
+	<th>Secure Systems and a Trusted Computing Base</th>
+	<th></th>
+	<th></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Dec 7</th>
+	<th>Permission Domains and Permission Management</th>
+	<th></th>
+	<th></th>
+	<th class="due">Lab 5 Due</th>
+</tr>
+
+<tr>
+	<th>Dec 10</th>
+	<th>Final Exam Review</th>
+	<th></th>
+	<th></th>
+	<th></th>
+</tr>
+
+<tr style="background-color:yellow">
+	<th>Dec 14</th>
+	<th>Final Exam - 8:00AM to 8:50AM</th>
+	<th></th>
+	<th></th>
+	<th></th>
+</tr>
+

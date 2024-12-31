@@ -1,0 +1,555 @@
+
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+
+<HTML>
+<HEAD>
+<TITLE>Lecture Notes: Cell Arrays and Structures
+</TITLE>
+</HEAD>
+
+<BODY>
+
+
+
+<HR>
+
+<H2>
+Cell Arrays and Structures
+</H2>
+
+<ul>
+  <li>
+      <a href="#limits">Limitations of Vectors</a>
+  </li>
+  <ul>
+     <li>
+        <a href="#text">Text Data</a>
+     </li>
+     <li>
+        <a href="#aggregate">Aggregate Data</a>
+     </li>
+  </ul>
+  <br>
+  <li>
+      <a href="#cellarrays">Cell Arrays</a>
+  </li>
+  <ul>
+     <li>
+        <a href="#cellfuncs">Cell Array Functions</a>
+     </li>
+     <li>
+        <a href="#cellaggregate">Aggregate Data with Cell Arrays</a>
+     </li>
+  </ul>
+  <br>
+  <li>
+      <a href="#structures">Structures</a>
+  </li>
+</ul>
+
+<hr>
+
+<h2>References</h2>
+
+<ul>
+<li><a href="https://www.mathworks.com/help/matlab/ref/cell.html">Cell Array Documentation</a></li>
+<li><a href="https://www.mathworks.com/help/matlab/matlab_prog/cell-arrays-of-strings.html">Cell Arrays and Text Strings</a></li>
+<li><a href="https://www.mathworks.com/help/matlab/structures.html">Structures Documentation</a></li>
+<li><a href="https://www.mathworks.com/help/matlab/ref/struct.html"><code>struct()</code> function</a></li>
+<li><a href="https://www.mathworks.com/help/matlab/matlab_prog/create-a-structure-array.html">Struct Arrays</a></li>
+</ul>
+
+<hr>
+
+<h2><a name="limits">Limitations of Vectors</a></h2>
+
+<p>
+MATLAB deals with vectors and matrices naturally. Such
+data structures are ideal for many programs we'd wish to write. However, 
+both assume that every piece of data we'd wish to use will have an identical 
+type. As programs become more
+complex we may wish to associate different types of data with one another.
+Doing this with vectors alone is possible but clunky, so there exist tools
+specifically to handle these cases.
+
+<h3><a name="text">Text Data</a></h3>
+
+<p>
+One place this is especially apparent is with text data. Suppose you wanted to
+store three names in an array. If you were to give the following command, you'd
+get an error:
+
+<p>
+<code>names = [ 'Alice'; 'Bob'; 'Claire' ]</code>
+<br>
+<code style="color:red">Dimensions of matrices being concatenated are not consistent.</code>
+
+<p>
+What's happening? The syntax we used above <i>seems</i> like it should work
+just fine: we want an array, where each element of the array is a different 
+name. That's not how MATLAB sees the command. Remember that the square bracket
+notation with semicolons is trying to create a matrix with three rows, and
+also remember how MATLAB stores text strings as sequences of ASCII
+characters. That is, <code>'Alice'</code> is really the sequence:
+
+<pre>
+>> uint8('alice')
+
+ans =
+
+  1×5 uint8 row vector
+
+    97   108   105    99   101
+</pre>
+
+<p>
+So really, the <code>names</code> command above is trying to create a matrix where
+the first row has five characters, the second row has three characters, and
+the third row has six characters. Hence the explanation of the error message:
+MATLAB requires our matrices to be rectangular, and it can't figure out what
+to do when you try to build a matrix out of rows with three different lengths. 
+The <b>bad</b> solution to this problem is
+to force all text to be the same length. We can do this by padding each name
+with extra spaces. Note how the single quotes marking each string line up:
+
+<pre>
+names = [ 'Alice '; 
+          'Bob   '; 
+          'Claire' ]
+</pre>
+
+<p>
+This creates a matrix with three rows and six columns. This kind of works,
+but it's not great. Accessing a single name now requires accessing a row
+and all columns within that row:
+
+<pre>
+>> names(2,:)
+
+ans =
+
+Bob
+</pre>
+
+<p>
+However, this really is just a matrix. For example, you <i>are allowed</i>
+to access columns of this matrix, which is valid syntax but its unlikely that
+this is something you'd ever like to do.
+
+<pre>
+>> names(:,3)
+
+ans =
+
+i
+b
+a
+</pre>
+
+<p>
+The bigger problem is that all names must now be stored as the same length
+strings. What happens if we want to add <code>'Alfredo'</code> to our
+list of names (which has seven characters)?
+
+
+<h3><a name="aggregate">Aggregate Data</a></h3>
+
+<p>
+More generally, we'd like to associate different data types
+with one another. For example, suppose we had several characters
+and we'd like to associate each with a numeric value. We might want to come
+up with a matrix such as:
+
+<pre>
+
+M = [ 50  'A' ;
+      100 'B' ;
+      150 'C' ]
+
+</pre>
+
+<p>
+However, MATLAB doesn't know quite how to deal with this. It sees the presence
+of the characters 'A', 'B', and 'C' and automatically tries to interpret all
+of the data as characters. If you enter the above into your command window
+you'll get a nonsense result out the other side, which comes from interpreting
+50 as ASCII character '2', 100 as character 'd', and so on.
+
+<pre>
+M =
+
+   2A
+   dB
+   -C
+</pre>
+
+<p>
+The easiest solution might be to just declare two different vectors:
+
+<pre>
+ints  = [ 50;  100; 150 ]
+chars = [ 'A'; 'B'; 'C' ] 
+</pre>
+
+<p>
+This is a reasonable workaround, but we will always have to remember to
+access both vectors simultaneously for this to work. However, this is not
+perfect- it makes some sensible operations impossible. Suppose we had
+a function called <code>shuffle</code> that shuffles an array:
+
+<pre>
+shuffle = @(v) v(randperm(length(v)))
+</pre>
+
+<p>
+We can individually shuffle our two arrays, but it's not possible
+to shuffle all pairs
+of values that we're working with. If we try to shuffle both arrays
+individually we may get mismatched results:
+
+<pre>
+>> shuffle( ints )            >> shuffle( chars )
+
+ans =                         ans =
+
+     150                           B
+      50                           C
+     100                           A
+</pre>
+
+
+<hr>
+<h2><a name="cellarrays">Cell Arrays</a></h2>
+
+<p>
+Cells are containers that may contain any arbitrary data. An array of
+cells will thus allow a programmer to have a single array-like stucture
+that can hold different types of data entirely. This is a great way to
+work with real-world data that doesn't fit into nice, rectangular
+matrices of numeric values. 
+
+<p>
+Consider our text data problem above. What we really want is an array
+of names, without regard for how character data is converted to ASCII
+and stored in MATLAB. With a cell array this is easy. Note that we're
+using curly braces instead of the square braces that we tried above:
+
+<pre>
+%Declare cell arrays using curly braces
+>>names = { 'Alice'; 'Bob'; 'Claire' }
+
+names =
+
+  3×1 cell array
+
+    'Alice'
+    'Bob'
+    'Claire'
+</pre>
+
+<p>
+That was easy! This declares a cell array with three rows and one column.
+Declaring matrices of cells works the way you would
+expect as well, with cells in the same row being separated by spaces (or commas)
+and cells in successive rows being separated by semicolons:
+
+<pre>
+%Declare cell arrays using curly braces
+>>names = { 'Alice'  'David';
+            'Bob'    'Erica';
+            'Claire' 'Fred' }
+
+ans =
+
+  3×2 cell array
+
+    'Alice'     'David'
+    'Bob'       'Erica'
+    'Claire'    'Fred' 
+</pre>
+
+<p>
+Observe carefully now that row and column indices now refer to cell position
+and not to the underlying data. For example, if we ask for row-2 and column-1
+we will get the whole cell contents <code>'Bob'</code>.
+
+<pre>
+>> names(2,1)
+
+ans =
+
+  cell
+
+    'Bob'
+</pre>
+
+<p>
+Furthermore, note that the type of data returned is not a character string, but
+a cell. The major downside of cell arrays is that suddenly everything is a
+cell, and working with cells requires a lot of explicit conversions between
+cells and the other data types (scalar numbers, text strings) that we're
+used to working with. We can't directly access the data inside cells. For
+example, if we wanted to access the second character of 'Bob', the
+<i>obvious</i> approach does not work:
+
+<pre>
+>> cellVar = names(2,1)
+
+cellVar =
+
+  cell
+
+    'Bob'
+</pre>
+<p>
+<code>>> cellVar(2)</code><br>
+<code style="color:red">Index exceeds matrix dimensions.</code>
+
+<p>
+What happened? The variable <code>cellVar</code> is a 1x1 cell. There is no second
+element to index. What we really want is the text string that's contained in the cell:
+
+<pre>
+>> cellVar = names(2,1);
+>> strVar = char( cellVar ) %Convert cell to string
+
+strVar =
+
+Bob
+
+>> strVar(2)
+
+ans =
+
+o
+</pre>
+
+<p>
+Assigning to cell arrays has very similar problems. Suppose we want to change
+<code>'Fred'</code> to <code>'Francine'</code>. Simple assignment doesn't work:
+
+<p>
+<code>names(3,2) = 'Francine'</code><br>
+<code style="color:red">Conversion to cell from char is not possible.</code>
+
+<p>
+The solution is to explicitly convert the text string <code>'Francine'</code>
+to a cell before assignment:
+
+<pre>
+>> names(3,2) = cellstr('Francine')
+
+names =
+
+  3×2 cell array
+
+    'Alice'     'David'   
+    'Bob'       'Erica'   
+    'Claire'    'Francine'
+</pre>
+
+<h3><a name="cellfuncs">Cell Array Functions</a></h3>
+<p>
+Most functions involving cell arrays are designed to convert to and from cells.
+The functions <code>iscell()</code> and <code>iscellstr()</code> can be used to
+figure out what kind of data you're working with.
+
+<ul>
+<li>
+<b><code>num2cell()</code></b> - convert a numeric scalar or array into a cell array 
+</li>
+<li>
+<b><code>cellstr()</code></b> - convert a text string into a cell string 
+</li>
+<li>
+<b><code>cell2mat()</code></b> - convert a cell into a number  
+</li>
+<li>
+<b><code>char()</code></b> - convert a cell string into a text string
+</li>
+<li>
+<b><code>iscell()</code></b> - determines whether a variable is a cell or not
+</li>
+<li>
+<b><code>iscellstr()</code></b> - determines whether a variable is a cell with a string or not
+</li>
+</ul>
+
+<p>
+
+<h3><a name="cellaggregate">Aggregate Data with Cell Arrays</a></h3>
+
+<p>
+As mentioned above, a huge advantage to using cell arrays is the possiblity
+of having mixed data types in the same data structure. As before, declaring these
+kinds of aggregate data is easy:
+
+<pre>
+>>data = { 50  'Alice';
+         100 'Bob';
+         150 'Claire' }
+
+data =
+
+  3×2 cell array
+
+    [ 50]    'Alice' 
+    [100]    'Bob'   
+    [150]    'Claire' 
+</pre>
+
+<p>
+This makes it easy to associate different types of data with one another,
+and to treat those data as a single unit:
+
+<pre>
+%Exchange rows of data
+>> temp = data(2,:)
+
+temp =
+
+  1×2 cell array
+
+    [100]    'Bob'
+
+>> data(2,:) = data(3,:);
+>> data(3,:) = temp;
+>> data
+
+data =
+
+  3×2 cell array
+
+    [ 50]    'Alice'
+    [150]    'Claire'
+    [100]    'Bob'
+</pre>
+
+<p>
+However, one must be mindful of converting to and from the underlying data
+types:
+
+<pre>
+>> data(2,1) = num2cell( 200 );
+>> data(2,2) = cellstr( 'David' )
+
+data =
+
+  3×2 cell array
+
+    [ 50]    'Alice' 
+    [200]    'David' 
+    [100]    'Bob'
+</pre>
+
+<hr>
+<h2><a name="structures">Structures</a></h2>
+
+<p>
+Structures, called <i>structs</i>, are an alternate method for
+handling aggregate data in MATLAB. While cell arrays tend to be somewhat
+MATLAB-specific in their semantics, almost all programming languages support
+something nearly or exactly similar to structs. Structs allow you to store
+and reference data in named <i>fields</i>.
+
+<p>
+The easiest way to create a one-off structure is with the <code>struct()</code>
+function. This creates a structure with no fields, which can then be assigned
+to with "dot notation".
+
+<pre>
+>> person = struct();
+>> person.name = 'Alice Anyperson';
+>> person.age  = 22;
+>> person.zip  = 63103;
+>> person.edu  = 'BS Computer Science';
+>> person
+
+person = 
+
+  struct with fields:
+
+    name: 'Alice Anyperson'
+     age: 22
+     zip: 63103
+     edu: 'BS Computer Science'
+</pre>
+
+<p>
+Creating an array of structs is less intuitive than it could be. Extending our
+first struct into an array with an empty struct doesn't work exactly the way you'd hope
+(even though we could extend a scalar value into an array with a similar approach). 
+
+<p>
+<code>>> person(2) = struct()</code><br>
+<code style="color:red">Subscripted assignment between dissimilar structures.</code>
+
+<p>
+This is because MATLAB only allows an array of structures with identical
+fields. The first element of the array has four fields: name, age,
+zip, and edu. However, the empty structure returned by <code>struct()</code>
+has no fields. The way to create the subsequent 
+structures that we'd like is to simply access them with some field that exists
+in the first struct.
+
+<pre>
+>> person(2).name = 'Bob Programmer';
+>> person(3).age = 21;
+>> person(4).edu = 'MS Mechanical Engineering'
+
+person = 
+
+  1×4 struct array with fields:
+
+    name
+    age
+    zip
+    edu
+</pre>
+
+<p>
+Note that the remaining fields of structs 2, 3, and 4 will be empty until
+they are assigned some value:
+
+<pre>
+>> person(3)
+
+ans = 
+
+  struct with fields:
+
+    name: []
+     age: 21
+     zip: []
+     edu: []
+</pre>
+
+<p>
+At this point we can iterate over the array of structures as we would iterate
+over any array. (The below code will not work until the age field of each
+person is filled out.)
+
+<pre>
+totalAge = 0;
+totalPeople = length( person );
+
+for i = 1:length( person )
+    totalAge = totalAge + person(i).age;
+end
+
+averageAge = totalAge/totalPeople;
+</pre>
+
+
+<p>
+Structs may be easier to use in some situations as they are not tied to
+the cell data type. However, cell arrays are fundamentally arrays and as such
+may be easier in situations where vectorized operations or iteration can be
+used.
+
+
+
+  </BODY>
+</HTML>
+
+

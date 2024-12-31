@@ -1,0 +1,533 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+
+<HTML>
+<HEAD>
+<TITLE>Lecture Notes: Input and Output
+</TITLE>
+</HEAD>
+
+<BODY>
+
+<HR>
+
+<H2>
+Lecture Notes 10: Input and Output
+</H2>
+
+<p>
+<b>Reading:</b>  Ch.&nbsp;4
+</p>
+
+<hr>
+
+<ul>
+  <li>
+      <a href="#overview">Overview</a>
+  </li>
+      <br>
+  <li>
+      <a href="#string">Character Strings</a>
+      <ul>
+	<li>
+	    <a href="#charvector">A vector of characters</a>
+	</li>
+	<li>
+	    <a href="#encoding">ASCII values</a>
+	</li>
+	<li>
+	    <a href="#casting">Numeric conversions</a>
+	</li>
+	<li>
+	    <a href="#sprintf">General string formatting with <tt>sprintf</tt></a>
+	</li>
+	<li>
+	    <a href="#sprintf">General string parsing with <tt>sscanf</tt></a>
+	</li>
+      </ul>
+  </li>
+<br>
+  <li>
+      <a href="#user">User I/O</a>
+      <ul>
+	<li>
+	    <a href="#userTiming">Controlling Timing</a>
+	</li>
+	<li>
+	    <a href="#userOutput">Displaying Output</a>
+	</li>
+	<li>
+	    <a href="#userInput">Receiving Input</a>
+	</li>
+      </ul>
+  </li>
+</ul>
+
+<hr>
+
+<h2><a name="overview">Overview</a></h2>
+
+<p>
+These notes provide a brief summary of commands that related to
+presenting output or reading input with MATLAB.   Since output is
+typically presented as a sequence of characters, we begin by
+discussing the representation of and manipulation of character strings
+in MATLAB.   Then we discuss the standard input and output when
+a user interacts with a MATLAB program.   Similar techniques are used
+for interacting with data in files.
+
+
+
+<hr>
+
+<h2><a name="string">Character Strings</a></h2>
+
+<h3><a name="charvector">A vector of characters</a></h3>
+
+<p>
+A character string, such as <tt>'this is a test'</tt> is stored as
+one-dimensional array of characters, with each individual character
+encoded numerically (e.g., with ASCII).  This means that you can use
+standard vector operations, such as indexing and slicing.
+
+<pre>
+greeting = 'how are you?';
+length(greeting)            % returns 12
+find(greeting == ' ')       % returns [4 8]
+sort(greeting)              % returns '?aehooruwy'
+</pre>
+
+This means that we can also compose longer strings by concatenating
+others.
+
+<pre>
+firstName = 'Edsger';
+lastName = 'Dijkstra';
+fullName = [ firstName ' ' lastName];   % notice the explicit space being concatenated
+</pre>
+
+
+<h3><a name="encoding">ASCII values</a></h3>
+
+
+<p>
+Each character is really stored as a binary number based on a fixed
+encoding scheme.  The standard encoding for MATLAB is known as ASCII
+(Unicode is another common encoding scheme that is an extension ASCII).
+You can find a complete table of all ASCII codes online, such as at
+<a href="http://www.asciitable.com">www.asciitable.com</a>.
+
+<p>
+It is possible to compute the underlying numbers associated with
+characters, as in the following
+<pre>
+uint8('A')                    % returns 65 (ASCII code for 'A')
+uint8('a')                    % returns 97 (ASCII code for 'a')
+unit8('hello')                % returns [104 101 108 108 111]
+</pre>
+or to compute the underlying characters, associated with numbers
+<pre>
+char(97)                      % returns 'a'
+char([83 76 85])       % returns 'SLU'
+</pre>
+
+The implicit conversion of a string to a numerical vector happens as
+well if you attempt to perform arithmetic on a string.
+<pre>
+greeting = 'hello';
+greeting .* 3           % returns [312   303   324   324   333]
+</pre>
+
+A convenient use combining these techniques is to advance to a
+different place in the alphabet using a syntax such as
+<pre>
+char('A' + 3);      % will be 'D'
+</pre>
+
+
+<h3><a name="casting">Numeric conversions</a></h3>
+
+<p>
+Separate from the issue of the underlying ASCII representation of
+characters, is the distinction between a number such as <tt>123.45</tt> and the
+six-character string <tt>'123.45'</tt> that we use to represent that
+number.
+
+<p>
+MATLAB provides functions <tt>int2str</tt>, <tt>num2str</tt>, and
+<tt>str2num</tt> to do conversions between the numbers and their
+string representations.
+
+<p>
+As named, <b><tt>int2str</tt></b> converts from an
+integer to the corresponding string representation.
+<pre>
+s = int2str(123);    % s will be string '123'
+</pre>
+This can be very useful in conjunction with string concatenation.
+<pre>
+low = 1;
+high = 10;
+prompt = [ 'Pick a number from ', int2str(low), ' to ', int2str(high) ];
+</pre>
+
+<p>
+The <b>num2str</b> function is similar, but it can convert 
+floating-point numbers to strings.  By default, it uses up to four
+digits after the decimal point.  The maximum number to use can be
+controlled by sending a second parameter.
+<pre>
+num2str(pi);        % seems to return '3.1416'
+num2str(pi,7);      % returns '3.141593'
+</pre>
+
+<p>
+The <b>str2num</b> function converts in the opposite direction.  If
+you send it a character string that corresponds to the representation
+of a numeric value, it returns the numeric value.
+
+
+
+<h3><a name="sprintf">General string formatting with <tt>sprintf</tt></a></h3>
+
+<p>
+A far more general tool for formating strings is the <tt>sprintf</tt>
+function.  It allows you to specify the number of digits to use when
+display data, as well as whether it should be left or right justified.
+
+<p>
+For example, we can use <tt>sprintf</tt> to create our earlier prompt
+as
+<pre>
+prompt = sprintf('Pick a number from %d to %d.', low, high);
+</pre>
+Each <tt>%d</tt> is a place holder for a number that will be expressed
+later as arguments (namely <tt>low</tt> and <tt>high</tt> in this example).
+
+<p>As an aside, the function<tt>fprintf</tt> operates much like <tt>sprintf</tt> but prints
+output directly to the command window rather than storing the result
+in a variable. Hence, the commands
+<pre>
+prompt = sprintf('Pick a number from %d to %d.', low, high);
+disp(prompt);
+</pre>
+and the command
+<pre>
+fprintf('Pick a number from %d to %d.\n', low, high);
+</pre>
+are equivalent. Note the <tt>\n</tt> at the end of the second command.
+This tells MATLAB to print a new line at that point. Failing to include
+this newline marker will generate poorly formatted output. This is discussed
+further below.
+
+<p>
+Commonly used place holders include
+
+<table border=1>
+  <tr>
+    <td>
+	<tt>%d</tt>
+    </td>
+    <td>
+	integer displayed in base 10 (decimal) notation
+    </td>
+  </tr>
+  <tr>
+    <td>
+	<tt>%f</tt>
+    </td>
+    <td>
+	floating-point value displayed as 1234.567
+    </td>
+  </tr>
+  <tr>
+    <td>
+	<tt>%e</tt>
+    </td>
+    <td>
+	floating-point value displayed with exponential notation
+	(e.g., 1.234567e+03)
+    </td>
+  </tr>
+  <tr>
+    <td>
+	<tt>%g</tt>
+    </td>
+    <td>
+	more compact of <tt>%e</tt> and <tt>%f</tt>
+    </td>
+  </tr>
+  <tr>
+    <td>
+	<tt>%s</tt>
+    </td>
+    <td>
+	character string
+    </td>
+  </tr>
+</table>
+
+
+<p>
+Additional details about the desired format can be specified using a
+syntax such as the following
+<table border=1>
+  <tr>
+    <td>
+	<tt>%8d</tt>
+    </td>
+    <td>
+	pad the number with leading spaces to use at least 8 columns
+	(i.e., right-justified)
+    </td>
+  </tr>
+  <tr>
+    <td>
+	<tt>%08d</tt>
+    </td>
+    <td>
+	pad the number with leading zeros to use at least 8 columns
+    </td>
+  </tr>
+  <tr>
+    <td>
+	<tt>%-8d</tt>
+    </td>
+    <td>
+	pad the number with trailing spaces to use at least 8 columns
+	(i.e., left-justified)
+    </td>
+  </tr>
+  <tr>
+    <td>
+	<tt>%8f</tt>
+    </td>
+    <td>
+	print the number using at least 8 columns (padding with spaces
+	if necessary).  Note that the decimal point itself is one of
+	those 8 columns, and this form does not make explicitly how
+	many numbers are displayed after the decimal point.
+    </td>
+  </tr>
+  <tr>
+    <td>
+	<tt>%08f</tt>
+    </td>
+    <td>
+	same as previous, but padding with zeros rather than spaces.
+    </td>
+  </tr>
+  <tr>
+    <td>
+	<tt>%8.3f</tt>
+    </td>
+    <td>
+	print the number using at least 8 columns (padding with spaces
+	if necessary), and precisely 3 digits trailing the decimal point.
+    </td>
+  </tr>
+  <tr>
+    <td>
+	<tt>%.3f</tt>
+    </td>
+    <td>
+	print the number using precisely 3 digits trailing the decimal
+	point.  The overall width of the number will depend upon the
+	magnitude that comes before the decimal place.
+    </td>
+  </tr>
+  <tr>
+    <td>
+	<tt>%8s</tt>
+    </td>
+    <td>
+	String printed with leading spaces if necessary so as to use
+	at least 8 columns (i.e., right-justified)
+    </td>
+  </tr>
+  <tr>
+    <td>
+	<tt>%-8s</tt>
+    </td>
+    <td>
+	String printed with trailing spaces if necessary so as to use
+	at least 8 columns (i.e., left-justified)
+    </td>
+  </tr>
+</table>
+Please note that for all of the above, the overall width specifier is
+only a <em>minimum</em> number of columns.  MATLAB may use more than
+that many columns if the value requires as such.
+
+
+<p>
+<b>Vectorized operations.</b>
+<br>
+The arguments to a sprintf command can be specified individually or
+as a vector or array.  Also, if more elements are provided then are
+required by the formatting string, it repeats the string for each
+consecutive group of specified values.  This can be used to produce a formatted string for all
+entries of a vector or even all columns of an array.
+<pre>
+matlab&gt; disp(sprintf('%5d', 2 .^ (1:8)));
+    2    4    8   16   32   64  128  256
+matlab&gt; temp = [1:8;  2.^(1:8)];
+matlab&gt; disp(sprintf('Two to the power of %d is %5d\n', temp));
+Two to the power of 1 is     2
+Two to the power of 2 is     4
+Two to the power of 3 is     8
+Two to the power of 4 is    16
+Two to the power of 5 is    32
+Two to the power of 6 is    64
+Two to the power of 7 is   128
+Two to the power of 8 is   256
+</pre>
+
+<p>
+For a more complete description of the formatting syntax, see the <a
+href="http://www.mathworks.com/access/helpdesk/help/techdoc/index.html?/access/helpdesk/help/techdoc/matlab_prog/f2-47856.html&http://www.mathworks.com/access/helpdesk/help/techdoc/matlab_prog/f2-47856.html#bq0he44-1">official
+MATLAB documentation</a>. These are used for <tt>sprintf</tt> as well
+as <tt>fprintf</tt>.
+
+
+
+<h3><a name="sscanf">General string parsing with <tt>sscanf</tt></a></h3>
+
+The <tt>sprintf</tt> command is used to combine pieces of data into a
+single formatted string.   There are times where we have a single
+string that we wish to interpret as a sequence of individual data
+values.  For example, we might have the string
+<nobr><tt>raw = '2009 01 30 8000.86'</tt></nobr> that was entered by a user
+or read from a file, and we expect that it is formatted to describe a
+year, month, date, and closing price for the stock market.  We can
+parse that string by using the syntax
+<pre>
+sscanf(raw, '%d %d %d %f')
+</pre>
+which returns an array of length four containing the numeric data.
+<tt>sscanf</tt> is typically used to read either all numeric values or
+all string values.  Read the documentation for a discussion of what
+happens if you read both numbers and strings.
+
+
+
+<hr>
+
+<h2><a name="user">User I/O</a></h2>
+
+
+In the preceding section, we discussed MATLAB's treatment of character
+strings and the conversions back and forth between other data types
+and strings.  In this section, we focus more carefully on techniques
+for interacting with the user of a program.
+
+
+<h3><a name="userTiming">Controlling Timing</a></h3>
+
+<ul>
+  <li>
+      <b><tt>pause</tt></b>
+      <br>
+      With a parameter, as in <tt>pause(1.5)</tt> this pauses a
+      specific amount of time, measured in seconds.
+
+      <p>
+      Without a
+      parameter, as in <tt>pause()</tt>, this pauses the script until
+      the user presses the return key (this form is available in
+      MATLAB but not octave).
+  </li>
+</ul>
+
+<h3><a name="userOutput">Displaying Output</a></h3>
+
+Here are three ways to display data to the user.
+
+<ul>
+  <li>
+      <b><tt>expression</tt></b>
+      <br>
+      Will display the variable name and the value using MATLAB's
+      default format.  For example, this is what happens if you issue
+      the command
+      <pre>
+      pi
+      </pre>
+      without a semicolon ending the expression.
+      
+  </li>
+  <br>
+  <li>
+      <b><tt>disp(expression)</tt></b>
+      <br>
+      Displays the expression (automatically converted to a string
+      representation) and then a single newline character.  In this
+      case, only the value of the expression is displayed, not the
+      variable name.  For example
+      <pre>
+      disp(pi);
+      </pre>
+  </li>
+  <br>
+  <li>
+      <b><tt>fprintf(formatstring, parameters)</tt></b>
+      <br>
+      Similar to <tt>sprintf</tt> but instead of return the string as
+      a result, it automatically prints it to the user's console. This
+      is almost synonymous with <nobr><tt>disp(sprintf(formatstring,
+      parameters))</tt></nobr>, except that the use of <tt>disp</tt>
+      causes a final newline character to be printed, while direct use
+      of <tt>fprintf</tt> does not.   If desired, a newline character
+      can be explicitly embedded as part of the format string using
+      the <tt>\n</tt> control sequence.  For example
+      <pre>
+      fprintf('The value of pi is %.6f.\n', pi);
+  </li>
+</ul>
+
+<h3><a name="userInput">Receiving Input</a></h3>
+
+<ul>
+  <li>
+      <b><tt>input(prompt)</tt></b>
+      <br>
+      This presents the string prompt to the user and then waits for
+      one line of input. That input is evaluated as if
+      it were typed at the MATLAB command prompt.  It can be as simple
+      as a number (e.g., <tt>23</tt>), or a complicated expression
+      including function calls and variables from the workspace (e.g.,
+      <tt>sin(pi/3)</tt>). The result of the expression is returned.
+
+      <p>
+      <b>Although many authors use this form, we wish to discourage
+      its use.</b>  The problem is that a user can easily wreak havoc
+      on a program depending on what they type.  Because their
+      expression is evaluated directly, they can make assignments to
+      variables (e.g., by typing <tt>x = 5</tt>), and any syntax
+      errors that result will crash the program.  We prefer the
+      following style.
+  </li>
+  <br>
+  <li>
+      <b><tt>input(prompt, 's')</tt></b>
+      <br>
+      With the <tt>'s'</tt> designation as the second parameter, this
+      prompts the user to enter a line and returns the precise
+      characters that they typed as a character string.   That string
+      is not directly evaluated as a MATLAB expression.  Once we have
+      the string, if we wish to interpret it as some other set of
+      values, we can make use of commands like <tt>str2num</tt> or
+      <tt>sscanf</tt> to parse the user's response.
+      
+  </li>
+</ul>
+<!--
+<HR>
+Originally by
+<ADDRESS>
+<a href="/~goldwasser">Michael Goldwasser</a>
+</ADDRESS>
+-->
+<hr>
+  </BODY>
+</HTML>
+

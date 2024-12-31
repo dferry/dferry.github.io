@@ -1,0 +1,1155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+<style>
+table.schedule td {
+	height: 4em;
+	overflow: visible;
+}
+
+.due {
+	background-color:yellow;
+}
+.inactive {
+  pointer-events: none;
+  cursor: default;
+  color: black;
+  text-decoration: none;
+}
+</style>
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSCI 3500 - Operating Systems</title></head>
+
+<body><h2 style="text-align: center;"><img alt="SLU logo" src="https://cs.slu.edu/~dferry/SLU_logo_horz.png" style="height:5em"><br></h2><h2 style="text-align: center;">CSCI 3500: Operating Systems - Class Page<br>
+
+</h2><h2 style="text-align: center;">Spring 2021</h2>
+
+<table style="width: 100%; text-align: left;" border="0" cellpadding="2" cellspacing="2"> <tbody> <tr>
+    <td style="vertical-align: top; font-weight: bold; width: 163px;">Instructor</td> 
+    <td style="vertical-align: top; width: 1019px;"><span style="font-family: monospace;"><a href="mailto:david.ferry@slu.edu">David Ferry</a>,  <a href="http://cs.slu.edu/~dferry/">Homepage</a></span></td> 
+</tr>
+
+<tr>
+    <td style="vertical-align: top; font-weight: bold; width: 163px;">Course Web Site</td> 
+    <td style="vertical-align: top; width: 1019px;"><span style="font-family: monospace;"><a href="http://cs.slu.edu/~dferry/courses/csci3500">http://cs.slu.edu/~dferry/courses/csci3500/</a></span></td>
+</tr>
+
+<tr>
+    <td style="vertical-align: top; font-weight: bold; width: 163px;">Course meeting times</td> 
+    <td style="vertical-align: top; width: 1019px;">Monday, Wednesday, &amp; Friday from 12:00 - 12:50, ONLINE<br>Zoom link:  <a href="https://slu.zoom.us/j/95311746503?pwd=TCtaK0ZmRTg0eVdMMFRuZmQ2Zkt3QT09">Click here to join</a><br>Zoom Meeting ID: 953 1174 6503<br>Zoom passcode: 211923<br></td> 
+</tr> 
+
+<tr>
+    <td style="vertical-align: top; width: 163px;"><span style="font-weight: bold;">Midterm exam</span><br> </td> 
+    <td style="vertical-align: top; width: 1019px;">March 15th<br> </td>
+</tr> 
+
+<tr>
+    <td style="vertical-align: top; width: 163px;"><span style="font-weight: bold;">Final exam</span><br> </td> 
+    <td style="vertical-align: top; width: 1019px;">Friday, May 14, 12:00 - 12:50PM<br> </td>
+</tr> 
+
+<tr>
+    <td style="vertical-align: top; font-weight: bold; width: 163px;">Office hours</td>
+    <td style="vertical-align: top; width: 1019px;">See <a href="http://cs.slu.edu/~dferry/schedule.html">my schedule</a></td> 
+</tr> 
+
+<tr>
+    <td style="vertical-align: top; font-weight: bold; width: 163px;">Contact</td>
+    <td style="vertical-align: top; width: 1019px;">You may contact me in person during office hours or during class time, or you may email me at <a href="mailto:dferry@slu.edu">dferry@slu.edu</a>. I am also available to meet by appointment, see <a href="http://cs.slu.edu/~dferry/schedule.html">my schedule</a>.</td> 
+</tr> 
+
+<!--
+<tr> 
+    <td style="vertical-align: top; width: 163px;">
+<span style="font-weight: bold;">TA</span><br> </td> 
+    <td style="vertical-align: top; font-weight: bold; width: 1019px;"><span style="font-weight: normal;">Benny Hill (bah2 AT cse.wustl.edu)</span><br style="font-weight: normal;"><span style="font-weight: normal;">Office Hours: Tu, Th 2pm-3pm</span> </td> </tr> </tbody> 
+-->
+</table>
+
+<hr style="width: 100%; height: 2px;">
+
+<font size=+2><strong>Contents</strong></font>
+<ol>
+  <li><a href="#Course Description">Course Description</a>
+  <li><a href="#Prerequisites">Prerequisites</a>
+  <li><a href="#Lecture">Lecture</a>
+  <li><a href="#Studios">Studios</a>
+  <li><a href="#Labs">Labs</a>
+  <li><a href="#Schedule">Course Schedule</a>
+  <li><a href="#gitinfo">SLU Git Repository</a>
+  <li><a href="#Textbooks">Textbooks and Other Resources</a>
+  <li><a href="#Grading">Grading</a>
+  <li><a href="#Attendance Policy">Attendance</a>
+  <li><a href="#COVID">COVID-19 Considerations for Fall 2020</a>
+  <li><a href="#masks">Fall 2020 Mask Policy</a>
+  <li><a href="#Academic Integrity">Academic Integrity</a>
+  <li><a href="#Title IX Statement">Title IX Statement</a>
+  <li><a href="#Academic Support">Academic Support</a>
+  <li><a href="#Disability Services">Disability Services</a>
+  <li><a href="#Writing Center">Writing Center</a>
+  <li><a href="#Basic Needs Security">Basic Needs Security</a>
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Course Description">Course Description</a></h3>
+
+<p>Operating systems are the bridge between computer hardware and the
+software programs we create and use. As a concept, operating systems are one
+of the oldest software disciplines, yet they continue to adapt and reinvent
+themselves as the computing landscape evolves. Modern operating systems must
+tackle the same challenges of the original mainframes, but must also meet the
+varied needs of personal computers, severs, mobile/embedded devices, and
+virtualized systems.</p>
+
+<p>
+The four elements of this course are lectures, studios, labs, and exams.
+Studios are short assignments intended to be completed primarily within class
+time and to augment lecture topics. Labs are longer assignments that will
+ask students to apply and analyze OS mechanisms. Lectures will be delievered
+asynchronously via recording. Most class periods will be a mix of questions
+and answers over lecture material, deep-dives into one or more of the lecture
+topics or practical demonstrations, and pair programming time for studios.
+Expect a lab assignment approximately every two weeks.</p> 
+
+<p>
+Topical outline:
+<ul>
+  <li>The operating system, system libraries, and user applications
+  <li>System calls and interrupts
+  <li>User programs, processes, and threads
+  <li>Processor sharing and operating system scheduling
+  <li>Race conditions, locks, and mutual exclusion
+  <li>The address space abstraction and virtual memory address translation
+  <li>Virtual memory via paged memory and historical approaches
+  <li>File systems and disk organization
+  <li>7-layer OSI and 4-layer TCP/IP networking models
+  <li>Sockets programming
+  <li>Read, write, and execute permissions and institutional access models
+</ul>
+</p>
+
+<p>
+Assessment Objectives- at the completion of this course, students will be able to:
+<ul>
+<li>Describe how operating systems facilitate and interact with system libraries and user space programs
+<li>Describe the purpose and implementation of major operating system abstractions: processes, threads, virtual memory, and the network stack
+<li>Identify the presence/absence of race conditions and resolve race conditions with locking
+<li>Write simple concurrent and multi-threaded programs (e.g. with <code>fork()</code> and Pthreads)
+<li>Write simple networked programs (e.g. with sockets programming)
+</ul>
+</p>
+
+<p><i><b>Catalog Description:</b>Theory and practice of operating systems, with emphasis on one of the UNIX family of operating systems. File organization and database systems. Focus on a multi-user system in the client-server model. Hands-on experience.</i></p>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Prerequisites">Prerequisites</a></h3>
+<ul>
+  <li>CSCI 2100 - Data Structures
+  <li>One of: CSCI 2400 - Computer Architecture or ECE 3217 - Computer Architecture and Organization 
+  <li>Some experience: C or C++
+  <li>Some experience: object-oriented programming
+  <li>Studios and lab assignments are constructed around the Linux terminal, prior
+experience is beneficial but not required
+</ul>
+
+<p>Please see the instructor if you're missing a prerequisite or uncertain
+about your preparation for this course.</p>
+
+<!--
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Lecture">Lecture and Synchronous Meetings</a></h3>
+
+<p>Studies show that traditional lecture is not a great use of class time for
+many students. We will implement the flipped classroom strategy, where
+students consume the traditional lecture content outside of class on their own time
+and then come prepared to explore topics further. Our synchronous meetings will always
+have time for your questions on lecture topics, and we will often have deep-dive
+practical excerises as well. The remainder of our synchronous meetings will be
+time for you to work with a partner on studios and/or lab assignments.</p>
+
+<p>Lectures are recorded and should be watched prior to attending class for the day.
+Links to individual lectures will be avialable on the course schedule at least 48 hours
+prior to the start of class.</p>
+
+-->
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Studios">Studios</a></h3>
+
+<p>Computer science is an eminently <i>practical</i> discipline, and
+studios are daily assignments intended to complement and reinforce lectures
+through practice.
+Studios will be completed in a team of two students. Students from different
+teams may discuss studios, but sharing of code or solutions is strictly
+prohibited.</p>
+
+<p><b>Studios will be submitted via the Git repository. Every student
+should have a copy of their studio solutions in their own repository,
+even if you work with a group.</b></p>
+
+<p>Studios are due Friday of the week after they are assigned. 
+The midterm exam and other cirumstances
+may modify this, see the complete course schedule below.</p> 
+
+<p> 
+Studios will be graded on a trimodal scale: complete, partial credit, or no credit.
+Studios that are turned in late or not turned in at all will receive
+no credit, studios graded as partial will receive 60% credit.</p>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Labs">Labs</a></h3>
+
+<p>There will be five lab assignments for this course. These are programming assignments whose purpose is to apply course concepts and to analyze operating system mechanisms. As such, each lab will require a written report detailing your findings in addition to a code submission.</p>
+
+<p>Some labs will require a team of two students, while others are individual projects. Students from different teams may discuss the lab assignments <b>only during course meeting times</b>. Students from the same team are of course encouraged to discuss and work on lab assignments at any time. </p> 
+
+<p>Labs submitted on time (as determined by electronic time stamp) are eligible for full credit. Labs submitted up to 24 hours late will be given a <b>ten percent penalty</b>. Labs submitted between 24 and 48 hours late will be given a <b>twenty percent penalty</b>. Labs submitted after 48 hours late will not be given credit, except in the case of extenuating circumstances pre-approved by the instructor.</p>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Schedule">Course Schedule</a></h3>
+
+A tentative course schedule is below. <b>Note that this schedule may change
+over the course of the semester.</b> When changes occur, students will be 
+given enough advance notice so that readings and 
+other preparation may be accommodated. 
+
+
+
+<center><table class="schedule" border="4" style="width:100%">
+
+
+<tr>
+	<th>Week</th>
+	<th style="width:15%">Date</th>
+	<th>Topic</th>
+	<th>Readings</th>
+	<th>Studios</th>
+	<th>Labs</th>
+</tr>
+
+<tr>
+	<th>Jan&nbsp;29th</th>
+	<th>Fri</th>
+	<th><a href="slides/01_Intro_to_OS.pptx">Intro to OS</a>
+	<br><a href="https://slu.zoom.us/rec/share/GVo6EH30_nTELIZDUTeZ-C3cm67FNOUhMr5w5EG9B_QvCUS2qS2MYXsEwNcLfhVi.-WiUIaOS7iM03rxY?startTime=1611943166000">(Class Recording)</a>
+	</th>
+	<th>MOS 1.1 - 1.3</th>
+	<th><i>Make sure you can login<br>for next time</i></th>
+	<th><a href="labs/01_syscalls.html">Lab 1 Assigned</a><br/></th>
+</tr>
+
+<tr>
+	<th rowspan=3>Feb&nbsp;1-Feb&nbsp;5</th>
+	<th>Mon</th>
+	<th><a href="slides/01_Intro_to_OS.pptx">What is an OS?</a>
+	<br><a href="https://slu.zoom.us/rec/share/yTwHxApBi8UOJdKBn9QLhMHirOINsBvwOWJRvzE1l89wYt4WTQwYetAR3U7svdqA.NkjgIaPi0PLHPXdt?startTime=1612202215000">(Class Recording)</a>
+	</th>
+	<th>MOS 1.4 and 1.5</th> 
+ 	<th><a href="studios/01_hello_world.html">Studio 1</a></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Wed</th>
+	<th>Lab 1 Discussion
+		<br><a href="https://slu.zoom.us/rec/share/Sq9nsy8O8KioGeNedDPC3fA2N1Hx5hFwFRTjSMbNnxbEUu4SHWZ39uNM_m80wfAK.uOXHYzT1lj0_inKR">(Class Discussion)</a>
+		<br><a href="https://slu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=e1865ade-527d-4111-beef-acc4016970dd">(Additional Code Discussion)</a>
+		<a href="code/open_demo.c">open_demo.c</a><br>
+		<!--<a class="inactive" href="./labs/crypt_example.c">Lab 1 Discussion<br>(ecb_crypt example)</a>--></th>
+	<th><a href="git-info.pdf">Git Setup Documentation</a><br><a href="https://slu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=39646937-71ef-4982-815d-ab44011bd1de">Git Submission Tutorial</a>
+</th>
+ 	<th><a href="studios/02_in_out.html">Studio 2</a></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Fri</th>
+	<th><a href="slides/02_System_Calls.pptx">System Calls</a>
+		<br><a href="https://slu.zoom.us/rec/share/_80KkP6kLv-MdEICKdufSAhtJuwFpnIaeUc_Rhvo1EBsLthHkQ26guz2df3S5-jS.tenGIWpLzoEHRdNO">(Class Discussion)</a></th>
+	<th>MOS 1.6 - 1.8<br>
+	<code>man syscalls</code></th>
+	<th><a href="studios/03_pointers.html">Studio 3</a></th>
+	<th></th>
+</tr>
+<!--	<th>Mon</th>
+	<th colspan=4 style="color:red;">No class: Martin Luther King Day</th>
+	</tr>-->
+
+<tr>
+	<th rowspan=3>Feb&nbsp;8-Feb&nbsp;12</th>
+	<th>Mon</th>
+	<th><a href="slides/03_Processes.pptx">Processes</a>
+		<br><a href="https://slu.zoom.us/rec/share/WMl8nkVqIZoCQzKDzKTzPjEMbWb8wIsJZYpWe6hrpgeNEC1MMJGwB9nEl3oe3uTb.VORY9v-V0jVgT2ru">(Class Discussion)
+	</th>
+	<th>MOS 2.1</th>
+	<th><a href="studios/04_errors.html">Studio 4</a></th>
+	<th class="due">Lab 1 Due</th>
+</tr>
+
+<tr>
+	<th>Wed</th>
+	<th><a href="slides/04_Fork_Exec.pptx"><code>fork()</code>, <code>exec()</code>, <code>wait()</code>, and <code>kill()</code></a>
+		<br><a href="https://slu.zoom.us/rec/share/ZHH75tnWYsi1Tcrb8MTfm6veEfLNMt9LehXILPUiyGfiJzJkuiNanmVYJ8K14S49.SPzFdGRvDxD3eJNn">(Class Discussion)</a></th>
+	<th></th>
+ 	<th><a href="studios/05_fork.html">Studio 5</a></th>
+	<th><a href="labs/02_processes.html">Lab 2 Assigned</a></th>
+</tr>
+
+<tr>
+	<th>Fri</th>
+	<th><a href="slides/SLUSH_Discussion.pptx">Lab 2 Discussion</a>
+		<br><a href="https://slu.zoom.us/rec/share/woVwuWvlrGcMZS_2S4qvM5OIzZffD6EIAnwpBrfHMJztMKZD0xjDcU6LCmB0KN3w.rwdkkQ6nwQ09b1l7">(Class Discussion)</a></th>
+	<th></th>
+	<th class="due"><a href="studios/06_strtok.html">Studio 6</a><br><i>Studios 1-3 due</i></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th rowspan=3>Feb&nbsp;15-Feb&nbsp;19</th>
+	<th>Mon</th>
+	<th>Pipes, <code>stdin</code>, <code>stdout</code><br>
+	<a href="code/fork_demo.c">Code from class: fork_demo.c</a><br>
+	<a href="https://slu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ae2a2c9b-5083-4472-966b-acd1006fa092">(Fork/Exec Discussion)</a><br>
+	<a href="code/pipe_demo.c">pipe_demo.c</a><br>
+	<a href="https://slu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=4fe91dc6-66fc-44cb-bc94-acd1006fa067">(Piping Discussion)</a><br>
+	<a href="code/dup2_demo.c">dup2_demo.c</a><br>
+	<a href="https://slu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=1a3c0750-a39c-456a-b604-acd1006fa0c4">(Dup2 Discussion)</a><br>
+	<a href="code/strtok_demo.c">strtok_demo.c</a><br>
+	<a href="https://slu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=5770b229-7563-4e96-a91e-acd30133748b">(Strtok Discussion)</a>
+	</th>
+	<th>MOS 2.2</th>
+	<th><a href="studios/07_pipes.html">Studio 7</a></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Wed</th>
+	<th colspan=4><b><font color=red>No Class: February Break</font></b><br>
+</tr>
+
+<tr>
+	<th>Fri</th>
+	<th><a href="slides/05_Threads.pptx">Threads</a>
+	<br><a href="https://slu.zoom.us/rec/share/WU3z-16wiHEApb-1aNqYe41yOe4AUoEwTk_Tzu9tG_oZQmDP25kraGQSs0Ri6Tsv.U45tlF22Ug6B8C7r">(Class Discussion)</a></th>
+	<th></th>
+	<th class="due"><a href="studios/08_signals.html">Studio 8</a><br><i>Studios 3-6 due</i></th> 
+	<th></th>
+</tr>
+
+<tr>
+	<th rowspan=3>Feb&nbsp;22-Feb&nbsp;26</th>
+	<th>Mon</th>
+	<th>Pthreads, C++11 threads<br>
+	<a href="code/lab2_structure.c">lab2_structure.c</a><br>
+	<a href="https://slu.zoom.us/rec/share/eeHdp-d6TDIl_8aNoJH_brcgVN0qaaDbK7TOz4CsMFniWmRCEsc_CK573YZ-l1kY.YKK9qGBgX4Mr4Mi8">(Class Discussion - Mostly Lab 2 and not threads)</a><br>
+	<a href="code/thread_demo.c">thread_demo.c</a><br>
+	<a href="code/c11threads.cpp">c11threads.cpp</a></th>
+	<th>MOS 2.3</th>
+ 	<th><a href="studios/09_threads.html">Studio 9</a></th> 
+	<th></th>
+</tr>
+
+<tr>
+	<th>Wed</th>
+	<th><a href="slides/06_Race_Conditions.pptx">Race conditions</a><br>
+		<a href="https://slu.zoom.us/rec/share/BBZLwTj8FoJD-bRXVr6VGbk0T-viglifJlGHL9TIxMFRhdrQQo7lgsmC-4BgMco-.Az9_cEUSlN25GTIQ">(Class Discussion - Pthread Interface)</a></th>
+	<!--		<a href="code/pipeline_notes.c">Pipeline Pseudocode</a></th>-->
+	<th>MOS 2.5.1</th>
+	<th><a href="studios/10_race.html">Studio 10</a></th>
+	<th style="text-decoration: line-through; color:red">Lab 2 Due</th>
+</tr>
+
+<tr>
+	<th>Fri</th>
+	<th><a href="slides/07_Atomicity_Mutex.pptx">Locks, Mutexes, Deadlock, Atomic Instructions</a>
+	<br><a href="https://slu.zoom.us/rec/share/1tbfcgf_5PNlW5tj9fBNG1zgXglbtPwiS9X8ZNBvIdZE6I4Yby92XlMeuQ4AAhEp.ZPZgGK-0LwFCJ1a4">(Class Discussion - Race Conditions & Locks/Mutex)</a></th>
+	<th></th>
+	<th class="due"><a href="studios/11_mutex.html">Studio 11</a><br><i>Studios 7 and 8 due</i></th>
+ 	<th><a href="labs/03_threads.html">Lab 3 Assigned</a><br>
+	<a href="labs/crypt_demo.c">crypt_demo.c</a></th>
+
+
+<tr>
+	<th rowspan=3>Mar&nbsp;1-Mar&nbsp;5</th>
+	<th>Mon</th>
+	<th>
+	<a href="code/fork_benchmark.c">fork_benchmark.c</a><br>
+	<a href="code/thread_benchmark.c">thread_benchmark.c</a><br>
+	<a href="code/lock_benchmark.c">lock_benchmark.c</a><br>
+	<a href="code/atomic_benchmark.c">atomic_benchmark.c</a>
+	<br><a href="https://slu.zoom.us/rec/share/zyTL99u7ZR4GO8XCGNFy9EhFwMq0awe-rEWficZ_vyKzkqibbnAnVoOzS61MuEJs.Ro5kRhBWQPGTGzkF">(Classroom Discussion)</a>
+	</th>
+	<th></th>
+ 	<th><a href="studios/12_atomics.html">Studio 12</a></th>
+	<th class="due">Lab 2 Due</th>
+</tr>
+<tr>
+	<th>Wed</th>
+	<th>Lab 3 Discussion
+		<br><a href="https://slu.zoom.us/rec/share/MTucpl9oT3OoSECd3if-j6YIlNjH56Ign-0u5EaNs-1qNUeOgtnYAwOvk_8uqnkl.ikkyPdi3LovP-Gjk">(Class Discussion)</a>
+	</th>
+	<th></th>
+	<th></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Fri</th>
+	<th><a href="slides/08_Concurrency_Platforms.pptx">OpenMP, Cilk Plus</a>
+		<br><a href="https://slu.zoom.us/rec/share/E6mfuFzAbqI-044BV5lOALc9nare84t-J1Im264WGgvWHEpK7FnT1F0AXCvDwEDv.5Q37hHbcOOo4ZRGE">(Class Discussion)</a>
+	</th>
+	<th>MOS 2.4</th>
+	<th class="due"><a href="studios/13_openmp.html">Studio 13</a><br><i>Studios 9-11 due</i></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th rowspan=3>Mar&nbsp;8-Mar&nbsp;12</th>
+	<th>Mon</th>
+	<th><a href="slides/09_Scheduling.pptx">Batch and interactive scheduling</a>
+	<br><a href="https://slu.zoom.us/rec/share/9OKkR4d42irxLZ1KQb6SY1IGOIahjmZVuSkcbHR8zkzLyKyXKsTMiNqbyNQ47WKB.G-T_oDLQcDotT3ES">(Class Discussion)</a>
+	</th>
+	<th></th>
+	<th><a href="studios/14_openmp2.html">Studio 14</a></th>
+	<th style="text-decoration:line-through; color:red">Lab 3 Due</th>
+</tr>
+
+<tr>
+	<th>Wed</th>
+	<th><a href="slides/10_Real-Time_Scheduling.pptx">Real-Time Scheduling</a>
+	<br><a href="https://slu.zoom.us/rec/share/k7rDLPYH7JG0Z18lmA_flESlDxwNyB7X7MViozkyLW8B6zd4EyFH7TAlFmTq9NNS.jpx1Z13tMOLNkznR">(Class Discussion)</a>
+	</th>
+	<th></th>
+	<th></th>
+	<th></th>
+</tr>
+</tr>
+
+<tr>
+	<th>Fri</th>
+	<th>Midterm review<br><a href="in_class/csci3500_midterm_examples.pdf">(example questions)</a>
+	<br><a href="https://slu.zoom.us/rec/share/_QInrR1nbW3kfqdw7JaZvFe3Xt4YU2M64d4EEor5wJvgUvYI_ylzAkw3KqTjX1Li.TboHx_EIoyEofZwH">(Class Discussion)</a>
+	</th>
+	<th></th>
+	<th class="due"><i>Studio 12 and 13 due</i></th>
+	<th></th>
+</tr>
+
+<tr class="due">
+	<th rowspan=3>Mar&nbsp;15-Mar&nbsp;19</th>
+	<th>Mon</th>
+	<th>Midterm Exam</th>
+	<th></th>
+	<th></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Wed</th>
+	<th><a href="slides/11_Memory.pptx">Memory management in real mode</a>
+		<br><a href="https://slu.zoom.us/rec/share/sHNeHOAyukQj7nAcmBanvpWjkiOZE5yJF2nQGqXOqF2rKnXjslK-p-LmaW5eCJUP.FV_M8jkDi_EEI4vF">(Class Discussion)</a>
+	</th>
+	<th>MOS 3.1</th>
+ 	<th><a href="studios/14_physical_mem.html">Studio 15-a</a></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Fri</th>
+	<th><a href="slides/12_Address_Spaces.pptx">Address spaces, protected mode, and allocation</a>
+		<br><a href="https://slu.zoom.us/rec/share/VpSSgI6pG0Syg2lMiLA3G0V8R1WrPgl-cXNYSvVryqeA6vnQa4nkSYRVGBw1RPQ.ZUZvAanr9fDyIKkz">(Class Discussion - Lab 3)</a>
+		<br><a href="code/lab3_notes.c">lab3_notes.c</a>
+	</th>
+	<th>MOS 3.2</th>
+ 	<th class="due"><a href="studios/15_memory.html">Studio 15-b</a><br><i>Studio 14 due</i></th>
+	<th class="due">Lab 3 Due</th>
+</tr>
+
+	<!--<th colspan=4 rowspan=3 style="color:red;">No class: Spring Break</th>-->
+
+	<tr>
+	<th rowspan=3>Mar&nbsp;22-Mar&nbsp;26</th>
+	<th>Mon</th>
+	<th><a href="slides/13_Paging.pptx">Paging</a>
+	<br><a href="https://slu.zoom.us/rec/share/hQizpLoA12vwXAmhiL1Q0PhsVEl1gR-TSUM_fTJHWN7Y9Ir0ZMFbH9eQ1lxcg2Tk.iBoBiBl8rI3_mcgy">(Class Discussion)</a>
+	</th>
+	<th></th>
+ 	<th><a href="studios/16_page_tables.html">Studio 16</a></th>
+ 	<th><a href="labs/04_malloc.html">Lab 4 Assigned</a></th>
+	</tr>
+	<tr>
+	<th>Wed</th>
+	<th><a href="slides/14_Page_Tables_TLB.pptx">Page tables and the TLB</a>
+	<br><a href="https://slu.zoom.us/rec/share/xlwiryA9UFyVvfR-hX08S81henDilSl_C3W6x9oAVGhvtyNi74N3nJlMMqTkFiiL.VhnA3Kn2A5unR4xm">(Class Discussion)</a>
+	</th>
+	<th></th>
+	<th><a href="studios/17_tlb.html">Studio 17</a></th>
+	<th></th>
+	</tr>
+	<tr>
+	<th>Fri</th>
+	<th>
+	<a href="https://slu.zoom.us/rec/share/bXg4bK1ENfJEvVR7hw6ukyHlDZrF5t---MFpyLUN7Gqy-W9JnRd009Q1p8Sm-M54.LhcS-7qFwP3z9eLA">(Class Discussion)</a>
+	</th>
+	<th></th>
+	<th></th>
+	<th></th>
+	</tr>
+
+<tr>
+	<th rowspan=3>Mar&nbsp;29-Apr&nbsp;2</th>
+	<th>Mon</th>
+	<th><a href="slides/15_Page_Replacement.pptx">Page Replacement Algorithms</a>
+	<br><a href="https://slu.zoom.us/rec/share/09VL33je8aQJE_HZCWt9HJ8m5l6-NzVUaSAAVjxoxPzSM_zzPuXCtTlgWocl67Tu.RIuT5H9FHfwSRfxI">(Class Discussion)</a>
+	</th>
+	<th></th>
+ 	<th><a href="studios/18_page_replacement.html">Studio 18</a></th> 
+	<th></th>
+</tr>
+</tr>
+
+<tr>
+	<th>Wed</th>
+	<th>Lab 4 Discussion
+	<br><a href="https://slu.zoom.us/rec/share/IVMR_gf5Ms5nAPyRRGv94u42aXkqdo9YNfA_Masgve46blvtIJoOCcrJW4G-lGVh.3d0paUOzxbZ8kFLj">(Class Discussion)</a>
+	<br><a href="https://slu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=766e3d0d-511c-4e33-ab20-ab8b001e4c97">(Extra Whiteboard discussion video)</a>
+	<br><a href="https://slu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=d9ac59ad-fef7-4098-8905-ab8b002580dd">(Extra Code demo video)</a></th>
+	<th></th>
+	<th></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Fri</th>
+	<th colspan=4><b><font color=red>No Class: Good Friday</font></b></th>
+</tr>
+
+<tr>
+	<th rowspan=3>Apr&nbsp;5-Apr&nbsp;9</th>
+	<th>Mon</th>
+	<th><a href="slides/16_Files.pptx">Files and the File System</a>
+	<br><a href="https://slu.zoom.us/rec/share/3jJCrh98TL8OnOis8XyQ-PFqQes4atE6w5UchXD4h_23pQtSV2CuW4ULO8wmc8uE.0gqSW4QYB9cta187">(Class Discussion: More on Lab 4)</a>
+	</th>
+	<th></th>
+	<th><a href="studios/19_files.html">Studio 19</a></th>
+	<th></th>
+</tr>
+
+	<!--<th colspan=4 rowspan=3 style="color:red;">No class: Class Cancelled</th>-->
+<tr>
+	<th>Wed</th>
+	<th><a href="slides/17_File_Systems.pptx">File systems and allocation on disk</a>
+		<br><a href="https://slu.zoom.us/rec/share/m7INagNwYLmRibVwL4vaoJJmIbVGSKOagWhwpY10zin_FI07O4htk-MLV8VNSAu2.oar_fmh07GEcX99L">(Class Discussion)</a>
+	</th>
+	<th></th>
+	<th></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Fri</th>
+	<th>Linux Memory Maps
+		<br><a href="https://slu.zoom.us/rec/share/uScyP45XSKKCucU2InCTmAySlumqvLelS5d3prRI466jKGngxUtHqTWrPPK-Og0e.PhT7Ujznh1VTYDOp">(Classroom Discussion)</a>
+	</th>
+	<th></th>
+	<th class="due"><i>Studios 15a-17 due</i></th>
+	<th></th>
+</tr>
+
+
+<tr>
+	<th rowspan=3>Apr&nbsp;12-Apr&nbsp;16</th>
+	<th>Mon</th>
+	<th><a href="slides/18_Directories.pptx">Directories</a>
+		<br><a href="https://slu.zoom.us/rec/share/5IQEn6WkDVHbe3CfmoX5QVHPhFBmu1BTyIvmsYh0alX0mi_ciVL-eIT-tZpHrfDG.kpAurPXOpuJcxMuH">(Class Discussion)</a>
+	</th>
+	<th></th>
+	<th></th>
+	<th></th>
+
+<tr>
+	<th>Wed</th>
+	<th><a href="https://slu.zoom.us/rec/share/q-RUMB39SdEBx0mOtfGVuA4awMXevOllymkiYJDTMjfP7tOEPMB9Bzs53GHQL2Ou.20J3dcOBtQON3l2C">(More Lab 4 Discussion)</a></th>
+	<th></th>
+	<th></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Fri</th>
+	<th>
+		<a href="https://slu.zoom.us/rec/share/rZhozl-awDb7lEQoHJT1a9Uxtltl9S8_4tEaPYTZHyihbV7eLg7ddnPdQkbMQZN2.XyMS_AIEw1QmTl5p">(Class Discussion)</a>
+	</th>
+	<th></th>
+	<th class="due"><a href="studios/20_file_systems.html">Studio 20</a><br><i>Studios 18 and 19 due</i></th>
+	<th></th>
+</tr>
+
+
+<tr>
+	<th rowspan=3>Apr&nbsp;19-Apr&nbsp;23</th>
+	<th>Mon</th>
+	<th><a href="slides/19_Networks.pptx">OSI Model of Networking</a>
+	<br><a href="https://slu.zoom.us/rec/share/G9jxJpiM23G5C70RT9oE4dEQ5MrKmPfTEB_rkZekhT9gOZLU2xm-xDwzHlm-4zaa.s1GI6P1fS7CzvgRr">(Class Discussion)</a>
+	</th>
+	<th></th>
+ 	<th><a href="studios/21_networking.html">Studio 21</a></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Wed</th>
+	<th><a href="slides/20_Physical_and_Data_Link.pptx">Physical and Data Link Layers</a>
+	<br><a href="https://slu.zoom.us/rec/share/xIpPALnK42ICCaBglTCxOt8MP-RTa4aMjBXmJbGZqyfqavSMweYujUsGBvKd_-L5.hDNOyTDi7WVInHO1">(Class Discussion)</a>
+	</th>
+	<th></th>
+ 	<th><a href="studios/22_datalink.html">Studio 22</a></th>
+	<th class="due">Lab 4 Due</th>
+</tr>
+
+<tr>
+	<th>Fri</th>
+	<th><a href="slides/21_Network_Layer.pptx">Network Layer</a>
+	<br><a href="https://slu.zoom.us/rec/share/9MUzFPdCtfEC_LEEATxqoD3dUG9dTS29y-8nDG2Vzrp0GyFYgmmZijIpkrQ6W4Oz.ysA6lZzukFVnL5XU">(Class Discussion)</a>
+	</th>
+	<th></th>
+	<th class="due"><a href="studios/23_network.html">Studio 23</a><br><i>Studio 20 due</i></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th rowspan=3>Apr&nbsp;26-Apr&nbsp;30</th>
+	<th>Mon</th>
+	<th><a href="https://slu.zoom.us/rec/share/ueixOZ9kGYQW6r1rPCDZglpkaVs3r5R9YIShopVYoPpeLVKEzKud1p8HkV2al0_G.rx7WUgXqOie7XWCC">(Class Discussion)</a></th>
+	<th></th>
+	<th><a href="studios/24_sockets.html">Studio 24</a></th>
+ 	<th><a href="labs/05_chat.html">Lab 5 Assigned</a></th>
+</tr>
+
+<tr>
+	<th>Wed</th>
+	<th>Sockets Demo
+	<br><a href="https://slu.zoom.us/rec/share/hHk51XE0AtnMwJvM3M9YZfcy0pu4RCxEpgrRcuOBafPP3cyCdpiv2-67KtwctugG.gXd_8IG2N2lWjK9o">(Class Discussion)</a>
+	<br><a href="code/client.c">client.c</a>
+	<br><a href="code/server.c">server.c</a></th>
+	<th></th>
+	<th></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Fri</th>
+	<th><a href="slides/22_Transport_Layer.pptx">Transport Layer</a>
+		<br><a href="https://slu.zoom.us/rec/share/SQFU9I3qCmBCSHPVTiKwM-Q-_iJOoIgVDCK6a7qc_YfY_Sgd2dBIc-NmxmKnd1mi.m_O98YpggnGj86Ta">(Class Discussion)</a>
+	</th>
+	<th></th>
+ 	<th class="due"><a href="studios/25_applications.html">Studio 25</a><br><i>Studios 21 to 23 due</i></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th rowspan=3>May&nbsp;3-May&nbsp;7</th>
+	<th>Mon</th>
+	<th><a href="slides/23_Sockets.pptx">Sockets Interface</a></th>
+	<th></th>
+	<th></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Wed</th>
+	<th><a href="slides/24_Userspace_Layers.pptx">Session, Presentation and Application Layers</a>
+		<br><a href="https://slu.zoom.us/rec/share/DsH0sW56TTnoW7ljjRxZDcBjykh_Y4CwsoBrtTeDWLeIFLMK0o5zilfzsU4io1B3.wtXd2O-54F7g9PUs">(Class Discussion)</a>
+	</th>
+	<th></th>
+	<th></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Fri</th>
+	<th>Computer Security Day
+		<br><a href="https://slu.zoom.us/rec/share/-zb_X2J2Q1bOcALjymdcQpF8OCgSQqrpSNsaDlWb-ucIdgrM5EVEmnuh-_4vDgu-.R5obqNEDf1FtuqnQ">(Class Discussion)</a>
+	</th>
+	<th></th>
+	<th class="due"><i>Studios 24 and 25 due</i></th>
+	<th style="color:red;text-decoration:line-through">Lab 5 due</th>
+
+</tr>
+
+<!--
+<tr>
+	<th>Apr 26</th>
+	<th></th>
+	<th></th>
+	<th></th>
+	<th></th>
+</tr>
+-->
+
+<tr>
+	<th>May 10th</th>
+	<th>Mon</th>
+	<th>Final Exam Review
+		<br><a href="https://slu.zoom.us/rec/share/9DnYskivk7Wnak2hgspua6tuwxBZfx_SX4qmyYpfXBaXOF69bj8zu0tCj3bMz-Mp.rqIoACdOhLmVyddb">(Class Discussion)</a>
+	</th>
+	<th></th>
+	<th></th>
+	<th class="due">Lab 5 due</th>
+</tr>
+
+<tr>
+	<th colspan=6>Note: Security topics will be done if time permits due to schedule this semester.</th>
+</tr>
+<tr style="color:red; text-decoration:line-through">
+	<th rowspan=3>??&nbsp;??-??&nbsp;??</th>
+	<th>Mon</th>
+	<th>Security Concerns - CIA</th>
+	<th></th>
+	<th></th>
+	<th></th>
+</tr>
+
+<tr style="color:red; text-decoration:line-through">
+	<th>Wed</th>
+	<th>Secure Systems and a Trusted Computing Base</th>
+	<th></th>
+	<th></th>
+	<th></th>
+</tr>
+
+<tr style="color:red; text-decoration:line-through">
+	<th>Fri</th>
+	<th>Permission Domains and Permission Management</th>
+	<th></th>
+	<th></th>
+	<th></th>
+</tr>
+
+
+<tr style="background-color:yellow">
+	<th rowspan=1>May 14th</th>
+	<th>Fri</th>
+	<th>Final Exam - 12:00PM to 12:50PM</th>
+	<th></th>
+	<th></th>
+	<th></th>
+</tr>
+
+</table></center>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="gitinfo">SLU Git Repository</a></h3>
+
+<p>All studios and labs will be submitted via individual course
+Git repositories that are housed at SLU. You will find your
+repository already has a directory structure that provides a place
+for all lab and studio assignments. Your work must be in the
+appropriate location for the instructor to find it and count it
+for credit.</p>
+
+<p><a href="git-info.pdf">A short guide to using SLU's git resources</a></p>
+
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Textbooks">Textbook and Class Resources</a></h3>
+
+<p>Reccomended Course textbook: <i>Modern Operating Systems, 4th Ed.</i> by 
+Tanenbaum and Bos. A classic computing textbook on the fundamentals of
+operating systems, with a bent towards Unix-like operating systems. This
+book is not required for the course, rather it is a secondary source
+of information that provides a more comprehensive textbook-like presentation
+of the material. I will not be assigning homework from the book or taking
+test questions from the book.</p>
+
+<p><b>Linux skills references:</b></p>
+
+<p>References for Linux software development.</p>
+
+<ul>
+  <p><li><a href="http://heather.cs.ucdavis.edu/~matloff/UnixAndC/Editors/ViIntro.html"><code>vi</code> tutorial</a></p>
+  <p><li>Another <a href="http://www.tutorialspoint.com/unix/unix-vi-editor.htm"><code>vi</code> tutorial</a></p>
+  <p><li><a href="http://www.jesshamrick.com/2012/09/10/absolute-beginners-guide-to-emacs/"><code>emacs</code> tutorial</a></p>
+  <p><li>Another <a href="http://www2.lib.uchicago.edu/keith/tcl-course/emacs-tutorial.html"><code>emacs</code> tutorial</a></p>
+</ul>
+
+<p><b>Software resources:</b></p>
+
+<ul>
+  <p><li><a href="https://chrome.google.com/webstore/detail/secure-shell/pnhechapfaindjhompbnflcldabbghjo?hl=en">Secure Shell</a>: My favorite terminal client- runs through the Chrome browser on nearly any platform. Gives a great, consistent interface between Windows, Mac, and Linux. If you've only ever used PuTTY you should really try something else!</p>
+
+  <p><li><a href="https://www.google.com/#q=windows%20shell%20emulator">Google Search for Shell Emulators</a>: Find something that works for you!</p>
+  <p><li><a href="https://winscp.net/eng/download.php">WinSCP</a>: Easily transfer files between your Windows machine and the departmental Linux machines.</p>
+  <p><li><a href="http://man7.org/linux/man-pages/man1/scp.1.html"><code>scp</code> manual page</a>: Transfer files between your Mac/Linux machine and the departmental Linux machines.</p>
+</ul>
+
+<p><b>Linux kernel hacking references:</b></p>
+
+<p>We aren't doing any kernel hacking in this course, but these are great
+references if you're interested.</p>
+
+<ul>
+	<p><li><i>Linux Kernel Development</i> by Robert Love, 2010. 
+This is an excellent, compact, and inexpensive text that gives the reader a good
+understanding of kernel design and critical kernel source code. 
+Written by a Linux kernel veteran.</p> 
+	<p><li><i>
+<a href="http://proquest.safaribooksonline.com/book/operating-systems-and-server-administration/linux/0596005652">Understanding the Linux Kernel</a></i> 
+	by Bovet and Cesati, 2006. This is a more
+	exhaustive reference to the kernel than Love's book, covering many data structures
+	and code snippets in detail. Available online for free through the university's subscription
+	to the O'Riley Safari service.</p>
+	<p><li><i><a href="https://lwn.net/Kernel/LDD3/">Linux Device Drivers</a></i>
+	by Corbet, Rubini, and Kroah-Hartman, 2005. The definitive book on hardware
+	device drivers for Linux. Contains some useful reference material over kernel modules, kernel
+	development, kernel locking, timing, and other topics. Available online for free through
+	lwn.net.</p>
+	<p><li><i><a href="http://lwn.net">LWN.net</a></i> is a news and information outlet
+	for the open source community. They often run very high quality articles about kernel
+	development, kernel architecture, and kernel mechanisms. When I can't find any good
+	references, searching for "LWN (my_topic)" is usually helpful.</p>
+	<p><li><i><a href="http://linuxjournal.com">Linux Journal</a></i> is a magazine covering
+	the Linux community. They often run very high quality articles about kernel development,
+	kernel architecture, and kernel mechanisms. Similar to above, searching for
+	"Linux Journal (my_topic)" often yields good results.</p>
+	<p><li><a href="http://lxr.free-electrons.com/source/?v=4.1">Linux Cross Reference
+	by <i>free-electrons.com</i></a> This tool easily allows you to browse the Linux source 
+	code as well as search for identifiers.</p>
+	<p><li><i><a href="http://www.kernel.org">kernel.org</a></i> the go-to website
+	for Linux kernel source code.</p>
+</ul>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Grading">Grading</a></h3>
+
+<!--
+<div style="outline: 4px dashed red; margin:auto; width:80%">
+<h3>Grading Modifications Due to COVID-19 Course Changes</h3>
+
+<p>The novel coronavirus has completely changed how the second half of this
+course will be taught, and it has completely rearranged our personal lives
+as well. I want to be as sensitive to this as possible, while also upholding
+the original goals and objectives of the course. To that end, the following
+grading policy provides a greater degree of flexibility. It is not
+possible to do worse under the new grading policy relative to the old grading
+policy, so the new policy will apply to all students. </p>
+
+<p>However, if you feel you are unable to complete any coursework due to the
+ongoing crisis please let me know as soon as possible and I may make additional
+accomodations based on any additional factors you feel are relevant.</p>
+
+<h3>Revised Grading Policy</h3>
+
+<ol>
+<li>Studio and lab deadlines are now flexible, but you MUST email me at least 24 hours
+before the original deadline to request an extension and we MUST agree on
+a reasonable future due date. Of course, exigent circumstances will continue to
+be considered in all cases. 
+<li>All studios are expected to be completed as before.
+<li>Labs 4 and 5 are optional- if you complete one of these labs I will drop your
+lowest lab grade, and if you complete both then I will drop the two lowest lab grades.
+In other words, 50% of your final grade will be determined by your three highest
+lab grades.
+</ol>
+</div>
+-->
+
+<p>There are three activities for which you will receive credit in this course: studios, labs, and exams. Studios are daily guided assignments primarily designed to familiarize students with course concepts and development tools (i.e. knowledge and comprehension tasks). Lab assignments will ask students to apply general course concepts and analyze OS design alternatives. A midterm and final exam will evaluate your technical understanding of course concepts.</p>
+
+<p>Studios are graded on the following scale: complete, partial credit, or no credit. Studios will not be turned back with detailed comments. Labs and exams will be graded on a points scale and will be turned back with comments. My goal is to return lab assignments to you within nine days of the deadline, which is an additional 48 hours for late submissions plus one week for grading time. Similarly, my goal is to return exams to you within one week.</p>
+
+<p>Extensions on labs and studios are generally not granted aside from major unexpected events. You have at least a week to complete and submit any studio in this course, and at least two weeks for any lab assignment- it is assumed that this is sufficient for you to work around things such as sporting events or academic conferences on your own time. Please note the automatic 48-hour late policy for lab assignments.</p>
+
+<p>I am happy to work with you on rescheduling exams if you are away from campus for slu-sponsored travel, but you must notify me at least two weeks ahead of time (and note that the exam dates are provided as of the first day of class). <b>Make up exams outside of this policy will only be given for severe and documented reasons.</b></p>
+
+<p>Your grade will be determined as follows:</p>
+
+<table border="3">
+<tr>
+	<th>Activity</th>
+	<th>Grade Percentage</th>
+</tr>
+<tr>
+	<td>Studios</td>
+	<td>20%</td>
+</tr>
+<tr>
+	<td>Labs</td>
+	<td>50%</td>
+</tr>
+<tr>
+	<td>Midterm</td>
+	<td>15%</td>
+</tr>
+<tr>
+	<td>Final</td>
+	<td>15%</td>
+</tr>
+
+</table>
+
+<p>Grading is done on a straight scale (uncurved). The following scores are guaranteed. The grading scale may be curved upwards (in your favor)
+at the discretion of the instructor.
+
+<ul>
+<li> 93% guarantees an A
+<li> 90% guarantees an A-
+<li> 87% guarantees a B+
+<li> 83% guarantees a B
+<li> 80% guarantees a B-
+<li> 77% guarantees a C+
+<li> 73% guarantees a C
+<li> 70% guarantees a C-
+<li> 60% guarantees a D
+</ul>
+
+</p>
+
+<p>Most work assigned in this course, other than exams and some labs, is
+expected to be completed collaboratively. Student teams may change from
+assignment to assignment, but the sharing of written work or significant
+portions of code between teams is strictly prohibited. </p>
+
+<p>Some specific guidelines for this course:</p>
+
+<ul>
+<li>Code you submit as solutions to the programming assignments must be written by you or your team. You are not allowed to copy code from other students.</li>
+<li>Copying pieces of code from in-class examples is allowed, but <b>you must cite the source of such code</b> with a comment denoting the start and finish of the copied section.</li>
+<li>Copying small pieces of code from man pages, online references or other sources is generally acceptable, but to be safe you should check with me first. <b>Code from such sources must be cited</b> with a comment denoting the start and finish of the copied section. Knowing how to use online references effectively is an essential skill for modern software developers and I don't want to discourage you from using such sources for understanding APIs and how to call complex functions. It is often the case that there is an expected "right way" to accomplish a specific task such as creating a pThreads thread or binding a socket to an address- lookups of this nature are equivalent to using a textbook or language reference and are fine. Looking up "How do I write my own malloc()" or "How to build my own shell" on the other hand is cheating. If you are in doubt, ask first!</li>
+<li>Copied code that is not cited will be considered plagiarism and will be treated as cheating. Citing your code protects you from this. However, copying large portions of code is still grounds for a reduction in grade, even if it is not cheating. Please check with the instructor if you are copying more than a line or two of code!  
+</ul>
+
+<hr>
+
+<H2>
+<a name="Attendance Policy">Attendance</a>
+</H2>
+
+<p>Successful students attend all or mostly all class sessions. This is true
+in my experience <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0187078">and has been demonstrated in large scale studies</a> as well.
+In that study, even students who attended nine out of ten class periods had
+measurably lower class performance than those who attended all classes. However,
+there is no attendance requirement for this class, and you do not need to
+get permission when you do miss class. You are an adult and have
+the freedom to manage your time in whatever way you feel is most useful.
+Job interviews, conferences, tests in other courses, etc. are all reasonable
+cases for being absent.</p> 
+
+<p>Note that in-class assignments such as tests or quizes cannot be made
+up outside of class without prior approval from the instructor. All such
+activities will be listed course schedule with ample time to prepare
+(i.e. there are no "pop quizes").</p>
+
+<p>If you do miss class you should refer to the course schedule to see what was
+missed and arrange to get course notes from another student. I am always happy
+to answer questions but I do not repeat full class periods in office hours.</p> 
+
+<p><b>Required University Attendance Statement for Fall 2020</b></p>
+
+The health and well-being of SLU’s students, staff, and faculty are critical concerns.  Accordingly, the following University policy statements on in-person class attendance are designed to preserve and advance the collective health and well-being of our institutional constituencies.
+
+ <OL>
+<LI>Students who exhibit any <a href="https://www.cdc.gov/coronavirus/2019-ncov/symptoms-testing/symptoms.html">potential COVID symptoms</a> (those that cannot be attributed to some other medical condition the students are known to have, such as allergies, asthma, etc.) shall absent themselves from any in-person class attendance or in-person participation in any class-related activity until they have been evaluated by a qualified medical official.   Students should contact the <a href="https://www.slu.edu/life-at-slu/student-health/index.php">University Student Health Center</a> for immediate assistance.</LI>
+<LI>Students who exhibit <a href="https://www.cdc.gov/coronavirus/2019-ncov/symptoms-testing/symptoms.html">potential COVID symptoms</a> (those that cannot be attributed to some other medical condition the students are known to have, such as allergies, asthma, etc.) but who feel well enough to a) attend the course synchronously in an online class session or b) participate in asynchronous online class activities, are expected to do so.  Those who do not feel well enough to do so should absent themselves accordingly.</LI>
+<LI>Students (whether exhibiting any of potential COVID symptoms or not, and regardless of how they feel) who are under either an isolation or quarantine directive issued by a qualified health official must absent themselves from all in-person course activity per the stipulations of the isolation or quarantine directive.  They are expected to participate in synchronous or asynchronous online class activities as they feel able to do so, or absent themselves accordingly.</LI>
+<LI>Students are responsible for notifying each instructor of an absence as far in advance as possible; when advance notification is not possible, students are responsible for notifying each instructor as soon after the absence as possible.</LI>
+<LI>As a temporary amendment to the current <a href="https://catalog.slu.edu/academic-policies/academic-policies-procedures/attendance/">University Attendance Policy</a>, all absences due to illness or an isolation/quarantine directive issued by a qualified health official shall be considered “Authorized” absences (effective August 2020 through May 2021). </LI>
+</OL>
+
+
+<hr>
+<H2>
+<a name="COVID">COVID-19 Considerations for Spring 2021</a>
+</H2>
+
+<p>
+<b>Notification of absences:</b> You do not need to notify the instructor
+that you are missing a regular synchronous class meeting. Notify the
+instructor as early as possible if you have a conflict with exam times.
+</p>
+
+<p>
+<b>Student Absences:</b> It is the responsibility of the student
+to accommodate their absence. Make arrangements in advance with another
+student to get a report of synchronous class activities and their notes 
+for the day. Our synchronous meetings will be recorded via Zoom,
+but do not rely on such recordings: they do not record group breakout
+sessions, the recording may fail, etc.</p>
+
+<p>
+Lecture content for this course is recorded and may be viewed at any time.
+</p>
+
+<p><b>Late work:</b> Severe illness is a reasonable basis to request an extension
+on lab assignments. However, my experience is that extensions tend to do more harm
+than good for many as once you get behind on work it can be difficult to catch up.
+All students would be well-served by starting assignments early especially with the
+uncertainty due to COVID-19.</p>
+
+<p><b>What happens if the course instructor becomes ill:</b> As this is an entirely
+online course the class will proceed as normal if the instructor is well enough to
+meet. Otherwise a replacement faculty from the computer science department will
+take over synchronous meeting times.</p>
+
+<p>Depending on the timing of the illness some modification to the course schedule
+and assignment deadlines may be required. If any modification takes place it will
+always be announced and made in favor of the student- e.g. deadlines may be
+extended, but never shortened. The group exam times will not be moved under
+any circumstances.</p>
+
+<p><b>Grading policy changes:</b> If circumstances require it, certain graded elements
+of the course may be eliminated or replaced with a substitute. In the case of
+substitution the new assignment will have the same point-values as the old assignment:
+for example if the midterm exam is replaced with a programming project that programming
+project will be worth 15% of your final grade. In the case of elimination the
+point-values assigned to the activity group will not change: for example if we eliminate
+one of the five lab assignments then the remaining four will collectively still be worth
+50% of the final grade.</p>
+
+<hr>
+<H2>
+<a name="masks">Mandatory Statement of Face Masks</a>
+</H2>
+
+<P>
+The University’s <i><a href="https://slu.policystat.com/policy/token_access/2e1e7d4c-49c9-42ba-8055-ca833711bea4/">Interim Policy on Face Masks</a></i> governs all students, faculty, staff, and campus visitors in all University-owned, leased, or operated facilities.   All persons physically present in any such University facility associated with this course shall comply fully with this policy at all times.  Masks must be worn before entry to all such University facilities (as well as outdoors on all University property when six feet of distance is unpredictable or cannot be maintained).</P>
+
+<P>Saint Louis University is committed to maintaining an inclusive and accessible environment.  Individuals who are unable to wear a face mask due to medical reasons should contact the Office of Disability Services or Human Resources to initiate the accommodation process identified in the University’s <a href="https://www.slu.edu/human-resources/pdfs/policies/americans-disabilities-act-policy.pdf">ADA Policy</a>.  Inquires or concerns may also be directed to the <a href="https://www.slu.edu/general-counsel/institutional-equity-diversity/index.php">Office of Institutional Equity and Diversity</a>.   Notification to instructors of SLU-approved ADA accommodations should be made in writing prior to the first class session in any term (or as soon thereafter as possible). </P>
+
+<P>As the instructor of this course, I shall comply fully with SLU’s policy and all related ADA regulations.</P>
+
+<P>Students who attempt to enter a classroom without wearing masks will be asked by the instructor to wear masks prior to entry.  Students who remove their masks at any time during a class session will be asked by the instructor to resume wearing their masks.</P>
+
+<P><B>Note: Accordingly, no consumption of any food will be allowed in class.</B></P>
+
+<P>Students who do not comply with a request by a SLU instructor to wear a mask in accordance with the University’s Interim Policy on Face Masks may be subject to disciplinary actions per the rules, regulations, and policies of Saint Louis University, including but not limited to the Student Handbook.  Non-compliance with this policy may result in disciplinary action, up to and including any of the following:</P>
+
+<UL>
+<LI>dismissal from the course(s)</LI>
+<LI>removal from campus housing (if applicable)</LI>
+<LI>dismissal from the University</LI>
+</UL>
+
+<P>To immediately protect the health and well-being of all students, instructors, and staff, instructors reserve the right to cancel or terminate any class session at which any student fails to comply with faculty or staff request to wear a mask in accordance with University policy.</P>
+
+<P>Students are strongly encouraged to identify to their instructor any student or instructor not in compliance.  Non-compliance may be anonymously reported via the SLU Integrity Hotline at 1-877-525-5669 (or confidentially via the Integrity Hotline's website at <a href="http://www.lighthouse-services.com/slu">http://www.lighthouse-services.com/slu</a>.</P>
+
+
+<hr>
+<H2>
+<a name="Academic Integrity">Academic Integrity</a>
+</H2>
+
+<P>
+<em>Academic integrity is honest, truthful and responsible
+conduct in all academic endeavors.</em>
+The mission of Saint Louis University is "the pursuit of truth for the
+greater glory of God and for the service of humanity."
+Accordingly, all acts of falsehood demean and compromise the
+corporate endeavors of teaching, research, health care, and
+community service via which SLU embodies its mission. The
+University strives to prepare students for lives of personal and
+professional integrity, and therefore regards all breaches of
+academic integrity as matters of serious concern.
+</p>
+<p>
+The governing
+University-level Academic Integrity Policy was adopted in Spring
+2015, and can be accessed on the Provost's Office website at: <a
+href="https://www.slu.edu/provost/policies/academic-and-course/policy_academic-integrity_6-26-2015.pdf">https://www.slu.edu/provost/policies/academic-and-course/policy_academic-integrity_6-26-2015.pdf</a>.
+</p>
+<p>
+Additionally, each SLU College, School, and Center has adopted its own
+academic integrity policies, available on their respective
+websites. All SLU students are expected to know and abide by
+these policies, which detail definitions of violations,
+processes for reporting violations, sanctions, and
+appeals. Please direct questions about any facet of academic
+integrity to your faculty, the chair of the department of your
+academic program, or the Dean/Director of the College, School or
+Center in which your program is housed. Specific College of Arts
+and Sciences Academic Honesty Policies and Procedures may be
+<a href="http://www.slu.edu/arts-and-sciences/student-resources/academic-honesty.php">
+found here</a>.
+</p>
+
+
+<hr>
+<H2>
+<A name="Title IX Statement">Title IX Statement</A>
+</H2>
+
+<p>
+Saint Louis University and its faculty are committed to supporting our students and seeking an environment that is free of bias, discrimination, and harassment. If you have encountered any form of sexual harassment, including sexual assault, stalking, domestic or dating violence, we encourage you to report this to the University. If you speak with a faculty member about an incident that involves a Title IX matter, <b>that faculty member must notify SLU’s Title IX Coordinator and share the basic facts of your experience</b>. This is true even if you ask the faculty member not to disclose the incident. The Title IX Coordinator will then be available to assist you in understanding all of your options and in connecting you with all possible resources on and off campus.
+</p>
+
+<p>
+Anna Kratky is the Title IX Coordinator at Saint Louis University (DuBourg Hall, room 36; <a href="mailto:anna.kratky@slu.edu">anna.kratky@slu.edu</a>; 314-977-3886). If you wish to speak with a confidential source, you may contact the counselors at the University Counseling Center at 314-977-TALK or make an anonymous report through SLU’s Integrity Hotline by calling 1-877-525-5669 or online at <a href="http://www.lighthouse-services.com/slu">http://www.lighthouse-services.com/slu</a>. To view SLU’s policies, and for resources, please visit the following web addresses: <a href="https://www.slu.edu/about/safety/sexual-assault-resources/index.php">https://www.slu.edu/about/safety/sexual-assault-resources/index.php</a> and <a href="https://www.slu.edu/general-counsel">https://www.slu.edu/general-counsel</a>.
+</p>
+
+<p>
+IMPORTANT UPDATE: SLU’s Title IX Policy (formerly called the Sexual Misconduct Policy) has been significantly revised to adhere to a new federal law governing Title IX that was released on May 6, 2020. Please take a moment to review the new policy and information on the following web address: <a href="https://www.slu.edu/about/safety/sexual-assault-resources/index.php">https://www.slu.edu/about/safety/sexual-assault-resources/index.php</a>. Please contact the Anna Kratky, the Title IX Coordinator, with any questions or concerns.
+</p>
+
+
+<hr>
+
+<H2>
+<A name="Academic Support">Supporting Student Success</A>
+</H2>
+
+<p>
+In recognition that people learn in a variety of ways and that
+learning is influenced by multiple factors (e.g., prior
+experience, study skills, learning disability), resources to
+support student success are available on campus. The Student
+Success Center, a one-stop shop, which assists students with
+academic and career related services, is located in the Busch
+Student Center (Suite&nbsp;331). Students can visit <a
+href="https://www.slu.edu/life-at-slu/student-success-center/">https://www.slu.edu/life-at-slu/student-success-center/</a> to learn more about tutoring services,
+university writing services, disability services, and academic coaching.
+<hr>
+
+<H2>
+<A name="Disability Services">Disability Services</A>
+</H2>
+<p>
+Students with a documented disability who wish to request
+academic accommodations <b>must</b> contact Disability Services to
+discuss accommodation requests and eligibility
+requirements. Once successfully registered, the student also
+<b>must</b>  notify the course instructor that they wish to access
+accommodations in the course.
+</p>
+<p>
+Please contact Disability Services, located within the Student
+Success Center, at <a href="mailto:Disability_services@slu.edu">Disability_services@slu.edu</a> or 314-977-3484
+to schedule an appointment. Confidentiality will be observed
+in all inquiries. Once approved, information about academic
+accommodations will be shared with course instructors via email
+from Disability Services and viewed within Banner via the
+instructor’s course roster.
+</p>
+<p>
+Note: Students who do not have a documented disability but who
+think they may have one are encouraged to contact Disability Services.
+</p>
+
+<hr>
+<H2>
+<A name="Writing Center">University Writing Services</A>
+</H2>
+<p>Students are encouraged to take advantage of University Writing Services in the Student Success Center; getting feedback benefits writers at all skill levels. Trained writing consultants can help with writing projects, multimedia projects, and oral presentations. University Writing Services offers one-on-one consultations that address everything from brainstorming and developing ideas to crafting strong sentences and documenting sources. For more information, visit <a href="https://www.slu.edu/life-at-slu/student-success-center/">https://www.slu.edu/life-at-slu/student-success-center/</a> or call the Student Success Center at 314-977-3484.</p>
+
+<hr>
+<H2>
+<A name="Basic Needs Security">Basic Needs Security</A>
+</H2>
+<p>Students in personal or academic distress and/or who may be specifically experiencing challenges such as securing food or difficulty navigating campus resources, and who believe this may affect their performance in the course, are encouraged to contact the Dean of Students Office (<a href="mailto:deanofstudents@slu.edu">deanofstudents@slu.edu</a> or 314-977-9378) for support. Furthermore, please notify the instructor if you are comfortable in doing so, as this will enable them to assist you with finding the resources you may need.</p>
+
+
+
+</body>
+</html>
+

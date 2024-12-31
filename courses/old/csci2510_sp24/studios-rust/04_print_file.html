@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSCI 2510 - Principles of Computing Systems</title></head>
+
+<h2 style="text-align: center;">CSCI 2510: Studio 4<br></h2>
+<h2 style="text-align: center;">Print File</h2>
+
+<hr style="width: 100%; height: 2px;">
+
+<p>Language: Rust</p>
+
+<hr style="width: 100%; height: 2px;">
+
+<p>In this studio, you will:</p>
+
+<ol>
+	<li>Examine the <code>match</code> syntax in Rust</li>
+	<li>Open files for reading</li>
+	<li>Print descriptive error messages with the <code>Result</code> type</li>
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>
+<p>
+Please complete the required exercises below, as well as any optional
+enrichment exercises that you wish to complete.</p> 
+
+<p>
+For this studio, please create a new Rust project with the name 
+<strong>print_file</strong> (note, case sensitive). 
+As you work through these exercises, 
+please record your answers in a text file in the root level of that
+project. When finished, please add the entire project and push it
+to the SLU Git repository.
+</p>
+
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Required Exercises</h3></p>
+
+<ol>
+	<li><p>Rust has a <i>pattern matching</i> system that makes writing certain kinds of
+		code efficient and compact. It is most frequently compared to writing a
+		train of if-else statements. For this first exercise, write a short Rust
+		program that takes an <code>i32</code> integer, and prints one of the
+		four statements {one, two, three, else} depending on whether the
+		value of the integer is one, two, three, or any other value.</p></li>
+
+
+	<li><p>Look up the documentation for <code>match</code> statements and write
+		the equivalent program using the <code>match</code> syntax.</p></li>
+
+	<li><p>Try looking back at your code for Studio 1, and in particular the code
+		you wrote for handling the <code>Result&lt;T,E&gt;</code> that was
+		returned from <code>stdio().read_line()</code>. Write a seqeuence
+		of if/else statements, using the <code>result.is_ok()</code>
+		and <code>result.is_err()</code> methods to distinguish a successful
+		result from an error result. In either case, you should print an
+		appropriate message that uses the data encoded in the result.</p>
+
+		<p>Note that you can print an error object with Rust's built-in
+		pretty printer that is specified by using "{:?}" in <code>println!()</code>
+		rather than using "{}": <code>println!("Error: {:?}", result)</code></p>
+
+		<p>The following code declares two result objects you can use to
+		test your code. One indicates success and the other indicates failure. </p>
+
+		<pre>
+		fn main() {
+
+			let error_result:Result&lt;i32,&amp;str&gt; = std::result::Result::&lt;i32, &amp;str&gt;::Err("Could not open file");
+			let ok_result:Result&lt;i32,&amp;str&gt; = std::result::Result::&lt;i32, &amp;str&gt;::Ok(42);
+
+			let result = ok_result;
+		}
+		</pre>
+	</li>
+
+
+	<li><p>One very handy use of the <code>match</code> statement is <i>destructuring</i>
+		complex objects. This allows the programmer to easily take apart more complex
+		structures using pattern matching. For example, re-write your code from the last
+		question using the following partial match statement:
+		</p>
+
+	<pre>
+	match result {
+		Ok(x) => ,
+		Err(y) => ,
+	};
+	</pre>
+	</li>
+
+
+	<li><p>In Studio 1 you had to evaluate the result of your stdin().read_line() call
+		and distinguish between an OK return value of zero, any other OK return value,
+		and an error value. Re-write your code from Studio 1 using a match statement
+		similar to the one from the last question.</p></li>
+
+
+	<li><p>Our goal for this studio is to produce a project called <code>print_file</code>.
+		This program reads from standard input in a loop. When the user enters any
+		input, the program attempts to open it as though it were a filename. If it
+		is successful, it prints the contents of the file to the terminal. If it
+		is not successful, it prints a descriptive error message indicating what
+		went wrong. In either case, the program goes back to the top of the loop
+		and waits for another program name to be input. If the user enters
+		CTRL-D on an empty line (or CTRL-Z on Windows) then the program terminates.</p>
+
+	<p>You have some code from Studio 1 that reads input in a loop. Go ahead and copy-paste
+	that code as your starting point.</p></li>
+
+
+	<li><p>After you successfully get user input, try to open it as a file using
+		<code>File::open()</code>. Note that your user input will have
+		a new line character at the end of it, but the string method
+		<code>trim()</code> is made specifically to remove whitespace
+		and new line characters.</p>
+
+		<p>After you attempt to open the file, use a match
+		statement to print a descriptive error on failure, or return
+		the contents of <code>Ok()</code> on success.</p></li>
+
+	<li><p>Lastly, <a href="https://doc.rust-lang.org/std/io/trait.Read.html#method.read_to_string">
+		use the method <code>read_to_string()</code></a> to read the contents
+	of the file, and then print the contents of the file with <code>print!()</code>.</p>
+
+		<p>The <code>read_to_string()</code> method also returns a Result, and you
+		should handle it appropriately.</p></li>
+
+
+	<li><p>Once you're done, test your program to make sure that your code works
+		correctly when the files given are real, functional files. Then,
+		give your program a made up file name that doesn't exist, and verify
+		that it prints an error message mentioning the fact that the file does
+		not exist. Lastly, create a file that exists, but has invalid permissions
+		so that your program cannot read the file. Verify that your program
+		prints a descriptive error message that mentions file permissions when this
+		fails.</p>
+
+		<p>Hint: The return value in Err() should already contain a descriptive
+		(if perhaps poorly formatted) message. That is all you need to print.</p>
+
+		<p>You can make a file and change it's permissions in Linux/Unix using the
+		<code>touch</code> and <code>chmod</code> programs. If you execute
+		"<code>touch inavlid.txt</code>" you will create a file called invalid.txt,
+		and then execute "<code>chmod -r invalid.txt</code>" to remove the read
+		permission from that file. If you are working on Windows, you will need
+		to look up how to create an empty file and set file permissions.</p></li>
+
+
+</ol>
+
+<p><h3>Optional Enrichment Exercises</h3></p>
+<ol>
+	<li><p>The pattern matching facility in Rust has a number of fancy tricks
+		we do not cover here. One such is matching multiple patterns to the same
+		output statement using the vertical stroke "|" symbol.</p>
+
+		<p>Try writing a statement that matches the first five even numbers
+	and prints the word "Even", but you are only allowed to use one print statement.</li>
+
+	<li><p>"Match guards" allow you to introduce if-conditionals into your match
+		statements. Write a match statement that prints "Negative!" if the
+		input is less than zero, "Positive!" if the input is greater than
+		zero, and "Zero!" otherwise.</p></li>
+
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>

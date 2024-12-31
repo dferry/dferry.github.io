@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSCI 2510 - Principles of Computing Systems</title></head>
+
+<h2 style="text-align: center;">CSCI 2510: Studio 12<br></h2>
+<h2 style="text-align: center;">Atomic Instructions</h2>
+
+<hr style="width: 100%; height: 2px;">
+
+<p>It is common to use mutexes, semaphores, or other generic locking methods
+to synchronize access to variables in general purpose parallel programming.
+However, when the data to be modified
+is small, it may be possible to use an <i>atomic instruction</i>. These are
+machine operations such as addition, subtraction, bitwise AND, bitwise OR,
+etc. that are guaranteed to happen atomically via special support between
+the compiler and the computer hardware. Note that such atomic instructions are
+not part of the C standard, but rather a special extension provided by GCC.
+This studio must be done on GCC. However, standard support for atomic
+operations has been added in C++ 11 under <code>std::atomic</code>.</p>
+
+
+<p>In this studio, you will:</p>
+
+<ol>
+<li>Use atomic intstructions to synchronize access to a variable
+<li>Measure the overhead of using these atomic instructions
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>
+<p>
+Please complete the required exercises below, as well as any optional
+enrichment exercises that you wish to complete.</p> 
+
+<p>
+As you work through these exercises, please record your answers in a text
+file. When finished, submit your work via the git repository.</p>
+
+<!--by sending your text file and
+source code to <strong>dferry_submit@slu.edu</strong>
+with the phrase <strong>
+Atomics
+</strong> in the subject line.</p>
+-->
+
+<p><strong> Make sure that the name of each person who worked on these exercises
+is listed in the first answer, and make sure you number each of your responses
+so it is easy to match your responses with each exercise.</strong></p>
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Required Exercises</h3></p>
+
+<ol>
+<p><li>As the answer to the first exercise, list the names of the people who
+worked together on this studio.</p>
+
+<p><li>The atomic instructions we are going to use today are not part of the
+C standard, so they are not documented as well as other language features that
+we have used. Go to the <a href="https://gcc.gnu.org/onlinedocs/gcc-4.4.3/gcc/Atomic-Builtins.html">
+GCC reference page</a> to look see these functions and their usage. As the
+answer to this question, describe the effect of the function 
+<code>__sync_add_and_fetch()</code> and this function's interface.</p>
+
+<p><li>Create a new program to test the behavior of your atomic instructions.
+To do so, declare a variable with initial value zero, and then use the
+instruction <code>__sync_add_and_fetch()</code> to add to it. Print out the
+value of your variable before and after your atomic instruction to verify
+that your program behaves as expected. Copy and paste your program output,
+and attach this file to your submission.</p>
+
+<p><li>Now, make a copy of your code from the previous studio where we
+created a race condition. Previously we fixed this race condition by
+using a Pthreads mutex. Today we will fix the race condition with these
+atomic instructions.</p>
+
+<p>Use the functions <code>__sync_add_and_fetch()</code> and
+<code>__sync_sub_and_fetch()</code> to make your adder and subtractor
+functions thread-safe. Run your program to verify that there is no race
+condition. Copy and paste your program output.</p>
+
+
+<p><li>Now we want to quantify the overhead of using these atomic
+instructions. The special hardware support needed is not free, and we pay
+a price for each atomic instruction you use. As in the previous studio,
+modify your atomic instruction program (if necessary) so that it performs
+twenty million (20,000,000) atomic increments and decrements. Then time
+your program with the <code>time</code> command. Take at least three
+measurements and average them. Copy and paste your program results.</p>
+
+<p><li>One question we can ask is whether the atomic instruction is
+more efficient than the mutex for this task, or is it the other way
+around? Go to your previous studio writeup and find how long it took your
+mutex program to run when you locked and unlocked the mutex for each
+individual increment and decrement. Alternately, you can re-run this
+experiment- if you do so, make sure you are performing twenty million
+increments and decrements, and make sure that you are locking and
+unlocking the mutex for each individual increment and decrement.</p>
+
+<p><li>Is the mutex locking strategy faster, or are the atomic instructions
+faster? By how much? Express the speed difference as a ratio (for
+example, you could say procedure A is four times faster than procedure B).</p>
+
+<p><li>Go back to your last studio writeup where you
+timed how long your racy program takes (the one with incorrect results) and
+record this value here. Alternately, you can re-run the experiment- make sure
+you are doing twenty million increments and decrements.</p>
+
+<p>Compared to the racy program, how much longer does it take to run the
+program with atomic instructions?</p>
+
+<p><li>Given what you now know about atomic instructions and mutex locking,
+give one scenario where mutex locking is preferred, and give one scenario
+where atomic instructions are preferred.</p>
+
+</ol>
+
+<p><h3>Optional Enrichment Exercises</h3></p>
+<ol>
+<li>No optional exercises
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>

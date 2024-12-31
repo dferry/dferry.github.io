@@ -1,0 +1,198 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+  <HEAD>
+    <TITLE>Assignment #3:  Assembly Code Basics
+    </TITLE>
+  </HEAD>
+
+  <BODY>
+
+
+    <CENTER>
+      <H2>Assignment #3: Assembly Code Basics</H2>
+      <br>
+      <b>Assigned:</b>  Wednesday, October 5
+      <br>
+      <b>Due:</b>  Wednesday, October 12  <u>by the start of class</u>
+    </CENTER>
+
+
+<h3>Contents:</h3>
+<UL>
+  <LI>
+      <a href="#overview">Overview</a>
+  </LI>
+  <LI>
+      <a href="#submit">Problems to be Submitted</a>
+  </LI>
+<!--
+  <LI>
+      <a href="#extra_credit">Extra Credit</a>
+  </LI>
+-->
+</UL>
+
+<HR>
+
+<a name="overview"><h3>Overview</h3></a>
+
+<P>
+<!--
+<b>Topic:</b>  Operating on binary integer numbers.  Arithmetic (&#43;, &#45;, &#42;, &#47;, &#37;), Boolean (&amp;, &#124;, &#94;, &#126;), and shifts (&gt;&gt;, &lt;&lt;)
+-->
+<b>Topic:</b>  Basic assembly code: registers, instructions, translating small statements to and from assembly
+<br>
+<b>Related Reading:</b>  Class lecture slides, Chapter 3 pp.166-191
+</P>
+
+<hr>
+
+<a name="submit"><h3>Problems to be Submitted (25 points)</h3></a>
+
+When you turn in your assignment, you must include a signed <a href="./cover-sheet.html">cover sheet</a> (<a href="./cover-sheet.pdf">PDF version</a>) with your assignment (<i>you're assignment will not be graded without a completed cover sheet</i>).
+
+<p>
+You are allowed to submit your assignment via email, but if you choose to do so, you must bring a hardcopy of your assignment along with a completed cover sheet to the instructor at the next class.  (<i>Note:  Do not email the instructor any .zip file attachments, as SLU's email may not accept these emails; i.e. the instructor may not receive your email.</i>)
+
+
+<h3>Answers without work will recieve zero credit.</h3>
+
+
+
+<pre>
+(1.5 points each) Match the following assembly code sections with their equivalent C expressions
+
+(1)						(a) y = 0;
+ movl x, %eax					(b) y = 8 * x + 5;
+ incl %eax					(c) y = (4 * x) + (x % 16)
+ shll $3, %eax					(d) y = (8 * x) + 1;
+ subl $3, %eax					(e) y = ~x;
+ movl %eax, y					(f) y = 23 * x;
+						(g) y = (x / 4) + (x % 16);
+(2)						(h) y = (x / 4) << x;
+ movl $25, %eax					(i) y = 5 * x / 2;
+ sarl $3, %eax					(j) y = (3 * x) << x;
+ addl $-2, %eax					(k) y = (8 * x) - (x - 3);
+ movl %eax, y					(l) y = -25 * x;
+						(m) y = (4 * x) - (x / 16);
+(3)						(n) y = (8 * x) << x;
+ movl x, %eax					(o) y = (x - 3) << 4;
+ xorl $0xffffffff, %eax				(p) y = (16 * x) - (x / 4);
+ movl %eax, y					(q) y = -3 * x;
+						(r) y = 1;
+(4)						(s) y = -23 * x;
+ movl x, %eax					(t) y = 8 * x - 3;
+ movl %eax, %ebx				(u) y = (x - 3) << x;
+ shll $4, %ebx					(v) y = 4 * x - 3;
+ sarl $2, %eax
+ subl %eax, %ebx
+ movl %ebx, y
+
+(5)
+ movl x, %eax
+ movl %eax, %ecx
+ subl $3, %eax
+ shll %cl, %eax
+ movl %eax, y
+
+(6)
+ movl x, %eax
+ movl %eax, %ebx
+ shll $1, %ebx
+ addl %eax, %ebx
+ shll $3, %ebx
+ subll %ebx, %eax
+ movl %eax, y
+
+
+(3 points each)
+For each instruction below, indicate:
+  * whether the data for that operand is found/stored in:
+    o register
+    o memory
+    o in the instruction itself
+  * size of the data (1, 2, 4, or 8 bytes)
+  * what addressing mode is used for each operand (see table below)
+  * give an english description of the instruction (example: "add five to register EAX")
+
+(7) addl $5, %eax 		Operand 1:		
+					data found/stored in: ______________________
+					size of data: ______________________________
+					addressing mode: ___________________________
+				Operand 2:
+					data found/stored in: ______________________
+					size of data: ______________________________
+					addressing mode: ___________________________
+				Describe:
+
+
+(8) subw var, %cx 		Operand 1:
+ 					data found/stored in: ______________________
+					size of data: ______________________________
+					addressing mode: ___________________________
+				Operand 2:
+					data found/stored in: ______________________
+					size of data: ______________________________
+					addressing mode: ___________________________
+				Describe:
+
+
+(9) movl $ptr, %edx 		Operand 1:
+					found/stored in: ___________________________
+					of data: ___________________________________
+					addressing mode: ___________________________
+				Operand 2:
+					data found/stored in: ______________________
+					size of data: ______________________________
+					addressing mode: ___________________________
+				Describe:
+
+
+(10) movb %cl, 8(%esp) 		Operand 1:
+					data found/stored in: ______________________
+					size of data: ______________________________
+					addressing mode: ___________________________
+				Operand 2:
+					data found/stored in: ______________________
+					size of data: ______________________________
+					addressing mode: ___________________________
+				Describe:
+
+
+(11) addw 6(%ebx, %eax, 4), %si 
+				Operand 1:
+					data found/stored in: ______________________
+					size of data: ______________________________
+					addressing mode: ___________________________
+				Operand 2:
+					data found/stored in: ______________________
+					size of data: ______________________________
+					addressing mode: ___________________________ 
+				Describe:
+
+
+
+Figure 3.3 from Computer Systems: A Programmer's Perspective, 3rd Ed.
+----------------------------------------------------------------------------------
+Type		Form		Operand value			Name
+----------------------------------------------------------------------------------
+Immediate	$Imm		Imm				Immedaite
+
+Register	r		R[r]				Register
+
+Memory		Imm		M[Imm]				Absolute
+Memory		(r)		M[ R[r] ]			Indirect
+Memory		Imm(b)		M[ Imm + R[b] ]			Base + Displacement
+Memory		(b,i)		M[ R[b] + R[i] ]		Indexed
+Memory		Imm(b,i)	M[ Imm + R[b] + R[i] ]		Indexed
+Memory		(,i,s)		M[ R[i]*s ]			Scaled Indexed
+Memory		Imm(,i,s)	M[ Imm + R[i]*s ]		Scaled Indexed
+Memory		(b,i,s)		M[ R[b] + R[i]*s ]		Scaled Indexed
+Memory		Imm(b,i,s)	M[ Imm + R[b] + R[i]*s ]	Scaled Indexed
+
+</pre>
+
+
+  </body>
+</html>
+

@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSCI 2400 - Computer Architecture</title></head>
+
+<h2 style="text-align: center;">CSCI 2400: Assembly Class 6<br></h2>
+<h2 style="text-align: center;">Data Processing</h2>
+
+<hr style="width: 100%; height: 2px;">
+
+<p>Time to put it all together! In today's class you will:</p>
+
+<ol>
+<li>Process an array of data looking for specific values
+<li>Find the max of the array
+<li>Find the min of the array
+<li>Find the position of a special target value
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Exercises</h3></p>
+
+<ol>
+<p><li>Login to hopper.slu.edu- remember you can login with:
+
+<p><code>ssh username@hopper.slu.edu</code></p>
+
+<p><li>Now, download a new program for today's class:</p>
+
+<p><code>wget http://cs.slu.edu/~dferry/courses/csci2400/asm/array.s</code></p>
+
+<p><li>Scroll to the bottom of today's program. You will see 500
+data values labeled <code>array</code>. Your goal is to write a
+program that processes this array doing three things:</p>
+
+<ol>
+<li>Find the maximum value
+<li>Find the minimum value
+<li>Find the position of a specific value, 615049950 (this value is stored in the variable <code>target</code>)
+</ol>
+
+<p>It should then print these values at the end of the program.</p>
+
+<p>Hints:</p>
+
+<ul>
+<li>You can move the starting address of the array into a register with the instruction: <code>leal array, %edx</code>
+<li>Suppose you have the array base stored in EDX and a counter stored in ECX. Then you can use <i>scaled indexed</i> accessing to iterate through the array: (%edx, %ecx, 4)
+<li>Feel free to declare new variables to hold things such as the max and the min values
+<li>Start by tackling each of the three tasks separately, then integrate them together
+<li>You may find it useful to encapsulate some program functionality inside separate procedures, though you don't have to
+</ul>
+
+<p><li>Email your program to the instructor when you are done.
+Include your answers to each question in your email
+or in a text file and include them with your submission. These will count for
+credit as a homework assignment.</p>
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>

@@ -1,0 +1,1160 @@
+#These strings are displayed verbatim on the web page
+CourseNum: "CSCI 1060"
+CourseName: "Scientific Programming"
+CourseWebsite: '<a href="http://cs.slu.edu/~dferry/courses/csci1060">http://cs.slu.edu/~dferry/courses/csci1060/</a>'
+ClassTime : "Monday, Wednesday, &amp; Friday from 2:10 - 3:00, ISE 230"
+Semester : "Spring 2022"
+MidtermTime : "March 4th, April 6th"
+FinalTime : "Wednesday, May 11th, 2:00-3:50"
+
+#These strings control the behavior of the scheduler generator
+TimeZone: "America/Chicago" #Refer to https://www.php.net/manual/en/timezones.php
+StartDate: "January 19, 2022"
+ClassType : "MWF"
+LinkActivationHours: "9000" #Links activate on the schedule approx this number of hours
+                          #before the real time gets there
+PostTime: "9:00 AM"       #The time of day that links activate
+SchedHeaderColor: 'White' #Colors can be any CSS color
+SchedColor1: '#e6e6e6' 
+SchedColor2: 'White'
+
+
+Holidays :
+  -
+    name: "Spring Break"
+    date: "March 7th"
+    text: "Spring Break - No Class"
+  -
+    name: "Spring Break"
+    date: "March 9th"
+    text: "Spring Break - No Class"
+  -
+    name: "Spring Break"
+    date: "March 11th"
+    text: "Spring Break - No Class"
+  -
+    name: "Good Friday"
+    date: "April 15th"
+    text: "Good Friday - No Class"
+  -
+    name: "Easter Monday"
+    date: "April 18th"
+    text: "Easter Monday - No Class"
+
+
+Schedule :
+
+#Note, any day can have multiple items, e.g. the following
+# template has two topics, one reading, one studio, and one lab
+
+### New Day ###
+#  - 
+#    first:  
+#      - 
+#        text: ""
+#        link: ""
+#        class: ""
+#      - 
+#        text: ""
+#        link: ""
+#        class: ""
+#    second: 
+#      - 
+#        text: ""
+#        link: ""
+#        class: ""
+#    third: 
+#      - 
+#        text: ""
+#        link: ""
+#        class: ""
+#    fourth:
+#      - 
+#        text: ""
+#        link: ""
+#        class: ""
+          
+### New Day ###
+  - 
+    first:  
+      - 
+        text: "Introduction, Course Overview"
+        link: "notes/00_intro/00_intro.html"
+        class: ""
+    second:
+      - 
+        text: "intro.m"
+        link: "notes/00_intro/intro.m"
+        class: ""
+    third:
+      - 
+        text: "Syllabus<br> (this website)"
+        link: ""
+        class: ""
+    fourth :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    first:
+      - 
+        text: "Overview of MATLAB"
+        link: "notes/01_overview.html"
+        class: ""
+      - 
+        text: "Scalars, operators, and precedence"
+        link: "notes/02_types.html"
+        class: ""
+    second:
+      - 
+        text: "scalars.m"
+        link: "programs/scalars.m"
+        class: ""
+    third:
+      - 
+        text: "Gilat Ch. 1"
+        link: ""
+        class: ""
+    fourth:
+      - 
+        text: "Homework #1 Assigned"
+        link: "homeworks/hw01/intro.html"
+        class: ""
+      - 
+        text: "GitLab Submission Tutorial"
+        link: "https://slu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=39633a47-214c-4e10-af38-ad95011b0d81"
+        class: ""
+
+### New Day ###
+  - 
+    first:
+      - 
+        text: "Vectors in MATLAB"
+        link: "notes/02_types.html#vector"
+        class: ""
+    second: 
+      - 
+        text: "vectors.m"
+        link: "programs/vectors.m"
+        class: ""
+    third: 
+      - 
+        text: "Gilat Ch. 2"
+        link: ""
+        class: ""
+    fourth:
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    first:
+      - 
+        text: "Two-Dimensional Arrays in MATLAB"
+        link: "notes/02_types.html#array"
+        class: ""
+    second: 
+      - 
+        text: "matrices.m"
+        link: "programs/matrices.m"
+        class: ""
+    third: 
+      - 
+        text: ""
+        link: ""
+        class: ""
+    fourth:
+      - 
+        text: "Homework #1 Due"
+        link: ""
+        class: "due"
+
+### New Day ###
+  - 
+    first:
+      - 
+        text: "Vectorized Operations"
+        link: "notes/03_vector_ops/03_vector_ops.html"
+        class: ""
+    second: 
+      - 
+        text: ""
+        link: ""
+        class: ""
+    third: 
+      - 
+        text: "Gilat Ch. 3.1 - 3.6"
+        link: ""
+        class: ""
+    fourth:
+      - 
+        text: "Homework #2 Assigned"
+        link: "homeworks/hw02/vops.html"
+        class: ""
+
+### New Day ###
+  -
+    first:
+      -
+        text: "Plotting Data"
+        link: "notes/04_plots/04_plots.html"
+        class: ""
+    second: 
+      -
+        text: "plotting.m"
+        link: "programs/plotting.m"
+        class: ""
+    third:
+      -
+        text: "Gilat Ch. 5.1 - 5.4"
+        link: ""
+        class: ""
+    fourth:
+      -
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  -
+    first:
+      -
+        text: "Rolling Pairs of Dice"
+        link: "notes/05_dicepair/05_dicepair.html"
+        class: ""
+    second: 
+      -
+        text: "dicepair.m"
+        link: "programs/dicepair.m"
+        class: ""
+    third:
+      -
+        text: "Gilat Ch. 5.8"
+        link: ""
+        class: ""
+    fourth:
+      -
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  -
+    first:
+      -
+        text: "Control Structures"
+        link: "notes/06_control.html"
+        class: ""
+    second: 
+      -
+        text: "controlflow.m"
+        link: "programs/controlflow.m"
+        class: ""
+    third:
+      -
+        text: "Gilat Ch. 6.1 - 6.6"
+        link: ""
+        class: ""
+    fourth:
+      -
+        text: "Homework #2 Due"
+        link: ""
+        class: "due"
+
+### New Day ###
+  -
+    first:
+      -
+        text: "Animation Case Study"
+        link: ""
+        class: ""
+      -
+        text: "The Motion of a Ball"
+        link: "notes/07_ball/07_ball.html"
+        class: ""
+    second: 
+      -
+        text: "animateThrow.m"
+        link: "programs/animate_throw.m"
+        class: ""
+    third:
+      -
+        text: ""
+        link: ""
+        class: ""
+    fourth:
+      -
+        text: "Homework #3 Assigned"
+        link: "homeworks/hw03/hw03.html"
+        class: ""
+
+### New Day ###
+  -
+    first:
+      -
+        text: "Discrete Simulation Case Study"
+        link: ""
+        class: ""
+      -
+        text: "Approximate Motion of a Ball"
+        link: "notes/08_motion/08_motion.html"
+        class: ""
+    second: 
+      -
+        text: "ball_physics.m"
+        link: "programs/ball_physics.m"
+        class: ""
+    third:
+      -
+        text: ""
+        link: ""
+        class: ""
+    fourth:
+      -
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    first:  
+      - 
+        text: ""
+        link: ""
+        class: ""
+      - 
+        text: ""
+        link: ""
+        class: ""
+    second: 
+      - 
+        text: ""
+        link: ""
+        class: ""
+    third: 
+      - 
+        text: ""
+        link: ""
+        class: ""
+    fourth:
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+
+
+### New Day ###
+  -
+    first:
+      -
+        text: "Control Structures:"
+        link: ""
+        class: ""
+      -
+        text: "Stock Market Analysis"
+        link: "notes/09_stocks/09_stocks.html"
+        class: ""
+    second: 
+      -
+        text: "stocks.m"
+        link: "programs/stocks.m"
+        class: ""
+    third:
+      -
+        text: ""
+        link: ""
+        class: ""
+    fourth:
+      -
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    first:  
+      - 
+        text: ""
+        link: ""
+        class: ""
+      - 
+        text: ""
+        link: ""
+        class: ""
+    second: 
+      - 
+        text: ""
+        link: ""
+        class: ""
+    third: 
+      - 
+        text: ""
+        link: ""
+        class: ""
+    fourth:
+      - 
+        text: ""
+        link: ""
+        class: ""
+          
+### New Day ###
+  -
+    first:
+      -
+        text: "Basic Input and Output Commands"
+        link: "notes/10_inout.html"
+        class: ""
+    second: 
+      -
+        text: "input_output.m"
+        link: "programs/input_output.m"
+        class: ""
+    third:
+      -
+        text: "Gilat Ch. 4"
+        link: ""
+        class: ""
+    fourth:
+      -
+        text: "Homework #3 Due"
+        link: ""
+        class: "due"
+
+### New Day ###
+  -
+    first:
+      -
+        text: "More Stock Market Analysis"
+        link: "notes/09_stocks/09_stocks.html"
+        class: ""
+    second: 
+      -
+        text: "monthly_gain.m"
+        link: "programs/monthly_gain.m"
+        class: ""
+      -
+        text: "daily_downturn.m"
+        link: "programs/daily_downturn.m"
+        class: ""
+    third:
+      -
+        text: ""
+        link: ""
+        class: ""
+    fourth:
+      -
+        text: "Homework #4 Assigned"
+        link: "homeworks/hw04/hw04.html"
+        class: ""
+
+### New Day ###
+  -
+    first:
+      -
+        text: "Functions"
+        link: "notes/11_functions.html"
+        class: ""
+    second: 
+      -
+        text: "peaks.m"
+        link: "programs/peaks.m"
+        class: ""
+    third:
+      -
+        text: "Gilat Ch. 7"
+        link: ""
+        class: ""
+    fourth:
+      -
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  -
+    first:
+      -
+        text: "Case Study:"
+        link: ""
+        class: ""
+      -
+        text: "Record Rainfall"
+        link: "notes/12_rainfall.html"
+        class: ""
+    second: 
+      -
+        text: ""
+        link: ""
+        class: ""
+    third:
+      -
+        text: ""
+        link: ""
+        class: ""
+    fourth:
+      -
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  -
+    first:
+      -
+        text: "HW4 Discussion"
+        link: ""
+        class: ""
+    second: 
+      -
+        text: ""
+        link: ""
+        class: ""
+    third:
+      -
+        text: ""
+        link: ""
+        class: ""
+    fourth:
+      -
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  -
+    first:
+#      -
+#        text: "Use of subfunctions"
+#        link: ""
+#       class: ""
+#      -
+#        text: "Case Study: Stock Market Analysis Solution Set"
+#        link: "notes/13_stockhw/13_stockanalysis.html"
+#        class: ""
+      -
+        text: "Exam Review"
+        link: ""
+        class: ""
+    second: 
+      -
+        text: ""
+        link: ""
+        class: ""
+    third:
+      -
+        text: ""
+        link: ""
+        class: ""
+    fourth:
+      -
+        text: "Homework #4 Due"
+        link: ""
+        class: "due"
+
+### New Day ###
+  -
+    first:
+      -
+        text: "<b>First Exam</b>"
+        link: ""
+        class: "due"
+    second: 
+      -
+        text: ""
+        link: ""
+        class: ""
+    third:
+      -
+        text: ""
+        link: ""
+        class: ""
+    fourth:
+      -
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  -
+    first:
+      -
+        text: "Case Study: Random Processes"
+        link: ""
+        class: ""
+      -
+        text: "The Gambler"
+        link: "notes/14_gambler/gambler.html"
+        class: ""
+    second: 
+      -
+        text: "gambler.m"
+        link: "programs/gambler.m"
+        class: ""
+      -
+        text: "gambler_analysis.m"
+        link: "programs/gambler_analysis.m"
+        class: ""
+    third:
+      -
+        text: ""
+        link: ""
+        class: ""
+    fourth:
+      -
+        text: "Homework #5 Assigned"
+        link: "homeworks/hw05/functions.html"
+        class: ""
+
+### New Day ###
+  -
+    first:
+      -
+        text: "The gambler simulation and random walks"
+        link: ""
+        class: ""
+      -
+        text: "Additional Notes"
+        link: "notes/14_gambler/gambler2.html"
+        class: ""
+      -
+        text: "(Zoom Recording)"
+        link: "https://slu.zoom.us/rec/share/qOPrTihi95gjyZbd9pbquaBpZsiWkBnhpVW83HBPrwh7xgKoRrn02I5LfAbTfaK8.KL6PyyWN0jDGiJQr"
+        class: ""
+    second: 
+      -
+        text: ""
+        link: ""
+        class: ""
+    third:
+      -
+        text: ""
+        link: ""
+        class: ""
+    fourth:
+      -
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  -
+    first:
+      -
+        text: "Iterative Solvers"
+        link: "notes/15_iterative/15_iterative.html"
+        class: ""
+    second: 
+      -
+        text: "randSqrt.m"
+        link: "programs/randSqrt.m"
+        class: ""
+      -
+        text: "directedRandSqrt.m"
+        link: "programs/directedRandSqrt.m"
+        class: ""
+      -
+        text: "newtonSqrt.m"
+        link: "programs/newtonSqrt.m"
+        class: ""
+    third:
+      -
+        text: ""
+        link: ""
+        class: ""
+    fourth:
+      -
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  -
+    first:
+      -
+        text: "Random Solver"
+        link: ""
+        class: ""
+    second: 
+      -
+        text: ""
+        link: ""
+        class: ""
+    third:
+      -
+        text: ""
+        link: ""
+        class: ""
+    fourth:
+      -
+        text: "Assignment #5 Due"
+        link: ""
+        class: "due"
+
+### New Day ###
+  -
+    first:
+      -
+        text: "HW #6 Discussion"
+        link: ""
+        class: ""
+    second: 
+      -
+        text: ""
+        link: ""
+        class: ""
+    third:
+      -
+        text: ""
+        link: ""
+        class: ""
+    fourth:
+      -
+        text: "Homework #6 Assigned"
+        link: "homeworks/hw06/06_fire.html"
+        class: ""
+
+### New Day ###
+  -
+    first:
+      -
+        text: "File I/O"
+        link: "notes/16_fileio.html"
+        class: ""
+    second: 
+      -
+        text: "fileio.m"
+        link: "programs/fileio.m"
+        class: ""
+    third:
+      -
+        text: "Gilat Ch. 4.3-4.4"
+        link: ""
+        class: ""
+    fourth:
+      -
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  -
+    first:
+      -
+        text: "Case Study: DNA to RNA Transcription"
+        link: "notes/DNA_transcribe.html"
+        class: ""
+    second: 
+      -
+        text: "DNA_transcribe.m"
+        link: "programs/dnaTranscribe.m"
+        class: ""
+    third:
+      -
+        text: ""
+        link: ""
+        class: ""
+    fourth:
+      -
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  -
+    first:
+      -
+        text: "Case Study: Caesar Cipher"
+        link: "notes/encryption.html"
+        class: ""
+    second: 
+      -
+        text: "ceasar_cipher.m"
+        link: "programs/ceasarCipher.m"
+        class: ""
+    third:
+      -
+        text: ""
+        link: ""
+        class: ""
+    fourth:
+      -
+        text: "Homework #6 Due"
+        link: ""
+        class: "due"
+
+### New Day ###
+  -
+    first:
+      -
+        text: "Case Study: Random Shift Stream Cipher"
+        link: "notes/encryption.html"
+        class: ""
+    second: 
+      -
+        text: "encrypt.m"
+        link: "programs/encrypt.m"
+        class: ""
+    third:
+      -
+        text: ""
+        link: ""
+        class: ""
+    fourth:
+      -
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  -
+    first:
+      -
+        text: "Exam Review"
+        link: ""
+        class: ""
+    second: 
+      -
+        text: "argDemo.m"
+        link: "notes/exam_review/argDemo.m"
+        class: ""
+      -
+        text: "myAverage.m"
+        link: "notes/exam_review/myAverage.m"
+        class: ""
+      -
+        text: "convertASCII.m"
+        link: "notes/exam_review/convertASCII.m"
+        class: ""
+      -
+        text: "approxPi.m"
+        link: "notes/exam_review/approxPi.m"
+        class: ""
+      -
+        text: "addLineNumbers.m"
+        link: "notes/exam_review/addLineNumbers.m"
+        class: ""
+    third:
+      -
+        text: ""
+        link: ""
+        class: ""
+    fourth:
+      -
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  -
+    first:
+      -
+        text: "<b>Second Exam</b>"
+        link: ""
+        class: "due"
+    second: 
+      -
+        text: ""
+        link: ""
+        class: ""
+    third:
+      -
+        text: ""
+        link: ""
+        class: ""
+    fourth:
+      -
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  -
+    first:
+      -
+        text: "Cell Arrays, Structures"
+        link: "notes/165_cells_structures.html"
+        class: ""
+    second: 
+      -
+        text: "cells.m"
+        link: "programs/cells.m"
+        class: ""
+      -
+        text: "structures.m"
+        link: "programs/structures.m"
+        class: ""
+    third:
+      -
+        text: "MATLAB docs:"
+        link: ""
+        class: ""
+      -
+        text: "Cell Arrays"
+        link: "https://www.mathworks.com/help/matlab/cell-arrays.html"
+        class: ""
+      -
+        text: "Structures"
+        link: "https://www.mathworks.com/help/matlab/structures.html"
+        class: ""
+    fourth:
+      -
+        text: "Project Proposal Assigned"
+        link: "homeworks/hw07/proposal.html"
+        class: ""
+
+### New Day ###
+  -
+    first:
+      -
+        text: "Sound processing in MATLAB"
+        link: "notes/17_audio/17_audio.html"
+        class: ""
+    second: 
+      -
+        text: ""
+        link: ""
+        class: ""
+    third:
+      -
+        text: ""
+        link: ""
+        class: ""
+    fourth:
+      -
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  -
+    first:
+      -
+        text: "Sound processing in MATLAB"
+        link: "notes/17_audio/17_audio.html"
+        class: ""
+    second: 
+      -
+        text: ""
+        link: ""
+        class: ""
+    third:
+      -
+        text: ""
+        link: ""
+        class: ""
+    fourth:
+      -
+        text: "Project Proposal Due"
+        link: ""
+        class: "due"
+### New Day ###
+  -
+    first:
+      -
+        text: "Sound processing in MATLAB"
+        link: "notes/17_audio/17_audio.html"
+        class: ""
+    second: 
+      -
+        text: ""
+        link: ""
+        class: ""
+    third:
+      -
+        text: ""
+        link: ""
+        class: ""
+    fourth:
+      -
+        text: "Homework #8 Assigned"
+        link: "homeworks/hw08/hw08.html"
+        class: ""
+
+### New Day ###
+  -
+    first:
+      -
+        text: "Sound processing in MATLAB"
+        link: "notes/17_audio/17_audio.html"
+        class: ""
+    second: 
+      -
+        text: ""
+        link: ""
+        class: ""
+    third:
+      -
+        text: ""
+        link: ""
+        class: ""
+    fourth:
+      -
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  -
+    first:
+      -
+        text: "Traversing Mazes"
+        link: "notes/18_maze/index.html"
+        class: ""
+    second: 
+      -
+        text: ""
+        link: ""
+        class: ""
+    third:
+      -
+        text: ""
+        link: ""
+        class: ""
+    fourth:
+      -
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  -
+    first:
+      -
+        text: "Traversing Mazes"
+        link: "notes/18_maze/index.html"
+        class: ""
+    second: 
+      -
+        text: ""
+        link: ""
+        class: ""
+    third:
+      -
+        text: ""
+        link: ""
+        class: ""
+    fourth:
+      -
+        text: "Homework #8 Due"
+        link: ""
+        class: "due"
+### New Day ###
+  -
+    first:
+      -
+        text: "Image Data"
+        link: "notes/19_image/19_image.html"
+        class: ""
+    second: 
+      -
+        text: "image_processing.m"
+        link: "programs/image_processing.m"
+        class: ""
+    third:
+      -
+        text: ""
+        link: ""
+        class: ""
+    fourth:
+      -
+        text: "Homework #9 Assigned"
+        link: ""
+        class: ""
+
+### New Day ###
+  -
+    first:
+      -
+        text: "Digital Watermarking"
+        link: "notes/20_watermark/index.html"
+        class: ""
+    second: 
+      -
+        text: "digital_watermarking.m"
+        link: "programs/digital_watermarking.m"
+        class: ""
+    third:
+      -
+        text: ""
+        link: ""
+        class: ""
+    fourth:
+      -
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  -
+    first:
+      -
+        text: "Finding components of an image"
+        link: "notes/21_image_comp/21_image_comp.html"
+        class: ""
+    second: 
+      -
+        text: ""
+        link: ""
+        class: ""
+    third:
+      -
+        text: ""
+        link: ""
+        class: ""
+    fourth:
+      -
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  -
+    first:
+      -
+        text: "An Introduction to C++ Programming"
+        link: "notes/22_cpp/22_cpp.html"
+        class: ""
+    second: 
+      -
+        text: ""
+        link: ""
+        class: ""
+    third:
+      -
+        text: ""
+        link: ""
+        class: ""
+    fourth:
+      -
+        text: "Homework #9 Due"
+        link: ""
+        class: "due"
+
+### New Day ###
+  -
+    first:
+      -
+        text: "Project Presentations"
+        link: ""
+        class: "due"
+    second: 
+      -
+        text: "Presentation and Project Submission Guidelines"
+        link: "homeworks/hw10/final_project.html"
+        class: ""
+    third:
+      -
+        text: ""
+        link: ""
+        class: ""
+    fourth:
+      -
+        text: ""
+        link: ""
+        class: ""

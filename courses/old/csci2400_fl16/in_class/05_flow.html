@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSCI 2400 - Computer Architecture</title></head>
+
+<h2 style="text-align: center;">CSCI 2400: Assembly Class 5<br></h2>
+<h2 style="text-align: center;">Conditionals and Flow Control</h2>
+
+<hr style="width: 100%; height: 2px;">
+
+<p>Any but the most trivial programs require flow control to control <i>how</i>
+code executes. In assembly this is accomplished through the use of
+<i>conditional jumps</i> that select code to execute based on the status of the
+processor flags from the previous class.
+</p>
+
+<p>In today's class you will:</p>
+
+<ol>
+<li>Use conditional test instructions such as <code>cmpl</code> and <code>testl</code>
+<li>Use conditional branches such as <code>je</code>, <code>jne</code>, and more
+<li>Write a function that compares two integers with an if/then/else flow.
+<li>Write a loop that prints the numbers 1 to 100.
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Exercises</h3></p>
+
+<ol>
+<p><li>Login to hopper.slu.edu- remember you can login with:
+
+<p><code>ssh username@hopper.slu.edu</code></p>
+
+<p><li>Now, download a new program for today's class:</p>
+
+<p><code>wget http://cs.slu.edu/~dferry/courses/csci2400/asm/flow.s</code></p>
+
+<p>In order to create conditionally executed code, we first have to understand
+how program execution can be modified. Assembly programming doesn't have high-level
+constructs like if-else statements or for loops. The only tool available to modify
+the way a program executes is <i>jumps</i>, which would be considered <i>goto</i>
+statements in higher level languages.</p>
+
+<p>To use a jump, you need to define a jump target (or label). For example,
+consider the following simple program:</p>
+
+<p><pre>
+main:
+	pushl	%ebp
+	movl	%esp, 	%ebp
+
+	movl	$0,	%eax
+target:
+	call 	print_eax
+	incl	%eax
+	jmp target
+
+	leave
+	ret
+</pre></p>
+
+<p>This program starts executing at the start of main, and continues executing
+through the <code>target:</code> statement. That <code>target:</code> statement
+does not affect execution at all- it simply gives us a way to refer to that specific
+section of code. Thus, the program skips directly from executing the <code>movl</code>
+instruction to executing the <code>call</code> instruction. However, when the program
+later gets to the <code>jmp</code> instruction, the program then jumps back up to the
+<code>target:</code> line and begins executing again from there.</p>
+
+<p><li>How many times does the jump instruction execute in this program?</p>
+
+<p><li>What is the output of this program?</p>
+		
+<p><li>Make your own infinite loop program using the code above and run it. You
+can kill the program in Linux using the key combination CTRL+C</p>
+
+<p><li>Our first conditional instruction is the compare instruction:
+
+<p><code>cmpl b, a</code></p>
+
+<p>This is a useful all-purpose instruction for comparing two
+signed or unsigned integers. Under the hood, this instruction computes the
+result of a - b without storing the result. Then, If a == b then ZF is set to 1.   
+If a &lt; b then SF is set to 1, and if b &lt; a then SF is set to 0.</p>
+
+<p>Write a short bit of code to test all three situtations where operand A is
+less than, equal to, or greater than operand B. Use the <code>print_all</code>
+function to confirm your results.</p>
+
+<p><li>Putting the previous exercises together, we can execute <i>conditional jumps</i>
+based on the state of the processor's flags. These jumps are designed to work with
+the comparison instructions. For example, the instruction <code>je</code>
+is a <i>jump if equal</i> instruction. In the following code the program will
+jump to <code>label_1</code> if the contents of EAX and EBX are equal.</p>
+
+<p><pre>
+cmpl	%eax,	%ebx
+je	label_1
+js	label_2
+
+#execute section 3
+jmp next
+
+label_1:
+#execute section 1
+jmp next
+
+label_2:
+#execute section 2
+
+next:
+#continue executing
+
+</pre></p>
+
+<p>What C-style construct does the above code correspond to? Write a bit of
+pseudocode giving the high-level behavior of this program. Ask the instructor
+if you're unsure about the operation.</p>
+
+<p><li>At the top of the program is a mostly empty function called
+<code>compare</code>. Finish writing this function so that, when called,
+it prints the message:</p>
+
+<p><code>Testing A=%d and B=%d</code></p>
+
+<p>Followed by one of the messages:</p>
+
+<p><code>A is greater than B<br>
+B is greater than A<br>
+the arguments are equal</code></p>
+
+<p>as is appropriate.</p>
+
+<p><li>Test your function by calling it multiple times such that it generates
+at least one of each result message.</p>
+
+<p><li>The <code>testl b, a</code> instruction is also used to compare values. This
+instruction computes the bitwise-AND of operand A and operand B. If this value is
+zero then it sets ZF to one, and otherwise ZF to zero. You can then use the
+<code>jz</code> (jump if zero) and <code>jnz</code> (jump if not zero) instructions
+to control your program.</p>
+
+<p>One special use of <code>testl</code> is as a loop index. The instruction</p>
+
+<p><code>testl	%eax, 	%eax</code></p>
+
+<p>will set the zero flag only if the register %eax is zero. Use the <code>testl</code>,
+<code>decl</code>, and <code>jz</code> instructions to create a loop that prints the values from 100 to
+1 in order from highest to lowest. Feel free to use a function such as <code>print_eax</code>
+to accomplish this.
+
+
+<p><li>Email your program to the instructor when you are done.
+Include your answers to each question in your email
+or in a text file and include them with your submission. These will count for
+credit as a homework assignment.</p>
+
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>

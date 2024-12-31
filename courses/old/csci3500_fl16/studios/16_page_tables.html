@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSCI 3500 - Operating Systems</title></head>
+
+<h2 style="text-align: center;">CSCI 3500: Studio 16<br></h2>
+<h2 style="text-align: center;">Page Tables</h2>
+
+<hr style="width: 100%; height: 2px;">
+
+<p>Page tables are used to implement paged memory systems by translating
+between virtual addresses and physical addresses. These tables must be
+managed by the operating system on a per-process basis, as all processes
+contain some number of pages that may be loaded into available page
+frames (physical memory).</p>
+
+<p>In this studio, you will:</p>
+
+<ol>
+<li>Compute page table properties
+<li>Translate between virtual addresses and physical addresses
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>
+<p>
+Please complete the required exercises below, as well as any optional
+enrichment exercises that you wish to complete.</p> 
+
+<p>
+As you work through these exercises, please record your answers in a text
+file. When finished, submit your work by sending your text file and
+source code to <strong>dferry@slu.edu</strong>
+with the phrase <strong>
+Page Tables
+</strong> in the subject line.</p>
+
+<p><strong> Make sure that the name of each person who worked on these exercises
+is listed in the first answer, and make sure you number each of your responses
+so it is easy to match your responses with each exercise.</strong></p>
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Required Exercises</h3></p>
+
+<ol>
+<p><li>As the answer to the first exercise, list the names of the people who
+worked together on this studio.</p>
+
+<p><li>Suppose you're working on a system with 1GB (2^30 = 1,073,741,824 bytes) of RAM 
+and a page size of 4Kb (2^12 = 4,096 bytes). How many page frames are available
+to the system?</p>
+
+<p><li>Suppose that same system uses 32-bit virtual addresses, so each process can
+access up to 2^32 bytes of memory. How many pages of 
+memory could each process potentially use? </p>
+
+<p><li>The answer to the last exercise should be larger than the answer to the first
+exercise. What happens if a process (or collection of processes) generate more
+pages than there are available page frames in memory? Does the system crash?</p>
+
+<p><li>On that same system, what is the theoretical maximum number of entries for the page table
+of a single process? (Hint- it's the answer to one of the first two exercises.)</p>
+
+<p><li>What is the maximum size of that page table, assuming that each entry is 32 bits?</p>
+
+<p><li>In the same system, given the number of possible pages in a process, how many bits of a 32-bit
+virtual address are required to specify the page number? 
+
+<p><li>In the same system, which bits of a 32 bit virtual address are used to specify the 
+page number? Which bits are the offset?</p>
+
+<p><li>In the same system, how many bits will a physical address contain after
+translation? (Hint- consider the size of the physical memory)
+
+<p><li>Considering how many page frames are in this system, how many bits of
+a physical address are needed to indicate the page frame?</p>
+
+<p><li>Which bits of the physicial address indicate the page frame? Which bits
+indicate the offset?</p>
+
+<p><b>For the remaining questions, consider the following page table which
+does not reflect the previous exercises. Suppose a page size of 1024 bytes:
+</b></p>
+
+<table border="2">
+	<tr>
+		<th>Page<br>(in binary)</th>
+		<th>Page Frame<br>(in binary)</th>
+		<th>Valid</th>
+		<th>Modified</th>
+		<th>Permissions</th>
+	</tr>
+	<tr>
+		<td>0000</td>
+		<td>10011</td>
+		<td>1</td>
+		<td>1</td>
+		<td>r</td>
+	</tr>
+	<tr>
+		<td>0001</td>
+		<td>10100</td>
+		<td>1</td>
+		<td>1</td>
+		<td>rw</td>
+	</tr>
+	<tr>
+		<td>0010</td>
+		<td>00101</td>
+		<td>1</td>
+		<td>0</td>
+		<td>rx</td>
+	</tr>
+	<tr>
+		<td>0011</td>
+		<td>10111</td>
+		<td>1</td>
+		<td>1</td>
+		<td>rw</td>
+	</tr>
+	<tr>
+		<td>0100</td>
+		<td>00000</td>
+		<td>0</td>
+		<td>0</td>
+		<td>rw</td>
+	</tr>
+	<tr>
+		<td>0101</td>
+		<td>00110</td>
+		<td>1</td>
+		<td>0</td>
+		<td>rx</td>
+	</tr>
+</table>
+
+<p><li>Which page(s) do you think contain read-only program data?</p>
+<p><li>Which page(s) do you think contain executable program code?</p>
+<p><li>There are 2^10 bytes in each page. How many bits are in each virtual
+and physical address?</p>
+<p><li>What physical address does the virtual address <code>00110001111000</code> translate to?</p>
+<p><li>What virtual address does the physical address <code>001101110000111</code> correspond to?</p>
+
+</ol>
+
+<p><h3>Optional Enrichment Exercises</h3></p>
+<ol>
+<li>No optional exercises
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>

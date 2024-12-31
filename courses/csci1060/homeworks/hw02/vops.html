@@ -1,0 +1,329 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+  <HEAD>
+    <TITLE>Assignment 02 - CSCI1060
+</TITLE></HEAD>
+
+  <BODY>
+
+
+<HR>
+<center>
+<h2>Computer Science 1060<br>
+Scientific Programming<br>
+Assignment 02 - Vectorized Operations</h2>
+</center>
+
+
+<h3>Contents:</h3>
+<UL>
+  <LI>
+      <a href="#overview">Overview</a>
+  </LI>
+  <LI>
+      <a href="#submit">Problems to be Submitted</a>
+  </LI>
+  <LI>
+      <a href="#extra">Extra Credit</a>
+  </LI>
+</UL>
+
+<hr>
+
+<a name="overview"><h3>Overview</h3></a>
+
+<P>
+<b>Topic:</b>  Vectorized Operations
+<br>
+<b>Related Reading:</b>  Ch.&nbsp;3 as well as <a
+href="../../notes/02_types.html#vector">coverage of vectors from
+lecture</a> as well as the <a href="../../notes/03_vector_ops/03_vector_ops.html">practice problems</a> that we
+did in class.
+
+</P>
+
+
+<P>
+Please turn in your work via Github.
+For this assignment, you should be submitting four separate files:
+<TT>approxPi.m</TT>, <TT>limits.m</TT>, <TT>baseball.m</TT>,
+<TT>floatingError.m</TT>. These four empty files already exist as 
+an outline in your Github repository. <br>
+
+
+<!--<b>Submit your m-files via email to <a href="mailto:dferry_submit@slu.edu">dferry_submit@slu.edu</a>.</b>-->
+<!--<b><a href="https://docs.google.com/forms/d/e/1FAIpQLSeOAhL3J7EIuxDZ4nhQaRx5XUTKkV0XItXBe0YxmBpa9OG1BA/viewform?usp=sf_link">Submit your m-files via web form here.</a></b>
+-->
+
+</p>
+
+
+<hr>
+
+<a name="submit"><h3>Problems to be Submitted (20 points)</h3></a>
+
+
+<P>
+
+<DL COMPACT>
+<DT>Problem A)
+<DD><P>
+The value of <IMG
+ WIDTH="16" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$\pi$"> can be estimated by evaluating a partial sum of the form
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\pi = 4 \left(\frac{1}{1} - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \ldots\right)
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="237" HEIGHT="46" BORDER="0"
+ SRC="img2.png"
+ ALT="\begin{displaymath}\pi = 4 \left(\frac{1}{1} - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \ldots\right)\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+Write a script named <B><TT>approxPi.m</TT></B> which computes the first
+million terms of this series.  Then use <TT>cumsum</TT> to compute the
+partial sums (as was done in the sample solutions from lecture).
+As a final result, calculate the approximate values of <TT>pi</TT> for
+<!-- MATH
+ $N = 10, 100, 1000, 10000, 100000, 1000000$
+ -->
+<IMG
+ WIDTH="341" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img3.png"
+ ALT="$N = 10, 100, 1000, 10000, 100000, 1000000$">
+number of terms in the partial sum. Store the results in a vector called
+<code>approximation</code>.
+
+<P>
+<DT>Problem B)
+<DD>Through calculus, it is possible to show that
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\lim_{x \rightarrow 0} \frac{e^x -1}{x} = 1.
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="123" HEIGHT="45" BORDER="0"
+ SRC="img4.png"
+ ALT="\begin{displaymath}\lim_{x \rightarrow 0} \frac{e^x -1}{x} = 1.\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+For this problem, we want you to gather empirical evidence for that
+limit by evaluating the expression for progressively smaller values.
+Specifically, write a script named <B><TT>limits.m</TT></B> that creates a
+vector called <TT>limit</TT> by evaluating the 
+expression for values of <IMG
+ WIDTH="15" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img5.png"
+ ALT="$x$"> in the series
+<!-- MATH
+ $1, \frac{1}{2}, \frac{1}{4}, \ldots, \frac{1}{2^{25}}$
+ -->
+<IMG
+ WIDTH="117" HEIGHT="39" ALIGN="MIDDLE" BORDER="0"
+ SRC="img6.png"
+ ALT="$1, \frac{1}{2}, \frac{1}{4}, \ldots, \frac{1}{2^{25}}$">.
+Display your results by executing the following commands:
+<PRE>
+format long;
+disp(limit');
+</PRE>
+</P>
+
+<P>
+<DT>Problem C)
+</p>
+<DD><P>
+For this problem, we consider the motion of a ball under the force of
+gravity (we will ignore other factors such as air resistance).  Let <IMG
+ WIDTH="63" HEIGHT="33" ALIGN="MIDDLE" BORDER="0"
+ SRC="img7.png"
+ ALT="$g
+= 9.8$"> be the acceleration due to gravity, measured in <IMG
+ WIDTH="47" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$m/s^2$">.  If a
+ball is thrown vertically with an initial velocity of <IMG
+ WIDTH="21" HEIGHT="33" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$v_0$">, measured
+in meters/second), it will remain in the air for <!-- MATH
+ $\frac{2v_0}{g}$
+ -->
+<IMG
+ WIDTH="29" HEIGHT="39" ALIGN="MIDDLE" BORDER="0"
+ SRC="img10.png"
+ ALT="$\frac{2v_0}{g}$">
+seconds.  Its height at time <IMG
+ WIDTH="12" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img11.png"
+ ALT="$t$"> measured in meters will be <BR></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+h_t =
+v_0 \cdot t - \frac{g \cdot t^2}{2}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="141" HEIGHT="48" BORDER="0"
+ SRC="img12.png"
+ ALT="\begin{displaymath}h_t =
+v_0 \cdot t - \frac{g \cdot t^2}{2}\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+Write a script <B><TT>baseball.m</TT></B> that creates a vector named <TT>time</TT> with 25 evenly spaced values from <IMG
+ WIDTH="14" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img13.png"
+ ALT="$0$"> to <!-- MATH
+ $\frac{2v_0}{g}$
+ -->
+<IMG
+ WIDTH="29" HEIGHT="39" ALIGN="MIDDLE" BORDER="0"
+ SRC="img10.png"
+ ALT="$\frac{2v_0}{g}$">.  Then
+compute another vector named <TT>height</TT> that tracks the
+corresponding height for each time, using the above formula.</P>
+
+<P>
+Test
+your program using an initial velocity of 43.81 meters/second (the
+equivalent of a 98 m.p.h. fastball).
+To produce a two-column display of your results, use the command
+<TT>disp( [time', height'] );</TT></P>
+
+<P>
+Lastly, use the <TT>max</TT> function to find the maximum
+value of your <TT>height</TT> vector, and store this in a variable called <TT>maxHeight</TT>
+</p>
+
+<P>
+<DT>Problem D)
+<DD><P>
+For any non-zero real number, we have the identity that <!-- MATH
+ $x \cdot \frac{1}{x}
+= 1$
+ -->
+<IMG
+ WIDTH="75" HEIGHT="39" ALIGN="MIDDLE" BORDER="0"
+ SRC="img14.png"
+ ALT="$ x \cdot \frac{1}{x}
+= 1$">.  However, computers do not perform arithmetic with
+arbitrary precision. Instead, they use a convention known as <EM>  floating-point</EM> representation for storing and manipulating numbers
+with fixed precision.  We can find evidence of this by trying to
+verify the above mathematical identity.  If you perform the test
+<TT>3 * (1 / 3) == 1</TT>, you will likely see that the equivalence is
+true (with the logical true value displayed as ``1'' in matlab).  Yet
+if you perform the similar test <TT>49 * (1 / 49) == 1</TT>, the
+condition is false (with the logical false value displayed as ``0'' in
+matlab).
+
+<P>
+Write a script named <B><TT>floatingError.m</TT></B> that performs the following
+experiment. Determine what percentage of the first 100000 integers
+successfully satisfy the identity <!-- MATH
+ $x \cdot \frac{1}{x} = 1$
+ -->
+<IMG
+ WIDTH="75" HEIGHT="39" ALIGN="MIDDLE" BORDER="0"
+ SRC="img14.png"
+ ALT="$ x \cdot \frac{1}{x}
+= 1$"> when
+computed in MATLAB. Count how many integers satisfy the identity in a variable called
+<TT>numCorrect</TT>, and store the percentage of correct integers in a variable
+called <TT>correctRate</TT>.
+
+<P>
+</DD>
+</DL>
+
+
+<hr>
+
+<a name="extra"><h3>Extra Credit (2 points)</h3></a>
+
+<DL COMPACT>
+<DT>Problem E)
+<DD>Mathematicians have developed several expressions for computing the
+value of <IMG
+ WIDTH="16" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$\pi$"> based on infinite series.  We saw one in the first
+problem.  Here are two additional forms:
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\pi = \sqrt{\sum_{k=1}^{\infty} \frac{6}{k^2}}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="103" HEIGHT="65" BORDER="0"
+ SRC="img15.png"
+ ALT="\begin{displaymath}\pi = \sqrt{\sum_{k=1}^{\infty} \frac{6}{k^2}}\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\pi = \sqrt{8 + \sum_{k=1}^{\infty} \frac{16}{(2k-1)^2 \cdot (2k+1)^2}}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="280" HEIGHT="65" BORDER="0"
+ SRC="img16.png"
+ ALT="\begin{displaymath}\pi = \sqrt{8 + \sum_{k=1}^{\infty} \frac{16}{(2k-1)^2 \cdot (2k+1)^2}}\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+Write a script named <B><TT>extra.m</TT></B> which repeats the exercise from
+Problem&nbsp;A using each of the new approaches.  Compare the relative
+errors of the three approximations for varying values of <IMG
+ WIDTH="22" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img17.png"
+ ALT="$N$">.
+
+<P>
+</DD>
+</DL>
+
+<!--
+<p>
+<hr>
+Originally by:
+<ADDRESS>
+<a href="/~goldwasser">Michael Goldwasser</a>
+</ADDRESS>
+<br>
+-->
+
+<HR>
+
+  </body>
+</html>
+

@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+
+<HTML>
+<HEAD>
+<TITLE>Lecture Notes: Iterative Solvers
+</TITLE>
+</HEAD>
+
+<BODY>
+
+<HR>
+
+<H2>
+Iterative Solvers
+</H2>
+
+<p>
+Our previous programs for analyzing the gambler problem were based on
+what is called a "Monte Carlo" simulation.   To estimate quantities
+such as the probability of success, the expected number of bets made,
+and the percentage of time with each bankroll, we performed
+independent trials of the random experiment.  The more trials that we
+performed, the more we expect our observed statistics to approach the
+theoretical bounds.  But the problem with a Monte Carlo technique is
+that each trial takes time and we may need to do an inordinate number
+of trials in order to get a decent approximation.
+
+<p> We will explore a new algorithmic approach that can be used for
+computing values for the gambler problem more efficiently.  We develop
+an <em>iterative solver</em> that works by starting with an initial
+guess of the results, and then iteratively computing <em>successive
+approximations</em> based on our understanding of the model.
+In this case of the gambler's problem, 
+let the notation <em>win(goal, start, p)</em>
+represent the overall chance of success given the <em>goal</em>, the <em>start</em>
+bankroll, and the fixed probability&nbsp;<em>p</em>.   Given a fixed
+goal and p value, we want to compute the probability of success for
+each starting bankroll from 0 to goal.  We know the following about
+the theoretical value of this expression.
+
+<p>
+win(goal, start, p) = 
+<ul>
+  <li><b>0</b> (when start == 0)<br>
+      The gambler has no chance of winning.
+  </li>
+      <br>
+  <li><b>1</b> (when start == goal)<br>
+      The gambler succeeds without any bets.
+  </li>
+      <br>
+  <li><nobr><b>(1-p) * win(goal, start-1, p) + p * win(goal, start+1, p)</b></nobr> otherwise<br>
+      If the gambler were to lose the first bet (occurs with
+      probability 1-p), it is like he is
+      starting over with an initial bankroll of one less.  If he wins
+      the first bet (as happens with probability p), it is as if he
+      starts over with an initial bankroll of one more.
+  </li>
+</ul>
+
+<p>
+This formula provides enough information for us to compute the answers
+using an interative solver.   We make an initial guess (perhaps a
+linear function from 0 to 1).  Then we repeatedly compute a better
+guess based on applying the above formula relative to the previous
+guess.  Each iteration should improve our estimates, eventually
+converging near the theoretical values.  We will repeat this process
+until performing an iteration in which the new estimates vary from the
+old estimates by at most some desired error tolerance.
+
+
+<p>
+Before exploring code for the iterative solution to the gambler's
+problem, we will look at a simpler problem that can be solved with
+this approach:  calculating the square root of a number.  A common algorithm, known as
+<em>Newton's Method</em>, is based on computing successive
+approximations to the square root. To compute the square root of
+<em>n</em>, we make an initial guess (e.g.,
+1).  Once we have a guess, it is easy to test whether the guess is the
+correct square root.  If it were the square root, we'd have that
+<em>guess</em> and <em>n/guess</em> would be equal.  If they are not
+equal (or not within a specified error tolerance of equal), we can
+compute a new approximation which is the average of
+<em>guess</em> and <em>n/guess</em>.
+
+
+
+<!--<p>
+Our own implementation of the approach is given in
+<a href="mySqrt.m">mySqrt.m</a>.   We also developed a program,
+<a href="plotMySqrt.m">plotMySqrt.m</a>, that plots the series of guesses.
+-->
+
+<HR>
+Originally by
+<ADDRESS>
+<a href="/~goldwasser">Michael Goldwasser</a>
+</ADDRESS>
+<HR>
+
+</BODY>
+</HTML>
+

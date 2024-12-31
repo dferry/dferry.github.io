@@ -1,0 +1,30 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+	<title>Lecture 1 source code pointers</title>
+
+	<style>
+	.hang{
+		padding-left: 3em ;
+		text-indent: -3em ;
+	}
+	</style>
+
+</head>
+
+<body>
+
+<h3>A Brief Description of the Linux Source Tree</h3>
+
+<hr />
+
+<p>A few of the source code directories that will be important in this course. Take a look around!</p>
+
+<p class="hang"><b>kernel</b> - Core kernel subsystems. For example, the kernel scheduler code under <b>kernel/sched/</b>, or process fork code under <b>kernel/fork.c</b></p>
+<p class="hang"><b>arch</b> - Core <i>architecture dependent</i> code. For example, all x86 specific code is under <b>arch/x86/</b>. The Raspberry Pi 2 is an ARM processor, so for this course we're only interested in <b>arch/arm</b>. Underneath each specific architecture directory you'll find a directory structure that is very similar to the root linux source directory. For example, <b>arch/arm/kernel</b> contains ARM-architecture dependent support for core kernel subsystems. The directory <b>arch/arm/include</b> contains ARM-architecture dependent header files.</p>
+<p class="hang"><b>include</b> - Contains most kernel header files. Many significant kernel header files will be found under <b>include/linux</b>. These are different from the headers that Linux exports to userspace. Userspace header files are under <b>include/uapi/linux</b>, for example, sched.h in that directory contains the constant defines for each scheduling class supported by Linux (SCHED_NORMAL, SCHED_FIFO, etc.).</p>
+<p class="hang"><b>Documentation</b> - Lots of in-kernel documentation</p>
+
+</body>
+</html>

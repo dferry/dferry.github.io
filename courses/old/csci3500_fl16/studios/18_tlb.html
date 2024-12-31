@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSCI 3500 - Operating Systems</title></head>
+
+<h2 style="text-align: center;">CSCI 3500: Studio 18<br></h2>
+<h2 style="text-align: center;">Translation Lookaside Buffer (TLB)</h2>
+
+<hr style="width: 100%; height: 2px;">
+
+<p>The translation lookaside buffer (TLB) is a special hardware cache that
+speeds up accesses to a process' page table. Even though a process can
+theoretically access its full virtual memory space, most processes access
+much less. The princple of the TLB is that, ideally, most programs will
+only access a very small subset of their total space. If all pages can
+be kept in the TLB, then memory accesses will be very fast.
+
+<p>In this studio, you will:</p>
+
+<ol>
+<li>Analyze TLB function
+<li>Analyze TLB effect
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>
+<p>
+Please complete the required exercises below, as well as any optional
+enrichment exercises that you wish to complete.</p> 
+
+<p>
+As you work through these exercises, please record your answers in a text
+file. When finished, submit your work by sending your text file and
+source code to <strong>dferry@slu.edu</strong>
+with the phrase <strong>
+TLB
+</strong> in the subject line.</p>
+
+<p><strong> Make sure that the name of each person who worked on these exercises
+is listed in the first answer, and make sure you number each of your responses
+so it is easy to match your responses with each exercise.</strong></p>
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Required Exercises</h3></p>
+
+<ol>
+<p><li>As the answer to the first exercise, list the names of the people who
+worked together on this studio.</p>
+
+<p><b>For the following exercises, consider the following page table which.
+Suppose a page size of 1024 bytes:
+</b></p>
+
+<table border="2">
+	<tr>
+		<th>Page<br>(in binary)</th>
+		<th>Page Frame<br>(in binary)</th>
+		<th>Valid</th>
+		<th>Modified</th>
+		<th>Permissions</th>
+	</tr>
+	<tr>
+		<td>0000</td>
+		<td>10011</td>
+		<td>1</td>
+		<td>1</td>
+		<td>r</td>
+	</tr>
+	<tr>
+		<td>0001</td>
+		<td>10100</td>
+		<td>1</td>
+		<td>1</td>
+		<td>rw</td>
+	</tr>
+	<tr>
+		<td>0010</td>
+		<td>00101</td>
+		<td>1</td>
+		<td>0</td>
+		<td>rx</td>
+	</tr>
+	<tr>
+		<td>0011</td>
+		<td>10111</td>
+		<td>1</td>
+		<td>1</td>
+		<td>rw</td>
+	</tr>
+	<tr>
+		<td>0100</td>
+		<td>00000</td>
+		<td>0</td>
+		<td>0</td>
+		<td>rw</td>
+	</tr>
+	<tr>
+		<td>0101</td>
+		<td>00110</td>
+		<td>0</td>
+		<td>0</td>
+		<td>rx</td>
+	</tr>
+</table>
+
+<p><b>Furthermore, suppose this machine has a TLB with the following contents:</b></p>
+
+<table border="2">
+	<tr>
+		<th>Page<br>(in binary)</th>
+		<th>Page Frame<br>(in binary)</th>
+		<th>Referenced</th>
+		<th>Modified</th>
+		<th>Permissions</th>
+	</tr>
+	<tr>
+		<td>0001</td>
+		<td>10100</td>
+		<td>1</td>
+		<td>1</td>
+		<td>rw</td>
+	</tr>
+	<tr>
+		<td>0010</td>
+		<td>00101</td>
+		<td>1</td>
+		<td>0</td>
+		<td>rx</td>
+	</tr>
+	<tr>
+		<td>0101</td>
+		<td>00110</td>
+		<td>0</td>
+		<td>0</td>
+		<td>rx</td>
+	</tr>
+</table>
+
+<p><li>Does an access to the virtual address <code>00110011110011</code> cause
+a TLB hit?</p>
+
+<p><li>Does an access to the virtual address <code>00010011001110</code> cause
+a TLB hit?</p>
+
+<p><li>Like page frames in physical memory, the system has to have a policy for
+evicting entries in the TLB when it needs to make room for a new entry.
+Recall the <i>Not Recently Used (NRU)</i> page replacement policy, which is an
+approximxation of the <i>Least Recently Used (LRU)</i> policy. Under 
+NRU, pages are evicted in the order of class:</p>
+
+<p>Class 0 - not referenced, not modified<br>
+Class 1 - not referenced, modified<br>
+Class 2 - referenced, not modified<br>
+Class 3 - referenced, modified</p>
+
+<p>Under the NRU policy, which page in the page table would be evicted next?</p>
+
+<p><li>Which three pages remain in the TLB after the following memory accesses?
+Assume the TLB starts in the configuration presented above, and that it uses
+the NRU replacement policy. New pages start with the referenced bit
+set to one.</p>
+
+<code>
+00110010010000 - read<br>
+00100000111011 - read<br>
+00110000101110 - read<br>
+00110000010101 - write<br>
+00010001000010 - write<br>
+01100000100001 - read<br>
+01010010011100 - read<br>
+</code>
+
+<p><li>Suppose you're a computer engineer tasked with designing a chip's TLB.
+You write a program to simulate a basic TLB as though
+it ran a program with 100000 memory accesses. You assume that when a memory
+access hits in the TLB it will take 1 cycle, but when an access misses it will
+take 30 cycles.</p>
+
+<p>In your first design you hit 90% of the time and miss 10% of the time- that is,
+you have 10,000 TLB misses and 90,000 TLB hits. How many cycles does your program
+spend on TLB misses? How many cycles does it spend on TLB hits? How many total
+cycles does your program spend on memory accesses?</p> 
+
+<p><li>What is the <i>average</i> number of cycles spent on memory accesses? (Total
+number of cycles divided by number of accesses.)</p>
+
+<p><li>You have a budget to improve your TLB, so
+you can't make everything great. You come up with two improved designs.
+</p>
+
+<p>In your first plan, you're able to reduce the TLB miss time from 30 cycles
+to 20 cycles. Given the same program as above, how many total cycles does the
+program spend on memory accesses? What is the average number of cycles per
+access?</p>
+
+<p><li>For your second alternative, you're able to reduce the TLB miss rate from
+10% to 1%. That is- you have 1,000 TLB misses and 99,000 TLB hits. How many
+cycles does your program spend on memory accesses? What is the average
+number of cycles per access?</p>
+
+<p><li>Which design is better? By how many cycles? How much better is it as
+a ratio?</p>
+
+</ol>
+
+<p><h3>Optional Enrichment Exercises</h3></p>
+<ol>
+<li>No optional exercises
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>

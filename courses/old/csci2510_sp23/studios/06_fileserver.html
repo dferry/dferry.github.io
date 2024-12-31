@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSCI 2510 - Principles of Computing Systems</title></head>
+
+<h2 style="text-align: center;">CSCI 2510: Studio 6<br></h2>
+<h2 style="text-align: center;">Fileserver</h2>
+
+<hr style="width: 100%; height: 2px;">
+
+<p>Language: Rust</p>
+
+<hr style="width: 100%; height: 2px;">
+
+<p>Network programming sounds intimidating, but a large number of useful
+programs are actually quite small and achievable. In this studio, you will
+use the code we developed in class to create a simple fileserver. You will
+have two projects: <code>sever</code> and <code>client</code>. The first
+will wait for a filename, attempt to open the file, and if successful,
+print the contents of the file back to a client. The second will send
+a filename, and then wait for a response.</p>
+
+<p>In this studio, you will:</p>
+
+<ol>
+	<li>Create a server using <code>std::net::TcpListener</code></li>
+	<li>Create a client using <code>std::net::TcpStream</code></li>
+	<li>Correctly error check the various network and file operations</li>
+	<li>Send data from the client to the server, and send a response from
+		the server to the client</li>
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>
+<p>
+Please complete the required exercises below, as well as any optional
+enrichment exercises that you wish to complete.</p> 
+
+<p>
+For this studio, please create a new directory inside your Git repository
+called <strong>fileserver</strong>. Then, create two Rust projects with names 
+<strong>server</strong> and <strong>client</strong> (note, case sensitive). 
+As you work through these exercises, 
+please record your answers in a text file in the root level of that
+project. When finished, please add the entire project and push it
+to the SLU Git repository.
+</p>
+
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Required Exercises</h3></p>
+
+<ol>
+	<li><p>There are no questions for this studio, you only need to
+		produce and upload the <code>client</code> and
+		<code>server</code> programs.</p></li>
+
+	<li><p>First we will work on the server. You may use any of
+		the code we have developed previously, either
+		in the studios or in class together. Remember that
+		our class discussion showed how to create a basic
+		server and client, and remember that Studio 4 - 
+		<code>print_file</code> already prints the contents
+		of a whole file to standard output.</p>
+
+		<p>Start by creating a basic server that listens
+	on IP address 127.0.0.1 and a port number of your choosing.
+	Then, have the server <code>accept()</code> connections in
+	a forever-loop. Remember to use <code>std::net::TcpListener</code>
+	to put your program into listening mode.</li>
+
+	<li><p>Now we will create a basic client. Again, feel free to reuse any
+		code from the course thus far. Your client should use
+		<code>std::net::TcpStream::connect()</code> to establish
+		a connection to the server at IP address 127.0.0.1 and the
+		port number you have chosen. 
+		</p></li>
+
+	<li><p>When the client calls <code>connect()</code>, that
+		will cause the server to <code>accept()</code> the
+		incoming connection and move past the blocking
+		call to <code>accept()</code>. Verify this happens
+		by printing out statements at the top and bottom
+		of your loop in the server. If you connect multiple
+		times with different clients, each should result in
+		a separate successful <code>accept()</code>.</p></li>
+
+
+	<li><p>Now modify your client- when it 
+		<code>connect()</code>s, it waits for the user
+		to enter a filename from standard input, 
+		and then writes it to the server
+		through the TcpStream object.</p>
+
+		<p>Note that you should be careful that your filename
+		string does not contain the newline character. If your
+		filename is in a <code>String</code> you can use the
+		<code>trim()</code> method to remove trailing newlines.</p>
+
+		<p>Use the <code>TcpStream::write()</code> function,
+		and note that this takes an array of bytes (<code>&amp;[u8]</code>).
+		Also note that your message may not be sent immediately, so
+		follow your <code>write()</code> call with a call to
+		<code>TcpStream::flush()</code>.</li>
+
+	<li><p>Have your server read from the <code>TcpStream</code> object
+		that was returned from <code>accept()</code>. 
+		Print out the message recieved- it should be the filename
+		what was sent by the client program. Again- double
+		check here that there are no newlines or other unexpected
+		characters, as these will cause the open file function to
+		fail.</p></li>
+
+	<li><p>Have your server use the recieved message as a filename
+		and attempt to open that file using <code>File::open()</code>
+		make sure your filename does not contain the newline
+		character or other unwanted extra characters.</p></li>
+
+	<li><p>If the file open succeeds, your server should read the entire
+		file and write it to the <code>TcpStream</code> object. If
+		opening the file fails, you should write a descriptive
+		error message to the client. Hint: use a <code>match</code>
+		statement on the <code>File::open()</code> command.
+		Another Hint: First have your server print these things
+		to standard output so you can see what is happening,
+		then write them to the <code>TcpStream</code>.
+		Third hint: use File::read_to_string() to read
+		the entire file into a string, and then the 
+		<code>TcpStream::write_all()</code>
+		function to write the entire function to the network
+		in a single function call.</p></li>
+
+	<li><p>Then, your server should call <code>TcpStream::shutdown()</code>
+		and go back to the top of its loop to accept a new
+		connection.</p></li>
+
+	<li><p>In the client, after writing the filename input to the
+		server, it should try to read the response from the
+		server and print it to standard output.</p></li>
+
+	<li><p>Lastly, your client may get multiple messages from the
+		server. Instead of just reading once, use the function
+		<code>TcpStream::read_to_string()</code> which will
+		continue reading until it gets EOF, which means that
+		the server has called <code>shutdown()</code> on the
+		connection.</p></li>
+
+	<li><p>Make a few test files of varying size and contents.
+		Verify that your server can handle multiple
+		connections from different clients in sequence.
+		Check that your server returns the correct results each 
+		time. Lastly, make sure your server returns an
+		appropriate error message when the client's input
+		cannot be opened.</p></li>
+
+</ol>
+
+<p><h3>Optional Enrichment Exercises</h3></p>
+<ol>
+	<li><p>Modify your server so that when it
+		recives the string "ls" from the client, it
+		invokes the "ls" command locally to show a list
+		of all files in the program's current directory,
+		and then returns that as output to the client.
+		This allows the client to query the server as to
+		what files are available for transmission.</p></li>
+
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>

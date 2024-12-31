@@ -1,0 +1,1430 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>
+Capstone Project, Spring 2018
+
+</TITLE>
+</HEAD>
+<BODY>
+
+
+
+<HR>
+
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="2" CELLSPACING="0">
+  <TR>
+    <TD VALIGN="TOP">
+    <H5><a href="http://www.slu.edu">Saint Louis University</a></H5>
+    </TD>
+    <TD></TD>
+    <TD VALIGN="TOP" align=left>
+    <H5><A HREF="http://mathcs.slu.edu">Dept. of Computer Science</A></H5></TD>
+  </TR>
+  <TR>
+    <TD></TD>
+    <TD VALIGN="TOP" align=center>
+
+    <H2>
+    Computer Science 4961/4962<br>
+    Capstone Project
+    </H2>
+
+    <H3><BIG>Spring 2018</BIG></H3></TD>
+  </TR>
+</TABLE>
+
+
+
+<HR>
+
+<p>
+The first phase of the capstone experience is the selection of a
+project and the creation of teams. This page provides a summary of
+potential projects for this semester. Students must provide
+<a href="../forms/preferences/">their personal preferences</a> by
+5:00pm Monday, January&nbsp;22, 2018
+, so if you wish to suggest
+another project idea for consideration, such a suggestion must be
+provided by classtime on 3:00pm Friday, January&nbsp;19, 2018.
+You may wish to take a look at 
+<a href="general.html">past project descriptions</a>
+that have been selected in recent years.
+</p>
+
+<hr>
+<h1><a name="projects">
+Menu of potential projects</a>
+</h1>
+
+Table of Contents:
+
+<ol><!-- Spring 2017
+  <li>
+      <a href="#games">Games (tbd)</a>
+  </li>
+  <li>
+      <a href="#sluber">SLUber: Technology improvements for the SLU Ride operations</a>
+  </li>
+  <li>
+      <a href="#disaster">Reunifying children with their legal guardians
+after (natural or man-made) disaster using serverless computing</a>
+  </li>
+  <li>i
+      <a href="#droneVR">Multi-User Virtual Reality Interface for Control of Aerial Drones</a>
+  </li>
+  <li>
+      <a href="#finance">Financial Risk Management with Apache Spark</a>
+  </li>
+  <li>
+      <a href="#frechet">Supporting Fr&eacute;chet Distance in CGAL</a>
+  </li>
+  <li>
+      <a href="#paleography">Image Analysis for Paleographic Study</a>
+  </li>
+  <li>
+      <a href="#pronunciation">A Mobile App for Teaching Pronunciation of
+World Languages via Real-time Spectrogram Analysis</a>
+  </li>
+  <li>
+      <a href="#conceptmap">A Web-based Tool for Drawing Concept Maps in Biology</a>
+  </li>
+  <li>
+      <a href="#nicu">Tablet App for NICU "Code Sheet"</a>
+  </li>
+-->
+  <li>
+      <a href="#medEd">Medical Education Project</a>
+  </li>
+  <li>
+      <a href="#editor">Advanced Data Editor</a>
+  </li>
+  <li>
+      <a href="#image">Image Realignment for Published Manuscripts</a>
+  </li>
+<!--
+  <li>
+      <a href="#realtime">Very Low Latency Real-Time Computation</a>
+  </li>
+  <li>
+      <a href="#powerPi">Power-aware Control on the Raspberry Pi for UAV control</a>
+  </li>
+-->
+  <li>
+      <a href="#telepathology">Collaborative Telepathology</a>
+  </li>
+  <li>
+      <a href="#tactile">Tactile Internet: Remote Touching is Possible!</a>
+  </li>
+  <li>
+      <a href="#haptic">An Online Gaming App Using Haptics to Teach STEM Concepts</a>
+  </li>
+  <li>
+      <a href="#whackamole">Whack a Mole: A Risk Minimization Approach
+  to Moving Target Defense in the Cloud</a>
+  </li>
+  <li>
+      <a href="#MTlanguage">Evaluation of Machine Translation Approaches for
+Closely-related Languages</a>
+  </li>
+  <li>
+      <a href="#accentuate">Reboot of Accentuate.us</a>
+  </li>
+  <li>
+      <a href="#spellcheck">Spellchecker Development</a>
+  </li>
+  <li>
+      <a href="#irish">Self-contained Search Engine Solution for Irish Language Websites</a>
+  </li>
+  <li>
+      <a href="#syntaxaware">Syntax-aware Machine Translation of English into
+VSO Languages</a>
+  </li>
+  <li>
+	<a href="#library">Library Book Finder</a>
+  </li>
+  <li>
+	<a href="#distrib">At-home distributed computing</a>
+  </li>
+  <li>
+	<a href="#regdata">Registrar Data Entry Tool</a>
+  </li>
+  <li>
+	<a href="#regchat">Registration Chatbot</a>
+  </li>
+<!--  <li>
+	<a href="#prefs">Crowd Consensus Environmental</a>
+  </li> -->
+</ol>
+
+<!--
+<hr>
+
+<h3>
+<a name="pronunciation">A Mobile App for Teaching Pronunciation of
+World Languages via Real-time Spectrogram Analysis</a>
+</h3>
+
+<p>
+<table>
+  <tr>
+    <td><b>Organization:</b></td>
+    <td>SLU's Department of Languages, Literature, &amp; Cultures</td>
+  </tr>
+  <tr>
+    <td><b>Client:</b></td>
+    <td>Prof.&nbsp;Christina Garcia &lt;christina.garcia@slu.edu&gt;</td>
+  </tr>
+  <tr>
+    <td><b>Supervisor:</b></td>
+    <td>Drs. Kevin Scannell and Flavio Esposito</td>
+  </tr>
+  <tr>
+    <td><b>Description:</b></td>
+  </tr>
+</table>
+
+Drs. Christina Garcia (SLU) and Terrell Morgan (Ohio State) have built
+a <a href="http://u.osu.edu/ignite2016/seeing-is-believing/">set of
+web-based tools</a> that take learning far beyond the classroom for L2
+pronunciation students. Among these is a site where students record
+themselves and can instantaneously compare their own voiceprint to
+that of a native speaker. For each sound, the system displays native
+and non-native speech samples alongside spectrographic representations
+of them. The interface enables students to produce live-generated
+spectrograms, re-recording until their produc- tions both sound and
+look like the native output. Recordings and student data are
+automatically submitted to an instructor interface that allows for
+effortless monitoring of students’ progress. This interface was
+originally developed for Spanish and has been extended to English and
+Quechua, with the eventual goal being applied to many languages.
+
+For this capstone project, students will be required to participate
+in the design, implementation and testing of a mobile app and advance
+the current web-based platform with a cloud-based system (via Serverless
+technology) for rapid and scalable language feedback processing.
+</p>
+-->
+
+<!--
+<hr>
+
+<h3>
+<a name="conceptmap">A Web-based Tool for Drawing Concept Maps in Biology</a>
+</h3>
+
+<p>
+<table>
+  <tr>
+    <td><b>Organization:</b></td>
+    <td>SLU Biology</td>
+  </tr>
+  <tr>
+    <td><b>Client:</b></td>
+    <td>Dr. Elena Bray-Speth &lt;elena.brayspeth@slu.edu&gt;</td>
+  </tr>
+  <tr>
+    <td><b>Supervisor:</b></td>
+    <td>Dr. David Letscher</td>
+  </tr>
+  <tr>
+    <td><b>Description:</b></td>
+  </tr>
+</table>
+
+In introductory biology classes, students are asked to create graphical
+<a href="https://en.wikipedia.org/wiki/Concept_map">concept maps</a>
+to describe various systems.  Currently, the students create these
+diagrams on paper, by hand, including starting again when later
+revisions are submitted. The goal is to have a web-based system to:
+allow students to create, edit, and submit such diagrams
+electronically; allow for instructors and teaching assistants to
+provide feedback within the system; allow educational researchers to
+perform analysis of students' works.
+</p>
+
+<p>
+In a previous year's capstone project, CS students created an initial
+proof-of-concept, developing both drawing capabilities and a system
+with both student and instructor roles. That system was implemented
+using a <a
+href="https://en.wikipedia.org/wiki/MEAN_(software_bundle)">MEAN
+stack</a>, yet on a monolithic system.  The goal for this new capstone
+team will include: to redeploy such a system on a true multi-tier
+architecture, with separate web, database, and authentication servers;
+to make improvements to the overall usability of the core systems; to
+support a test user group and to prepare for a pilot group of actual
+biology students.
+</p>
+-->
+<!--
+<hr>
+
+<h3>
+<a name="nicu">Tablet App for NICU "Code Sheet"</a>
+</h3>
+
+<p>
+<table>
+  <tr>
+    <td><b>Organization:</b></td>
+    <td>Cardinal Glennon Children's Hospital</td>
+  </tr>
+  <tr>
+    <td><b>Client:</b></td>
+    <td>Dr.&nbsp;Christopher Brownsworth &lt;christopher.brownsworth@health.slu.edu&gt;</td>
+  </tr>
+  <tr>
+    <td><b>Supervisor:</b></td>
+    <td>tbd</td>
+  </tr>
+  <tr>
+    <td><b>Description:</b></td>
+  </tr>
+</table>
+We would like to design a tablet application to function as a "code
+sheet."  Basically, when a baby is first born or requires CPR (in
+medical terms "codes"), one person's job is to record the events and
+interventions.  Currently, this information is scribbled on the back
+of a napkin or scrap piece of paper.  Typically, this record is less
+than legible and has to be copied into the medical record.  We want to
+make an application that 1)&nbsp;makes it easy to record the events,
+2)&nbsp;easy to export into the medical record 3)&nbsp;simple to analyze
+the information.  I have sketched out the design and functionality.
+There are no similar applications available for this.  This could be
+expanded from the NICU into adults and pediatric populations.
+
+</p>
+-->
+
+<hr>
+
+<h3>
+<a name="medEd">Medical Education Project</a>
+</h3>
+
+<p>
+<table>
+  <tr>
+    <td><b>Organization:</b></td>
+    <td>Cardinal Glennon Children's Hospital</td>
+  </tr>
+  <tr>
+    <td><b>Client:</b></td>
+    <td>Dr.&nbsp;Christopher Brownsworth &lt;christopher.brownsworth@health.slu.edu&gt;</td>
+  </tr>
+  <tr>
+    <td><b>Supervisor:</b></td>
+    <td>tbd</td>
+  </tr>
+  <tr>
+    <td><b>Description:</b></td>
+  </tr>
+</table>
+Much of medical education is still conveyed through classroom
+didactics and books/paper/ online material. Use of mobile devices has
+skyrocketed over the last 10 years; however medical education as a
+whole has not embraced mobile devices as a way to teach medicine; We
+are currently conducting a randomized controlled trial to determine if
+texting medical students daily medical question/answers can foster
+learning and improve performance on national standardized testing.  We
+are limited on the information we can convey through text messaging
+due to the character limit.  We are wanting to build a platform for
+delivering question/answer style questions to students, both online
+and mobile devices.  This is envisioned as a platform where "classes"
+containing question/answer style information can be created and then
+students can subscribe to the class and receive the questions either
+daily or in block.  The system will then create an answer report
+breaking down the statistics.
+
+</p>
+
+
+<hr>
+
+<h3>
+<a name="editor">Advanced Data Editor</a>
+</h3>
+
+<p>
+<table>
+  <tr>
+    <td><b>Organization:</b></td>
+    <td>SLU's Walter J. Ong, S.J. Center for Digital Humanitites</td>
+  </tr>
+  <tr>
+    <td><b>Client:</b></td>
+    <td>Donal Hegarty &lt;donal.hegarty@slu.edu&gt;</td>
+  </tr>
+  <tr>
+    <td><b>Supervisor:</b></td>
+    <td>tbd</td>
+  </tr>
+  <tr>
+    <td><b>Description:</b></td>
+  </tr>
+</table>
+
+  The IIIF (<a href="http://iiif.io">iiif.io</a>) standard allows discovery and sharing of
+  datasets.  The underlying data format is JSON and the IIIF standard
+  defines what must or should be a part of the object to make it a
+  valid IIIF object.  The Walter J.&nbsp;Ong,&nbsp;S.J. Center for Digital
+  Humanities has a data repository for these IIIF objects called
+  RERUM.  RERUM has a web facing interface (<a href="http://rerum.io">rerum.io</a>) through which
+  various tools interact with these IIIF data objects in the
+  repository.  One of the goals of the site is to offer a robust and
+  user friendly IIIF Manifest editor through which the rules of JSON
+  and the <a href="http://iiif.io/api/presentation/2.1/">IIIF Presentation API</a>
+  will be enforced while a user creates and/or alters IIIF objects for
+  the RERUM data store.  The RERUM interface is written with HTML, CSS
+  and AngularJS which are the languages that must be used to complete
+  this task.  A successful implementation of the editor would be
+  immediately incorporated into the RERUM tool set for public use.  
+
+</p>
+<!--
+<hr>
+
+<h3>
+<a name="paleography">Image Analysis for Paleographic Study</a>
+</h3>
+
+<p>
+<table>
+  <tr>
+    <td><b>Organization:</b></td>
+    <td>SLU's Walter J. Ong, S.J. Center for Digital Humanitites</td>
+  </tr>
+  <tr>
+    <td><b>Client:</b></td>
+    <td>Donal Hegarty &lt;donal.hegarty@slu.edu&gt;</td>
+  </tr>
+  <tr>
+    <td><b>Supervisor:</b></td>
+    <td>tbd</td>
+  </tr>
+  <tr>
+    <td><b>Description:</b></td>
+  </tr>
+</table>
+
+Beneath the transcription interface at <a href="http://t-pen.org">t-pen.org</a>, is a simple image
+analysis tool which endeavors to cleanly bound the columns and rows of
+handwriting on images of manuscript leaves to enable line by line
+transcription by our users. The goal of this project would be both to
+improve on the existing algorithm and offer the analysis as a
+stand-alone public service. The existing code in written in Java and
+may be optimized or replaced. A proposal to port the library into
+another language for better performance or more flexibility as a web
+service would also fulfill our goals. Support will be offered from the
+full-time developers in the Walter J. Ong, S.J. Center for Digital
+Humanities who have worked with the original T-PEN project and
+code. Sample image sets will be provided; no paleographical knowledge
+is required. A successful service will be incorporated into the
+existing and next versions of the T-PEN transcription tool and the
+public service will be published for use to the academic communities
+around manuscript studies and images standards for Digital Humanities.
+
+</p>
+-->
+<hr>
+
+<h3>
+<a name="image">Image Realignment for Published Manuscripts</a>
+</h3>
+
+<p>
+<table>
+  <tr>
+    <td><b>Organization:</b></td>
+    <td>SLU's Walter J. Ong, S.J. Center for Digital Humanitites</td>
+  </tr>
+  <tr>
+    <td><b>Client:</b></td>
+    <td>Donal Hegarty &lt;donal.hegarty@slu.edu&gt;</td>
+  </tr>
+  <tr>
+    <td><b>Supervisor:</b></td>
+    <td>tbd</td>
+  </tr>
+  <tr>
+    <td><b>Description:</b></td>
+  </tr>
+</table>
+
+Millions of images are made available to scholars through the IIIF
+(<a href="http://iiif.io">iiif.io</a>) standard and are organized into virtual containers
+(Manifests) by the hosting repositories. For close study of the text,
+scholars often need to crop out surrounding support materials (rulers,
+color bars, labels), rotate images, split images (of two-page layouts,
+for example), and discard uninteresting leaves. Currently, these
+adjustments cannot be saved for personal use or publication. The
+Walter J. Ong, S.J. Center for Digital Humanities builds tools for
+scholars and developers who wish to interact with these materials and
+would like to add this one. With the support of the Center’s full-time
+development staff, this project balances UI/UX development for simple
+user input with implementation of API and standards. Changes users
+make will be saved to a public digital object repository (<a href="http://rerum.io">RERUM.io</a>)
+and the Manifest which has been augmented will be notified through
+Linked Data Notification (<a href="http://inbox-docs.rerum.io">inbox-docs.rerum.io</a>). The successful project
+will be immediately rolled out to an international community of users
+and be made available to the 2000 scholars currently transcribing on
+<a href="http://t-pen.org">t-pen.org</a>. No experience with manuscripts is required, but comfort
+with HTML, CSS, and JavaScript (including AJAX) is.
+
+</p>
+<!--
+<hr>
+
+<h3>
+<a name="frechet">Supporting Fr&eacute;chet Distance in CGAL</a>
+</h3>
+
+<p>
+<table>
+  <tr>
+    <td><b>Organization:</b></td>
+    <td>SLU CS</td>
+  </tr>
+  <tr>
+    <td><b>Supervisor:</b></td>
+    <td>Dr. Erin Chambers</td>
+  </tr>
+  <tr>
+    <td><b>Description:</b></td>
+  </tr>
+</table>
+
+The <a href="https://en.wikipedia.org/wiki/Fr%C3%A9chet_distance">Fr&eacute;chet distance</a> is a fundamental similarity measure on curves in
+computational geometry. This project proposes adding Fr&eacute;chet
+distance computations to the <a href="http://www.cgal.org/">Computational Geometry Algorithms Library
+(CGAL)</a>, which is one of the largest open source geometry toolsets
+available. It is expected that the first semester would be spent
+understanding an available python implementation of Fr&eacute;chet algorithms
+in 2d and 3d, as well as installing and becoming comfortable with
+CGAL, while 2nd semester would be spent in actual code development,
+including communicating and working with researchers at the CGAL
+project.
+
+</p>
+-->
+
+<!--
+<hr>
+
+<h3>
+<a name="microbiome">Novel Method to Identify Virome Genomes of Human Microbiome</a>
+</h3>
+
+<p>
+<table>
+  <tr>
+    <td><b>Organization:</b></td>
+    <td>SLU Bioinformatics</td>
+  </tr>
+  <tr>
+    <td><b>Supervisor:</b></td>
+    <td>Dr. Ted Ahn</td>
+  </tr>
+  <tr>
+    <td><b>Description:</b></td>
+  </tr>
+</table>
+
+<em>description forthcoming...</em>
+
+</p>
+-->
+
+<!--
+<hr>
+
+<h3>
+<a name="finance">Financial Risk Management with Apache Spark</a>
+</h3>
+
+<p>
+<table>
+  <tr>
+    <td><b>Organization:</b></td>
+    <td>SLU CS</td>
+  </tr>
+  <tr>
+    <td><b>Supervisor:</b></td>
+    <td>Dr. Ted Ahn</td>
+  </tr>
+  <tr>
+    <td><b>Description:</b></td>
+  </tr>
+</table>
+
+Value at Risk (VaR) has been widely adopted in the financial industry
+to measure risk. It is used for regulatory compliance, understanding
+the risk characteristics of large portfolios, and and making informed
+trading decisions. Three common methods of calculating Value at Risk
+are variance-covariance, historical simulation, and Monte Carlo
+simulation. Monte Carlo simulation can be more accurate than the
+simple models, but it requires more computational power. Fortunately,
+Apache Spark provides an easy way to scale statistical problems beyond
+what a single server can handle.  Using Spark and historical stock
+data, we will calculate VaR of stocks with Monte Carlo Simulation in
+less time.
+
+</p>
+-->
+
+<!--
+<hr>
+
+<h3>
+<a name="realtime">Very Low Latency Real-Time Computation</a>
+</h3>
+
+<p>
+<table>
+  <tr>
+    <td><b>Organization:</b></td>
+    <td>SLU CS</td>
+  </tr>
+  <tr>
+    <td><b>Supervisor:</b></td>
+    <td>Dr. David Ferry</td>
+  </tr>
+  <tr>
+    <td><b>Description:</b></td>
+  </tr>
+</table>
+
+Current parallel programming technologies do not provide any guarantee
+of the latency with which a computation will execute. Existing
+concurrency platforms allow programmers to do parallel programming
+without worrying about thread creation or CPU management through
+simple directives such as parallel for loops, fork/join semantics,
+etc. These platforms were typically designed for large scientific
+computations where high-throughput is paramount and specific program
+timing and latency is not a concern, so the techniques employed in
+their construction do not typically guarantee any worst-case behavior.
+Recent applications of parallel computing techniques to real-time
+control motivate the creation of a new parallel concurrency platform
+with simple and demonstrable timing characteristics. This project will
+first characterize the latency cost when existing concurrency
+platforms (OpenMP and Cilk Plus) activate threads and distribute work
+during execution of a program. Then, we will create one or more
+archetype concurrency platforms and measure the latency incurred in
+simple and observable systems.
+This project will be done in C/C++ on Linux. Prior experience with
+parallel programming or program timing is not required.
+
+</p>
+
+
+
+<hr>
+
+<h3>
+<a name="powerPi">Power-aware Control on the Raspberry Pi for UAV control</a>
+</h3>
+
+<p>
+<table>
+  <tr>
+    <td><b>Organization:</b></td>
+    <td>SLU CS + Aerospace</td>
+  </tr>
+  <tr>
+    <td><b>Client:</b></td>
+    <td>Dr. Srikanth Gururajan &lt;srikanth.gururajan@slu.edu&gt;</td>
+  </tr>
+  <tr>
+    <td><b>Supervisor:</b></td>
+    <td>Dr. David Ferry</td>
+  </tr>
+  <tr>
+    <td><b>Description:</b></td>
+  </tr>
+</table>
+
+Battery power represents a hard constraint on the operational lifetime
+of embedded systems, and power is a particular a concern for
+compute-intensive applications such as control algorithms that
+typically execute tens to thousands of times per second. The
+Raspberry Pi provides an attractive computational package for embedded
+devices needing to run a full-featured operating system (i.e. Linux),
+and is capable of being powered via battery for mobile or remote
+applications (e.g. aerial drones). When performance of a system must
+be guaranteed it is critical for the software system to be able to
+understand the available power resources and use them wisely. This
+project, in conjunction with Dr. Srikanth Gururajan of the Department
+of Aeronautical Engineering, seeks to characterize the Raspberry Pi
+for the purpose of performing control computations in unmanned
+autonomous aircraft. In particular it seeks to (1) measure the power
+consumption of the Raspberry Pi under typical workloads, (2) develop a
+cost model capable of predicting how much energy will be consumed by a
+computation before it occurs, and (3) create a software architecture
+that allows the system to dynamically trade off power consumption and
+system control performance in scenarios where mission objectives or
+system constraints may change during runtime. It is anticipated
+that this project will be done primarily in C or C++ on Linux. Prior
+experience with power monitoring or similar applications is not
+required.
+
+</p>
+-->
+
+<!--
+<hr>
+
+<h3>
+<a name="droneVR">Multi-User Virtual Reality Interface for Control of
+Aerial Drones</a>
+</h3>
+
+<p>
+<table>
+  <tr>
+    <td><b>Organization:</b></td>
+    <td>SLU CS + Aerospace</td>
+  </tr>
+  <tr>
+    <td><b>Client:</b></td>
+    <td>Dr. Srikanth Gururajan &lt;srikanth.gururajan@slu.edu&gt;</td>
+  </tr>
+  <tr>
+    <td><b>Supervisor:</b></td>
+    <td>Dr. David Ferry</td>
+  </tr>
+  <tr>
+    <td><b>Description:</b></td>
+  </tr>
+</table>
+
+Multiple users interacting with multiple drones inside a Virtual
+Reality (VR) environment presents a novel set of challenges in
+control, coordination, and system integration. This project builds
+upon a single-user prototype VR control system completed as a senior
+capstone last year, and aims to extend the functionality to a
+multi-user interface that allows two or more operators with VR
+headsets and input devices to cooperatively command multiple aerial
+drones while maintaining safe flight.
+</p>
+
+<p>
+This project, in conjunction with Dr. Srikanth Gururajan of the
+Department of Aeronautical Engineering, will involve modifying
+existing software to support the notion of multiple users, as well as
+dealing with complications that arise such as networking, coordination
+between VR interfaces over a (potentially unreliable) network, flight
+path deconfliction, collision advoidance, etc. It is also hoped to
+implement additional features such as refined flight control software
+and long-distance radios that will enable drones in the cage near the
+Olive parking garage to be flown from Srikanth's lab in McDonnel
+Douglass Hall.
+</p>
+
+<p>
+This is a multi-system-integration project that will require work
+across Windows, Linux, and various programming languages. Previous
+experience with aerial drone hardware or VR is not required.
+
+</p>
+-->
+
+<hr>
+
+<h3>
+<a name="telepathology">Collaborative Telepathology</a>
+</h3>
+
+<p>
+<table>
+  <tr>
+    <td><b>Organization:</b></td>
+    <td>SLU Medicine</td>
+  </tr>
+  <tr>
+    <td><b>Client:</b></td>
+    <td>Dr. Grant Kolar</td>
+  </tr>
+  <tr>
+    <td><b>Supervisor:</b></td>
+    <td>Dr. Flavio Esposito</td>
+  </tr>
+  <tr>
+    <td><b>Description:</b></td>
+  </tr>
+</table>
+Telepathology is the practice of digitizing histological or
+macroscopic tissue images based on a glass slide for transmission
+along telecommunication pathways for diagnosis, consultation, or
+continuing medical education. In the majority of non-trivial pathology
+cases, to minimize the response time to the surgeon and the
+probability of incorrect assessments, pathologists ask for second
+opinions from nearby experts (if available) by physically carrying
+glass specimens. Especially to complement underserved geographical
+areas, expert pathologists should have remote access to difficult case
+assessments via telepathology. Today however, telepathology is
+practically unused for the applications that would need it the most:
+fast and reliable consultations as well as multi-students live
+teaching sessions. Moreover, pathology is nowadays mostly taught via
+offline methods or via one-to-one mentor-student specimen
+analysis. Remotely recreating the effect of a microscope locally
+handled would allow multiple pathologies across federated sites to
+collaborate on non-trivial diagnoses. Best-effort Internet connections
+are simply not enough to support such applications.
+</p>
+<p>
+Students in this project will focus on the following aspects of
+Internet of Things applied to Telepathology systems:
+<ul>
+  <li>
+      <b>Connect a microscope to the Cloud(Back-end)</b>
+      <br>
+      using the API and the microscope emulator provided
+      by an open-source microscope manager software
+      (<a href="https://micro-manager.org/">micro-manager.org</a>),
+      create the back-end infrastructure 
+      so that the microscope images can be saved on a cloud server.
+  </li>
+  <li>
+      <b>Front-end Web interface</b>
+      <br>
+      Using Flask, Django, or any other dynamic web framework,
+      students will emulate a subset of the existing micro-manager GUI
+      commands so that input will arrive under the form of web
+      requests. Connecting the front-end to the back-end, pathologists
+      will be able to interact, dynamically and remotely, with the
+      images acquired from (an emulated or a real) expensive microscopes.
+  </li>
+  <li>
+      <b>Demonstration</b>
+      <br>
+      Adjust the backend system to attach it to a real microscope,
+      available at the SLU School of Medicine, replacing the emulated
+      version available in micro-manager.org, to demonstrate remotely
+      control of images. Input commands include a zoom, pan or focus change.
+  </li>
+</ul>
+</p>
+<!--
+<hr>
+
+<h3>
+<a name="disaster">Reunifying children with their legal guardians
+after (natural or man-made) disaster using serverless computing</a>
+</h3>
+
+<p>
+<table>
+  <tr>
+    <td><b>Organization:</b></td>
+    <td>SLU Medicine, Cardinal Glennon Children's Hospital</td>
+  </tr>
+  <tr>
+    <td><b>Client:</b></td>
+    <td>Dr. Rachel Charney</td>
+  </tr>
+  <tr>
+    <td><b>Supervisor:</b></td>
+    <td>Dr. Flavio Esposito</td>
+  </tr>
+  <tr>
+    <td><b>Description:</b></td>
+  </tr>
+</table>
+
+During a disaster, children may be quickly wrenched from their
+families. Research shows that children in such circumstances are often
+unable or unwilling to give their names or other identifying
+information. Children constitute a vulnerable population and special
+considerations are necessary in order to provide proper care for them
+during disasters. After disasters such as Hurricane Katrina, the rapid
+identification and protection of separated children and their
+reunification with legal guardians is necessary to minimize secondary
+injuries (i.e. physical and sexual abuse, neglect and abduction). At
+Camp Gruber, an Oklahoma shelter for Louisianan’s displaced by
+Hurricane Katrina, of the 254 children at the camp, 36 (14.2%) were
+separated from their legal guardians. It took 6 months to reunify the
+last children, while 70% of the children were with their legal
+guardian after 2 weeks. Imagine not knowing for 2 weeks (or 6 months)
+if your children are dead or alive!  In this project, you will use
+serverless computing and other technologies to design and develop
+software that will be used by first-responders to minimize children
+reunifying time.
+</p>
+<p>
+The goal of this project is to contribute towards a prototype for a
+scalable, federated, public health infrastructure that would exploits
+text and image-based analysis to effectively expedite reunification
+when children cannot be identified. To this aim, students will design
+and implement both a front-end, web- based platform to support a
+back-end system for text and image recognition, in which the
+computations will be offloaded to a serverless platform. Note that
+software for image recognition already exist. The first challenge is
+to integrate them with serverless computing platforms for a fast and
+scalable platform. Aside from the system integration, the novelty of
+this project lays on the design of a novel (children) profile matching
+recognition algorithm based on text or images available, as well as in
+testing the scalability of such matching operations offloaded to the
+serverless cloud platform.
+</p>
+-->
+<hr>
+
+
+<h3>
+<a name="tactile">Tactile Internet: Remote Touching is Possible!</a>
+</h3>
+<p>
+<table>
+  <tr>
+    <td><b>Organization:</b></td>
+    <td>SLU Mechanical Engineering</td>
+  </tr>
+  <tr>
+    <td><b>Client:</b></td>
+    <td>Dr. Jenna Gorlewicz</td>
+  </tr>
+  <tr>
+    <td><b>Supervisor:</b></td>
+    <td>Dr. Flavio Esposito</td>
+  </tr>
+  <tr>
+    <td><b>Description:</b></td>
+  </tr>
+</table>
+
+Haptic devices enable users to physically interact with virtual systems via force-feedback. In this project, depending on skills and interests, students will be required to connect two <a href="https://www.3dsystems.com/haptics-devices/touch/customer-stories">GeoMagic Touch Haptic devices</a>  and control their interaction via a web interface or via an (Android or iOS) App. Applications of this technology range from online gaming, to military or (healthcare) education. 
+
+<hr>
+
+<h3>
+<a name="haptic">An Online Gaming App Using Haptics to Teach STEM Concepts</a>
+</h3>
+
+<p>
+<table>
+  <tr>
+    <td><b>Organization:</b></td>
+    <td>SLU Mechanical Engineering</td>
+  </tr>
+  <tr>
+    <td><b>Client:</b></td>
+    <td>Dr. Jenna Gorlewicz</td>
+  </tr>
+  <tr>
+    <td><b>Supervisor:</b></td>
+    <td>Dr. Flavio Esposito</td>
+  </tr>
+  <tr>
+    <td><b>Description:</b></td>
+  </tr>
+</table>
+
+Hands-on learning experiences have been shown to help students better
+understand challenging concepts, particularly those in STEM (Science,
+Technology, Engineering, and Math). While laboratories are often one
+avenue by which students receive hands-on learning experiences, these
+are often discrete opportunities that only occur in a classroom
+environment. This project involves building a mobile app (game) that
+would allow users to have hands-on learning experiences using their
+phone or tablet. The mobile app would interact with the Hapkit (to be
+ordered online, and be built), which contains all of the hardware for
+building a haptic paddle. (See <a
+href="http://hapkit.stanford.edu">hapkit.stanford.edu</a>.) The haptic
+paddle is a force feedback 
+joystick that enables users to "feel" what is being displayed on
+screen. As the paddle handle moves, digital elements move, and in
+turn, send feedback (via a Cloud-based system) back to the user
+(players) through the paddle handle, creating a force-feedback
+system. One of the exciting challenges lays in the force feedback
+being variable based on the medium (e.g. if users are pushing through
+water versus pushing on a slippery surface versus pushing through
+molasses). The (web or mobile) app will provide an example of a
+hands-on learning experience that could be made available to students
+at multiple levels, without requiring large infrastructure such as a
+university lab.
+
+</p>
+
+<hr>
+
+<h3>
+<a name="whackamole">Whack a Mole: A Risk Minimization Approach
+  to Moving Target Defense in the Cloud</a>
+</h3>
+
+<p>
+<table>
+  <tr>
+    <td><b>Organization:</b></td>
+    <td>SLU CS</td>
+  </tr>
+  <tr>
+    <td><b>Supervisor:</b></td>
+    <td>Dr. Flavio Esposito</td>
+  </tr>
+  <tr>
+    <td><b>Description:</b></td>
+  </tr>
+</table>
+
+Have you ever played the game Whack a Mole? If not, you can try
+different versions <a href="http://whack-a-mole.freeonlinegames.name/">here</a>.
+This project is about
+emulating the game between an attacker and tenants of a cloud
+provider, renting virtual machines. Cloud providers migrate their
+tenants around (moles) to confuse a potential attacker. The more you
+stay out, the higher the chances to get "whacked", but the more you
+move around, the higher are the overhead costs and disruptions. There
+are several types of attacks that can be performed if you are
+collocated on the same physical machine of the victim. For example,
+with side-channel attacks you could steal sensitive information just
+by observing a virtual machine writing behavior. For example, when is
+the attacked VM writing on the memory, or by observing power
+consumption and electromagnetic leaks. Even a sound can provide an
+extra source of information, which can be exploited to break the
+system. (See
+<a
+href="http://gauss.ececs.uc.edu/Courses/c653/lectures/SideC/intro.pdf">here</a>.)
+Students
+are required to design and 
+implement a moving target defense strategy (the algorithmic behavior
+of the mole attempting to minimize the probability of being
+"whacked"), migrating real virtual machines with Linux KVM, a virtual
+machine management framework. Larger groups may work in competing
+sub-teams, emulating the behavior of an attacker trying to learn the
+mole strategy (using machine learning techniques).
+
+</p>
+
+<hr>
+
+<h3>
+<a name="MTlanguage">Evaluation of Machine Translation Approaches for
+Closely-related Languages</a>
+</h3>
+
+<p>
+<table>
+  <tr>
+    <td><b>Organization:</b></td>
+    <td>SLU CS</td>
+  </tr>
+  <tr>
+    <td><b>Supervisor:</b></td>
+    <td>Dr. Kevin Scannell</td>
+  </tr>
+  <tr>
+    <td><b>Description:</b></td>
+  </tr>
+</table>
+
+This would involve training a number of MT engines,
+including phrase-based models like Moses and, say, character-based
+models using RNNs (TensorFlow) which could possibly work well for very
+closely-related languages. I have data for the Gaelic languages and
+for Irish language standardization. Other pairs are possible: Zulu/Xhosa?
+
+</p>
+
+
+
+<hr>
+
+<h3>
+<a name="accentuate">Reboot of Accentuate.us</a>
+</h3>
+
+<p>
+<table>
+  <tr>
+    <td><b>Organization:</b></td>
+    <td>SLU CS</td>
+  </tr>
+  <tr>
+    <td><b>Supervisor:</b></td>
+    <td>Dr. Kevin Scannell</td>
+  </tr>
+  <tr>
+    <td><b>Description:</b></td>
+  </tr>
+</table>
+
+In a capstone project from many years ago, a student developed a web-based
+platform (previously hosted at <tt>accentuate.us</tt>) along with a
+corresponding <a
+href="https://addons.mozilla.org/en-US/firefox/addon/accentuateus/">firefox
+add-on</a>. Its purpose was to use machine learning to automatically
+restore diacritics when entering ASCII-only texts, to make it quicker
+and easier to type in more than 100 world languages without extra
+keystrokes or a special keyboard. That service is no longer active and
+there were scaling challenges since the statistical models needed to
+be stored in RAM and this limited the number of languages that could
+be supported. With this project, a team will rely on more modern
+approaches to scalability to revive and extend the original tools.
+</p>
+
+
+<hr>
+
+<h3>
+<a name="spellcheck">Spellchecker Development</a>
+</h3>
+
+<p>
+<table>
+  <tr>
+    <td><b>Organization:</b></td>
+    <td>SLU CS</td>
+  </tr>
+  <tr>
+    <td><b>Supervisor:</b></td>
+    <td>Dr. Kevin Scannell</td>
+  </tr>
+  <tr>
+    <td><b>Description:</b></td>
+  </tr>
+</table>
+
+Dr. Scannell has raw data consisting of word lists crawled from the web for
+2000+ languages.  It would be nice to have a website which could allow
+a language community to crowdsource the editing (voting, etc.) of
+these wordlists to turn them into spell checkers.  Part of this would
+be an interactive tool for developing so-called "affix files", without
+having to be trained on the technical details, and also a tool for
+exporting spellchecking addons for LibreOffice, Firefox,
+etc. automatically.
+
+</p>
+
+
+
+<hr>
+
+<h3>
+<a name="irish">Self-contained Search Engine Solution for Irish Language Websites</a>
+</h3>
+
+<p>
+<table>
+  <tr>
+    <td><b>Organization:</b></td>
+    <td>SLU CS</td>
+  </tr>
+  <tr>
+    <td><b>Supervisor:</b></td>
+    <td>Dr. Kevin Scannell</td>
+  </tr>
+  <tr>
+    <td><b>Description:</b></td>
+  </tr>
+</table>
+
+The idea would be to build this on top of existing open source search
+engines like Apache Lucene, or anything derived from Lucene (Elastic
+Search, Solr, ...). The issue is to allow indexing according
+to eight possible combinations of (standard/non-standard,
+mutations/stripped, stemmed/unstemmed), using software developed by
+Dr. Scannell, and to package the result in a way that's trivial for
+site maintainers to deploy.
+
+</p>
+
+
+
+<hr>
+
+<h3>
+<a name="syntaxaware">Syntax-aware Machine Translation of English into
+VSO Languages</a>
+</h3>
+
+<p>
+<table>
+  <tr>
+    <td><b>Organization:</b></td>
+    <td>SLU CS</td>
+  </tr>
+  <tr>
+    <td><b>Supervisor:</b></td>
+    <td>Dr. Kevin Scannell</td>
+  </tr>
+  <tr>
+    <td><b>Description:</b></td>
+  </tr>
+</table>
+
+There are various open source packages for doing syntax-aware
+statistical MT; maybe the most promising in this context would be an
+approach based on tree-to-string transducers, like <a href="http://www.phontron.com/travatar/">"travatar"</a>.
+
+</p>
+
+
+<!--
+<hr>
+
+<h3>
+<a name="sluber">SLUber: Technology improvements for the SLU Ride operations</a>
+</h3>
+
+<p>
+<table>
+  <tr>
+    <td><b>Organization:</b></td>
+    <td>SLU Ride</td>
+  </tr>
+  <tr>
+    <td><b>Client:</b></td>
+    <td>tbd</td>
+  </tr>
+  <tr>
+    <td><b>Supervisor:</b></td>
+    <td>tbd</td>
+  </tr>
+  <tr>
+    <td><b>Description:</b></td>
+  </tr>
+</table>
+
+The <a
+href="https://www.slu.edu/facilities-services-home/departments/transportation-services/slu-ride-program">SLU
+Ride Program</a> is a primarily student-run operation that provide
+safe escorts around campus and the surrounding area. It currently
+operates in relatively low-tech way. Technological improvements 
+might involve providing web-based and mobile apps for
+initiating requests for escorts, providing automation to dispatchers
+to better optimize the movement of the escorts/vehicles in servicing
+calls, and a feedback loop that would provide clients with updates
+regarding wait times and locations.
+
+</p>
+-->
+
+<!--
+<hr>
+
+<h3>
+<a name="games">Games (tbd)</a>
+</h3>
+
+<p>
+<table>
+  <tr>
+    <td><b>Organization:</b></td>
+    <td>none</td>
+  </tr>
+  <tr>
+    <td><b>Supervisor:</b></td>
+    <td>tbd</td>
+  </tr>
+  <tr>
+    <td><b>Description:</b></td>
+  </tr>
+</table>
+
+There have been several suggestions from students who wish to develop
+computer games as a project, likely within the Unity framework.  While
+I prefer projects that fill a need for a client, and thus which
+involve working with such an end user to define/revise project
+requirements, I'm adding this to the preference list so that I can at
+least gauge the level of interest and whether to "green light" such a
+project.
+
+</p>
+-->
+
+<hr>
+
+<h3>
+<a name="regdata">Registrar Data Entry Tool</a>
+</h3>
+
+<p>
+<table>
+  <tr>
+    <td><b>Organization:</b></td>
+    <td>SLU Registrar</td>
+  </tr>
+  <tr>
+    <td><b>Client:</b></td>
+    <td>Jay Haugen</td>
+  </tr>
+  <tr>
+    <td><b>Supervisor:</b></td>
+    <td>TBD</td>
+  </tr>
+  <tr>
+    <td><b>Description:</b></td>
+  </tr>
+</table>
+
+The Registrar's office would like a tool that is capable of automating
+data entry into graphical user interface forms to reduce time-consuming
+data entry tasks. Users will be able to upload text-delimited files
+containing a set of desired data entry tasks, and the tool should be
+capable of automatically applying these changes. This tool should also
+be capable of capturing responses and sending any discrepancies or
+errors to an operator. 
+
+</p>
+
+<hr>
+
+<h3>
+<a name="regchat">Registration Chatbot</a>
+</h3>
+
+<p>
+<table>
+  <tr>
+    <td><b>Organization:</b></td>
+    <td>SLU Registrar</td>
+  </tr>
+  <tr>
+    <td><b>Client:</b></td>
+    <td>Jay Haugen</td>
+  </tr>
+  <tr>
+    <td><b>Supervisor:</b></td>
+    <td>TBD</td>
+  </tr>
+  <tr>
+    <td><b>Description:</b></td>
+  </tr>
+</table>
+
+The Registrar's office would like a natural-language based tool to assist
+students in planning and managing their schedule. Students should be able
+to phrase questions such as "When is calculus offered in the Fall?", 
+"What history classes are available at 10AM MWF?", or "How many seats are
+left in Geophysics?" and recieve an accurate response. With a student login
+the system should be able to answer questions about the student's schedule
+such as, "Where is my history class meeting?".
+
+</p>
+
+
+
+
+
+
+<hr>
+
+<h3>
+<a name="library">Library Book Finder</a>
+</h3>
+
+<p>
+<table>
+  <tr>
+    <td><b>Organization:</b></td>
+    <td>SLU CS</td>
+  </tr>
+  <tr>
+    <td><b>Client:</b></td>
+    <td>The library, hopefully</td>
+  </tr>
+  <tr>
+    <td><b>Supervisor:</b></td>
+    <td>TBD</td>
+  </tr>
+  <tr>
+    <td><b>Description:</b></td>
+  </tr>
+</table>
+
+A student-proposed project would like to create a book-finding utility to
+assist patrons in using the library. The basic functionality is to translate
+book call numbers into physical book locations in the library, which may be given as
+aisle, position in aisle, or even particular shelves. Accompanying this utility
+would be a maintainer backend so that book positions may be updated as their locations
+change within the library. A desired advanced feature is a map showing the patron's
+current position within the library and a path to their target. 
+
+Part of this project will be to identify (with the help of the instructor or supervisor)
+stakeholders in the library who might want to use or maintain this system. 
+</p>
+
+
+<hr>
+
+<h3>
+<a name="distrib">At-home Distributed Computing</a>
+</h3>
+
+<p>
+<table>
+  <tr>
+    <td><b>Organization:</b></td>
+    <td>SLU CS</td>
+  </tr>
+  <tr>
+    <td><b>Supervisor:</b></td>
+    <td>TBD</td>
+  </tr>
+  <tr>
+    <td><b>Description:</b></td>
+  </tr>
+</table>
+
+This student-proposed project would like to create a system to utilize heterogenous
+sources of computing found within the home. Many computing resources spend much
+of their time idling with no useful work: desktops, laptops, smartphones, tablets, etc.
+In this project, students would create a software system that allows devices
+to opt-in to a local distributed computational network, such that when certain
+constraints are met (e.g. not being used, plugged in) they may be asked to perform
+computational work on behalf of another device to accelerate a local
+computation. In order to be efficient and effective this
+system would need to be aware of limitations and strengths
+of different devices in the network, as well as the expected latency of outsourcing
+a particular piece of work. To be correct this system would need to be aware of
+devices joining and leaving the network at arbitrary times, and maintain operation
+under all circumstances.
+
+In addition to building a system for sending and recieving work to other devices,
+students would need to define a software interface for accessing this functionality.
+Advanced features could include system-wide encryption, or support for targeting
+specific heterogenous computing resources (e.g. GPUs). 
+
+</p>
+
+
+
+
+
+
+<!--
+
+<hr>
+
+<h3>
+<a name="tbd">Title</a>
+</h3>
+
+<p>
+<table>
+  <tr>
+    <td><b>Organization:</b></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><b>Client:</b></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><b>Supervisor:</b></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><b>Description:</b></td>
+  </tr>
+</table>
+
+</p>
+
+-->
+
+
+</BODY>
+</HTML>

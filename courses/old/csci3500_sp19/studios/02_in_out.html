@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSCI 3500 - Operating Systems</title></head>
+
+<h2 style="text-align: center;">CSCI 3500: Studio 2<br></h2>
+<h2 style="text-align: center;">Input and Output</h2>
+
+<hr style="width: 100%; height: 2px;">
+
+
+<p></p>
+
+<p>Linux stream redirection is a powerful feature where program inputs and
+outputs can be hooked together seamlessly by the system to build compound
+commands. In this studio, you will:</p>
+
+<ol>
+  <li>Use the <code>read()</code> and <code>write()</code> functions to
+read input and write output
+  <li>Redirect program inputs and outputs
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>
+<p>
+Please complete the required exercises below, as well as any optional
+enrichment exercises that you wish to complete.</p> 
+
+<p>
+As you work through these exercises, please record your answers in a text
+file. When finished, submit your work by sending your text file and
+source code to the git repository under the appropriate folder.</p>
+
+<!-- <strong>dferry_submit@slu.edu</strong>
+with the phrase <strong>
+Input and Output
+</strong> in the subject line.</p> -->
+
+<p><strong> Make sure that the name of each person who worked on these exercises
+is listed in the first answer, and make sure you number each of your responses
+so it is easy to match your responses with each exercise.</strong></p>
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Required Exercises</h3></p>
+
+<ol>
+<p><li>As the answer to the first exercise, list the names of the people who
+worked together on this studio.</p>
+
+<p><li>One basic Linux tool you might know about is a program called
+<code>cat</code>. This program con<i>cat</i>enates (appends) any 
+provided input to standard output. It's a useful way to print text
+files to the terminal, or to write bits of data into a text file.</p>
+
+<p>Go ahead and type the command "<code>cat</code>" and hit enter. Then,
+write a few lines of text to the console (and hit enter after each line). 
+As the answer to this exercise, describe what happens.</p>
+
+<p>You can type CTRL-D on a blank line in order to quit <code>cat</code>.
+Typing CTRL-D sends a special "end of file" character to the terminal.</p>  
+
+<p><li>The original purpose of <code>cat</code> is to print text files to
+the console. Find your favorite text file if you'd like, or you can download
+one of mine with the <code>wget</code> command:</p>
+
+<p><code>wget http://cs.slu.edu/~dferry/courses/csci3500/studios/mars.txt</code></p>
+
+<p>In the last exercise, the <code>cat</code> program got its data from
+standard input (i.e. the keyboard). One neat feature of Linux is that it allows
+us to <i>redirect</i> streams like standard input and standard output. Using
+your text file, redirect standard input with the '<code>&lt;</code>'
+character as such:</p>
+
+<p><code>cat &lt; mars.txt</code></p>
+
+<p>As the answer to this exercise, describe what happens.</p>
+
+<p><li>We can also redirect output. This time, redirect standard output with
+the '<code>&gt;</code>' character into a new text file. Use the syntax:</p>
+
+<p><code>cat &gt; new.txt</code></p>
+
+<p>Enter a few lines of text. Open up your text file to see the results.
+Remember that you can quit <code>cat</code> with CTRL-D. </p>
+
+<p>As the answer to this exercise, describe what happens.</p>
+
+<p><li>One last useful tip. Repeat the last exercise, but instead of using
+a single greater-than symbol, use two. (That is, use '<code>&gt;&gt;</code>'
+instead of '<code>&gt;</code>'). This <i>appends</i> your input to the end
+of the file, rather than overwriting the start of the file.</p>
+
+<p>Leave this answer blank.</p>
+
+<p><li>Now we'll write a short program that mimics the behavior of
+<code>cat</code>. Start by creating a new file called <code>copy.c</code>
+and fill it out with the framework for an empty program (see Studio 01 if
+you'd like to see that framework again).</p>
+
+<p>Look at the manual pages for the system calls <code>read()</code> and
+<code>write()</code>, and look at your code from Studio 01 to see how you
+used <code>write()</code>. What header file do you need to include to use
+these system calls?</p>
+
+<p><li>Both functions require a <i>buffer</i> (a fixed region of memory) to
+operate. At the top of your program, define a preprocessor constant with the
+size of your buffer as such:</p>
+
+<p><code>#define bufferSize 200</code></p>
+
+<p>Then allocate an array of characters to be your buffer:</p>
+
+<p><code>char buffer[ bufferSize ];</code></p>
+
+<p>Leave this answer blank.</p>
+
+<p><li>The behavior of <code>cat</code> is to read input forever until it
+encounters an end of file character. Look up the documentation for the
+<code>read()</code> system call. What is the return value <b><i>type</i></b>
+for <code>read()</code>? What is the specific return value that indicates
+the end of a file?
+
+<p><li>Your last job is to translate the following algorithm into C code.
+Inside an infinite loop:
+<ol>
+<li>Read from standard input (<code>STDIN_FILENO</code>) into the buffer.
+<li>If the return value indicates end of file, then "<code>break;</code>" out of the loop.
+<li>Write the contents of the buffer to standard output (<code>STDOUT_FILENO</code>). Be
+careful to use the return value from <code>read()</code> so as not to write more than was read.
+</ol>
+</p>
+<p>
+When you are satisfied with your code, compile it and test it in all the ways
+we tested <code>cat</code> above. Does your program's behavior match? Note that
+you will need to invoke your program with "<code>./</code>", as in:
+</p>
+<p><code>./copy &lt; mars.txt</code></p>
+
+<p><li>Do you think that modifying <code>bufferSize</code> will affect
+the correctness of your program? What if <code>bufferSize</code> is very
+small, or even equal to one? Try a few different values for 
+<code>bufferSize</code> and record the results.</p>
+
+<p><li>What do you think the tradeoff is between having a small
+<code>bufferSize</code> versus having a large one?</p>
+
+</ol>
+
+<p><h3>Optional Enrichment Exercises</h3></p>
+<ol>
+<p><li>You can write the same program on top of the C standard library as well!
+Instead of using <code>read()</code> and <code>write()</code>, try using the
+libc functions <code>fgets()</code> and <code>fprintf()</code>.</p>
+
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>

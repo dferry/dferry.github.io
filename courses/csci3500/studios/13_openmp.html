@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSCI 3500 - Operating Systems</title></head>
+
+<h2 style="text-align: center;">CSCI 3500: Studio 13<br></h2>
+<h2 style="text-align: center;">OpenMP</h2>
+
+<hr style="width: 100%; height: 2px;">
+
+<p>We have been studying Pthreads as the low-level interface to threading
+provided by the operating system. However, most parallel programs are not
+written in Pthreads, which is considered to be a low-level interface.
+Instead, a <i>parallel concurrency platform</i> is used, which implement
+threading for the programmer and provide a high-level interface for
+parallel programming.
+</p>
+
+<p>In this studio, you will:</p>
+
+<ol>
+<li>Write a program to determine whether the first 20,000,000 numbers are prime or not
+<li>Parallelize this program with OpenMP
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>
+<p>
+Please complete the required exercises below, as well as any optional
+enrichment exercises that you wish to complete.</p> 
+
+<p>
+As you work through these exercises, please record your answers in a text
+file. When finished, submit your work via the Git repository.</p>
+
+<!--
+by sending your text file and
+source code to <strong>dferry@slu.edu</strong>
+with the phrase <strong>
+OpenMP
+</strong> in the subject line.</p>
+-->
+
+<p><strong> Make sure that the name of each person who worked on these exercises
+is listed in the first answer, and make sure you number each of your responses
+so it is easy to match your responses with each exercise.</strong></p>
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Required Exercises</h3></p>
+
+<ol>
+<p><li>As the answer to the first exercise, list the names of the people who
+worked together on this studio.</p>
+
+<p><li>Recall that a prime number is any number that is only divisible by
+itself and one. Write a function that takes a single integer argument and determines
+whether that number is prime. Return 1 if the number is prime, and return 0
+if the number is not prime. The best way to do this is simple brute force-
+use the modulus operator to test possible divisors. If no number divides the
+candidate, then it's prime.</p> 
+
+<p>Test your function on some prime numbers such as
+7, 23, 101, or 982451653. Copy and paste your results.</p>
+
+<p><li>That last number is a useful test case. 
+We want to test a _lot_ of numbers for primality, so we
+want to ensure that we can do this very efficiently. 
+On <code>hopper.slu.edu</code> the instructor's code only
+takes 0.005 seconds to test that particular number (and his code is not even
+particularly efficient). We want your code to be in roughly the same 
+class. A few points:</p>
+
+<ul>
+<li>You only need to test odd numbers
+<li>You only need to test numbers up to the square root of your candidate
+<li>If you aren't already, use a <code>for</code> loop to check all possible divisors: <code>for( i = 3; i*i &lt;= candidate; i+=2 )</code>
+</ul>
+
+<p>Measure your program with the <code>time</code> command and copy-paste the results. It should be
+relatively efficient.</p> 
+
+<p><li>Now, modify your program so that it tests all numbers from 1 to N for primality.
+Your program should print out, in order, all prime numbers less than N. Copy and paste
+your program output for N equal to 100. Look up a list of prime numbers on the internet
+and double-check your results.</p>
+
+<p><li>Now we want to think about parallelizing your program. To do so we need to identify
+some logically independent operations that may occur in parallel. In the previous exercise
+you tested all numbers from 0 to 100 for primality- testing each number
+is logically independent. Why is that?</p>
+
+<p><li>The operations needed to test an individual number for primality are not
+entirely independent. For example, if we wanted to test the number 105 for primality
+then, using the square root of 105 as an upper bound,
+ we would have to see whether it was divisible by any of the set:
+<code>{2, 3, 5, 7, 9}</code>. Why is testing 7 and 9 not independent of testing the
+number 5?</p>
+
+<p><li>Make a copy of your program so that you can have a sequential and parallel
+version of your code. You can convert a <code>for</code> loop into a <code>parallel-for</code>
+loop by inserting the following statment immediately before the loop:</p>
+
+<p><code>#pragma omp parallel for</code></p>
+
+<p>You will need to include <code>omp.h</code> and you must add the statement "<code>-fopenmp</code>"
+to the command line. Now test your program again for N equal to 100. Make sure that the output of the
+parallelized version matches the output of your sequential version. Does it?</p>
+
+<p><li>Go ahead and comment out your print statements in both programs once you are convinced
+that your parallel program is correct. We want to time each program and the time
+required to print out your results will vastly outweigh the time required to do the computations.</p>
+
+<p>Time each program for N equal to one million (1000000). This should go quickly but
+still be enough work to see definite parallel improvement. Paste your results.</p>
+
+<p>Time each program for N equal to twenty million (20000000). Paste your results.</p>
+
+<p><li>Compare the effort required to use OpenMP to the effort used with Pthreads.
+Give the steps required to approach this problem with Pthreads.</p>
+
+</ol>
+
+<p><h3>Optional Enrichment Exercises</h3></p>
+<ol>
+<li>No optional exercises
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>

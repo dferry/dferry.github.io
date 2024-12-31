@@ -1,0 +1,1038 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+<style>
+table.schedule td {
+	height: 4em;
+	overflow: visible;
+}
+
+.due {
+	background-color:yellow;
+}
+.inactive {
+  pointer-events: none;
+  cursor: default;
+  color: black;
+  text-decoration: none;
+}
+</style>
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSCI 5030 - Principles of Software Development</title></head>
+
+<body><h2 style="text-align: center;"><img alt="SLU logo" src="http://cs.slu.edu/~dferry/SLU_logo_horz.png" style="height:5em"><br></h2><h2 style="text-align: center;">CSCI 5030 - Principles of Software Development<br>
+
+</h2><h2 style="text-align: center;">Fall 2020</h2>
+
+<table style="width: 100%; text-align: left;" border="0" cellpadding="2" cellspacing="2"> <tbody> <tr>
+    <td style="vertical-align: top; font-weight: bold; width: 163px;">Instructor</td> 
+    <td style="vertical-align: top; width: 1019px;"><span style="font-family: monospace;"><a href="mailto:david.ferry@slu.edu">David Ferry</a>,  <a href="http://cs.slu.edu/~dferry/">Homepage</a></span></td> 
+</tr>
+
+<tr>
+    <td style="vertical-align: top; font-weight: bold; width: 163px;">Course Web Site</td> 
+    <td style="vertical-align: top; width: 1019px;"><span style="font-family: monospace;"><a href="http://cs.slu.edu/~dferry/courses/csci5030">http://cs.slu.edu/~dferry/courses/csci5030/</a></span></td>
+</tr>
+
+<tr>
+    <td style="vertical-align: top; font-weight: bold; width: 163px;">Course meeting times</td> 
+    <td style="vertical-align: top; width: 1019px;">Monday, Wednesday, &amp; Friday from 2:10 - 3:00
+<br>Classroom: Ritter Hall Rm. 115
+<br>Zoom link: <a href="https://slu.zoom.us/j/96008521083?pwd=MGpBem54Q09ubUJvK0kzNi9zci8vQT09">Click here to join</a>
+<br>Zoom passcode: 954826
+<br><b>You must be authenticated through SLU to join this meeting</b>
+</td> 
+</tr> 
+
+<!--
+<tr>
+    <td style="vertical-align: top; width: 163px;"><span style="font-weight: bold;">Midterm exam</span><br> </td> 
+    <td style="vertical-align: top; width: 1019px;">October 11th, 11:00 - 11:50<br> </td>
+</tr>
+--> 
+
+<tr>
+    <td style="vertical-align: top; width: 163px;"><span style="font-weight: bold;">Final exam period</span><br> </td> 
+    <td style="vertical-align: top; width: 1019px;">Thursday, December 3rd, 2:00PM-3:50PM<br> </td>
+</tr> 
+
+<tr>
+    <td style="vertical-align: top; font-weight: bold; width: 163px;">Office hours</td>
+    <td style="vertical-align: top; width: 1019px;">See <a href="http://cs.slu.edu/~dferry/schedule.html">my schedule</a></td> 
+</tr> 
+
+<tr>
+    <td style="vertical-align: top; font-weight: bold; width: 163px;">Contact</td>
+    <td style="vertical-align: top; width: 1019px;">You may contact me in person during office hours or during class time, or you may email me at <a href="mailto:dferry@slu.edu">dferry@slu.edu</a>. I am also available to meet by appointment, see <a href="http://cs.slu.edu/~dferry/schedule.html">my schedule</a>.</td> 
+</tr> 
+
+<!--
+<tr> 
+    <td style="vertical-align: top; width: 163px;">
+<span style="font-weight: bold;">TA</span><br> </td> 
+    <td style="vertical-align: top; font-weight: bold; width: 1019px;"><span style="font-weight: normal;">Benny Hill (bah2 AT cse.wustl.edu)</span><br style="font-weight: normal;"><span style="font-weight: normal;">Office Hours: Tu, Th 2pm-3pm</span> </td> </tr> </tbody> 
+-->
+</table>
+
+<hr style="width: 100%; height: 2px;">
+
+<font size=+2><strong>Contents</strong></font>
+<ol>
+  <li><a href="#Course Description">Course Description</a>
+  <li><a href="#Prerequisites">Prerequisites</a>
+  <li><a href="#Schedule">Course Schedule</a>
+  <li><a href="#gitinfo">SLU Git Repository</a>
+  <li><a href="#Textbooks">Textbooks and Other Resources</a>
+  <li><a href="#Readings">Course Readings</a>
+  <li><a href="#Grading">Grading</a>
+  <li><a href="#Attendance Policy">Attendance</a>
+  <li><a href="#COVID">COVID-19 Considerations for Fall 2020</a>
+  <li><a href="#masks">Fall 2020 Mask Policy</a>
+  <li><a href="#Academic Integrity">Academic Integrity</a>
+  <li><a href="#Title IX Statement">Title IX Statement</a>
+  <li><a href="#Academic Support">Academic Support</a>
+  <li><a href="#Disability Services">Disability Services</a>
+  <li><a href="#Writing Center">Writing Center</a>
+  <li><a href="#Basic Needs Security">Basic Needs Security</a>
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Course Description">Course Description</a></h3>
+
+
+
+<p>Software engineering perhaps stands alone as a technical discipline in which
+there are no universally accepted techniques (either in academia or industry)
+that everyone agrees produces good software. Instead, there are a wide variety
+of practices that have grown up around a diverse set of organizations and philosophies. Rather than
+cataloguing all these techniques and attempting to prescribe their uses, we
+will look at succesful case studies, listen to experienced veterans describe
+their approaches, and try to develop an intuition of how successful software
+projects are run in practice. We will also get hands-on experience with the 
+tools and techniques of a modern software development ecosystem, and put these
+into practice in a semester-long team project.</p>
+
+<p>
+The four elements of this course are class meetings, quizzes, exams, and a
+project. This course will be taught as a graduate style seminar- some meeting 
+times will be used for lecture, but out-of-class readings will also be the
+basis for in-class discussions. Six quizzes will evaluate the student's
+understanding of class readings, while the exams will assess your ability
+to comprehensively integrate class topics. </p>
+
+
+<p>The course project will be an exercise in agile software development
+following the scrum process. We will discuss agile/scrum soon, but in short
+effort on the project will be structured around two week sprints. You will
+be evaluated at three milestones: an alpha product around midterms,
+a beta product in early November, and a final release on the last day of
+classes. You will be evaluated on the quality of your product and your
+group's adherence to process, as well as your individual contributions.
+Your individual performance will be evaluated by Git commit logs,
+your participation in code reviews of others' commits, and peer evaluations
+at the alpha/beta/final stages. </p> 
+
+<p>
+Definite topical outline:
+<ul>
+  <li>Software development processes
+  <li>Agile and Scrum
+  <li>Version control and branching
+  <li>Software testing principles, test-driven development
+  <li>Overview of software design and architecture
+  <li>Code review process
+  <li>Design patterns
+  <li>Code standards
+  <li>Technical debt and refactoring
+</ul>
+</p>
+<p>
+Tenative topics:
+<ul>
+  <li>Software packaging and publishing (e.g. Docker)
+  <li>Change management
+  <li>User interface design
+  <li>Internationalization and localization
+  <li>Designing and using libraries
+  <li>Ethics in software development
+</ul>
+</p>
+
+<p>
+Assessment Objectives- at the completion of this course, students will be able to:
+<ul>
+  <li>Conduct a software development project as part of a team, using an agile process such as Scrum
+  <li>Make effective use of a modern version control system
+  <li>Use principles of software design in the implementation of a medium-to-large scale software project
+  <li>Design and implement thorough test suites
+  <li>Conduct effective code reviews
+  <li>Apply methods for refactoring existing code
+</ul>
+</p>
+
+<p><i><b>Catalog Description:</b>An overview of software development at a graduate level, including software engineering processes, software design and architecture, testing and quality assurance, and selected other topics of interest to software practitioners.</i></p>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Prerequisites">Prerequisites</a></h3>
+<p>There are no formal catalog prerequisites for this course, but expectations
+are commensurate with a graduate computing course:
+<ul>
+  <li>Significant prior programming experience, including object-oriented
+programming
+  <li>Prior experience using the Linux terminal
+  <li>Some familiarity with software development techniques and strategies
+</ul>
+
+<p>Please see the instructor if you're missing a prerequisite or uncertain
+about your preparation for this course.</p>
+
+<!--
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Studios">Studios</a></h3>
+
+<p>Computer science is an eminently <i>practical</i> discipline, and
+studios are daily assignments intended to complement and reinforce lectures
+through practice.
+Studios will be completed in a team of two students. Students from different
+teams may discuss studios, but sharing of code or solutions is strictly
+prohibited.</p>
+
+<p>Studios are due approximately weekly. 
+The midterm exam and other cirumstances
+may modify this, see the complete course schedule below.</p> 
+
+<p> 
+Studios will be graded on a trimodal scale: complete, partial credit, or no credit.
+Studios that are turned in late or not turned in at all will receive
+no credit, studios graded as partial will receive 60% credit.</p>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Labs">Labs</a></h3>
+
+<p>There will be five lab assignments for this course. These are programming assignments whose purpose is to apply course concepts and to analyze operating system mechanisms. As such, each lab will require a written report detailing your findings in addition to a code submission.</p>
+
+<p>Some labs will require a team of two students, while others are individual projects. Students from different teams may discuss the lab assignments <b>only during course meeting times</b>. Students from the same team are of course encouraged to discuss and work on lab assignments at any time. </p> 
+
+<p>Labs submitted on time (as determined by electronic time stamp) are eligible for full credit. Labs submitted up to 24 hours late will be given a <b>ten percent penalty</b>. Labs submitted between 24 and 48 hours late will be given a <b>twenty percent penalty</b>. Labs submitted after 48 hours late will not be given credit, except in the case of extenuating circumstances pre-approved by the instructor.</p>
+-->
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Schedule">Course Schedule</a></h3>
+
+<p>
+A tentative course schedule is below. <b>Note that this schedule may change
+over the course of the semester.</b> When changes occur, students will be 
+given enough advance notice so that readings and 
+other preparation may be accommodated. 
+</p>
+
+<p>The "Readings" field refers to material that will be discussed that day
+in class, not homework for that day. For example, the readings for
+August 19th will be discussed in class on August 19th. Readings should be
+completed prior to coming to class for the day.</p>
+
+
+<center><table class="schedule" border="4" style="width:100%">
+
+
+<tr>
+	<th>Week</th>
+	<th style="width:15%">Date</th>
+	<th>Topic</th>
+	<th>Readings</th>
+	<th>Notes</th>
+</tr>
+
+<tr>
+	<th rowspan=3>Week 1</th>
+	<th>Aug 17</th>
+	<th>Course Introduction <a href="https://slu.zoom.us/rec/share/vOVOK7_U3zNLGoXc8WbxYIkrNKrjX6a8h3Ud_qUEyE-VHt9fVh0UrLhsbf4tMCbJ?startTime=1597690847000">(Class Discussion)</a></th>
+	<th></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Aug 19</th>
+	<th>Software Development Processes<br>
+	<a href="https://slu.zoom.us/rec/share/ut57I-yv-HFIRdbvxG3NRqIsD5_Kaaa813dI8_JemB5ZbGkpal0u_xIFR9vKau6n">(Class Discussion)</a></th> 
+ 	<th>"<a href="https://www.youtube.com/watch?v=NP9AIUT9nos">Real Software Engineering</a>" by Glenn Vanderburg</th>
+	<th><a href="notes/Class1">Class 1</a></th>
+</tr>
+
+<tr>
+	<th>Aug 21</th>
+	<th><a href="https://slu.zoom.us/rec/share/udduAL3ZqHNJTs_L0BrkePUNTqfeeaa81CBIr6cLzRvR9WdExyTEBu9p0jIAHxrV">(Class Discussion - Vanderberg Part 2)</a></th>
+	<th></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th rowspan=3>Week 2</th>
+	<th>Aug 24</th>
+	<th>Agile and Scrum</th>
+	<th>Review the basic concepts of Agile development:<br>
+		<a href="https://slu.zoom.us/rec/share/9e1sN7PR2iBOeqedsGvVa4otHY_Jaaa8hCVP_aEEzBuPgCEvfbFfW2YJkfOX3Xbq?startTime=1598468666000">(Classroom Discussion)</a><br>
+	<a href="https://www.agilealliance.org/agile101/">https://www.agilealliance.org/agile101/</a><br>
+	<a href="https://www.agilealliance.org/agile101/the-agile-manifesto/">The Agile Manifesto</a><br>
+	<a href="https://www.agilealliance.org/agile101/12-principles-behind-the-agile-manifesto/"</a>Principles of the Manifesto</a><br>
+	Introduction to the Scrum Methodology:<br>
+	<a href="https://www.scrum.org/resources/what-is-scrum">What is Scrum</a><br>
+	Then watch the "Introduction to Scrum" and "Sprint Planning Meeting Videos" at the next link:<br>
+	<a href="https://www.collab.net/services/training/agile_e-learning">Agile E-Learning</a></th>
+	<th><a href="notes/Class2">Class 2</a><br>
+	<a href="slides/AgileScrum.pptx">Agile and Scrum Slides</a></th>
+</tr>
+
+<tr>
+	<th>Aug 26</th>
+	<th>The Dark Side of Scrum<br>
+		(<a href="https://slu.zoom.us/rec/share/5NdLPonK1X9OQ9bGtR6CBLYvA4rPaaa8gyFK_adZxEyYPbRQMaja4aY93jM_Mw9S?startTime=1598641603000">Classroom Discussion</a>)<br>
+	<th>How agile software developers saved healthcare reform in America. Never says Agile/Scrum, but read and create a list of commonalities with Scrum methodology:<br>
+<a href="https://time.com/10228/obamas-trauma-team/">Obama's Trauma Team</a><br>
+Watch and/or read also:<br>
+<a href="https://www.collab.net/services/training/agile_e-learning">Daily Scrum Meeting Training</a><br>
+<a href="https://ronjeffries.com/articles/016-09ff/defense/">"Dark Scrum"</a><br>
+<a href="https://martinfowler.com/articles/agile-aus-2018.html">"The State of Agile Software in 2018"</a><br>
+<a href="https://productcoalition.com/scrum-sprint-anti-patterns-68811a3c306d">Scrum Anti-Patterns</a></th>
+	<th><a href="slides/DarkScrum.pptx">Dark Scrum Slides</a></th>
+</tr>
+
+<tr>
+	<th>Aug 28</th>
+	<th>(<a href="https://slu.zoom.us/rec/share/mG883VLErWtzUtPiF4IOzWtMckEzRMT_kXORx-8fwJe3UeCwkXjyZ7P5u9MeEsnn.MXDwcWubfmWvtm8V?startTime=1598641603000">Dark Scrum Classroom Discussion</a>)</th>
+	<th></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th rowspan=3>Week 3</th>
+	<th>Aug 31</th>
+	<th>Project Introduction<br>
+		(<a href="https://slu.zoom.us/rec/share/0RmeXB6Yub_7bXzKvm9JrX_dhn3cgZlzamzTyuo2pS-5Q7zCwl98YEU_QEt8FeSL.o-nHb3z39xG7DAiE?startTime=1598900324000">Classroom Discussion</a>)</th>
+	<th><a href="CSCI 5030 Project Prompt.docx">Project Prompt</a><br>
+	<a href="https://git.cs.slu.edu/dferry/websock_demo">Websockets Demo</a></th>
+	<th><a href="slides/Project.pptx">Project Slides</a></th>
+</tr>
+
+<tr>
+	<th>Sept 2</th>
+	<th>Sprint 1 Planning Meeting
+		(<a href="https://slu.zoom.us/rec/share/XxD8z9Jj8IFzyTMUs8ylCa_fWtZncl9Wh1u0wEDb5Fg5fkarkBGYRXFczRr57flo.KgIARRySTde5_GUx?startTime=1599073420000">Classroom Discussion</a>)</th>
+	<th><a href="Group Assignments.pptx">Group Assignments</a></th>
+	<th class="due">Quiz 1</th>
+</tr>
+
+<tr>
+	<th>Sept 4</th>
+	<th>Version Control and Git<br>
+		<b><a href="https://slu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=90ce2d86-138e-44ae-9b61-ac2b014d7fa8">Asynchronous Lecture</a></b></th>
+	<th></th>
+	<th><a href="slides/GitIntro.pptx">Git Slides</a><br>
+	<a href="notes/Git1.txt">Workflow Exercise</a></th>
+</tr>
+
+<tr>
+	<th rowspan=3>Week 4</th>
+	<th>Sept 7</th>
+	<th>Branching Models for Git<br>
+		<a href="https://slu.zoom.us/rec/share/zfdCLgJBQGNlAylBkFxMfVseMrtKZ3VwoLq82v8QTMsBd_JjiTOBinrJBWWI7qM7.OF6-DsdTWRVErcoI">(Class Discussion)</a></th>
+	<th><a href="https://nvie.com/posts/a-successful-git-branching-model/">A Successful Git Branching Model</a><br>
+	<a href="https://git-scm.com/book/en/v2/Distributed-Git-Distributed-Workflows">Git Workflows</a></th>
+	<th><a href="slides/GitBranching.pptx">Git Branching Slides</a><br>
+	<a href="notes/Git2.txt">Rebasing Exercise</a></th>
+</tr>
+
+<tr>
+	<th>Sept 9</th>
+	<th>Intro to Test Driven Development<br>
+		Sprint Reviews and Retrospectives<br>
+		<a href="https://slu.zoom.us/rec/share/9PgPZdpQaHTtmWvZEqa_KA7zZhHLKrmYdm619L59LpQykJr_W47iydRC5fE-gH64.Wz2-OYFMqw1B5PON">(Class Discussion and ScholarStrike)</a></th>
+ 	<th><a href="http://agiledata.org/essays/tdd.html">Intro to Test Driven Development</a><br>
+	<a href="https://www.youtube.com/watch?v=xPL84vvLwXA">TDD: The Bad Parts</a></th> 
+	<th></th>
+</tr>
+
+<tr>
+	<th>Sept 11</th>
+	<th>Sprint Discussion Time</th>
+	<th></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th rowspan=3>Week 5</th>
+	<th>Sept 14</th>
+	<th>Sprint 1 Review Meeting</th>
+	<th></th>
+	<th class="due">Quiz 2<br>
+	<a href="slides/Retrospective.pptx">Sprint Retrospective Slides</a></th>
+</tr>
+
+<tr>
+	<th>Sept 16</th>
+	<th>Sprint 2 Planning Meeting</th>
+	<th></th>
+ 	<th></th>
+</tr>
+
+<tr>
+	<th>Sept 18</th>
+	<th>Sprint Discussion Time</th>
+	<th></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th rowspan=3>Week 6</th>
+	<th>Sept 21</th>
+	<th>More on Testing<br>
+		<a href="https://slu.zoom.us/rec/share/4lXO3x-C0LI6nicU9yY_L18ysI-PcZgtCDKHu1fIlV1PF4SK96sprCJPNMiQgud1._VMssQpdr_8Cisk9">(Class Discussion)</a></th>
+ 	<th><a href="https://blog.cleancoder.com/uncle-bob/2014/05/14/TheLittleMocker.html">Uncle Bob on Test Doubles</a></th>
+	<th><a href="notes/UnitTesting.html">Unit Testing in Python</a></th>
+</tr>
+
+<tr>
+	<th>Sept 23</th>
+	<th>Continuous Integration<br>TDD in Gitlab</th>
+	<th></th>
+	<th><a href="slides/GitlabCICD.pptx">Gitlab CI/CD</a></th>
+</tr>
+
+<tr>
+	<th>Sept 25</th>
+	<th></th>
+	<th></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th rowspan=3>Week 7</th>
+	<th>Sept 28</th>
+	<th>Test Types<br>
+		<a href="https://slu.zoom.us/rec/share/cmdf2W12e8nqUdKd0U_Fs0Go0eaEkF-8ne890MZuPFuzVU-PqMmgNBCbRAKkeAN7.Y8yNlu1Nh6ZptlEZ">(Class Discussion)</a></th>
+	<th><a href="https://github.com/twitter/twitter-text">Twitter-Text</a><br>
+	<a href="https://youtu.be/fkjY_R7zQsM?t=835">Feedback & Telemetry (13:55 thru 18:10)</a><br>
+	<a href="https://blog.twitter.com/engineering/en_us/topics/insights/2017/the-testing-renaissance.html">
+	Unit Testing vs. Feature (Behavior) Testing</a></th>
+	<th><a href="slides/Testing.pptx">Testing Slides</a></th>
+</tr>
+
+<tr>
+	<th>Sept 30</th>
+	<th>Sprint 2 Review</th>
+	<th></th>
+	<th class="due">Quiz 3</th>
+</tr>
+
+<tr>
+	<th>Oct 2</th>
+	<th></th>
+	<th></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th rowspan=3>Week 8</th>
+	<th>Oct 5</th>
+	<th><a href="https://slu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=feca748f-a56d-4bd1-8d86-ac4c0109ff83">Git Deep Dive Video</a></th>
+	<th></th>
+	<th></th>
+</tr>
+
+<tr class="due">
+	<th>Oct 7</th>
+	<th>Midterm Exam</th>
+ 	<th></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Oct 9</th>
+	<th>Sprint 3 Planning</th>
+	<th></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th rowspan=3>Week 9</th>
+	<th>Oct 12</th>
+	<th></th>
+	<th></th>
+	<th></th>
+</tr>
+
+<!--
+<tr>
+	<th>Mar 11</th>
+	<th colspan=4 rowspan=3 style="color:red;">No class: Spring Break</th>
+</tr>
+<tr><th>Mar 13</th></tr>
+<tr><th>Mar 15</th></tr>
+-->	
+
+<tr>
+	<th>Oct 14</th>
+	<th>Exam Review</th>
+	<th></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Oct 16</th>
+	<th></th>
+	<th></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th rowspan=3>Week 10</th>
+	<th>Oct 19</th>
+	<th>Code Reviews<br><a href="https://slu.zoom.us/rec/share/c4L_wdW_zMTEckV8UHZQr4AATD_OpAG_bvKYHRN0jm33nwouu1LJeRzwLCSI3rEk.sO67ndfH3TJWRSQb">(Class Discussion)</a></th>
+	<th><a href="http://web.mit.edu/6.005/www/fa15/classes/04-code-review/">Code Review Exercise</a><br>
+	The Human Side of Code Reviews:<br>
+	<a href="https://mtlynch.io/human-code-reviews-1/">Part 1</a><br>
+	<a href="https://mtlynch.io/human-code-reviews-2/">Part 2</a><br>
+	Optional: <a href="https://www.fastcompany.com/28121/they-write-right-stuff">They Write the Right Stuff</a>,
+	a look at how high-stakes software is created for space missions (and which is actually a passionate
+	defense of the waterfall model- remember to read critically!)</th>
+ 	<th><a href="slides/CodeReview.pptx">Code Reviews</a></th>
+</tr>
+
+<tr>
+	<th>Oct 21</th>
+	<th>Software Architecture<br><a href="https://slu.zoom.us/rec/share/4vh_S5SjFDNWGSPWUTJbSOcf4vhloJ5JawGjJJVrGzEnqO7P0fmXulXMLCRh5A6Q.pIJtQ6cZtLayLpjh">(Class Discussion)</a></th>
+ 	<th></th> 
+	<th><a href="slides/SoftwareArch.pptx">Software Architecture</a></th>
+</tr>
+
+<tr>
+	<th>Oct 23</th>
+	<th></th>
+	<th></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th rowspan=3>Week 11</th>
+	<th>Oct 26</th>
+	<th>Engineering Case Study: Mozilla<br><a href="https://slu.zoom.us/rec/share/8-cT_JNbDqHcywrvl-TLI1zGcDfS8G-EeGmknxa8SufN2tDbluiCPmSvNNm-xrSj.WXihnxmWNrj-il7c">(Class Discussion)</a></th>
+	<th></th>
+	<th><a href="slides/Mozilla.pptx">Mozilla Case Study</a></th>
+</tr>
+
+<tr>
+	<th>Oct 28</th>
+	<th>Engineering Case Study: Twitter<br><a href="https://slu.zoom.us/rec/share/JvXaUWrQvfe1fQ_o7Q7WRaKCmd2QdNeEJoXr_gZoy_khqjPTEEbmoTXc51RxmfxO.RS1SpcUDS1I04p5k">(Class Discussion)</a></th>
+	<th></th>
+	<th class="due">Quiz 4<br>
+	<a href="slides/Twitter.pptx">Twitter Case Tudy</a></th>
+</tr>
+
+
+<tr>
+	<th>Oct 30</th>
+	<th></th>
+	<th></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th rowspan=3>Week 12</th>
+	<th>Nov 2</th>
+	<th>Sprint 3 Review</th>
+	<th>For lack of a better term, "pro" architecture articles:<br>
+	<a href="https://www.ben-morris.com/relax-theres-no-conflict-between-architecture-and-agile/">There's No Conflict Between Architecture and Agile</a><br>
+	<a href="https://www.agileconnection.com/article/agile-approach-software-architecture">An Agile Approach to Software Architecture</a><br>
+	Articles critical of "Architecture Astronauts":<br>
+	<a href="https://www.joelonsoftware.com/2001/04/21/dont-let-architecture-astronauts-scare-you/">Don't Let the Architecture Astronauts Scare You</a><br>
+	<a href="https://www.joelonsoftware.com/2008/05/01/architecture-astronauts-take-over/">Architecture Astronauts Take Over</a><br>
+	A personal account of wrestling with architecture:<br>
+	<a href="http://thegoldenmule.com/blog/2019/02/the-hard-things-about-simple-things/">The Hard Things About Simple Things</a></th>
+ 	<th><a href="slides/ArchDiscussion.pptx">Archiecture Discussion and Sprint 3 Retrospective</a></th>
+</tr>
+
+<tr>
+	<th>Nov 4</th>
+	<th>Sprint 4 Planning</th>
+ 	<th></th>
+	<th><a href="notes/Sprint_4_Planning.docx">Sprint 4 Planning Form</a></th>
+</tr>
+
+<tr>
+	<th>Nov 6</th>
+	<th></th>
+	<th></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th rowspan=3>Week 13</th>
+	<th>Nov 9</th>
+	<th>Technical Debt</th>
+	<th></th>
+	<th><a href="slides/TechDebt.pptx">Technical Debt Slides</a></th>
+</tr>
+
+<tr>
+	<th>Nov 11</th>
+	<th>Refactoring</th>
+	<th></th>
+	<th class="due">Quiz 5<br>
+	<a href="slides/Refactoring.pptx">Refactoring Slides</a></th>
+</tr>
+
+<tr>
+	<th>Nov 13</th>
+	<th></th>
+	<th></th>
+	<th></th>
+</tr>
+
+<!--
+<tr>
+	<th>Apr 19</th>
+	<th colspan=4 style="color:red;">No class: Good Friday</th>
+</tr>
+
+<tr>
+	<th>Apr 22</th>
+	<th colspan=4 style="color:red;">No class: Easter Monday</th>
+</tr>
+-->
+
+<tr>
+	<th rowspan=3>Week 14</th>
+	<th>Nov 16</th>
+	<th>Sprint 4 Review<br>Presentation Prep</th>
+	<th></th>
+ 	<th></th>
+</tr>
+
+<tr>
+	<th>Nov 18</th>
+	<th>Course Conclusion</th>
+	<th></th>
+	<th><a class="inactive" href="slides/Conclusion.pptx">Course Conclusion Slides</a></th>
+</tr>
+
+<tr>
+	<th>Nov 20</th>
+	<th></th>
+	<th></th>
+	<th></th>
+</tr>
+
+<!--
+<tr>
+	<th>Nov 29</th>
+	<th colspan=4 style="color:red;">No class: Thanksgiving Break</th>
+</tr>
+-->
+
+<!--
+<tr>
+	<th>Apr 26</th>
+	<th></th>
+	<th></th>
+	<th></th>
+	<th></th>
+</tr>
+-->
+
+<tr>
+	<th rowspan=3>Week 15</th>
+	<th>Nov 23</th>
+	<th>Project Presentations</th>
+	<th></th>
+	<th class="due">Quiz 6</th>
+</tr>
+
+<tr>
+</tr>
+
+<tr>
+	<th></th>
+	<th></th>
+	<th></th>
+	<th></th>
+</tr>
+
+<tr style="background-color:yellow">
+	<th>Final</th>
+	<th>Dec 3</th>
+	<th>Final Exam Period - 8:00AM to 9:50AM</th>
+	<th></th>
+	<th></th>
+</tr>
+
+</table></center>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="gitinfo">SLU Git Repository</a></h3>
+
+<p>Version control software is used to track changes to all artifacts
+related to this course. Most importantly this means project source
+code, but you should track absolutely all of your work using version
+control: data files, config files, build scripts, test code,
+documentation, READMEs, licence files, project websites and
+other resources, and so on.<p>
+
+<p>Some things should not be tracked: generated files such as
+intermediate compilation products and binary executable files bloat the
+repository, and can't be used unless the server environment is totally
+replicated by the user. Dependencies such as libraries should be indicated
+and not replicated, unless you're willing to take on the challenge of
+regularly updating and maintaining those libraries as well.</p>
+
+<p>There are many reasons why version control is a universal software
+development tool:
+<ul>
+  <li>Makes collaboration easier. Shared, up-to-date code base.
+  <li>Tracks history of every change with log message explaininig the reason for it. 
+  <li>Backup of all files. A single hard drive crash or backpack theft shouldn't kill your grade or bankrupt your startup.
+  <li>Serves as a crude method of effort tracking.
+  <li>Essential for debugging and “root cause analysis”. Find exact commit that introduced a given bug. Can "diff" between any two stored versions. 
+  <li>Attributes every line to a feature or specification: most tools allow “blame view” - look at a file with each line annotated by the person who added that line and a reference to the commit that added.
+  <li>Allows you to maintain multiple “branches” of a project. Stable branch, “next” branch for next stable release, “trunk” or bleeding edge branch, etc. We’ll do case studies of how different projects handle this.
+  <li>Branching allows fearless experimentation. Create a branch, try something and if it doesn’t work, discard the branch. If it does, “merge” in with the main development branch. And if you change your mind after merging, you can still “revert” at any time.
+</ul>
+ 
+<p><a href="git-info.pdf">A short guide to using SLU's git resources</a></p>
+
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Textbooks">Textbook and Class Resources</a></h3>
+
+<p>In lieu of a textbook, we will have online readings throughout the
+semester.</p>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="readings">Class Readings</a></h3>
+
+<p>Readings are a crucial part of this course. The goal of our readings is to
+hear from successful, real-world practitioners and ground our dicussions in
+what does and does not work in practice.</p>
+
+<p>If the schedule has a reading listed for a given date then you should
+consume that material prior to that class period and come ready to discuss 
+it on that date. Please be thoughtful and reflective about our readings,
+as the quality of the discussion (and in turn, what you and your peers
+get from the course) is directly related to your preparation.</p>
+
+<p>A great general-purpose way to respond to any content (in this course
+or in any other course) is to answer the following questions:
+
+<ol>
+	<li>What do you remember from the reading/video?</li>
+	<li>What was confusing, or what do you still have questions about?</li>
+	<li>What stuck out to you or surprised you?</li>
+	<li>What did you see/read/hear that connects to something you've
+	learned or experienced previously (in this course or outside it)?</li>
+	<li>How would you use this in the future?</li>
+</ol>
+
+</p>
+
+<p>Please feel free to go further than this in responding to any of the course
+material, but if you can answer these questions for yourself then you are
+probably adequately prepared for our class discussions.</p>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Grading">Grading</a></h3>
+
+<p>The semester schedule for exams and quizzes is known well in advance. 
+<b>Make up quizzes and exams will only be given for severe and documented reasons.</b>
+Your lowest scoring quiz will be dropped.</p>
+
+<p>Your grade will be determined as follows:</p>
+
+<table border="3">
+<tr>
+	<th>Activity</th>
+	<th>Grade Percentage</th>
+</tr>
+<tr>
+	<td>Project</td>
+	<td>50%</td>
+</tr>
+<tr>
+	<td>Quizzes</td>
+	<td>25% (5% each out of five, the lowest grade is dropped)</td>
+</tr>
+<tr>
+	<td>Midterm</td>
+	<td>12.5%</td>
+</tr>
+<tr>
+	<td>Final</td>
+	<td>12.5%</td>
+</tr>
+
+</table>
+
+<p>Grading is done on a straight scale (uncurved). The following scores are guaranteed. The grading scale may be curved upwards (in your favor)
+at the discretion of the instructor.
+
+<ul>
+<li> 93% guarantees an A
+<li> 90% guarantees an A-
+<li> 87% guarantees a B+
+<li> 83% guarantees a B
+<li> 80% guarantees a B-
+<li> 77% guarantees a C+
+<li> 73% guarantees a C
+<li> 70% guarantees a C-
+<li> 60% guarantees a D
+</ul>
+
+</p>
+
+<p>Project work assigned for this course is generally expected to be
+completed collaboratively. However, the sharing of written work or
+code between teams is strictly prohibited. Exams and quizzes are individual
+assignments and collaboration is strictly prohibited. Occasionally,
+the readings for classes may include non-credit exercises designed to
+inform or enhance your understanding of the material. These non-credit
+exercises may be completed collaboratively. </p>
+
+<p>Some specific guidelines for this course:</p>
+
+<ul>
+<li>Code you submit as part of the project must be written by you or your team. You are not allowed to copy code. Copying code, even small portions, in an industrial setting can lead to
+serious legal and financial consequences for both you and your employer.</li>
+<li>Copying small pieces of code from man pages, online references or other sources is generally acceptable, but to be safe you should check with me first. <b>Code from such sources must be cited</b> with a comment denoting the start and finish of the copied section.</li>
+<li>Copied code that is not cited will be considered plagiarism and will be treated as cheating. Citing your code protects you from this. However, copying large portions of code is still grounds for a reduction in grade, even if it is not cheating. Please check with the instructor if you are copying more than a few lines of code!  
+</ul>
+
+<hr>
+
+<H2>
+<a name="Attendance Policy">Attendance</a>
+</H2>
+
+<p>Successful students attend all or mostly all class sessions. This is true
+in my experience <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0187078">and has been demonstrated in large scale studies</a> as well.
+In that study, even students who attended nine out of ten class periods had
+measurably lower class performance than those who attended all classes. However,
+there is no attendance requirement for this class, and you do not need to
+get permission when you do miss class. You are an adult and have
+the freedom to manage your time in whatever way you feel is most useful.
+Job interviews, conferences, tests in other courses, etc. are all reasonable
+cases for being absent.</p>
+
+<p>Note that in-class assignments such as tests or quizes cannot be made
+up outside of class without prior approval from the instructor. All such
+activities will be listed course schedule with ample time to prepare
+(i.e. there are no "pop quizes").</p>
+
+<p>If you do miss class you should refer to the course schedule to see what was
+missed and arrange to get course notes from another student. I am always happy
+to answer questions but I do not repeat full class periods in office hours.</p>
+
+<p><b>Required University Attendance Statement for Fall 2020</b></p>
+
+The health and well-being of SLU’s students, staff, and faculty are critical concerns.  Accordingly, the following University policy statements on in-person class attendance are designed to preserve and advance the collective health and well-being of our institutional constituencies.
+
+ <OL>
+<LI>Students who exhibit any <a href="https://www.cdc.gov/coronavirus/2019-ncov/symptoms-testing/symptoms.html">potential COVID symptoms</a> (those that cannot be attributed to some other medical condition the students are known to have, such as allergies, asthma, etc.) shall absent themselves from any in-person class attendance or in-person participation in any class-related activity until they have been evaluated by a qualified medical official.   Students should contact the <a href="https://www.slu.edu/life-at-slu/student-health/index.php">University Student Health Center</a> for immediate assistance.</LI>
+<LI>Students who exhibit <a href="https://www.cdc.gov/coronavirus/2019-ncov/symptoms-testing/symptoms.html">potential COVID symptoms</a> (those that cannot be attributed to some other medical condition the students are known to have, such as allergies, asthma, etc.) but who feel well enough to a) attend the course synchronously in an online class session or b) participate in asynchronous online class activities, are expected to do so.  Those who do not feel well enough to do so should absent themselves accordingly.</LI>
+<LI>Students (whether exhibiting any of potential COVID symptoms or not, and regardless of how they feel) who are under either an isolation or quarantine directive issued by a qualified health official must absent themselves from all in-person course activity per the stipulations of the isolation or quarantine directive.  They are expected to participate in synchronous or asynchronous online class activities as they feel able to do so, or absent themselves accordingly.</LI>
+<LI>Students are responsible for notifying each instructor of an absence as far in advance as possible; when advance notification is not possible, students are responsible for notifying each instructor as soon after the absence as possible.</LI>
+<LI>As a temporary amendment to the current <a href="https://catalog.slu.edu/academic-policies/academic-policies-procedures/attendance/">University Attendance Policy</a>, all absences due to illness or an isolation/quarantine directive issued by a qualified health official shall be considered “Authorized” absences (effective August 2020 through May 2021). </LI>
+</OL>
+
+
+<hr>
+<H2>
+<a name="COVID">COVID-19 Considerations for Fall 2020</a>
+</H2>
+
+<p>
+<b>Notification of absences:</b> You do not need to notify the instructor
+that you are missing a regular synchronous class meeting. Notify the
+instructor as early as possible if you have a conflict with exam times.
+</p>
+
+<p>
+<b>Student Absences:</b> It is the responsibility of the student
+to accommodate their absence. Make arrangements in advance with another
+student to get a report of synchronous class activities and their notes
+for the day. Our synchronous meetings will be recorded via Zoom,
+but do not rely on such recordings: they do not record group breakout
+sessions, the recording may fail, etc.</p>
+
+<p><b>Late work:</b> Severe illness is a reasonable basis to request an extension
+on lab assignments. However, my experience is that extensions tend to do more harm
+than good for many as once you get behind on work it can be difficult to catch up.
+All students would be well-served by starting assignments early especially with the
+uncertainty due to COVID-19.</p>
+
+<p><b>What happens if the course instructor becomes ill:</b> As this is already a hybrid
+in-person/online course the class will proceed as entirely online if the instructor is well enough to
+meet. Otherwise a replacement faculty from the computer science department will
+take over synchronous meeting times.</p>
+
+<p>Depending on the timing of the illness some modification to the course schedule
+and assignment deadlines may be required. If any modification takes place it will
+always be announced and made in favor of the student- e.g. deadlines may be
+extended, but never shortened. The group exam times will not be moved under
+any circumstances.</p>
+
+<p>The major grade for this course is the course project- this is a group project
+and we have sufficient development tools (Git, etc.) to continue working on this
+project regardless of whether we can meet in person or remotely. I expect you to
+continue your regular group meetings and project work regardless of what happens
+with myself and lecture.</p>
+
+<p><b>Grading policy changes:</b> If circumstances require it, certain graded elements
+of the course may be eliminated or replaced with a substitute. In the case of
+substitution the new assignment will have the same point-values as the old assignment:
+for example if the midterm exam is replaced with a programming project that programming
+project will be worth 12.5% of your final grade. In the case of elimination the
+point-values assigned to the activity group will not change: for example if we eliminate
+one of the five quizzes then the remaining four will collectively still be worth
+25% of the final grade.</p>
+
+<hr>
+<H2>
+<a name="masks">Mandatory Statement of Face Masks (Fall 2020)</a>
+</H2>
+
+<P>
+The University’s <i><a href="https://slu.policystat.com/policy/token_access/2e1e7d4c-49c9-42ba-8055-ca833711bea4/">Interim Policy on Face Masks</a></i> governs all students, faculty, staff, and campus visitors in all University-owned, leased, or operated facilities.   All persons physically present in any such University facility associated with this course shall comply fully with this policy at all times.  Masks must be worn before entry to all such University facilities (as well as outdoors on all University property when six feet of distance is unpredictable or cannot be maintained).</P>
+
+<P>Saint Louis University is committed to maintaining an inclusive and accessible environment.  Individuals who are unable to wear a face mask due to medical reasons should contact the Office of Disability Services or Human Resources to initiate the accommodation process identified in the University’s <a href="https://www.slu.edu/human-resources/pdfs/policies/americans-disabilities-act-policy.pdf">ADA Policy</a>.  Inquires or concerns may also be directed to the <a href="https://www.slu.edu/general-counsel/institutional-equity-diversity/index.php">Office of Institutional Equity and Diversity</a>.   Notification to instructors of SLU-approved ADA accommodations should be made in writing prior to the first class session in any term (or as soon thereafter as possible). </P>
+
+<P>As the instructor of this course, I shall comply fully with SLU’s policy and all related ADA regulations.</P>
+
+<P>Students who attempt to enter a classroom without wearing masks will be asked by the instructor to wear masks prior to entry.  Students who remove their masks at any time during a class session will be asked by the instructor to resume wearing their masks.</P>
+
+<P><B>Note: Accordingly, no consumption of any food will be allowed in class.</B></P>
+
+<P>Students who do not comply with a request by a SLU instructor to wear a mask in accordance with the University’s Interim Policy on Face Masks may be subject to disciplinary actions per the rules, regulations, and policies of Saint Louis University, including but not limited to the Student Handbook.  Non-compliance with this policy may result in disciplinary action, up to and including any of the following:</P>
+
+<UL>
+<LI>dismissal from the course(s)</LI>
+<LI>removal from campus housing (if applicable)</LI>
+<LI>dismissal from the University</LI>
+</UL>
+
+<P>To immediately protect the health and well-being of all students, instructors, and staff, instructors reserve the right to cancel or terminate any class session at which any student fails to comply with faculty or staff request to wear a mask in accordance with University policy.</P>
+
+<P>Students are strongly encouraged to identify to their instructor any student or instructor not in compliance.  Non-compliance may be anonymously reported via the SLU Integrity Hotline at 1-877-525-5669 (or confidentially via the Integrity Hotline's website at <a href="http://www.lighthouse-services.com/slu">http://www.lighthouse-services.com/slu</a>.</P>
+
+
+<hr>
+<H2>
+<a name="Academic Integrity">Academic Integrity</a>
+</H2>
+
+<P>
+<em>Academic integrity is honest, truthful and responsible
+conduct in all academic endeavors.</em>
+The mission of Saint Louis University is "the pursuit of truth for the
+greater glory of God and for the service of humanity."
+Accordingly, all acts of falsehood demean and compromise the
+corporate endeavors of teaching, research, health care, and
+community service via which SLU embodies its mission. The
+University strives to prepare students for lives of personal and
+professional integrity, and therefore regards all breaches of
+academic integrity as matters of serious concern.
+</p>
+<p>
+The governing
+University-level Academic Integrity Policy was adopted in Spring
+2015, and can be accessed on the Provost's Office website at: <a
+href="https://www.slu.edu/provost/policies/academic-and-course/policy_academic-integrity_6-26-2015.pdf">https://www.slu.edu/provost/policies/academic-and-course/policy_academic-integrity_6-26-2015.pdf</a>.
+</p>
+<p>
+Additionally, each SLU College, School, and Center has adopted its own
+academic integrity policies, available on their respective
+websites. All SLU students are expected to know and abide by
+these policies, which detail definitions of violations,
+processes for reporting violations, sanctions, and
+appeals. Please direct questions about any facet of academic
+integrity to your faculty, the chair of the department of your
+academic program, or the Dean/Director of the College, School or
+Center in which your program is housed. Specific College of Arts
+and Sciences Academic Honesty Policies and Procedures may be
+<a href="http://www.slu.edu/arts-and-sciences/student-resources/academic-honesty.php">
+found here</a>.
+</p>
+
+
+<hr>
+<H2>
+<A name="Title IX Statement">Title IX Statement</A>
+</H2>
+
+<p>
+Saint Louis University and its faculty are committed to supporting our students and seeking an environment that is free of bias, discrimination, and harassment. If you have encountered any form of sexual harassment, including sexual assault, stalking, domestic or dating violence, we encourage you to report this to the University. If you speak with a faculty member about an incident that involves a Title IX matter, <b>that faculty member must notify SLU’s Title IX Coordinator and share the basic facts of your experience</b>. This is true even if you ask the faculty member not to disclose the incident. The Title IX Coordinator will then be available to assist you in understanding all of your options and in connecting you with all possible resources on and off campus.
+</p>
+
+<p>
+Anna Kratky is the Title IX Coordinator at Saint Louis University (DuBourg Hall, room 36; <a href="mailto:anna.kratky@slu.edu">anna.kratky@slu.edu</a>; 314-977-3886). If you wish to speak with a confidential source, you may contact the counselors at the University Counseling Center at 314-977-TALK or make an anonymous report through SLU’s Integrity Hotline by calling 1-877-525-5669 or online at <a href="http://www.lighthouse-services.com/slu">http://www.lighthouse-services.com/slu</a>. To view SLU’s policies, and for resources, please visit the following web addresses: <a href="https://www.slu.edu/about/safety/sexual-assault-resources/index.php">https://www.slu.edu/about/safety/sexual-assault-resources/index.php</a> and <a href="https://www.slu.edu/general-counsel">https://www.slu.edu/general-counsel</a>.
+</p>
+
+<p>
+IMPORTANT UPDATE: SLU’s Title IX Policy (formerly called the Sexual Misconduct Policy) has been significantly revised to adhere to a new federal law governing Title IX that was released on May 6, 2020. Please take a moment to review the new policy and information on the following web address: <a href="https://www.slu.edu/about/safety/sexual-assault-resources/index.php">https://www.slu.edu/about/safety/sexual-assault-resources/index.php</a>. Please contact the Anna Kratky, the Title IX Coordinator, with any questions or concerns.
+</p>
+
+<hr>
+
+<H2>
+<A name="Academic Support">Supporting Student Success</A>
+</H2>
+
+<p>
+In recognition that people learn in a variety of ways and that
+learning is influenced by multiple factors (e.g., prior
+experience, study skills, learning disability), resources to
+support student success are available on campus. The Student
+Success Center, a one-stop shop, which assists students with
+academic and career related services, is located in the Busch
+Student Center (Suite&nbsp;331). Students can visit <a
+href="https://www.slu.edu/life-at-slu/student-success-center/">https://www.slu.edu/life-at-slu/student-success-center/</a> to learn more about tutoring services,
+university writing services, disability services, and academic coaching.
+<hr>
+
+<H2>
+<A name="Disability Services">Disability Services</A>
+</H2>
+<p>
+Students with a documented disability who wish to request
+academic accommodations <b>must</b> contact Disability Services to
+discuss accommodation requests and eligibility
+requirements. Once successfully registered, the student also
+<b>must</b>  notify the course instructor that they wish to access
+accommodations in the course.
+</p>
+<p>
+Please contact Disability Services, located within the Student
+Success Center, at <a href="mailto:Disability_services@slu.edu">Disability_services@slu.edu</a> or 314-977-3484
+to schedule an appointment. Confidentiality will be observed
+in all inquiries. Once approved, information about academic
+accommodations will be shared with course instructors via email
+from Disability Services and viewed within Banner via the
+instructor’s course roster.
+</p>
+<p>
+Note: Students who do not have a documented disability but who
+think they may have one are encouraged to contact Disability Services.
+</p>
+
+<hr>
+<H2>
+<A name="Writing Center">University Writing Services</A>
+</H2>
+<p>Students are encouraged to take advantage of University Writing Services in the Student Success Center; getting feedback benefits writers at all skill levels. Trained writing consultants can help with writing projects, multimedia projects, and oral presentations. University Writing Services offers one-on-one consultations that address everything from brainstorming and developing ideas to crafting strong sentences and documenting sources. For more information, visit <a href="https://www.slu.edu/life-at-slu/student-success-center/">https://www.slu.edu/life-at-slu/student-success-center/</a> or call the Student Success Center at 314-977-3484.</p>
+
+<hr>
+<H2>
+<A name="Basic Needs Security">Basic Needs Security</A>
+</H2>
+<p>Students in personal or academic distress and/or who may be specifically experiencing challenges such as securing food or difficulty navigating campus resources, and who believe this may affect their performance in the course, are encouraged to contact the Dean of Students Office (<a href="mailto:deanofstudents@slu.edu">deanofstudents@slu.edu</a> or 314-977-9378) for support. Furthermore, please notify the instructor if you are comfortable in doing so, as this will enable them to assist you with finding the resources you may need.</p>
+
+</body>
+</html>
+

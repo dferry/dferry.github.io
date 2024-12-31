@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+
+<HTML>
+<HEAD>
+<TITLE>Lecture Notes: Discrete Simulation
+</TITLE>
+</HEAD>
+
+<BODY>
+
+
+
+<HR>
+
+<H2>
+Discrete Simulation
+</H2>
+
+
+<p>
+In the previous lecture, we animated the motion of a ball using the
+formula for the position relative to the initial
+velocity and acceleration.
+
+<p>
+We can generate an approximation to the motion more directly by
+simulating individual timesteps.  All we need to know about physics is
+that the velocity is a measure of the rate of change in the position;
+that is, velocity is the derivative of the position with respect to
+time (e.g., dy/dt).    The acceleration of gravity is a force that
+is measured as the rate of change of velocity over time.
+
+<p>
+So let's redo the 2D motion, this time calculating the x and y
+position at each timestep based on a discrete simulation.
+
+
+<p>
+Here is a graph showing the results of our simulation, based upon a
+variety of timestep values (measured in seconds of simulation).
+<br>
+<img src="ballSimulation.jpg">
+<br>
+Notice that as the timestep grows smaller, our approximation seems to
+be approaching the limit of the true parabola.  However our trajectory
+is quite far off for the larger timesteps.
+
+<hr>
+
+<h2>Basic Code for Simulation</h2>
+
+<p>
+As a starting point, here is code that provides a framework for a
+basic discrete simulation of the moving ball.  If you prefer, this
+code may be downloaded as a file <tt><a href="ball.m">ball.m</a></tt>.
+<pre>
+% A framework for doing a discrete simulation of a moving ball
+
+g = 9.8;                       % gravity
+iv = 43.81;                    % initial velocity (98 mph = 43.81 m/s)
+angle = 60;
+ivx = iv * cosd(angle);        % initial velocity's x-component
+ivy = iv * sind(angle);        % initial velocity's y-component
+
+minX = 0; maxX = 150;          % setup bounds for a workspace window
+minY = 0; maxY = 100;          % setup bounds for a workspace window
+window = [minX maxX minY maxY];
+
+px = minX;                     % current position's x-component
+py = minY;                     % current position's y-component
+vx = ivx;                      % current velocity's x-component
+vy = ivy;                      % current velocity's y-component
+dt = 0.1;                      % simulate 1/10 second per iteration
+
+% ------------ begin the simulation -------------
+
+while px &gt;= minX && px &lt;= maxX && py &gt;= minY && py &lt;= maxY
+    plot(px, py, 'o');
+    axis equal;
+    axis(window);
+    grid on;
+    
+    px = px + vx * dt;    % velocity affects position
+    py = py + vy * dt;
+    vy = vy - g * dt;     % acceleration affects velocity
+    
+    pause(dt);
+end
+
+</pre>
+
+
+<h4>Challenge: Have the ball bounce off the walls</h4>
+
+<h4>Challenge: Have the ball bounce off the ground</h4>
+
+<h4>Challenge: Have the ball bounce off the ground with dampened velocity</h4>
+
+<h4>Challenge: Have the simulation end when the ball begins rolling</h4>
+
+<h4>Challenge: Speed up the simulation without changing the physics</h4>
+
+<h4>Challenge: Change the color of the ball each time it collides with a wall or ground</h4>
+
+<h4>Challenge: Simulate two or three balls simultaneously</h4>
+
+<h4>Challenge: Simulate N balls simultaneously, with random starting angles between 1 and 89 degrees and random starting velocities</h4>
+
+<HR>
+
+<img src="sim.gif" /a>
+<img src="manyball.gif" /a>
+
+
+<HR>
+Originally by
+<ADDRESS>
+<a href="/~goldwasser">Michael Goldwasser</a>
+</ADDRESS>
+</BODY>
+</HTML>
+

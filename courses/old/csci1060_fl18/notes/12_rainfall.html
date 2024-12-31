@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+
+<HTML>
+<HEAD>
+<TITLE>Lecture Notes: Probability of Record-breaking Rainfall
+</TITLE>
+</HEAD>
+
+<BODY>
+
+<h3><a name="records">Case Study: Breaking Records</a></h3>
+
+<p>
+How often should you expect to have a truly record breaking year?
+Suppose you have 100 years of weather data indicating how much precipitation
+fell in each year. How many records to you expect to be set for wettest
+or driest years on record? 
+For example, <a href="https://www.weather.gov/lsx/cli_archive">according to NOAA</a>,
+St. Louis' official driest year had just 20.7 inches of precipitation in 1953,
+and our wettest year had 61.2 inches in 2015. On average, we get about 43.4
+inches of precipitation in a year. 
+
+<p><a href="SLU_precip.txt">SLU precipitation data</a></p>
+
+<p>
+In this class we will simulate weather data and compute how many
+record highs and lows are seen. To do this, we build upon
+our exercise from last time, the peak-finding function.
+
+
+<h3><a name="peaks">Finding peaks</a></h3>
+
+<p>
+Given a vector, we have discussed the basic algorithm for fiding the
+maximum, by keep track of the maximum thus far while iterating through
+the vector.
+
+<p>
+Question: how many different elements qualify as being the 
+maximum thus far during that process?
+
+<p>
+Goal: Develop a function <tt>peaks(v)</tt> that returns the number of
+elements that have value surpassing all previous elements in the vector.
+For example, <nobr><tt>peaks([5 1 8 3 8 11 10])</tt></nobr> should return
+<tt>3</tt>, as the first element, the third element and the sixth
+elements are new maximums (we do not count the fifth, because that
+value 8 did not surpass the previously visited maximum of 8).
+
+
+<p>
+Goal: Rewrite the function so that it can provide a second return
+value, which is a vector of indices achieving those peaks (akin to the
+second return value of the built-in <tt>max</tt> function).  Thus
+<nobr><tt>peaks([5 1 8 3 8 11 10])</tt></nobr> should return the pair
+<nobr><tt>[ 3  [1 3 6] ]</tt></nobr>.
+
+
+<!--
+<hr>
+
+<h4>Files from Wednesday's class</h4>
+
+We developed three function m-files during class.   Because these were
+written on-the-fly, they may not be perfect examples of good style,
+but the should suffice.
+<ul>
+  <li>
+      <a href="peaks.m">peaks.m</a>
+      <br>
+      The basic function for computing the number of peaks and their indices.
+  </li>
+      <br>
+  <li>
+      <a href="harmonicTest.m">harmonicTest.m</a>
+      <br>
+      A function that performed tests by generating random vectors and
+      counting the number of peaks in those vectors.
+  </li>
+      <br>
+  <li>
+      <a href="graphHarmonic.m">graphHarmonic.m</a>
+      <br>
+      A function that produces a plot of the theoretical predicted
+      number of peaks for random data versus the observed data for
+      random trials.
+  </li>
+</ul>
+-->
+
+
+<HR>
+<ADDRESS>
+Originally by
+<a href="/~goldwasser">Michael Goldwasser</a>
+</ADDRESS>
+<HR>
+
+</BODY>
+</HTML>
+

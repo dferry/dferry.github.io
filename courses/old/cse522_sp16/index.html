@@ -1,0 +1,635 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+<style>
+table.schedule td {
+	height: 4em;
+	overflow: visible;
+}
+</style>
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSE 522S - Advanced Operating Systems</title></head>
+
+<body><h2 style="text-align: center;"><img alt="Engineering.wustl.edu" src="SEASlogo.jpg"><br></h2><h2 style="text-align: center;">CSE 522S: Advanced Operating Systems Class Page<br>
+
+</h2><h2 style="text-align: center;">Spring 2016</h2>
+
+<table style="width: 100%; text-align: left;" border="0" cellpadding="2" cellspacing="2"> <tbody> <tr>
+    <td style="vertical-align: top; font-weight: bold; width: 163px;">Instructor</td> 
+    <td style="vertical-align: top; width: 1019px;"><span style="font-family: monospace;"><a href="mailto:dferry@email.wustl.edu">David Ferry</a>, Jolley Hall 425, <a href="http://cse.wustl.edu/~ferryd/">Homepage</a></span></td> 
+</tr>
+
+<tr>
+    <td style="vertical-align: top; font-weight: bold; width: 163px;">Course Web Site</td> 
+    <td style="vertical-align: top; width: 1019px;"><span style="font-family: monospace;"><a href="http://cse.wustl.edu/~ferryd/courses/cse522">http://cse.wustl.edu/~ferryd/courses/cse522/</a></span></td>
+</tr>
+
+<tr>
+    <td style="vertical-align: top; font-weight: bold; width: 163px;">Course meeting times</td> 
+    <td style="vertical-align: top; width: 1019px;">Tuesday &amp; Thursday 2:30 PM - 4:00 PM, Lopata Hall 201 / Urbauer 115</td> 
+</tr> 
+
+<tr>
+    <td style="vertical-align: top; width: 163px;"><span style="font-weight: bold;">Midterm exam</span><br> </td> 
+    <td style="vertical-align: top; width: 1019px;">2:30 on March 10th, Lopata Hall 201<br> </td>
+</tr> 
+
+<tr>
+    <td style="vertical-align: top; width: 163px;"><span style="font-weight: bold;">Final exam</span><br> </td> 
+    <td style="vertical-align: top; width: 1019px;">May 11, 2016 3:30 - 5:30, regular classroom<br> </td>
+</tr> 
+
+<tr>
+    <td style="vertical-align: top; font-weight: bold; width: 163px;">Office hours</td>
+    <td style="vertical-align: top; width: 1019px;">by appointment due to ongoing construction</td> 
+</tr> 
+
+<!--
+<tr>
+    <td style="vertical-align: top; font-weight: bold; width: 163px;">Prerequisites</td>
+    <td style="vertical-align: top; width: 1019px;">CSE 422S (Operating Systems) and C/C++ programming experience</td> </tr> 
+-->
+
+<!--
+<tr> 
+    <td style="vertical-align: top; width: 163px;">
+<span style="font-weight: bold;">TA</span><br> </td> 
+    <td style="vertical-align: top; font-weight: bold; width: 1019px;"><span style="font-weight: normal;">Benny Hill (bah2 AT cse.wustl.edu)</span><br style="font-weight: normal;"><span style="font-weight: normal;">Office Hours: Tu, Th 2pm-3pm</span> </td> </tr> </tbody> 
+-->
+</table>
+
+<hr style="width: 100%; height: 2px;">
+
+<font size=+2><strong>Contents</strong></font>
+<ol>
+  <li><a href="#Course Description">Course Description</a>
+  <li><a href="#Prerequisites">Prerequisites</a>
+  <li><a href="#Studios">Discussions/Studios</a>
+  <li><a href="#Labs">Labs</a>
+  <li><a href="#Course Project">Course Project</a>
+  <li><a href="#Class FAQ">Class FAQ</a>
+  <li><a href="#Textbooks">Textbooks and Other Resources</a>
+  <li><a href="#Grading">Grading</a>
+  <li><a href="#Academic Honesty">Academic Honesty</a>
+  <li><a href="#Accessibility">Accessibility</a>
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Course Description">Course Description</a></h3>
+What do you do when you discover that your operating system kernel doesn't
+do what you need it to do? If you work in special-purpose domains, such as
+real-time systems or high performance computing, you may find yourself wanting
+to optimize bottlenecks or provide more deterministic timing guarantees. Or, if
+you work in traditional OS domains such as scheduling or networking, you may
+want to include new functionality in the kernel. Even if you never plan on
+writing a line of kernel code outside of school, the kernel lies at the heart
+of everything we do as computer scientists, so it's useful to have a deep
+understanding of how userspace programs interact with kernel mechanisms.
+
+<p>
+The purpose of this course is for each student to:
+<ul>
+  <li>Develop a strong intuition about the operation of the kernel
+  <li>Use tools to monitor and confirm what kernel mechanisms are actually doing
+  <li>Gain hands-on experience in modifying kernel mechanisms so that it conforms to given performance requirements
+</ul>
+
+<p>
+The class taught in the Spring 2016 semester should be considered a trial run
+of the course. Hiccups are to be expected as the class finds new and exciting
+ways to break course exercises and the instructor tries to fine-tune the
+content and scope of each class period. 
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Prerequisites">Prerequisites</a></h3>
+<ul>
+  <li>CSE 422S (Operating Systems Organization) or graduate standing
+  <li>Proficiency in C or C++, the entire Linux kernel is written in C and most assignments will require C (not C++)
+  <li>Basic proficiency in using Linux will be greatly beneficial
+  <li>A background with Linux software development is beneficial, but not required
+</ul>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Studios">Discussions and Studios</a></h3>
+
+This course is conducted in a studio format, both to emphasize the
+hands-on nature of kernel hacking and to engage students in practical
+learning exercises. The focus of lecture components is to facilitate in-class
+discussion of the kernel design process, while the focus of studio exercises
+is to gain experience kernel hacking, and to familiarize students with the 
+tools and techniques of kernel development. Studios will be completed as
+small group exercises, and are submitted for credit. All studios assigned
+before the midterm are due the Friday prior to the midterm, and all
+studios assigned after the midterm are due the Friday of the last day of
+classes.
+
+<p>
+Most class periods are accompanied by suggested readings. 
+The Linux kernel is amazing in that many of the
+discussions and disagreements of the original developers
+have been saved verbatim in repositories such as the the Linux Kernel Mailing
+List (LKML) or documented by firsthand witnesses at sites such as lwn.net. 
+It is the instructor's goal that the course
+textbook can be used as a technical reference for kernel mechanisms, and
+that supplemental readings can be used to understand the particular design
+choices made in the course of kernel development.
+
+<p>
+A tentative course schedule is below. <b>Note that this schedule may change
+over the course of the semester.</b> When changes occur, students will be 
+notified in class and given enough advance notice so that readings and 
+other preparation may be accommodated. 
+
+<center><table class="schedule" border="4" style="width:100%">
+
+
+<tr>
+	<th style="width:5%"></th>
+	<th style="width:15%">Date</th>
+	<th>Topic</th>
+	<th>Readings</th>
+	<th>Studio</th>
+</tr>
+
+<tr>
+	<td>1</td>
+	<td>Tues, Jan 19th</td>
+	<td><a href="slides/01_Course_Introduction.pptx">Course Introduction</a></td>
+	<td>LKD chapters 1 &amp; 2
+	<br><a href="code_pointers/01_welcome.html">Code Pointers</a></td>
+	<td><a href="studios/01_welcome_linux.html">Setting up the Raspberry Pi 2 and building the Linux kernel</a></td>
+</tr>
+
+
+<tr>
+	<td>2</td>
+	<td>Thurs, Jan 21st</td>
+	<td><a href="slides/02_When_Kernel_Runs.pptx">How and when does the kernel run?</a></td>
+	<td>LKD chapter 5
+	<br><a href="https://lwn.net/Articles/507794/">Userspace / Kernelspace API Split</a>
+	<br><a href="code_pointers/02_syscall_pointers.html">Code Pointers</a></td>
+	<td><a href="studios/02_syscalls.html">Creating a syscall</a></td>
+</tr>
+
+
+<tr>
+	<td>3</td>
+	<td>Tues, Jan 26th</td>
+	<td></td>
+	<td></td>
+	<td style="background-color:cyan">No assigned studio</td>
+</tr>
+
+
+<tr>
+	<td>4</td>
+	<td>Thurs, Jan 28th</td>
+	<td><a href="slides/03_Timers_Timing.pptx">Time sources and timing</a></td>
+	<td>LKD chapter 11
+	<br><a href="https://www.kernel.org/doc/Documentation/timers/hrtimers.txt">High Resolution Timers Subsystem</a>
+	<br><a href="http://lwn.net/Articles/156329/">Description of the Timer Wheel System</a>
+	<br><a href="http://lwn.net/Articles/152363/">Introduction of hrtimer Patch (Formerly ktimers)</a>
+	<br><a href="code_pointers/03_timer_pointers.html">Code Pointers</a></td>
+	<td><a href="studios/03_userspace_benchmarking.html">Userspace benchmarking</a></td>
+</tr>
+
+
+<tr>
+	<td>5</td>
+	<td>Tues, Feb 2nd</td>
+	<td><a href="slides/04_Tracing.pptx">Kernel tracing</a></td>
+	<td><a href="https://www.kernel.org/doc/Documentation/trace/ftrace-design.txt">Ftrace design document</a>
+	<br><a href="code_pointers/04_tracing.html">Code Pointers</a></td>
+	<td><a href="studios/04_kernel_tracing.html">Tracing with ftrace and Kernelshark</a></td>
+</tr>
+
+<tr>
+	<td>6</td>
+	<td>Thurs, Feb 4th</td>
+	<td><a href="slides/05_Kernel_Structure.pptx">Structure and infrastructure of the Linux kernel</a></td>
+	<td>LKD pp.85-96
+	<br>LKD Ch. 6 as reference
+	<br>LKD pp.338-348</td>
+	<td><a href="studios/05_modules.html">Writing a kernel module</a></td>
+</tr>
+
+<tr>
+	<td>7</td>
+	<td>Tues, Feb 9th</td>
+	<td><a href="slides/06_interrupt_handling.pptx">Interrupts and interrupt handlers</a></td>
+	<td>LKD Ch. 7
+	<br>LKD Ch. 8</td>
+	<!--<td>Creating an interrupt handler</td>-->
+	<td><a href="labs/01_monitoring_framework.html">Lab 1 Assigned</a>
+	<br><span style="color:black">Due Feb. 19th at 11:59PM</span></td>
+</tr>
+
+<tr>
+	<td>8</td>
+	<td>Thurs, Feb 11th</td>
+	<td><a href="slides/07_processes.pptx">Processes</a></td>
+	<td>LKD Ch. 3
+	<br>LKD Ch. 15
+	<br><a href="code_pointers/08_process_pointers.html">Code Pointers</a></td>
+	<td><a href="studios/07_processes.html">Process Family Tree</a></td>
+</tr>
+
+
+<tr>
+	<td>9</td>
+	<td>Tues, Feb 16th</td>
+	<td><a href="slides/08_CFS_scheduler.pptx">Traditional process scheduling</a></td>
+	<td>LKD Ch. 4</td>
+	<td><a href="studios/08_cfs_scheduler.html">Completely Fair Scheduling</a></td>
+</tr>
+
+
+<tr>
+	<td>10</td>
+	<td>Thurs, Feb 18th</td>
+	<td><a href="slides/09_real_time_sched.pptx">Real-time process scheduling</a></td>
+	<td><a href="https://lwn.net/Articles/356576/">Deadline Scheduling vs POSIX Real-time Scheduling</a>
+	<br><a href="https://lwn.net/Articles/520076/">Software Interrupts and Real-time</a></td>
+	<td><a href="studios/09_rt_scheduler.html">Real-time Scheduling</a>
+	<br><span style="color:red">Lab 1 due tomorrow, 11:59PM</span></td>
+</tr>
+
+
+<tr>
+	<td>11</td>
+	<td>Tues, Feb 23rd</td>
+	<td><a href="slides/10_kernel_synch.pptx">Kernel synchronization</a></td>
+	<td>LKD Ch. 9
+	<br>LKD Ch. 10
+	<br><a href="http://lwn.net/Articles/262464/">What is RCU, fundamentally?</a>
+	<br><a href="https://www.kernel.org/doc/Documentation/RCU/whatisRCU.txt">Kernel Reference on RCU</a></td>
+	<td><a href="studios/10_kernel_synch.html">Synchronizing Threads in the Kernel</a></td>
+</tr>
+
+
+<tr>
+	<td>12</td>
+	<td>Thurs, Feb 25th</td>
+	<td><a href="slides/11_RCU_synch.pptx">Read-copy-update (RCU) synchronization</a></td>
+	<td><code>man 7 futex</code>
+	<br><code>man 2 futex</code></td>
+	<td><a href="studios/11_locks.html">Build Your Own Locks</a></td>
+</tr>
+
+
+<tr>
+	<td>13</td>
+	<td>Tues, Mar 1st</td>
+	<td><a href="slides/12_Linux_Boot.pptx">Linux details: The boot process</a></td>
+	<td></td>
+	<td style="background-color:cyan">No assigned studio</td>
+</tr>
+
+
+<tr>
+	<td>14</td>
+	<td>Thurs, Mar 3rd</td>
+	<td><a href="slides/13_program_execution.pptx">Linux details: Program execution and the dynamic linker</a></td>
+	<td></td>
+	<td style="background-color:orange">No assigned studio
+	<br><h3>All assigned studios due tomorrow, Mar 4th</h3></td>
+</tr>
+
+<tr>
+	<td>15</td>
+	<td>Tues, Mar 8th</td>
+	<td><a href="slides/14_midterm_review.pptx">Midterm review</a></td>
+	<td></td>
+	<td style="background-color:cyan">No assigned studio</td>
+</tr>
+
+
+<tr style="background-color:yellow">
+	<td>16</td>
+	<td>Thurs, Mar 10th</td>
+	<td>Midterm Exam</td>
+	<td></td>
+	<td></td>
+</tr>
+
+
+<tr style="background-color:lawngreen">
+	<td>17</td>
+	<td>Tues, Mar 15th</td>
+	<td>Spring Break - No class</td>
+	<td></td>
+	<td></td>
+</tr>
+
+
+<tr style="background-color:lawngreen">
+	<td>18</td>
+	<td>Thurs, Mar 17th</td>
+	<td>Spring Break - No class</td>
+	<td></td>
+	<td></td>
+</tr>
+
+
+<tr>
+	<td>19</td>
+	<td>Tues, Mar 22nd</td>
+	<td><a href="slides/15_ipc_signals.pptx">Inter-process communication: signals</a></td>
+	<td></td>
+	<td><a href="studios/12_signals.html">Linux Signals</a></td>
+</tr>
+
+
+<tr>
+	<td>20</td>
+	<td>Thurs, Mar 24th</td>
+	<td></td>
+	<td></td>
+	<td style="background-color:cyan">In-class project time</td>
+</tr>
+
+
+<tr>
+	<td>21</td>
+	<td>Tues, Mar 29th</td>
+	<td><a href="slides/16_ipc_pipes.pptx">Inter-process communication: pipes</a></td>
+	<td></td>
+	<td><a href="studios/13_pipes.html">Linux Pipes and FIFOs</a></td>
+</tr>
+
+
+<tr>
+	<td>22</td>
+	<td>Thurs, Mar 31st</td>
+	<td></td>
+	<td></td>
+	<td style="background-color:cyan">In-class project time</td>
+</tr>
+
+
+<tr>
+	<td>23</td>
+	<td>Tues, Apr 5th</td>
+	<td><a href="slides/17_ipc_sockets.pptx">Inter-process communication: sockets</a></td>
+	<td></td>
+	<td><a href="studios/14_sockets.html">Linux Sockets</a></td>
+</tr>
+
+
+<tr>
+	<td>24</td>
+	<td>Thurs, Apr 7th</td>
+	<td></td>
+	<td></td>
+	<td style="background-color:cyan">In-class project time</td>
+</tr>
+
+
+<tr>
+	<td>25</td>
+	<td>Tues, Apr 12th</td>
+	<td><a href="slides/18_ipc_sharedmem.pptx">Inter-process communication: shared memory</a></td>
+	<td></td>
+	<td><a href="studios/15_sharedmem.html">Linux Shared Memory</a></td>
+</tr>
+
+
+<tr>
+	<td>26</td>
+	<td>Thurs, Apr 14th</td>
+	<td></td>
+	<td></td>
+	<td style="background-color:cyan">In-class project time</td>
+</tr>
+
+
+<tr>
+	<td>27</td>
+	<td>Tues, Apr 19th</td>
+	<td><a href="slides/19_device_drivers.pptx">Linux details: Hardware device drivers</a></td>
+	<td></td>
+	<td style="background-color:cyan">In-class project time</td>
+</tr>
+
+
+<tr>
+	<td>28</td>
+	<td>Thurs, Apr 21st</td>
+	<td><a href="slides/20_final_review.pptx">Final Exam Review</a></td>
+	<td></td>
+	<td style="background-color:cyan">No assigned studio</td>
+</tr>
+
+
+<tr style="background-color:khaki">
+	<td>29</td>
+	<td>Tues, Apr 26th</td>
+	<td>Project Presentations</td>
+	<td></td>
+	<td>No assigned Studio</td>
+</tr>
+
+
+<tr style="background-color:khaki">
+	<td>30</td>
+	<td>Thurs, Apr 28th</td>
+	<td>Project Presentations</td>
+	<td></td>
+	<td style="background-color:orange">No assigned studio
+	<br><h3>All assigned studios due tomorrow, Apr 29th</h3></td>
+</tr>
+
+<tr style="background-color:yellow">
+	<td>31</td>
+	<td>Wed, May 11th</td>
+	<td>Final Exam</td>
+	<td></td>
+	<td></td>
+</tr>
+
+
+
+
+</table></center>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Labs">Labs</a></h3>
+
+<p>There will be two lab assignments for this course. The purpose of these labs is to apply course concepts and to evaluate competing design alternatives for kernel mechanisms. As such, each lab will require a written report detailing your findings in addition to a code submission. </p>
+
+<p>Each lab will be completed in a team of two or three students, and teams may be different for each lab. Students from different teams may discuss the lab assignments <b>only during course meeting times</b>. Students from the same team are of course encouraged to discuss and work on lab assignments at any time. </p> 
+
+<p>Labs submitted on time (as determined by email time stamp) will be given full credit. Labs submitted up to 24 hours late will be given a <b>ten percent penalty</b>. Labs submitted between 24 and 48 hours late will be given a <b>twenty percent penalty</b>. Labs submitted after 48 hours late will not be given credit, except in the case of extenuating circumstances pre-approved by the instructor.</p>
+
+<p>The following labs have been so far assigned:</p>
+
+<ul>
+<li> None
+</ul>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Course Project">Course Project</a></h3>
+
+<p>The final project for this course is for a team of two or three students to propose and complete their own significant 
+modification to the Linux kernel. This might be an entirely new capability or it might be an alteration
+to an existing functionality. The students will evaluate the effectiveness of their modification through
+the creation of user program test cases that successfully demonstrate the new behavior.
+Students are encouraged to look to their own interests and/or
+research projects for inspiration.</p> 
+
+<p>In either case, students will justify their proposal in a written document,
+in order to ensure that the scope of the project is achieveable. 
+The proposal document will:
+
+<ol> 
+	<li>Propose a modification
+	<li>Clearly explain the purpose of the modification
+	<li>Identify kernel files that will require modification
+	<li>Identify kernel data structures that will require modification
+	<li>Identify kernel concepts and control paths that will require modification
+	<li>Propose a set of user program test cases that demonstrate the modification
+	<li>Include a five-week schedule for the project
+</ol></p>
+
+<p>The project will be evaluated via a 20 minute presentation at the end of the semester,
+as well as a code submission to the instructor. This presentation should explain the
+modification to the class; describe the final alterations to kernel files, data structures,
+concepts that the students enacted; present timing graphs or other data to verify the
+behavior of the modified system; and include a short demo (if possible).</p>
+
+
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Class FAQ">Class FAQ</a></h3>
+
+<p>Past students of this course have contributed tips, tricks, and solutions to
+problems that they have encountered. Let your instructor know if you have
+something you'd like to add here!</p>
+
+<p><a href="classFAQ.html">Class FAQ</a></p>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Textbooks">Textbook and Class Resources</a></h3>
+
+<p>Students should consider the in-class studios and assigned readings to be a guided tour
+of the Linux kernel. Like any good tour group, we want to see the sights and learn some
+neat highlights about who built it and what they were trying to accomplish. But, <b>the studios and
+assigned readings will not make you an expert on the Linux kernel.</b> When it comes to learning
+the details of a code base as deep and complex as this, <b>there is no substitute for reading
+source code</b>. Lectures and studios will come with pointers to relevant source code files, and
+it is expected that students will spend time absorbing the content there as well. Therefore,
+assigned readings are kept moderately short with the expectation that you will spend some
+independent time in the source code.</p>
+
+<p>To be clear, you are not expected to understand or memorize every line of the Linux source.
+Exams will not have questions derived from the Linux source (though basic kernel concepts
+and pseudo-code are fair game). However, the kernel is a huge set of deeply interdependent
+source code files. The only way you will ever understand it is by looking through it many times.</p>
+
+<p>There is one required course textbook: <i>Linux Kernel Development</i> by Robert Love, 2010. 
+This is an excellent, compact, and inexpensive text that gives the reader a basic
+understanding of kernel design, written with the depth of a kernel veteran.</p> 
+
+<p>There are a variety of decent references. 
+None of these will give you the level of competency that comes
+from looking at code itself, but they are very useful for starting points and clarifying problems.
+However, the Linux kernel is rapidly updated, so while the general information in these books is
+correct, details such as source code, names of files, and where files exist is likely to can
+and does change.</p>
+
+<ul>
+	<p><li><i>
+<a href="http://proquest.safaribooksonline.com/book/operating-systems-and-server-administration/linux/0596005652">Understanding the Linux Kernel</a></i> 
+	by Bovet and Cesati, 2006. This is a more
+	exhaustive reference to the kernel than the course textbook, covering many data structures
+	and code snippets in detail. Available online for free through the university's subscription
+	to the O'Riley Safari service.</p>
+	<p><li><i><a href="https://lwn.net/Kernel/LDD3/">Linux Device Drivers</a></i>
+	by Corbet, Rubini, and Kroah-Hartman, 2005. This book covers a topic that we will not
+	go into in detail, but contains some useful reference material over kernel modules, kernel
+	development, kernel locking, timing, and other topics. Available online for free through
+	lwn.net.</p>
+	<p><li><i><a href="http://lwn.net">LWN.net</a></i> is a news and information outlet
+	for the open source community. They often run very high quality articles about kernel
+	development, kernel architecture, and kernel mechanisms. When I have trouble finding
+	a good online resource, a search for "lwn.net (my_topic)" often yields good results.
+	However, beware of out-of-date material.</p>
+	<p><li><i><a href="http://linuxjournal.com">Linux Journal</a></i> is a magazine covering
+	the Linux community. They often run very high quality articles about kernel development,
+	kernel architecture, and kernel mechanisms. Similar to above, searching for
+	"Linux Journal (my_topic)" often yields good results. As above, beware of out-of-date
+	material.</p>
+	<p><li><a href="http://lxr.free-electrons.com/source/?v=4.1">Linux Cross Reference
+	by <i>free-electrons.com</i></a>. This tool easily allows you to browse the Linux source 
+	code as well as search for identifiers. Beware that the source code on this site is not
+	identical to the code base we are using in class, but it is still useful.</p>
+</ul>
+
+<p>Students will require a Raspberry Pi 2 in order to complete daily studios and lab assignments.
+The course has been designed with the intention that students bring these devices to class, plug
+them in, and do some hacking there. Monitors, keyboards, and mice will all be provided for this purpose-
+you will need to provide the Raspberry Pi 2, a power cord, and an HDMI cable.</p>
+
+<p>If you so desire, you may set up your Raspberry Pi 2 in your home or office and configure it
+for remote access. However, the instructor cannot support you in this, and we are modifying
+the kernel so you'll be lost in the dark if you reboot and can't ssh back into your machine.
+Also, be forewarned that some exercises will require an X11 window, so simple ssh access will
+not be enough to do everything remotely.</p>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Grading">Grading</a></h3>
+
+<p>There are four activities for which you will receive credit in this course: studios, labs, exams, and a course project. Studios are daily guided assignments primarily designed to familiarize students with course concepts, development tools, and the kernel source code (i.e. knowledge and comprehension tasks). Two lab assignments will ask students to apply general course concepts and analyze kernel design alternatives. The course project requires that students propose and complete a novel kernel modification. A midterm and final exam will evaluate your technical understanding of course concepts.</p>
+
+<p>Your grade will be determined as follows:</P>
+
+<table border="3">
+<tr>
+	<th>Activity</th>
+	<th>Grade Percentage</th>
+</tr>
+<tr>
+	<td>Studios</td>
+	<td>25%</td>
+</tr>
+<tr>
+	<td>Lab 1</td>
+	<td>10%</td>
+</tr>
+<tr>
+	<td>Lab 2</td>
+	<td>15%</td>
+</tr>
+<tr>
+	<td>Midterm</td>
+	<td>10%</td>
+</tr>
+<tr>
+	<td>Final</td>
+	<td>15%</td>
+</tr>
+<tr>
+	<td>Project</td>
+	<td>25%</td>
+</tr>
+
+</table>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Academic Honesty">Academic Honesty</a></h3>
+
+<p>All work assigned in this course, other than exams, is expected to be completed collaboratively.
+Student teams may change from assignment to assignment, but the sharing of written work or significant
+portions of code between teams is strictly prohibited.</p>
+
+<p>Please familiarize yourself with the Washington University <a href="http://wustl.edu/policies/undergraduate-academic-integrity.html">policy on academic integrity</a>. Any cheating will result in a score of zero for the assignment. The course staff will make final determinations on what constitutes cheating. If in doubt, please ask first.</p>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Accessibility">Accessibility</a></h3>
+Students with disabilities or suspected disabilities are strongly encouraged to
+both bring any additional considerations to the attention of the instructor and
+make full use of the University's Disability Resource Center 
+(<a href="http://disability.wustl.edu">http://disability.wustl.edu</a>).
+
+
+

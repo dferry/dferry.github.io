@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSCI 3500 - Operating Systems</title></head>
+
+<h2 style="text-align: center;">CSCI 3500: Studio 24<br></h2>
+<h2 style="text-align: center;">Layer 7: Application Layer</h2>
+
+
+
+<hr style="width: 100%; height: 2px;">
+
+<p>Application layer protocols allow different processes to communicate
+with one another in an orderly and meaningful fashion. By agreeing on
+a pre-arranged set of messages (the protocol) the two processes can
+communicate to achieve every internet-enabled application you can think
+of. Internet hostnames are translated to IP addresses with the DNS
+protocol. Web browsers recieve web pages with the HTTP protocol. Servers
+provide secure terminal access through the SSH protocol, and etcetera. 
+
+<p>In this studio, you will:</p>
+
+<ol>
+<li>Implement a basic file server
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>
+<p>
+Please complete the required exercises below, as well as any optional
+enrichment exercises that you wish to complete.</p> 
+
+<p>
+As you work through these exercises, please record your answers, and when
+finished email your results to <strong>dferry_submit@slu.edu</strong> with
+the phrase <strong>
+File Server
+</strong> in the subject line.</p>
+
+<p><strong> Make sure that the name of each person who worked on these exercises
+is listed in the first answer, and make sure you number each of your responses
+so it is easy to match your responses with each exercise.</strong></p>
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Required Exercises</h3></p>
+
+<ol>
+<p><li>As the answer to the first exercise, list the names of the people who
+worked together on this studio.</p>
+
+<p><li>In your previous studio you created a server and a client program where
+the server would listen for connections from a client, and then echo the
+contents of those messages to the output of the server. Your server would
+also listen for a specific message ("quit") which would cause the server
+to terminate. This demonstrated communication between a server and a client,
+but without accomplishing anything meaningful. We will modify your server
+and client so that the client can request a specific file be retrieved from
+the server.</p>
+
+<p>Modify your server so that it interprets incoming messages (other than 
+"quit") as file names. It should attempt to open these files with the
+<code>open()</code> or <code>fopen()</code> functions. Check the return value:
+if you cannot open the file then return an error message to the client by
+writing to the socket (the one returned by <code>accept()</code> in the
+server). Otherwise, write the contents of the file to the socket. Once
+the server is done writing (either the error message or the file contents)
+you should terminate the server's end of the connection by calling
+the function <code>shutdown()</code> with option <code>SHUT_RDWR</code>
+(see <code>man 2 shutdown</code> for details).</p>
+
+<p>Similarly, modify your client so that after sending its request it will
+<code>read()</code> from the socket, printing everything it recieves to
+standard output. Once the call to <code>read()</code> returns zero (signifying
+there is nothing more to read from the socket) it should terminate.</p>
+
+<p><i>Hint:</i> We had several studios early on (two and four) that involved 
+reading and reprinting text files through streams. Feel free to use this code 
+again.</p>
+
+<li><p>Now, add one more special context word along with "quit". If the client
+sends the string "ls" then the server should execute the command <code>ls</code>
+and send the result back to the client. I would suggest you do this with the
+<code>popen()</code> function documented at <code>man 3 popen</code>. Note that
+this function returns a <code>FILE*</code> type, so you will need to use
+<code>fgets()</code> to read from the returned file pointer.</p> 
+
+<p><h3>Optional Enrichment Exercises</h3></p>
+<ol>
+<p><li>Create a more complex protocol that involves telling the server whether
+to send or recive a file from the client. If the client wants to read a file
+then the server should behave as above. If the client wants to send a file then
+the server should write the contents from the scocket into the desried file.
+Now you can save and restore files on a remote server!</p>
+
+</ol>
+<hr style="width: 100%; height: 2px;"><p>

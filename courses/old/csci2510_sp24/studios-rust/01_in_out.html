@@ -1,0 +1,237 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSCI 2510 - Principles of Computing Systems</title></head>
+
+<h2 style="text-align: center;">CSCI 2510: Studio 1<br></h2>
+<h2 style="text-align: center;">Input and Output</h2>
+
+<hr style="width: 100%; height: 2px;">
+
+
+<p></p>
+
+<p>Linux stream redirection is a powerful feature where program inputs and
+outputs can be hooked together seamlessly by the system to build compound
+commands. In this studio, you will:</p>
+
+<ol>
+  <li>Read from standard input and write to standard output</li>
+  <li>Redirect program inputs and outputs</li>
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>
+<p>
+Please complete the required exercises below, as well as any optional
+enrichment exercises that you wish to complete.</p> 
+
+<p>
+As you work through these exercises, please record your answers in a text
+file. When finished, submit your work by sending your text file and
+source code to the git repository under the appropriate folder.</p>
+
+<!-- <strong>dferry_submit@slu.edu</strong>
+with the phrase <strong>
+Input and Output
+</strong> in the subject line.</p> -->
+
+<p><strong> Make sure you number each of your responses
+so it is easy to match your responses with each exercise.</strong></p>
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Required Exercises</h3></p>
+
+<ol>
+
+	<p><li>For the first part of this studio, login to a Linux desktop
+	in front of you, or into hopper.slu.edu, or- if you want to support
+	your own development environment- install the <code>rustc</code>
+	compiler and <code>cargo</code> build manager using Chapter 1
+	of the <i>The Rust Programming Language</i> book linked on the
+	main course page.</li></p>
+
+<p><li>One basic Linux tool you might know about is a program called
+<code>cat</code>. This program con<i>cat</i>enates (appends) any 
+provided input to standard output. It's a useful way to print text
+files to the terminal, or to write bits of data into a text file.</li></p>
+
+<p>Go ahead and type the command "<code>cat</code>" and hit enter. Then,
+write a few lines of text to the console (and hit enter after each line). 
+As the answer to this exercise, describe what happens.</p>
+
+<p>You can type CTRL-D on a blank line in order to quit <code>cat</code>.
+Typing CTRL-D sends a special "end of file" character to the terminal.</p>  
+
+<p><li>The original purpose of <code>cat</code> is to print text files to
+the console. Find your favorite text file if you'd like, or you can download
+one of mine with the <code>wget</code> command:</p>
+
+<p><code>wget http://cs.slu.edu/~dferry/courses/csci2510/studios/mars.txt --no-check-certificate</code></p>
+
+<p>In the last exercise, the <code>cat</code> program got its data from
+standard input (i.e. the keyboard). One neat feature of Linux is that it allows
+us to <i>redirect</i> streams like standard input and standard output. Using
+your text file, redirect standard input with the '<code>&lt;</code>'
+character as such:</p>
+
+<p><code>cat &lt; mars.txt</code></p>
+
+<p>As the answer to this exercise, describe what happens.</p>
+
+<p><li>We can also redirect output. This time, redirect standard output with
+the '<code>&gt;</code>' character into a new text file. Use the syntax:</p>
+
+<p><code>cat &gt; new.txt</code></p>
+
+<p>Enter a few lines of text. Open up your text file to see the results.
+Remember that you can quit <code>cat</code> with CTRL-D. </p>
+
+<p>As the answer to this exercise, describe what happens.</p>
+
+<p><li>One last useful tip. Repeat the last exercise, but instead of using
+a single greater-than symbol, use two. (That is, use '<code>&gt;&gt;</code>'
+instead of '<code>&gt;</code>'). This <i>appends</i> your input to the end
+of the file, rather than overwriting the start of the file.</p>
+
+<p>Leave this answer blank.</p>
+
+<p><li>Now we'll write a short program that mimics the behavior of
+	<code>cat</code>.</p>
+
+<p>Before we start writing code, check out your Git repository for this class.
+You may want to refer to the Git pdf on the main course page. If you are not
+working on a department Linux machine or Hopper, you will need to copy your
+private and public keys from ~/.ssh/ to your own machine. Where it goes
+depends upon what operating system and Git software you're using. Check
+the documentation!
+</p>
+
+<p>After you have successfully checked out your Git repository, navigate
+to the base directory and issue the command
+<code>cargo new cat</code>. (Note: Please use the name cat for your new
+project, as it helps me find your code easily!) This will create a
+new Rust project. By default, your project is a three-line "Hello, World!"
+program. Type <code>cargo run</code> to automatically compile your code
+and run it. Verify that the phrase, "Hello, world!" is printed to your
+command line.</p>
+
+<p>Your new source code file can be found at <code>src/main.rs</code></p>
+
+
+<p><li>Programming in Rust heavily relies on using the <i>Standard Library</i>.
+       The standard library is... standard! You can safely assume that
+       anything in the standard library is portable code that is always
+       available on every system. The documentation for the standard 
+       is found at 
+       <a href="https://doc.rust-lang.org/std/">https://doc.rust-lang.org/std/</a>.</p>
+
+       <p>Reading from standard input can be done with the <code>io</code> module.
+       Go ahead and find it in the documentation above. Then, when you have
+       found the <code>io</code> module, find the section that covers standard
+       input and use it as a starting point.</p>
+
+<p><li>How do you include the <code>io</code> module so that functions like
+	<code>io::stdin()</code> can be used in your code?</p>
+
+<p><li>Reading from standard input requires some place to put the information
+	you have read! This storage location is commonly called a <i>buffer</i>.
+	How do you declare a <i>mutable string</i> that can be written to?</p>
+
+<p><li>What functions in the <code>io</code> module can be used to read a line
+	from the standard input?</p>
+
+<p><li>A <i>macro</i> is used to print your output back out to the
+	command line. What is that macro?</p>
+
+<p><li>The <code>read_line()</code> function returns an <code>io::Result</code>
+       object, and by the rules of Rust, this means that the <code>main()</code>
+       function that contains it must also return an <code>io::Result</code>.
+       What is the function syntax that declares a function called
+       <code>main()</code> that returns an <code>io::Result</code>?</p>
+
+<p><li>The behavior of <code>cat</code> is to read input forever until it
+encounters an end of file character. As with most languages, there are
+multiple types of loops in Rust. However, in systems programming it is not
+uncommon to want to write an <i>infinite loop</i>- one that never terminates.
+You can do this in other languages, but Rust has a special syntax for infinite
+loops with no conditions:
+
+<pre>
+  loop {
+    //Code goes here
+  }
+</pre>
+
+Modify your code so that it continuously reads from standard input, and
+whenever it gets something, it prints it to standard output. We haven't
+added the ability to terminate the program yet- so you can kill your 
+program by entering CTRL-C (hold down the CTRL button and press C). 
+</p>
+
+<p><li>If you read carefully, the <code>read_line()</code> method
+	only ever appends to your buffer. This doesn't quite
+	give the result we wanted! (Go back and compare your current
+	program output with that of the Linux <code>cat</code> program
+	if you don't see what I mean.)</p>
+
+<p>You can reset your buffer using the <code>clear()</code> method on your
+string. How would you invoke a method on an object in Rust?</p>
+
+
+<p><li>If you Look up the documentation for the
+<code>read_line()</code> function call in <code>stdio()</code>,
+it directs you <a href="https://doc.rust-lang.org/stable/std/io/trait.BufRead.html#method.read_line">here</a>
+for documentation on how to use the function. What value is returned
+when End Of File (EOF) is reached?</p>
+
+<p><li>Rust supports if-statements and the familiar <code>break</code>
+	statement, which terminates the enclosing loop. Using the documentation
+	link given in the last question, write an if-statement that causes the
+	program to break the infinite loop when CTRL-D is entered (and EOF is
+	sent to the program).</p>
+
+<p><li>If you are using the <code>println!()</code> macro, it is inserting an
+	extra newline character and your output does not match <code>cat</code>
+	exactly. Use the <code>print!()</code> macro instead.</p>
+
+<p><li>Congratulations! At this point your program should mimic the 
+	<code>cat</code> program completely. You can test it with the
+	<code>mars.txt</code> file from before. Run the command
+	<code>cargo run &lt; mars.txt</code> to check that it still
+	works with a piped input file.</p>
+
+<p><li>The <code>cargo</code> build manager also produces an executable you
+	can run directly if you want. Go into the <code>target/debug/</code>
+	and there should be an executable program called <code>cat</code>.
+	You can run your code directly by typing <code>./cat</code>. (The
+	dot and slash specifies the current directory, so <code>./cat</code>
+	is the program named <code>cat</code> in the current directory.
+
+
+<p><li>As one last exercise- take a look
+       at the code you've written and find one thing that still confuses you.
+       Write down what it is, then use an internet search to find an explanation.
+       Summarize that explanation here.</p>
+
+</ol>
+
+<p><h3>Optional Enrichment Exercises</h3></p>
+<ol>
+
+<p><li>Rust supports a language feature called <i>pattern matching</i>, which is an
+	interesting inclusion as it comes largely out of functional or declarative
+	programming languages rather than imperative systems languages. This uses
+	the <code>match</code> keyword to match against several alternatives.
+	For example, <code>read_line()</code> returns a number when it reads
+	or reaches EOF, but it returns an error when it cannot read, and these
+	two situations must be handled very differently.</p>
+
+<p>Use the example at the documentation 
+<a href="https://doc.rust-lang.org/stable/std/io/struct.Stdin.html#method.read_line">here</a> 
+to modify your code to use the <code>match</code> syntax. Note that using
+<code>Ok(0)</code> matches the return value zero, while using
+<code>Ok(n)</code> matches any value, and puts that value in the variable <code>n</code>.</p>
+
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>

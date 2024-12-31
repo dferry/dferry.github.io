@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSCI 3500 - Operating Systems</title></head>
+
+<h2 style="text-align: center;">CSCI 3500: Studio<br></h2>
+<h2 style="text-align: center;">Page Replacement Algorithms</h2>
+
+<hr style="width: 100%; height: 2px;">
+
+<p>When memory is full, a paged memory system must have a mechanism
+in place to evict some page currently in memory. Ideally, this is
+a page that is not currently needed by any process, and will not
+be needed for a long while. To approximate this principle, a variety
+of <i>page replacement algorithms</i> are used to guess at which
+page in memory will be the least needed in the future.
+
+<p>In this studio, you will:</p>
+
+<ol>
+<li>Apply the clarivoyant (optimal) page replacement algorithm
+<li>Apply the FIFO page replacement algorithm
+<li>Apply the LRU page replacement algorithm
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>
+<p>
+Please complete the required exercises below, as well as any optional
+enrichment exercises that you wish to complete.</p> 
+
+<p>
+As you work through these exercises, please record your answers in a text
+file. When finished, submit your work by sending your text file and
+source code to <strong>dferry_submit@slu.edu</strong>
+with the phrase <strong>
+Page Replacement
+</strong> in the subject line.</p>
+
+<p><strong> Make sure that the name of each person who worked on these exercises
+is listed in the first answer, and make sure you number each of your responses
+so it is easy to match your responses with each exercise.</strong></p>
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Required Exercises</h3></p>
+
+<ol>
+<p><li>As the answer to the first exercise, list the names of the people who
+worked together on this studio.</p>
+
+<p><li>Suppose your machine has three physical page frames. At system start,
+no frames contain any pages. Then, you run a program that makes
+accesses that require the following pages. </p>
+
+<p><code>A F B B C E A E D D C B B A F</code></p>
+
+<p>Before considering any specific replacement algorithm, what is the
+<i>minimum</i> number of page faults that will occur during this sequence?</p> 
+
+<p><li>Compute the sequence of page faults using the clarivoyant (optimal)
+algorithm. How many total faults occurred?</p>
+
+<p><li>Compute the sequence of page faults using the FIFO algorithm.
+How many total faults occurred?</p>
+
+<p><li>Compute the sequence of page faults using the LRU algorithm.
+How many total faults occurred?</p>
+
+<p><li>Suppose your program is running slowly, and after some investigation
+you realize that the program is generating a lot of page faults. Give
+<b>two</b> possible solutions generating fewer page faults.</p>
+
+<p><li>Suppose a smart programmer comes along and rearranges the accesses of
+your program so that it now accesses pages in the following order:</P
+
+<p><code>A F B B C C B B A E E D D A F</code></p>
+
+<p>Why is this always advantageous, regardless of what page replacement
+algorithm is used?</p>
+
+
+<p><li>Suppose you're working with the following sequence of page accesses.
+Assume again that your machine has three physical page frames.
+Compute the number of faults using the FIFO algorithm:</p>
+
+<p><code>D C B A D C E D C B A E</code></p>
+
+<p><li>Thinking that you could make your program faster if you just spent a
+little more money, you upgrade your machine so that it now has
+four physical page frames. Re-compute the number of faults using the FIFO
+algorithm.</p>
+
+<p><li>Was the result from the last exercise expected or unexpected? Can you
+explain the result?</p>
+
+<p><li>This counter-intuitive result is called <i>Belady's Anomaly</i>. In
+general, <i>anomalies</i> in computer science are results that show that an
+intuitive solution to fixing a performance problem (i.e. add more memory, 
+make the processor faster, reduce system utilization) can actually make things
+worse than better.</p>
+
+<p>Suppose you're paid the big bucks by a company to implement and maintain
+performance-critical algorithms. Knowing what you know about the possibilities of
+anomalies, how should you proceed when the company wants to buy new machines?</p>
+
+</ol>
+
+<p><h3>Optional Enrichment Exercises</h3></p>
+<ol>
+<li>No optional exercises
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>

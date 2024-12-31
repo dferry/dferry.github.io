@@ -1,0 +1,293 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSCI 2510 - Prin. of Comp. Sys.</title></head>
+
+<h2 style="text-align: center;">CSCI 2510: Lab 2<br></h2>
+<h2 style="text-align: center;">Deadlock Detection</h2>
+
+
+
+<hr style="width: 100%; height: 2px;">
+<!--
+<p><i>
+Quote
+</i></p>
+<p style="text-indent:10%">&mdash;Character, <i>Book</i>, Chapter N<p>
+-->
+
+<p>Concurrent, parallel, and distributed systems all run the risk of <i>deadlock</i>
+whenever the possibility of <i>circular waiting</i> exists. We commonly think of
+deadlock occuring when doing explicit locking operations, but deadlock also occurs in
+any situation when wait dependencies can occur only incidentally- e.g. such as waiting for a
+remote client to finish responding to a network request. To this end, such systems
+must be aware of and guard themselves against possible sources of deadlock.</p>
+
+<p>Practical methods for dealing with deadlock exist- such as <i>avoidance</i> and 
+<i>detection</i>. However, in many of these solutions the system must be able to
+analyze a <i>dependency</i> or <i>waits-for</i> graph of the system and identify
+whether or not deadlock has occurred. To this end, a <i>deadlock detection</i>
+algorithm must be available. In this lab, we will create such a deadlock detection
+utility that we will then use later in our system.
+</p>
+
+<p>In this lab, you will:</p>
+
+<ol>
+	<li>Implement your own graph data structure in Rust.</li>
+	<li>Analyze a graph for cycles.</li>
+	<li>Build a dependency graph from a sequence of <i>request</i>
+		and <i>release</i> directives.</li>
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Lab Format</h3></p>
+
+<p>This is an individual assignment. Discussion with other students is
+permitted, but sharing code is strictly prohibited.</p>
+
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Packages to Implement</h3></p>
+<p><code>deadlock_detect</code> - a library package that provides functions for creating an
+empty dependency graph, adding processes and resources to the graph, adding and managing
+edges in the graph, and running a deadlock detection algorithm</p>
+
+<p><h3>Key Concepts</h3></p>
+<p><code>struct</code> - encapsulates a collection of data together in Rust</p>
+<p><code>impl</code> - implements callable methods on a struct, Rust's version of objects</p>
+<p><code>Box</code> - heap allocator in Rust</p>
+
+<p><h3>deadlock_detect</h3></p>
+<p>This component is a library component that implements a deadlock detection algorithm.
+As this is a public interface, I have created a skeleton for you in the following file:
+<a href="./lib_deadlock_detect.rs">lib_deadlock_detect.rs</a>. You may add non-public functions,
+but do not add public functions to this interface.</p>
+
+<p>Upon encountering any error, print a descriptive message and panic.</p>
+
+<p>For an example of usage, the following sequence creates a deadlock:</p>
+
+<pre>
+let mut detector = DeadlockDetector::new();
+
+detector.add_process("procA");
+detector.add_process("procB");
+detector.add_resource("resC");
+detector.add_resource("resD");
+
+let result = detector.request("procA","resC"); //OK
+assert!(result); //should be true
+let result = detector.request("procB","resD"); //OK
+assert!(result); //should be true
+let result = detector.request("procA","resD"); //OK
+assert!(result); //should be true
+let result = detector.request("procB","resC"); //Deadlock
+assert!(result); //should fail
+</pre>
+
+
+<p><h3>Graph structure</h3></p>
+
+<p>You are free to implement your graph structure how you see fit. <b>However,
+you must implment your own data structure- not use an existing crate from
+crates.io.</b> Given that our graph can grow over time, an adjacency matrix
+approach would be difficult, so an adjacency list approach might be easier.
+Remember that you can implement your "list" as a real list, but a hash map
+is probably easier and more efficient in practice.</p>
+
+<p><h3>Getting Started</h3></p>
+
+<p>Before getting started, you will need to create a deadlock_detect library package
+and add it to your workspace for <code>slumcs</code>.
+Inside the <code>slumcs</code> directory, your <code>Cargo.toml</code> file 
+should have at least the following contents:</p>
+
+<pre>
+[workspace]
+
+members = [
+        "log_component",
+        "send_log",
+	"test_logger",
+	"deadlock_detect"
+]
+</pre>
+
+<p>Then, you can create the project for this lab with the following cargo command.</p>
+
+<pre>
+cargo new deadlock_detect --lib
+</pre>
+
+<p>Because <code>deadlock_detect</code> is a library instead of an executable project,
+the default filename in <code>/deadlock_detect/src/</code> is <code>lib.rs</code> instead
+of <code>main.rs</code>. Please remember to use the public interface given above for
+this file.</p>
+
+<p><h3>Testing</h3></p>
+
+<p>Testing is easier than ever! For this lab, we are using Rust and Cargo's built in
+unit test feature. The <code>lib_deadlock_detect.rs</code> skeleton includes a set
+of unit tests that create a variety of deadlock graphs both with and without
+cycles. See the comments for more details.</p>
+
+<p>Simply type <code>cargo test</code> while in your <code>deadlock_detect</code>
+project directory, and cargo will automatically run the functions in the
+<code>test</code> module that are marked with the <code>#[test]</code>
+identifier. Each of these will build a deadlock graph and <code>assert!()</code>
+the correct true/false result after each edge is added.</p>
+
+<p>By default, <code>cargo test</code> hides output for successful tests and
+emits output for failed tests. If you think you're missing output and want to
+force output, you can use the command:</p>
+<p><code>cargo test -- --nocapture</code></p>
+
+<p>Please note the double <code>--</code> in that command is intended.</p>
+
+<!--
+<p><h3>Hints</h3></p>
+<p><ol>
+	<li>You must use the interface I have specified for <code>send_log</code>,
+		but you can structure <code>log_component</code> however you would
+		like.</li>
+	<li><code>log_component</code> needs to have a <code>main()</code> function
+		and produce an executable. <code>send_log</code> is a library
+		and does not produce an executable.</li>
+	<li>When opening the log file, make sure to (1) create it if necessary and
+		(2) open it in append mode so as to not overwrite existing data.</li>
+	<li>The <code>log_component</code> will end up checking all connected clients
+		in a loop of some kind- but you should use <code>thread::sleep</code>
+		in that loop so that it is not running continuously at 100% CPU
+		utilization.</li>
+	<li>Keep in mind move semantics and ownership when you manage the lifetime
+		of your <code>TcpStream</code> objects. Ultimately these should
+		"live" on a dynamically resizable data structure such as a
+		list or a vector.</li>
+	<li>Make sure you set the <code>config</code> crate as a dependency in
+		both the <code>send_log</code> and <code>log_component</code>
+		projects. See the examples above for how to use the crate.</li>
+</ol></p>
+-->
+
+<!--
+<p><h3>Documentation</h3></p>
+<p>The following man pages may be useful:</p>
+<p><ul>
+<li><code>open</code> (2)
+<li><code>close</code> (2)
+<li><code>read</code> (2)
+<li><code>write</code> (2)
+<li><code>strncmp</code> (3)
+<li><code>memcpy</code> (3)
+<li><code>atoi</code> (3)
+<li><code>strtol</code> (3)
+<li><code>perror</code> (3)
+<li><code>errno</code> (2)
+<li><code>exit</code> (3)
+<li><code>xxd</code> (1)
+<li><code>diff</code> (1)
+</ul></p>
+
+<p><h3>Questions</h3></p>
+
+<ol>
+<p><li>As the answer to the first exercise, list the name(s) of the people who
+worked together on this lab.</p>
+
+<p><li>This compression technique works well in some cases, and poorly in
+others. Give an example of each.</p>
+
+<p><li>The <i>compression ratio</i> can be computed as (size before compression)/(size after compression).
+For example if the original file size is 20,000 bytes and the compressed size is
+15,000 bytes then the compression ratio is 1.33. There are three files above of size
+one million bytes each: 1mil_random, 1mil_weak_bias, and 1mil_strong_bias. Each of
+these files contains the numbers 0-4 in random order, but the random file contains all numbers distrbuted
+evenly, while the weak and strong bias files shift the distribution so that the lower number
+values occur more often. For example, zero occurs about 20% of the time in the random
+file, about 75% of the time in the weak bias file, and about 90% of the time in the
+strong bias file.</p>
+
+<p>Which file do you think will compress best? Compute the compression ratio for each file with a compression length of one.</p>
+
+<p><li>The Bash shell includes the nifty command <code>time</code>, which records how
+long a command runs. Record how long it takes to compress the file <code>test4</code>.
+The syntax in this case is "<code>time ./rle test4 output 1 0</code>". 
+This will report three measurements: real, user,
+and sys. How long does your program take to run in real time? 
+
+<p><li>Try the above command again but with a compression length of ten, how
+long does your program take now? Which operations happen more or less
+frequently now? Formulate a hypothesis as to the difference.</p>
+
+<p><li>Indicate which, if any, extra credit exercises have you have attempted.</p>
+</ol>
+
+<p><h3>Optional Enrichment Exercises</h3></p>
+
+<ul>
+<p><li><b>3% Extra Credit</b>: Download the slu_logo.bmp file above,
+this is an uncompressed image file. Compress the file, then uncompress it. 
+Verify that you can still open the
+image in a photo viewer and that it is not distorted.</p>
+
+<p>The compression algorithm you have implemented
+is a form of lossless compression, meaning that the entire uncompressed
+file can be reconstructed and no data is lost. This approach works well
+for highly structured data with lots of repitition. This can happen
+naturally in a case like slu_logo.bmp, where the whole image has just a
+few colors and lots of large same-color regions. Compute the compression
+ratio of your algorithm with slu_logo.bmp. Then, open the file in a
+photo editor (such as Microsoft Paint, Photoshop, or GIMP) and save it
+as a .png file (lossless compression) and a .jpg file (lossy compression).
+Compute the compression ratio for each method.</p> 
+
+<p><li><b>2% Extra Credit</b>: As it turns out, lossy compression can be far
+more effective in some situations than lossless compression. Compression algorithm
+researchers are very skilled at removing data that is virtually imperceptible.
+Download <a href="lab1/uncompressed.bmp">this file</a> and compute the
+compression ratio using your algorithm. Then, use a standard photo editor
+from before to generate a losslessly compressed .png file and a lossily compressed 
+.jpg file and compute their compression ratios. Inspect the files carefully,
+are you able to discern a difference between the three?</p>
+
+
+</ul>
+-->
+
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Submission</h3></p>
+
+<p>Please submit your lab to your course git repository. Your code should be
+entirely contained in your <code>slumcs</code> directory.</p>
+
+<p><a href="../git-info.pdf">A short guide to accessing SLU's git resources</a></p>
+
+<!-- <p>The plan is to have labs submitted via the course git repo. These are currently
+being set up- check back soon for more details.</p> -->
+
+<!--
+<p>Create a .tgz archive of your lab directory and email it to 
+<code><big><b>dferry_submit@slu.edu</b></big></code>. 
+Your submission must include a makefile
+that will compile your program by simply issuing the command 
+<code>make</code>. You must also include a text file with your
+answers to the required exercises. Please include your name and the names of
+any partners in the body of your email.</p>
+
+<p>The simple syntax for creating a .tgz archive is as follows:</p>
+
+<p><code>tar -zvcf new_archive.tgz lab_directory</code></p>
+
+<p>The syntax for unpacking a .tgz archive is:</p>
+
+<p><code>tar -zvxf archive.tgz</code></p>
+
+<p>Note that your archive <b>must not</b> include any binary executable files,
+meaning any compiled programs or intermediate build objects (.o files, for
+example). This will cause your email to be rejected by most services.</p>
+-->
+

@@ -1,0 +1,27 @@
+* My background
+* Ignite seminar background
+
+* Imitation Game
+	- Describe the Turing Test setup
+	- 30% of people by year 2000 won't know difference after 5 minutes
+	- What does it mean?
+	- Means something about computers
+	- Means something else about people!
+		Oxford philosopher John Lucas says, for instance, that if we 
+		fail to prevent the machines from passing the Turing test, it 
+		will be "not because machines are so intelligent, but because 
+		humans, many of them at least, are so wooden." 
+
+
+* The "big questions" on the syllabus
+* Related topics concept map - "This Course / Authentic Human Experience" in the middle, with major branches:
+	- Artificial Intelligence
+	- Biology / Neurology
+	- Human-Computer Interaction (HCI)
+	- Computability Theory
+	- Emotion and Empathy
+	- Philosophy and Religion
+	- Rationality
+* Invited students to extend the concept map
+* Course schedule description
+* Syllabus statements

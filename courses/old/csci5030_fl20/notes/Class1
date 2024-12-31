@@ -1,0 +1,81 @@
+Discussion of "Real Software Engineering" by Glenn Vanderburg
+
+Warm up: 3-5 minute discussions in small groups:
+
+*What was your reaction to the talk? Agree/disagree?
+*Think back to a past good or bad software project- how was it organized? What flaws were in the organization? What worked really well?
+*Is software development a true engineering discipline? If not, what is it? A craft? An art? Are these mutually exclusive?
+
+Speaker's main talking points:
+
+1. Software engineering as it’s taught at universities doesn’t work; “common knowledge among working programmers”
+2. NATO Software Engineering conferences and Royce’s 1970 “waterfall paper”. “An entire set of processes designed in academia for practitioners”.
+3. Cost of errors curve (original empirical study 1981). Waterfall only projects! He was really measuring the cost of long feedback loops.
+4. “Math envy”. Heavyweight, formal documentations (UML, Booch, CASE tools, etc.) “All now dead"
+5. Claims mathematical models were introduced into engineering as a cost-saving measure; building prototypes at scale is costly! (Boeing shout-out too)
+6. Upshot is he argues that “design documentation” should really simply be the source code! Almost as easy (easier?) to read as the above notations.
+7. Requirements too! Instead of specifying in paper documentation (Parnas’ tabular mathematical expression), write test cases in code. Exactly the same information, but now *executable*!
+
+
+Group discussion questions:
+
+Is the waterfall model really just kept around by misguided academics? It's used still in plenty of industries- being seduced by it is not just an academic flaw... Why is it still pervasive today?
+
+Any experiences from students in the class that have been a part of defined process or waterfall organizations? When is a defined process beneficial?
+
+Cost of errors curve and feedback loops- really just measuring the cost of errors in waterfall model. "Failure of waterfall incurs 100% cost overruns." I.e. you have to start over. 
+
+Should we design through documentation, or design through code? Is documentation easier to get right than code? When and when not?
+
+Is the purpose of engineering really just to save cost? "Do with one dollar what any fool could do with two." What about verification and accountability? Why does Boeing spend a hundred dollars on a screw if the purpose is just to save money?
+
+What do we think about the author's following assumptions?
+These assumptions are no longer true:
+Code is hard to read
+Code is hard to change
+Testing is expensive
+All engineering is like structural engineering
+Programming is like building
+Modelling and analysis are about correctness
+
+Thus, code can and should serve as its own model and documentation.
+
+Conclusion: 
+
+This is a long argument in favor of what we’d now call “agile”, although he doesn’t use that
+terminology until the last word of the talk! Tonight’s homework will be to review some of the
+principles that go into agile development and we’ll discuss in class on Tuesday.
+
+“We are uncovering better ways of developing
+software by doing it and helping others do it.
+Through this work we have come to value:
+* Individuals and interactions over processes and tools
+* Working software over comprehensive documentation
+* Customer collaboration over contract negotiation
+* Responding to change over following a plan
+That is, while there is value in the items on
+the right, we value the items on the left more.”
+
+Homework: 
+
+Review basic concepts of Agile software development:
+https://www.agilealliance.org/agile101/
+https://www.agilealliance.org/agile101/the-agile-manifesto/
+https://www.agilealliance.org/agile101/12-principles-behind-the-agile-manifesto/
+Introduction to Scrum methodology:
+Read this:
+https://www.scrum.org/resources/what-is-scrum
+Then watch the "Introduction to Scrum" and "Sprint Planning Meeting" videos.
+https://www.collab.net/services/training/agile_e-learning
+
+Towards the project, consider the problem of unit testing:
+
+Example “self-test” from Myers’ classic book (The Art of Software Testing, 1979). A program that takes three integers as input (supposed to represent side lengths of a triangle) and outputs “scalene”, “isosceles”, “equilateral”, or “error” (not a triangle or some other problem). For definiteness and modernity, imagine that this is implemented as a REST API and that the input comes in as bytes in JSON format, e.g. this is a valid input:
+
+{
+"a" : 3,
+"b" : 4,
+"c" : 5
+}
+
+Write out a test set on a piece of paper. We will evaluate your test set on Tuesday.

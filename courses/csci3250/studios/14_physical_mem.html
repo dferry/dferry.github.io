@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSCI 3500 - Operating Systems</title></head>
+
+<h2 style="text-align: center;">CSCI 3500: Studio 15-a<br></h2>
+<h2 style="text-align: center;">Physical Memory</h2>
+
+<hr style="width: 100%; height: 2px;">
+
+<p>The earliest memory systems managed physical memory directly, and typically
+the operating system could do very little to make programming easier.</p>
+
+<p>In this studio, you will:</p>
+
+<ol>
+<li>Consider statically partitioned physical memory
+<li>Consider dynamically partitioned memory with base and limit registers
+<li>Explore the limitations of physical memory based methods
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>
+<p>
+Please complete the required exercises below, as well as any optional
+enrichment exercises that you wish to complete.</p> 
+
+<p>
+As you work through these exercises, please record your answers in a text
+file. When finished, submit your work via the git repository. </p>
+
+<!--
+by sending your text file and
+source code to <strong>dferry_submit@slu.edu</strong>
+with the phrase <strong>
+Physical Memory
+</strong> in the subject line.</p>
+-->
+
+<p><strong> Make sure that the name of each person who worked on these exercises
+is listed in the first answer, and make sure you number each of your responses
+so it is easy to match your responses with each exercise.</strong></p>
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Required Exercises</h3></p>
+
+<ol>
+<p><li>As the answer to the first exercise, list the names of the people who
+worked together on this studio.</p>
+
+<p><li>Consider a program that uses <b>absolute physical memory references</b> meaning that each reference refers to a specific physical memory location. One part of such a program is below:</p>
+
+<pre>
+movl	($0x100),	%eax
+movl	($0x104),	%ebx
+movl	%eax,		($0x104)
+movl	%ebx,		($0x100)
+</pre>
+
+<p>This program works fine when it is loaded at address 0x0, but not when it is
+loaded at address 0x1000. Why not?</p>
+
+<p><li>Re-write the above code so the program works when it is loaded at memory
+address 0x1000.</p>
+
+<p><li>Suppose you have a machine with four static parititons, each capable of
+holding a program with a length of 4096 bytes (0x1000 bytes). The first partition starts at address 0x0. Give the first and last address of each of the four partitions.</p>
+
+<p><li>Suppose the first of the four programs executes the following line of code, with the operand located at byte 0x25, and the destination address located at bytes 0x26-0x2A:</p>
+
+<pre>
+0x25:	jmp	($0x50)
+</pre>
+
+<p>Suppose also another program executes the following line first.
+
+<pre>
+		movl $0x1234,	($0x26)
+</pre>
+
+<p>What happens to the first progam upon executing the instruction at address 0x25?</p>
+		
+<p><li>Now consider a more advanced machine that uses <b>base + limit</b>
+registers to provide protection. Suppose the program from question 2 is loaded
+at address 0x1000. Does the code need to be re-written? Why or why not?</p>
+		
+<p><li>Suppose the two programs from question 5 were to execute again
+in the same order. The first program has base 0x0 and limit 0xFFF. The second
+program has base 0x1000 and limit 0x1FFF. What happens this time?</p>
+
+<p><li> Suppose this more advanced machine has 0x4000 bytes of program memory.
+The operator of the machine executes program A, which needs 0x1000 bytes of
+memory, and then program B, which needs 0x2000 bytes of memory. Then program
+A finishes and releases its memory back to the system. Draw a picture of the memory of the system at this time. How many bytes are now not in use?</p>
+
+<p><li>The operator from the previous exercise then tries to execute program C,
+which requires 0x2000 bytes of memory, and recieves an error. Why can't the
+machine execute program C?</p>
+
+<p><li>Program B from the previous two exercises won't be done for some time,
+but the operator really wants to start program C now. What could be done in
+order to support this?</p>
+
+</ol>
+
+<p><h3>Optional Enrichment Exercises</h3></p>
+<ol>
+<li>No optional exercises
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>

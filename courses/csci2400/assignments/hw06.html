@@ -1,0 +1,504 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+  <HEAD>
+    <TITLE>Assignment #6:  Processor Architecture, Datapaths, and Pipelining
+    </TITLE>
+  </HEAD>
+
+  <BODY>
+
+    <CENTER>
+      <H2>Assignment #6:  Processor Architecture, Datapaths, and Pipelining</H2>
+    </CENTER>
+
+
+<h3>Contents:</h3>
+<UL>
+  <LI>
+      <a href="#overview">Overview</a>
+  </LI>
+  <LI>
+      <a href="#practice">Practice Problems</a>
+  </LI>
+  <LI>
+      <a href="#submit">Problems to be Submitted</a>
+  </LI>
+<!--
+  <LI>
+      <a href="#extra">Extra Credit</a>
+  </LI>
+-->
+</UL>
+
+<HR>
+
+<a name="overview"><h3>Overview</h3></a>
+
+<P>
+<b>Topics:</b>  Fundamentals of Datapath Organization, Sequential Datapath, Pipelining, Pipelined Datapath, Data Dependencies and Hazards, and Cache Organization
+<br>
+<b>Related Reading:</b>  Chapter 4 (predominantly Sections 4.1 - 4.5), and class notes
+</P>
+
+<HR>
+
+<a name="practice"><h3>Practice Problems</h3></a>
+
+<p>
+Practice problems from the textbook <i>(answers are at the end of the chapter)</i>:
+<ul>
+  <li>
+    Practice Problem 4.13 on pp. 387-388.
+  </li>
+  <li>
+    Practice Problem 4.14 on p. 390.
+  </li>
+  <li>
+    Practice Problem 4.15 on p. 391.
+  </li>
+  <li>
+    Practice Problem 4.16 on p. 392.
+  </li>
+  <li>
+    Practice Problem 4.18 on p. 394.
+  </li>
+  <li>
+    Practice Problem 4.28 on p. 417.
+  </li>
+<!--
+  <li>
+    Practice Problem 6.10 on pp. 598-599.
+  </li>
+  <li>
+    Practice Problems 6.11 and 6.12 on p. 605.
+  </li>
+  <li>
+    Practice Problems 6.13 - 6.17 on pp. 609-611.
+  </li>
+-->
+</ul>
+
+<hr>
+
+<a name="submit"><h3>Problems to be Submitted (25 points)</h3></a>
+
+<!--
+<P>
+When you turn in your assignment, you must include a signed <a href="./cover-sheet.html">cover sheet</a> (<a href="./cover-sheet.pdf">PDF version</a>) with your assignment (<i>your assignment will not be graded without a completed cover sheet</i>).
+-->
+
+<p>
+You are allowed to submit your assignment via email, but if you choose to do so, you must bring a hardcopy of your assignment along with a completed cover sheet to the instructor at the next class.  (<i>Note:  Do not email the instructor any .zip file attachments, as SLU's email may not accept these emails; i.e. the instructor may not receive your email.</i>)
+
+
+<OL type=1>
+  <LI> <b>(4 points)</b>
+    <P>
+      First, complete Practice Problem 4.13 on pp. 387-388 (<i> you do not need to submit an answer, since the answer is given at the back of chapter;  but be sure you understand and can reproduce the same answer</i>)
+    </P>
+    <P>
+      Then, using the <a href="./chap4-seq-full-datapath.pdf">figure of the SEQ datapath</a> (<a href="./chap4-seq-full-datapath.ppt">PPT</a>) diagram the execution of <tt>popl %ecx</tt> by:
+      <ul>
+        <li> highlighting (via a colored pen or highlighter) the <b><u>active</u></b> wires and hardware units in the datapath</li>
+        <li> indicating (on the figure) the specific values on each of the active wires </li>
+      </ul>
+    </P>
+    <P>
+       For highlighting the datapath, assume the following initial values: &nbsp;  <tt>PC = 0x5C4, %esp = 0x80C4</tt>
+    </P>
+  </LI>
+
+<!--
+  <LI> <b>(5 points)</b>
+    <P>
+      Repeat problem #1 for the instruction: &nbsp;&nbsp;&nbsp;&nbsp; <tt>andl %esi, %edx</tt>
+    </P>
+    <P>
+      Be sure to turn in <u>both</u> the highlighted datapath diagram and the specific datapath processing results (in terms of <tt>icode</tt>, <tt>ifun</tt>, <tt>rA</tt>, <tt>rB</tt>, <tt>valA</tt>, <tt>valB</tt>, <tt>valC</tt>, <tt>valE</tt>,  <tt>valP</tt>, etc., akin to the table in the Aside on p. 367) 
+    </P>
+    <P>
+      Assume the initial values of %esi and %edx are 0xFF and 14328, respectively.
+    </P>
+  </LI>
+-->
+
+  <LI> <b>(5 points)</b>
+    <P>
+      Repeat problem #1 for the instruction: &nbsp;&nbsp;&nbsp;&nbsp; <tt>rmmovl %edi, 12(%ebp)</tt>
+    </P>
+    <P>
+      Be sure to turn in <u>both</u> the highlighted datapath diagram and the specific datapath processing results (in terms of <tt>icode</tt>, <tt>ifun</tt>, <tt>rA</tt>, <tt>rB</tt>, <tt>valA</tt>, <tt>valB</tt>, <tt>valC</tt>, <tt>valE</tt>,  <tt>valP</tt>, etc., akin to the table in the Aside on p. 388) 
+    </P>
+    <P>
+      Assume the following initial values: &nbsp;  <tt>PC = 0x7C2, %edi = -18, %ebp = 0x914A</tt>
+    </P>
+    <P>
+      Also assume that the initial values for each 4-byte value in memory is the value equivalent to <u>half</u> of its address (e.g.  the 4-byte value at <tt>M[0x200]</tt> is <tt>0x100</tt>).
+    </P>
+  </LI>
+
+  <LI> <b>(5 points)</b>
+    <p>
+      Repeat problem #1 for the instruction: &nbsp;&nbsp;&nbsp;&nbsp; <tt>jg L5</tt>
+    </p>
+    <P>
+      Be sure to turn in <u>both</u> the highlighted datapath diagram and the specific datapath processing results (in terms of <tt>icode</tt>, <tt>ifun</tt>, <tt>rA</tt>, <tt>rB</tt>, <tt>valA</tt>, <tt>valB</tt>, <tt>valC</tt>, <tt>valE</tt>,  <tt>valP</tt>, etc., akin to the table in the Aside on p. 388) 
+    </P>
+    <P>
+      Assume the following initial values: &nbsp;  <tt>PC = 0x4B13</tt> and the address of <tt>L5 = 0x4B02</tt>
+    </P>
+    <P>
+      Also assume that condition codes (computed via <tt>cmpl</tt> in the previous instruction) evaluate to TRUE for <tt>jg</tt>
+    </P>
+<!--
+    <p>
+      Using the <a href="../schedule/chap4-seq-full-datapath.pdf">SEQ datapath</a> (<a href="../schedule/chap4-seq-full-datapath.ppt">PPT</a>)
+    </p>
+      <ul>
+        <li> give the specific datapath processing results (in terms of <tt>icode</tt>, <tt>ifun</tt>, <tt>rA</tt>, <tt>rB</tt>, <tt>valA</tt>, <tt>valB</tt>, <tt>valC</tt>, <tt>valE</tt>,  <tt>valP</tt>, etc., akin to the table in the Aside on p. 367)
+        <li> highlight (via a colored pen or highlighter) the <b><u>active</u></b> wires and hardware units in the datapath, and indicate the specific values on each of the active wires </li>
+      </ul>
+    </p>
+-->
+  </LI>
+
+<!--
+  <LI> <b>(4 points)</b>
+    <p>
+    <ol type=a>
+      <li>
+        <P>
+          Do Problem #4.47 at the end of Chapter 4 (p. 453).
+        </P>
+      </li>
+      <li>
+        <P>
+         Highlight (via colored pens or highlighters) the <u>active</u> wires and hardware units in the datapath, and give specific values for those wires:
+	</p>
+	<p>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <tt>iaddl &nbsp; 4, %edi</tt><br>
+	</p>
+	<p>
+         Assume the following initial values: &nbsp;  <tt>PC = 0x5C4, %edi = -23</tt>
+        </P>
+      </li>
+    </ol>
+    </p>
+  </LI>
+-->
+
+  <LI> <b>(5 points)</b>
+    <P>
+      A group of computer architects is designing a new hardware datapath
+      implementation and have determined that the following circuit elements
+      have these delays:
+    </P>
+    <P>
+      <table border="0" cellpadding="0" cellspacing="0">
+        <dd><tr>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>instruction memory&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i></td>
+          <td>180ps</td>
+        </tr></dd>
+        <dd><tr>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>decode</i></td>
+          <td>90ps</td>
+        </tr></dd>
+        <dd><tr>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>register fetch</i></td>
+          <td>150ps</td>
+        </tr></dd>
+        <dd><tr>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>ALU</i></td>
+          <td>170ps</td>
+        </tr></dd>
+        <dd><tr>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>data memory</i></td>
+          <td>230ps</td>
+        </tr></dd>
+        <dd><tr>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>register writeback</i></td>
+          <td>150ps</td>
+        </tr></dd>
+      </table>
+    </P>
+    <P>
+      &nbsp;&nbsp;&nbsp;&nbsp;<i>Note:</i>  For each of the questions below, be sure to include the time for the 20ps register at the end of each clock cycle (such as is done in the notes).
+    </P>
+    <P>
+     <OL type=a>
+       <LI>
+         <P>
+           How long is the clock cycle for a single-cycle (sequential) datapath implementation?  What is the corresponding frequency of the processor?
+         </P>
+       </LI>
+       <LI>
+         <P>
+           How long would the fastest clock cycle be for a 5-stage pipelined datapath?  What is the corresponding frequency of the processor?  How much faster is the 5-stage pipelined datapath (based on ratio of clock frequencies)?
+         </P>
+         <P>
+           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>Note:</i>  When combining circuits into stages, circuits MUST be combined in the given order (e.g. you can't combine <i>decode</i> with <i>data memory</i>), since each circuit must execute in the correct time order.
+         </P>
+       </LI>
+       <LI>
+         <P>
+           How long would the fastest clock cycle be for a 9-stage pipelined datapath?  What is the corresponding frequency of the processor?  How much faster is the 9-stage pipelined datapath than the single-cycle pipeline (based on ratio of clock frequencies)?
+         </P>
+         <P>
+           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>Note:</i>  You may assume any of the given circuit elements above may be split equally into halves, thirds, or quarters.
+         </P>
+       </LI>
+<!--
+       <LI>
+         <P>
+           What is the <u>shortest</u> possible cycle time for a multi-cycle
+           datapath implementation?  How many cycles are needed to execute a
+           single instruction in this implementation?  Correspondingly, how long
+           does it take to execute a single instruction?
+         </P>
+       </LI>
+       <LI>
+         <P>
+           Using a slightly longer cycle time, you can actually reduce the
+           number of cycles and total time to execute a single instruction in
+           the multi-cycle implementation.  Describe the division of circuits
+           into cycles that enables this, and indicate the clock cycle time and
+           the number of cycles and total time to execute a single instruction.
+         </P>
+       </LI>
+       <LI>
+         <P>
+           For a pipelined implementation, what is the maximum speedup (i.e. the speedup excluding stalls from 
+hazards) if the multi-cycle implementation in part <tt>b</tt> is pipelined?  Similarly, what is the maximum speedup if the multi-cycle implementation from part <tt>c</tt> is pipelined?
+         </P>
+       </LI>
+-->
+     </OL>
+    </P>
+  </LI>
+
+<!--
+  <LI> <b>(4 points)</b>
+    <P>
+      Similar to problem #5 on the  <a href="./hw05.html">last homework</a>, repeat the problem using the PIPE pipelined datapath.
+    </P>
+<pre>
+          rmmovl   %ecx, 8(%esp)
+</pre>
+    <ol type=a>
+      <li>
+        <P>
+          First, using the figure of the <a href="../schedule/chap4-pipe-full-datapath.pdf">PIPE datapath</a> (<a href="../schedule/chap4-pipe-full-datapath.ppt">PPT</a>), highlight (via colored pens or highlighters) the <u>active</u> wires and hardware units.
+        </P>
+        <P>
+          Assuming the instruction enters the pipeline in cycle <i>t</i>, also indicate for each stage of the pipeline the cycle number/time that the instruction is in that stage of the pipe (e.g. in which stage the instruction is in at cycle times <i>t + 1</i>, <i>t + 2</i>, etc.)
+        </P>
+      </li>
+      <li>
+        <P>
+          Second, give a table with the signal equations (in terms of <tt>icode</tt>, <tt>ifun</tt>, <tt>rA</tt>, <tt>rB</tt>, <tt>valA</tt>, <tt>valP</tt>, etc.).  Note, the results will be very similar to your results from the last homework, but should now use the new signal naming conventions, as described in section 4.5.3 and in the Aside on p. 406 (e.g. <tt>M_valE</tt> refers to the value of <tt>valE</tt> used in the Memory stage; &nbsp; in other words, it's the value of <tt>valE</tt> stored in the pipeline register between the Execute and Memory stages).
+        </P>
+      </li>
+    </ol>
+  </LI>
+
+<!--
+  <LI> <b>(3 points)</b>
+    <P>
+      Using the following assembly code, identify all the true (a.k.a. read-after-write) data dependencies.  Identify them by drawing circles around the dependent operands and drawing arrows between them - in a fashion similar to that used in class, and demonstrated on p. 419.
+    </p>
+    <P>
+      You are welcome to use the following <a href="./hw06_prob5.html">diagram of the code</a>, which lays out the code with ample space to allow you to easily draw and distinguish the data dependencies.
+    </P>
+    <P>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>Hint:</i>  Be mindful of loop-based dependencies.
+    </P>
+<pre>
+      some_proc:
+           mrmovl   4(%esp), %ecx
+           mrmovl   8(%esp), %edx
+           mrmovl   12(%esp), %ebx
+      
+        LOOP:
+           mrmovl   0(%ecx), %edi
+           mrmovl   0(%edx), %eax
+           addl     %eax, %edi
+           rmmovl   %edi, 0(%edx)
+           iaddl    $4, %ecx
+           iaddl    $4, %edx
+           iaddl    $-1, %ebx
+           jne      LOOP
+
+           ret
+</pre>
+    </P>
+      <OL type=a>
+        <LI> (2 points)
+          <P>
+	    List or show all the <u>true (RAW) data dependencies</u>, if any, in the code.
+          </P>
+        </LI>
+        <LI> (2 points)
+          <P>
+            List or show all the <u>false (WAR) data dependencies</u>, if any, in the code.
+          </P>
+          <P>
+	    <i>Note:</i>  <b>Use a separate copy of the assembly code from that you used in part a).</b>
+          </P>
+        </LI>
+        <LI> (1 point)
+          <P>
+	    List or show all the <u>output (WAW) data dependencies</u>, if any, in the code.
+          </P>
+          <P>
+	    <i>Note:</i>  <b>Use a separate copy of the assembly code from that you used in parts a) or b).</b>
+          </P>
+        </LI>
+      </OL>
+    </P>
+  </LI>
+-->
+
+  <LI> <b>(6 points)</b>
+    <P>
+      For the following sequence of code:
+    </P>
+<pre>
+         popl     %esi
+         subl     %esi, %eax
+         irmovl   $0x16, %edx
+         mrmovl   8(%esp), %ebx
+         addl     %ebx, %eax
+         addl     %edx, %esi
+         xorl     %eax, %edx
+</pre>
+
+    <ol type=a>
+      <li>
+        <P>
+          Identify all the true (a.k.a. read-after-write) data dependencies.  Identify them by drawing circles around the dependent operands and drawing arrows between them (i.e. draw an arrow from each register write to the next read of that register...  in a fashion similar to that used in class, and demonstrated on p. 419).
+        </P>
+      </li>
+      <li>
+        <P>
+          Using a high-level pipeline representation (such as used in Figures 4.44 or 4.54), for the sequence of code given above, show the state of the pipeline from cycles <b><i>t</i></b> through <b><i>t</i> + 16</b> <i>(i.e. until you run out of room on the paper)</i>. Assume the <tt>popl</tt> instruction is in the Fetch stage in cycle <b><i>t</i></b>.  You are welcome to use the following <a href="./highlevel_pipeline_diagram.pdf">high-level pipeline diagram</a>.
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:red;text-decoration:line-through;"><i>Note:</i>  Assume that forwarding/bypassing is being used.</span>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>Note:</i>  Use pipeline stalls and bubbling to ensure correctness.
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>Hint:</i>  Be mindful of potential load-use hazards.
+        </P>
+      </li>
+      <li>
+        <P>
+          At the end of the <b><i>t</i> + 5</b> cycle of execution, which registers are being <u>read</u> and which are being <u>written</u>?
+        </P>
+      </li>
+    </ol>
+  </LI>
+
+<!--
+  <LI> <b>(4 points)</b>
+    <P>
+      Using the assembly code from problem #5, assume that cycle the instruction labeled "LOOP" (i.e. the <tt>mrmovl   0(%ecx), %edi</tt> instruction) starts in the Fetch stage at cycle <i>t</i>.  Using the figure of the <a href="../schedule/chap4-pipe-full-datapath.pdf">PIPE datapath</a> (<a href="../schedule/chap4-pipe-full-datapath.ppt">PPT</a>), highlight (via colored pens or highlighters) the <u>active</u> wires and hardware units in the pipeline <b>for cycle <i><u>t + 5</u></i></b>.
+    </P>
+    <P>
+      &nbsp;&nbsp;&nbsp;&nbsp;<i>Hint:</i>  You will likely find it beneficial to <u>first</u> create the high-level pipeline diagram, similar to the one you made in problem #6b.  You are welcome to use the following <a href="./hw06_prob7.html">high-level pipeline diagram</a> if you desire.
+    </P>
+  </LI>
+-->
+
+<!--
+  <LI> <b>(4 points)</b>
+    <P>
+      For the following sequence of code:
+    </P>
+<pre>
+      irmovl   $0, %edx
+
+  L1:
+      mrmovl   0(%ebx), %esi
+      mrmovl   4(%ebx), %edi
+      xorl     %esi, %edi
+      rmmovl   %edi, 0(%ebx)
+      addl     %edi, %edx
+      iaddl    $4, %ebx
+      cmpl     %ebx, %eax
+      jg       L1
+
+      rmmovl   %edx, 0(%ebx)
+      ret
+</pre>
+
+    <ol type=a>
+      <li>
+        <P>
+          Identify all the true (a.k.a. read-after-write) data dependencies.  Identify them by drawing circles around the dependent operands and drawing arrows between them (i.e. draw an arrow from each register write to the next read of that register...  in a fashion similar to that used in class, and demonstrated on p. 398).
+        </P>
+      </li>
+      <li>
+        <P>
+          Using a high-level pipeline representation (such as used in Figures 4.44 or 4.54), for the sequence of code given above, show the state of the pipeline from cycles <b><i>t</i></b> through <b><i>t</i> + 15</b>. Assume the <tt>irmovl</tt> instruction is in the Fetch stage in cycle <b><i>t</i></b>.  You are welcome to use the following <a href="./highlevel_pipeline_diagram.pdf">high-level pipeline diagram</a>.
+        </p>
+        <p>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>Note 1:</i>  Assume that the conditional branch is predicted as <b>taken</b>, but upon execution, it resolves as <b>not taken</b>.<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>Note 2:</i>  Assume that forwarding/bypassing is being used in the pipeline.<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>Note 3:</i>  This example assumes the existence of the two additional instructions: <tt>iaddl</tt> <i>(which is just like <tt>addl</tt>, but allows an immediate for first source)</i>, and <tt>cmpl</tt> <i>(which is effectively equivalent to <tt>rrmovl</tt> followed by <tt>subl</tt>)</i>.
+        </p>
+      </li>
+    </ol>
+  </LI>
+-->
+
+<!--
+  <LI> <b>(3 points)</b>
+    <P>
+      <a href="./prob6_26.html">Problem #6.26</a>, at the end of Chapter 6 (p. 632).
+    </P>
+  </LI>
+
+  <LI> <b>(4 points)</b>
+    <P>
+      Problem #6.29, at the end of Chapter 6 (pp. 632-633).
+    </P>
+  </LI>
+
+  <LI> <b>(4 points)</b>
+    <P>
+      Answer the following related questions:
+      <OL type=a>
+        <LI><a href="./prob6_31.html">Problem #6.31</a>, at the end of Chapter 6 (pp. 634-635)</LI>
+        <LI><a href="./prob6_32.html">Problem #6.32</a>, at the end of Chapter 6 (p. 635)</LI>
+        <LI>Repeat Problem #6.32 for the address 0x188D </LI>
+        <LI>Repeat Problem #6.32 for the address 0x1152 </LI>
+      </OL>
+    </P>
+  </LI>
+-->
+
+</OL>
+
+<!--
+<HR>
+
+<a name="extra"><h3>Extra Credit</h3></a>
+
+<OL type=1 start=9>    
+  <LI>  <b>(1.5 points)</b>
+    <P>
+      Exercise #6.30 at the end of Chapter 6 (p. 458)
+    </P>
+  </LI>
+  <LI>  <b>(2 points)</b>
+    <P>
+      Exercise #6.33 at the end of Chapter 6 (p. 458)
+    </P>
+  </LI>
+</OL>
+-->
+
+<hr>
+
+  </body>
+</html>
+

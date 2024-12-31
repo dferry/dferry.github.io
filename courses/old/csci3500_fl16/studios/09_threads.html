@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSCI 3500 - Operating Systems</title></head>
+
+<h2 style="text-align: center;">CSCI 3500: Studio 9<br></h2>
+<h2 style="text-align: center;">Threads</h2>
+
+<hr style="width: 100%; height: 2px;">
+
+<p></p>
+
+<p>In this studio, you will:</p>
+
+<ol>
+<li>Create threads using Pthreads
+<li>Join with (wait for) threads to finish their work
+<li>Create a structure to hold thread parameters
+<li>Pass parameters to and from threads using <code>void*</code> pointers
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>
+<p>
+Please complete the required exercises below, as well as any optional
+enrichment exercises that you wish to complete.</p> 
+
+<p>
+As you work through these exercises, please record your answers in a text
+file. When finished, submit your work by sending your text file and
+source code to <strong>dferry@slu.edu</strong>
+with the phrase <strong>
+Threads
+</strong> in the subject line.</p>
+
+<p><strong> Make sure that the name of each person who worked on these exercises
+is listed in the first answer, and make sure you number each of your responses
+so it is easy to match your responses with each exercise.</strong></p>
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Required Exercises</h3></p>
+
+<ol>
+<p><li>As the answer to the first exercise, list the names of the people who
+worked together on this studio.</p>
+
+<p><li>Open up the manual page for <code>pthread_create()</code>. The third
+parameter to this function specifies a new thread's <i>entry point</i>- the
+location at which the new thread begins execution.This parameter will look a little unusual, because it's a special data type
+called a <i>function pointer</i>. The function pointer type is given as:</p>
+
+<p><code> return_type (* function_name ) ( argument_types )</code></p>
+
+<p>What is the return type and the expected arguments for the thread entry
+function?</p>
+
+<p><li>Create a new progam. Before writing your main function,
+write a function called <code>thread_entry</code> with the signature
+specified in the previous exercise. This function should print a message
+and then return NULL. </p>
+
+
+<p><li>Now write your <code>main()</code> function and make a call to the
+function <code>pthread_create()</code>. For the time being, leave the
+second and fourth parameters of this function <code>NULL</code>. Be sure to
+check the return value for errors. Note that this function does not set
+<code>errno</code> and you cannot use <code>perror()</code>.</p>
+
+<p>After you make a call to <code>pthread_create()</code>, make a call
+to <code>pthread_join()</code> to wait for the created thread to finish.
+The first argument of this function needs the value from parameter one
+of <code>pthread_create()</code>. The second argument of this function
+can be left NULL.</p>
+
+<p>In order to compile your program you will need to add the
+<code>-pthread</code> option to GCC. Copy and paste your program output.</p>
+
+<p><li>Now you can create and run code inside a thread, but this really
+isn't useful unless you can communicate with the thread. There are a variety
+of ways to pass data between threads, but we will use a specific method
+called <code>void*</code> passing. To do this we need to define a
+<code>struct</code>, which is a collection of variables that are grouped
+together. The syntax for defining a struct is as follows:</code>
+
+<p><code>struct struct_name{<br>
+&nbsp;&nbsp;arg1_type arg1;<br>
+&nbsp;&nbsp;arg2_type arg2;<br>
+&nbsp;&nbsp;...<br>
+&nbsp;&nbsp;argN_type argN;<br>
+};</code></p>
+
+<p>And you can then declare a struct for use in your program and access
+its members as such:</p>
+
+<p><code>int main(){<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;struct struct_name variable_name<br>
+&nbsp;&nbsp;variable_name.arg1 = value1; //direct access<br>
+&nbsp;&nbsp;variable_name.arg2 = value2; //direct access<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;struct struct_name *struct_ptr = &amp;variable_name;<br>
+&nbsp;&nbsp;struct_ptr-&gt;arg1 = value1; //pointer access<br>
+&nbsp;&nbsp;struct_ptr-&gt;arg2 = value2; //pointer access<br>
+&nbsp;&nbsp;...<br>
+}</code></p>
+
+<p>Define a struct with three members: an integer called <code>arg1</code>,
+a character buffer called <code>arg2</code>, and another integer called 
+<code>ret</code>. Copy and paste your struct definition.</p>
+
+<p><li>Now create a struct in your main program and fill it with values.
+Your thread can access this struct by passing a pointer through the
+fourth argument of <code>pthread_create()</code>. Create a pointer to your
+struct as illustrated in the last exercise and do so.</p>
+
+<p>A pointer given to the <code>pthread_create()</code> function in
+this way will be available to your thread entry function as the
+<code>void*</code> parameter. However, the compiler doesn't know how to
+access the data pointed to by a <code>void*</code> pointer. 
+To access the data inside the
+struct we need to <i>cast</i> the pointer type back to a struct
+pointer, as so:</p>
+
+<p><code>void* thread_entry( void* args ){<br>
+&nbsp;&nbsp;struct struct_name* arg_ptr = (struct struct_name*) args;<br>
+&nbsp;&nbsp;printf("thread arg1: %d\n", arg_ptr-&gt;arg1);<br>
+&nbsp;&nbsp;printf("thread arg2: %s\n", arg_ptr-&gt;arg2);<br>
+&nbsp;&nbsp;...<br>
+}</code></p>
+
+<p>Print out the values of your struct arguments in the newly created
+thread. Copy and paste the program output.</p>
+
+<p><li>Now use the same structure to return a value to the <code>main()</code>
+function. Write a value to the third member of your structure somewhere in
+your thread, and then read that value in <code>main()</code> function after
+you have executed <code>pthread_join()</code>.</p>
+
+<p><li>Finally, parameterize your program to create N threads. This means you
+will need to create an array of N <code>pthread_t</code> identifiers, 
+and an array
+of N <code>struct struct_name</code> structures to pass arguments. Then,
+call <code>pthread_create()</code> for N iterations, and then
+<code>pthread_join()</code> for N iterations.</p>
+
+<p>You can easily write multiple, different strings to each thread using
+the <code>snprintf()</code> function, which works just like the
+<code>printf()</code> function. For example:</code>
+
+<p><code>unsigned bufSize = 100;<br>
+struct struct_name args[num_threads];<br>
+for( i = 0; i &lt; num_threads; i++ ){<br>
+	snprintf(args[i].arg2, bufSize, "This is thread %d", i);
+}</code></p>
+
+<p>Copy and paste your program output for five threads when you have
+finished.</p>
+
+<p><li>Run your prgram (with five threads) several times. What do you
+notice about the output ordering? Why do you think this is?</p>
+
+</ol>
+
+<p><h3>Optional Enrichment Exercises</h3></p>
+<ol>
+<li>No optional exercises
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>

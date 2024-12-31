@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSCI 3500 - Operating Systems</title></head>
+
+<h2 style="text-align: center;">CSCI 3500: Studio 4<br></h2>
+<h2 style="text-align: center;">Error Checking</h2>
+
+<hr style="width: 100%; height: 2px;">
+
+
+<p>Any non-trivial program requires you to call functions provided by either
+the operating system or system libraries. These functions almost always provide
+a return value, indicating whether an operation succeeded or failed. Checking
+these return values are vital to producing robust code, and greatly simplify
+debugging.</p>
+
+<p><i>Checking return values appropriately will be a requirement for
+lab 2 and all subsequent labs!</i></p>
+
+<p>In this studio, you will:</p>
+
+<ol>
+  <li>Look up return values in a function's man page
+  <li>Check return values and handle errors appropriately
+  <li>Print appropriate error messages with <code>perror()</code>
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>
+<p>
+Please complete the required exercises below, as well as any optional
+enrichment exercises that you wish to complete.</p> 
+
+<p>
+As you work through these exercises, please record your answers in a text
+file. When finished, submit your work by sending your text file and
+source code to <strong>dferry@slu.edu</strong>
+with the phrase <strong>
+Error Checking
+</strong> in the subject line.</p>
+
+<p><strong> Make sure that the name of each person who worked on these exercises
+is listed in the first answer, and make sure you number each of your responses
+so it is easy to match your responses with each exercise.</strong></p>
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Required Exercises</h3></p>
+
+<ol>
+<p><li>As the answer to the first exercise, list the names of the people who
+worked together on this studio.</p>
+
+<p><li>Create a new file called <code>open.c</code>. Write a short program that
+accepts a single command line argument. This argument should be interpreted as
+a file name that your program attempts to open. Once the file is opened, your 
+program should print the contents of the file to standard output. For example,
+the command "<code>./open mars.txt</code>" should open the file 
+<code>mars.txt</code> and print it to the console.
+Use the <code>open()</code> function documented at <code>man 2 open</code>.</p>
+
+<p><i>Hint:
+start with your program from studio 2, called <code>copy.c</code>. Modify this
+program to open a file, and then modify the <code>read()</code> statement to
+read from your file descriptor rather than standard input.</i></p>
+
+<p>As the answer to this exercise, copy and paste your working code.</p>  
+
+<p><li>What happens when your argument specifies a file that doesn't exist?</p>
+
+<p><li>Create a text file called <code>perm.txt</code> and fill it with some
+short message. Execute the command "<code>chmod -rw perm.txt</code>". This 
+command removes read and write permissions from the file. Now try to execute
+your program on this file- what happens?</p>
+
+<p><li>Look at the man page for <code>open()</code>. Around line 230 you will
+see a section called "RETURN VALUE". What value does <code>open()</code>
+return in the event of an error?</p>
+
+<p><li>If you haven't already, insert an <code>if</code> statement directly
+after your call to <code>open()</code> to check for errors. Your error detection
+should check the criteria in the man page exactly. For example, if the
+reported error value for <code>open()</code> is -1, then check 
+with the conditional "<code>return_value == -1</code>" rather than something
+like "<code>return_value &lt; 0</code>". As the answer to this exercise, copy
+and paste the conditional you check.</p>
+
+<p><li>The function <code>open()</code> also sets a special variable called
+<code>errno</code>. Many system calls and library functions will set this
+variable when they execute. If an error occurs, this variable tells the system
+what happened. You can print a helpful error message with the function
+<code>perror()</code>.</p>
+
+<p>Insert a call to <code>perror()</code> inside your if statement from the
+last exercise. The only argument to this function is a short message that
+should describe the circumstances of the call. For example, <code>"Error
+opening file"</code> or <code>"Error reading input"</code>.</p>
+
+<p>As the answer to this exercise, copy and paste your call to 
+<code>perror()</code>.</p>  
+
+<p><li>Finally, your program should exit gracefully when an error occurs. Insert
+a call to <code>return</code> or <code>exit()</code> with a negative value
+inside your <code>if</code> statement, but after <code>perror()</code>. Leave
+this answer blank.</p>
+
+<p><li>Now, what happens when the argument to your program specifies a file that
+doesn't exist?</p>
+
+<p><li>What happens when the argument specifies the file without read or write
+permissions- <code>perm.txt</code>?</p>
+
+<p><li>Look at the following manual pages and determine: what value(s) are
+returned in the event of an error, and does this function set 
+<code>errno</code>?</p>
+
+<ul>
+<li>man 2 close
+<li>man 2 read
+<li>man 2 write
+<li>man 3 printf
+</ul>
+
+<p><li>Give two reasons why error checking in this manner simplifies software
+development.</p>
+
+</ol>
+
+<p><h3>Optional Enrichment Exercises</h3></p>
+<ol>
+<p><li>The special variable <code>errno</code> is documented at
+<code>man errno</code>. There are a huge number of possible error statuses.
+Some of these are generic (e.g. insufficient permissions), while others
+are very specific (e.g. network host is unreachable). </p>
+
+<p>Having detailed error
+reporting presents the possibility that your programs can detect an error
+and attempt to self-correct, rather than quitting or crashing. For example,
+a common error status is <code>EAGAIN</code> or <code>EBUSY</code>, both of
+which indicate that an OS resource is currently unavailable. Rather than
+quitting, your program could simply wait and try again later.</p>
+
+<p>Browse through <code>man errno</code> and think about how you might handle
+some of the errors that can arise.</p>
+
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>

@@ -1,0 +1,321 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+  <HEAD>
+    <TITLE>Assignment 08 - CSCI 1060
+</TITLE></HEAD>
+
+  <BODY>
+
+
+<HR>
+
+<center>
+<h2>Assignment
+08
+
+</h2>
+<h3> Stars and Constellations</h3>
+</center>
+
+
+<hr>
+
+<h3>Contents:</h3>
+<UL>
+  <LI>
+      <a href="#overview">Overview</a>
+  </LI>
+  <LI>
+      <a href="#collaboration">Collaboration Policy</a>
+  </LI>
+  <LI>
+      <a href="#goal">The Goal</a>
+  </LI>
+  <LI>
+      <a href="#data">Data File Format</a>
+  </LI>
+  <LI>
+      <a href="#figure">The Matlab Figure</a>
+  </LI>
+  <LI>
+      <a href="#task">Your Task</a>
+  </LI>
+  <LI>
+      <a href="#extra">Extra Credit</a>
+  </LI>
+</UL>
+
+<hr>
+
+<a name="overview"><h3>Overview</h3></a>
+
+<P>
+<b>Topic:</b>  Stars and Constellations
+<br>
+<b>Related Reading:</b>  file I/O, plotting
+
+</P>
+
+<hr>
+
+<H3>
+<a name="collaboration">Collaboration Policy</a>
+</H3>
+
+<p>
+For this assignment, <b>you must work individually</b> in regard to
+the design and implementation of your project.
+</p>
+
+<hr>
+
+<a name="goal"><h3>The Goal</h3></a>
+
+<p>
+Our goal for this problem is to create an image based upon underlying
+data about the stars and constellations.  Our version of the project
+is a variant of a <a href="http://nifty.stanford.edu/2009/reid-starmap/">
+nifty assignment</a> designed by
+Karen Reid at the University of Toronto.
+
+
+<p>
+As an example, here is a
+figure that shows a view of the night sky (click on the image
+for a larger version):
+<br>
+<a href="stars.jpg"><img width=400 src="stars.jpg"></a>
+
+
+<p>
+Here is a second version of the image that also includes the display
+of several major constellations.
+<br>
+<a href="constellations.jpg"><img width=400 src="constellations.jpg"></a>
+
+<hr>
+
+<a name="format"><h3>Data File Format</h3></a>
+
+<p>
+The raw data for this assignment is provided in the form of two
+different text files:
+<ul>
+  <li>
+      <a href="stars.txt">stars.txt</a>
+      <br>
+      The raw data for each individual star.
+      <p>
+      This file has one line for each star, with each line containing
+      six pieces of information, separated by spaces.  Those six
+      fields are respectively
+      <ul>
+	<li>
+	    <b>x-coordinate</b><br>
+	    This describes the horizontal position of the displayed
+	    star on a scale from -1 to +1.
+	</li>
+	    <br>
+	<li>
+	    <b>y-coordinate</b><br>
+	    This describes the vertical position of the displayed
+	    star on a scale from -1 to +1.
+	</li>
+	    <br>
+	<li>
+	    <b>z-coordinate</b><br>
+	    This describes the relative distance to the star on a scale
+	    from -1 to +1. <em>For this assignment, we will not use
+	    the z-coordinate data.</em>
+	</li>
+	    <br>
+	<li>
+	    <b>Henry Draper number</b><br>
+	    For the purpose of cataloging astronomical data, each
+	    star has been assigned a unqiue identification number,
+	    known as its Henry Draper number.
+	</li>
+	    <br>
+	<li>
+	    <b>magnitude</b><br>
+	    This is a floating-point number that descibes the
+	    <a
+	    href="http://en.wikipedia.org/wiki/Apparent_magnitude">apparent
+	    magnitude</a> of a star.  It is a logarithmic scale with
+	    smaller numbers denoting brighter stars (with Sirius
+	    as the brightest star with a magnitude of -1.44).
+
+	    We portray brightness in our image by drawing all
+	    stars in white, but using bigger size for brighter stars. We
+	    use the formula
+	    <center>
+	    <big><nobr>brightness = 15 * 10<sup><small>(mag/-2.512)</small></sup></nobr></big>
+	    </center>
+	</li>
+	    <br>
+	<li>
+	    <b>Harvard Revised number</b><br>
+	    This is another identification number for cataloguing
+	    stars. <em>For this assignment, we will not use the
+	    Harvard Revised numbers</em>.
+	</li>
+      </ul>
+  </li>
+      <br>
+  <li>
+      <a href="constellations.txt">constellations.txt</a>
+      <br>
+      The constellation file has the following format. A single file
+      has information about multiple constellations.
+      Each individual constellation begins with a line containing its name.  The
+      following line contains a single integer&nbsp;<em>n</em>, denoting the number of
+      line segments to be drawn for the constellation.  Following that
+      are <em>n</em> lines, one for each segment, containing a pair of
+      Henry Draper identification numbers for the two stars to be
+      connected by the segment.
+      <p>
+      For example, the data corresponding to the Big Dipper appears as
+      follows:
+<pre>Big Dipper
+7
+120315 116656
+116656 112185
+112185 106591
+106591 103287
+103287 95418
+95418 95689
+106591 95689</pre>
+
+  </li>
+</ul>
+
+
+<hr>
+
+<a name="figure"><h3>The Matlab Figure</h3></a>
+
+
+<p>
+To get the basic star image in Matlab, we rely upon the
+<a
+href="https://www.mathworks.com/help/matlab/ref/scatter.html"><tt>scatter</tt></a>
+command.  We use the form
+<tt>scatter(X,Y,S,C,'filled')</tt> where <tt>X</tt> is a vector of x-values,
+<tt>Y</tt> is a vector of y-values, <tt>S</tt> is a corresponding
+vector of scales (brightnesses for our application), and <tt>C</tt>
+designates color.  For this assignment, we use <tt>'w'</tt> as the
+color for all stars.  The final parameter <tt>'filled'</tt> designates
+that the circles should be drawn as filled rather than the default outline.
+
+
+
+<p>
+To plot white stars against a black background, we need to configure
+the basic figure window.  As with previous plots, it is also important
+that we force the two axes to be drawn with an equivalent scale so
+that the image is circular.  You may use the following function in
+order to setup the figure window.
+<pre>
+function plotSky
+   % This sets up a basic figure window for our plot of the sky.
+   % It sets the background to black and sets the axes to be
+   % equal but undisplayed.
+   %
+   % This function leaves the size as the default, but the user
+   % can manually resize the figure window for a larger view.
+   clf;
+   hold off;               % start a new figure
+   axis equal;             % ensure equal treatment of x and y axes
+   axis off;               % do not display the actual axes
+   set(gcf,'Color','k');   % set background color to black
+   hold on;
+</pre>
+
+
+<p>
+The constellation line segments are drawn based on the use of the
+<tt>plot</tt> command for each individual line segment, using the x
+and y coordinates for the two designated stars.  To get all segments
+from the same constellation in the same color, but different
+constellations in different colors, we use the following hack.  We
+have a string <tt>'ymcrgb'</tt>  which contains six character codes
+for the colors yellow, magenta, cyan, red, green, and blue.  For each
+constellation, we pick one of those characters and use it when calling
+plot to control the color.  Then when we move to a new constellation,
+we advance one character in that control string (wrapping around to
+the beginning if necessary).
+
+<p>
+Although we expect that in completing this assignment, you should
+start by working on the function to plot the stars, and then the
+function to plot the constellation, the final image will look nicer if
+you plot the constellations first and the stars second, because then
+the stars will be drawn on top of the constellation lines (making it
+easier to see the stars that define the constellations).
+
+<p>
+As af final note, our image includes a legend to identify the names of
+the constellations.  Providing that feature is considered <a
+href="#extra">extra credit</a> for the sake of this assignment.
+
+
+<hr>
+
+<a name="task"><h3>Your Task</h3></a>
+
+<p>
+To divide up the work more clearly, you are to write three different
+functions, described as follows.
+
+<ul>
+  <li>
+      <nobr><tt>stars = parseStarFile(filename)</tt></nobr>
+      <br>
+      This function reads the star data file and returns an appropriate
+      matlab structure capable of being plotted.
+      For example, you might use a two-dimensional
+      table where you rely on a convention that column&nbsp;1 is the
+      x-coordinate, column&nbsp;2 the y-coordinate, and so on.
+  </li>
+      <br>
+  <li>
+      <nobr><tt>plotStars(stars)</tt></nobr>
+      <br>
+      This function should take the data returned by
+  <tt>parseStarFile</tt> and plot it on the current figure (presumably
+      one that was already initialized with our <tt>plotSky</tt>
+      function).
+
+  </li>
+      <br>
+  <li>
+      <nobr><tt>plotConstellations(constellationsFile, stars)</tt></nobr>
+      <br>
+      This function should plot all the constellations on the current
+      figure.  Note that the function must be sent both the
+      constellation structure and the stars data, because the
+      constellation data makes references to Draper numbers of stars, and
+      you will need to look up the x- and y-coordinates of the stars in
+      order to be able to plot each line segment. It is probably best to
+      parse the constellations file inside this function. 
+  </li>
+</ul>
+
+<hr>
+
+<a name="extra"><h3>Extra Credit (2 points)</h3></a>
+
+<p>
+Generate the legend when plotting the constellations.
+
+
+<hr>
+Originally by:
+<ADDRESS>
+<a href="/~goldwasser">Michael Goldwasser</a>
+</ADDRESS>
+<HR>
+
+  </body>
+</html>
+

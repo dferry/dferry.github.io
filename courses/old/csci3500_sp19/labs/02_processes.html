@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<style>
+.hang {
+	padding-left: 2em ;
+}
+</style>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSCI 3500 - Operating Systems</title></head>
+
+<h2 style="text-align: center;">CSCI 3500: Lab 2<br></h2>
+<h2 style="text-align: center;">SLUSH - the SLU Shell</h2>
+
+
+
+<hr style="width: 100%; height: 2px;">
+
+<p>Processes are the fundamental abstraction in any operating system- it can
+be argued that the main purpose of an OS is to simplify execution of computer programs. 
+A central part of this process is the program that allows a user to select and
+execute other programs: on Unix-based OSes this is the <i>terminal</i> or <i>shell</i>.
+The shell is not part of the operating system kernel, but it is a natural
+extension of it and in many ways represents the operating system itself!</p>
+
+<p>We never want to take programs like <code>bash</code> or <code>csh</code>
+for granted, so we'll go through the dirty work of building or own shell
+from scratch.</p>
+
+<p>In this lab, you will:</p>
+
+<ol>
+<li>Spawn new processes with the <code>fork()</code> and <code>execvp()</code>
+system calls
+<li>Wait for child processes with the <code>wait()</code> system call
+<li>Perform complex input parsing in C 
+<li>Pipe data between processes 
+<li>Perform basic signal handling 
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Parameters</h3></p>
+
+<p>Please complete this assignment in teams of two.</p>
+
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Description</h3></p>
+<p><code>slush</code> - SLU shell</p>
+
+<p>
+<code>slush</code> is a very simple command-line interpreter. It uses a different syntax than
+shells like <code>bash</code>, and has much less functionality. <code>slush</code> executes in a loop in
+which it displays a prompt, reads in a command line from standard input, and
+executes the command.</p>
+
+<p>
+There are two types of commands: built in commands which are executed by
+<code>slush</code> itself, and program execution commands which are carried out by separate
+processes.</p>
+
+<p>A built in command must appear on a line by itself. The only built in command
+is:</p>
+
+<p class="hang"><code>cd dir</code> - change current directory to <code>dir</code></p>
+
+<p>Program execution commands have the form:<p>
+
+<p class="hang"><code>prog_n [args] ( ... prog_3 [args] ( prog_2 [args] ( prog_1 [args]</code></p>
+
+<p>This command runs the programs <code>prog_n</code>, ... , <code>prog_2</code>,
+<code>prog_1</code> (each of which may 
+have zero or more arguments) as separate processes in a "pipeline". This means
+the standard output of each process is connected to the standard input of the
+next.</p>
+
+<p>The syntax of <code>slush</code> is backwards from shells you're used to, and is intended
+to emphasize the functional nature of pipeline commands. As an example, the
+command line:</p>
+
+<p class="hang"><code>more ( sort ( ps aux </code></p>
+
+<p>should produce a paginated, sorted list of processes.</p>
+
+<p>
+<code>slush</code> should catch ^C typed from the keyboard. If a command is running, this
+should interrupt the command. If the user is entering a line of input, <code>slush</code>
+should respond with a new prompt and a clean input line. </p>
+
+<p><code>slush</code> will exit when it reads an end-of-file on input.</p>
+
+<p><h3>Error Handling</h3></p>
+
+<p>If a program name does not exist or is not executable, <code>slush</code> should print an
+error message of the form:</p>
+
+<p class="hang"><code>prog1: Not found</code></p>
+
+<p>(To do this automatically, you can use <code>perror()</code> after the <code>exec()</code> fails).</p>
+
+<p>Syntax errors such as:
+<p class="hang"><code>more ( ( ps au</code></p>
+<p class="hang"><code>more ( ps au (</code></p>
+
+<p>should be handled with an appropriate message, such as:</p>
+
+<p class="hang"><code>Invalid null command</code></p>
+
+<p><h3>Hints</h3></p>
+<p><ol>
+
+<p><li>Work on parsing before you work on functionality. First write your
+program so that it reads input and generates correct tokens.</p>
+
+<p><li>Exiting on end-of-file (EOF) is VERY IMPORTANT because without it I cannot
+test your program. This is the only way to exit <code>slush</code>. You can create a
+EOF by typing ^D at the keyboard, or by running your program with noninteractive
+input. For example, <code>echo ls | slush</code> should run <code>slush</code>, execute
+the <code>ls</code> command, and quit <code>slush</code>. I suggest you read input using <code>fgets()</code>- the return value is false (0) on EOF.</p>
+
+<p><li>To break the user input into tokens, you could use the
+the <code>strtok()</code> function. For simplicity, you may restrict each command in a
+pipeline to at most 15 arguments. You may also limit the length of an input line
+to 256 characters. Violations of these limits may result in an error or simply be
+ignored, so long as <code>slush</code> does not crash.</p>
+
+<p><li>Turning the command into a pipeline of running processes is much easier if you
+write a recursive function. Start at the left end of the command string, and
+work right recursively. Processes should <code>fork()</code> off right to left as you return
+from the series of recursive calls.</p>
+
+<p><li>When a process has a pipe, it needs to <code>close()</code> the file descriptor for the end
+of the pipe it's not going to use (or else it will never terminate). Do this after
+each <code>fork()</code>. Both parent and child may need to close something.
+Count your children... you'll need to <code>wait()</code> for them later.</p>
+
+<p><li>Save the ^C handling for last. ^C generates a <code>SIGINT</code> signal. You need to set up
+a signal handler to catch the signal. What happens if a signal is caught while
+reading a line of input? How about if a signal is caught while <code>wait()</code> is waiting?
+One more hint for ^C handling: typing ^| will send a <code>SIGQUIT</code> and stop your
+process if you've screwed up ^C.</p>
+
+</ol></p>
+
+<p><h3>Documentation</h3></p>
+<p>The following man pages will be useful:</p>
+<p><ul>
+<li><code>execvp</code> (2)
+<li><code>fork</code> (2)
+<li><code>wait</code> (2)
+<li><code>strtok</code> (3)
+<li><code>strcmp</code> (3)
+<li><code>chdir</code> (2)
+<li><code>close</code> (2)
+<li><code>dup2</code> (2)
+<li><code>pipe</code> (2)
+<li><code>signal</code> (2)
+<li><code>sigaction</code> (2)
+</ul></p>
+
+<p><h3>Questions</h3></p>
+
+<ol>
+<p><li>As the answer to the first exercise, list the name(s) of the people who
+worked together on this lab.</p>
+
+<p><li>Describe any known bugs or ways that your submission deviates from the
+above specification.</p>
+
+<p><li>Indicate which, if any, extra credit exercises you have attempted.</p>
+
+</ol>
+
+<p><h3>Optional Enrichment Exercises</h3></p>
+
+<ul>
+<p><li><b>5% Extra Credit</b>: It's useful to know where you are in the
+directory tree. Modify your <code>slush</code> prompt to print the current directory.
+Don't print the entire directory path- just print everything past the user's
+home directory. For example, if I login and issue the command
+'<code>cd dir1/dir2</code>',
+then the whole directory path is actually:</p>
+<p class="hang"><code>/export/mathcs/home/faculty/dferry/dir1/dir2</code></p>
+<p>That's much too long- I really just want to know the directory path within
+my home directory. That is, I want my shell prompt to look something like:</p>
+<p class="hang"><code>slush|dir1/dir2&gt;</code></p>
+<p>The manual pages <code>getcwd(3)</code> and <code>getenv(3)</code> might
+be helpful here, as well as the knowledge that there is an environment variable
+called <code>HOME</code> that stores the current user's home directory.</p>
+</ul>
+
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Submission</h3></p>
+
+<!--
+<p>Create a .tgz archive of your lab directory and email it to
+<code><big><b>dferry_submit@slu.edu</b></big></code>.
+-->
+
+<p>Submit your program and related files via the Git repository.
+Your submission must include a makefile
+that will compile your program by simply issuing the command
+<code>make</code>. You must also include a text file with your
+answers to the required exercises. Please include your name and the names of
+any partners in the body of your email.</p>
+<!--
+<p>The simple syntax for creating a .tgz archive is as follows:</p>
+
+<p><code>tar -zvcf new_archive.tgz lab_directory</code></p>
+
+<p>The syntax for unpacking a .tgz archive is:</p>
+
+<p><code>tar -zvxf archive.tgz</code></p>
+
+<p>Note that your archive <b>must not</b> include any binary executable files,
+meaning any compiled programs or intermediate build objects (.o files, for
+example). This will cause your email to be rejected by most services.</p>
+-->

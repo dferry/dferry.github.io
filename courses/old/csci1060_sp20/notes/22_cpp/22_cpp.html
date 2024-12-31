@@ -1,0 +1,173 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+
+<HTML>
+<HEAD>
+<TITLE>Lecture Notes: C++ Programming
+</TITLE>
+</HEAD>
+
+<BODY>
+
+
+
+<HR>
+
+<H2>
+C++ Programming
+</H2>
+
+<hr>
+
+<h3>Major diffferences between MATLAB and C++</h3>
+
+<p>
+<table border=1>
+  <tr>
+    <th>MATLAB</th>
+    <th>C++</th>
+  </tr>
+  <tr>
+    <td>
+	Interpretted
+    </td>
+    <td>
+	Compiled
+    </td>
+  </tr>
+  <tr>
+    <td>
+	Dynamically-typed
+    </td>
+    <td>
+	Statically-typed
+    </td>
+  </tr>
+  <tr>
+    <td>
+	Libraries are optimized, but user-defined code is not as
+	efficient.
+    </td>
+    <td>
+	Can acheive better run-time efficiency.
+    </td>
+  </tr>
+  <tr>
+    <td>
+	Built-in support for multi-dimensional data sets
+	and "vectorized" operations.
+    </td>
+    <td>
+	Library support for compound data structures, but no standard
+	form for "vectorized" operations.
+    </td>
+  </tr>
+  <tr>
+    <td>
+	Built-in support for graphics/visualization
+    </td>
+    <td>
+	Third-party tools for graphics/visualization
+    </td>
+  </tr>
+</table>
+
+
+<hr>
+
+<p>
+<h3>Side-by-side examples</h3>
+
+<table border=1>
+  <tr>
+    <th>topic</th>
+    <th>MATLAB</th>
+    <th>C++</th>
+  </tr>
+  <tr>
+    <td>
+	Function to approximate pi using Taylor series
+    </td>
+    <td>
+	<a href="approxPiVectorized.m">
+	approxPiVectorized.m (vectorized technique)
+	</a>
+	<br>
+	<a href="approxPi.m">
+	approxPi.m (using for loop)
+	</a>
+    </td>
+    <td>
+	<a href="approxPi.cpp">
+	approxPi.cpp
+	</a>
+    </td>
+  </tr>
+  <tr>
+    <td>
+	Function to compute surface area of a
+	cylinder
+    </td>
+    <td>
+	<a href="cylinder.m">
+	cylinder.m
+	</a>
+    </td>
+    <td>
+	<a href="cylinder.cpp">
+	cylinder.cpp
+	</a>
+    </td>
+  </tr><!--
+  <tr>
+    <td>
+	Function to perform "coupon collecting" trials
+    </td>
+    <td>
+	<a href="files/collect/collect.m">
+	collect.m
+	</a>
+    </td>
+    <td>
+	<a href="files/collect/collect.cpp">
+	collect.cpp
+	</a>
+    </td>
+  </tr>
+  <tr>
+    <td>
+	Function to find monochromatic component of a two-dimensional array
+    </td>
+    <td>
+	<a href="files/component/findComponent1.m">
+	findComponent1.m
+	</a>
+    </td>
+    <td>
+	<a href="files/component/findComponent.cpp">
+	findComponent.cpp
+	</a>
+    </td>
+  </tr>-->
+</table>
+
+<p>Compile C++ programs with:
+
+<pre>
+g++ approxPi.cpp -o approxPi
+g++ cylinder.cpp -o cylinder
+</pre>
+
+
+<HR>
+<!--
+Originally by
+<ADDRESS>
+<a href="/~goldwasser">Michael Goldwasser</a>
+</ADDRESS>
+<HR>
+-->
+
+
+  </BODY>
+</HTML>
+

@@ -1,0 +1,393 @@
+
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+
+<HTML>
+<HEAD>
+<TITLE>Lecture Notes: Vectorized Operations
+</TITLE>
+</HEAD>
+
+<BODY>
+
+
+
+<HR>
+
+<H2>
+Notes 03: Vectorized Operations
+</H2>
+
+<p>
+<b>Reading:</b> Gilat 3.1-3.6
+</p>
+
+<hr>
+
+<p>
+One great advantage of MATLAB is the ease with which you can support
+simultaneous computations across a vector using vectorized
+operations.  
+We looked at some of these during
+classtime- and if you get stumped, take a peek at <a
+href="solutions.m">our solutions</a>.
+
+<P>
+
+<DL COMPACT>
+<DT>Exercise i)
+<DD>Construct a vector with contents
+<!-- MATH
+ $[\,\, 100 \,\, 200 \,\, 300 \,\,  \ldots \,\,  1500 \,\, ]$
+ -->
+<IMG
+ WIDTH="203" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img1.png"
+ ALT="$[\,\, 100 \,\, 200 \,\, 300 \,\, \ldots \,\, 1500 \,\, ]$">.
+
+<P>
+<DT>Exercise ii)
+<DD>Construct a vector with contents
+<!-- MATH
+ $[ \,\, 1 \,\,  2 \,\, 3 \,\, \ldots \,\, 18 \,\, 19 \,\, 20 \,\, 19 \,\, 18 \,\, \ldots \,\, 3 \,\, 2 \,\, 1 \,\, ]$
+ -->
+<IMG
+ WIDTH="311" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img2.png"
+ ALT="$[ \,\, 1 \,\, 2 \,\, 3 \,\, \ldots \,\, 18 \,\, 19 \,\, 20 \,\, 19 \,\, 18 \,\, \ldots \,\, 3 \,\, 2 \,\, 1 \,\, ]$">.
+
+<P>
+<DT>Exercise iii)
+<DD>Construct a vector containing n entries with the alternating
+  pattern <!-- MATH
+ $[ \,\, 1 \,\, -\!\!1 \,\, 1 \,\, -\!\!1 \,\, 1 \,\, \ldots \,\, ]$
+ -->
+<IMG
+ WIDTH="165" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img3.png"
+ ALT="$[ \,\, 1 \,\, -\!\!1 \,\, 1 \,\, -\!\!1 \,\, 1 \,\, \ldots \,\, ]$">.
+  Can you think of several ways to do this?
+  Do your formulations work for both odd and even-lengthed vectors?
+
+<P>
+<DT>Exercise iv)
+<DD>Construct a vector containing the first n powers of 2,
+starting with <IMG
+ WIDTH="22" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img4.png"
+ ALT="$2^0$">, i.e.,  <!-- MATH
+ $[ \,\, 2^0 \,\,  2^1 \,\,2^2 \,\, \ldots
+  \,\, 2^{n-1} \,\, ]$
+ -->
+<IMG
+ WIDTH="168" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img5.png"
+ ALT="$[ \,\, 2^0 \,\, 2^1 \,\,2^2 \,\, \ldots
+\,\, 2^{n-1} \,\, ]$">.
+
+<P>
+<DT>Exercise v)
+<DD>Construct a vector containing the inverse of the first n powers
+  of 2, i.e.,  <!-- MATH
+ $[ \,\, \frac{1}{2^0} \,\,  \frac{1}{2^1} \,\,\frac{1}{2^2} \,\, \ldots
+  \,\, \frac{1}{2^{n-1}} \,\, ]$
+ -->
+<IMG
+ WIDTH="167" HEIGHT="39" ALIGN="MIDDLE" BORDER="0"
+ SRC="img6.png"
+ ALT="$[ \,\, \frac{1}{2^0} \,\, \frac{1}{2^1} \,\,\frac{1}{2^2} \,\, \ldots
+\,\, \frac{1}{2^{n-1}} \,\, ]$">. 
+
+<P>
+<DT>Exercise vi)
+<DD>As a classic example of a geometric series, we have that 
+  <BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\sum_{k=0}^{\infty} \frac{1}{2^k} = 2
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="82" HEIGHT="56" BORDER="0"
+ SRC="img7.png"
+ ALT="\begin{displaymath}\sum_{k=0}^{\infty} \frac{1}{2^k} = 2\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+Although we cannot perform an infinite calculation, we can observe how
+the limit is approaching <IMG
+ WIDTH="14" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img8.png"
+ ALT="$2$"> if we evaluate a finite portion of that
+sum.
+
+<P>
+One way to do this is to build a series as in the previous problem for
+a particular <IMG
+ WIDTH="16" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img9.png"
+ ALT="$n$">, and to use the <TT>sum</TT> function to cmpute the sum.
+This could be repeated for several values of <IMG
+ WIDTH="16" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img9.png"
+ ALT="$n$">.  An easier way to
+see the progression is to rely instead on the <TT>cumsum</TT> function.
+For a vector <TT>v</TT>, the call <TT>sum(v)</TT> returns a scalar that is
+the sum of all entries.  In constrast, the call <TT>cumsum(v)</TT>
+returns a vector with length equal to <TT>v</TT>, where the kth entry of
+the result is the sum of the first k entries of v (thus the last entry
+of the result the sum of all entries).
+
+<P>
+If we let <TT>v</TT> denote the vector from the previous problem for <IMG
+ WIDTH="60" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img10.png"
+ ALT="$n =
+10$">, examine the results of <TT>cumsum(v)</TT>.
+
+<P>
+<DT>Exercise vii)
+<DD>The constant <IMG
+ WIDTH="13" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img11.png"
+ ALT="$e$"> is not predefined, but I thought we may as well learn a way to estimate it
+  ourself.  It can be shown that
+  <BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+e = \sum_{k=0}^{\infty} \frac{1}{k!}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="79" HEIGHT="56" BORDER="0"
+ SRC="img12.png"
+ ALT="\begin{displaymath}e = \sum_{k=0}^{\infty} \frac{1}{k!}\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+Although, we cannot precisely evaluate an infinite sum, we can
+  create a decent approximation to <IMG
+ WIDTH="13" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img11.png"
+ ALT="$e$"> by evaluating the sum of the
+  first <IMG
+ WIDTH="22" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img13.png"
+ ALT="$N$"> terms of this series.
+
+<P>
+Using <TT>cumsum</TT> as in the previous problem, compute a vector <TT>  approxE</TT> that
+  has approximations of <IMG
+ WIDTH="13" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img11.png"
+ ALT="$e$"> based on the first <IMG
+ WIDTH="15" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img14.png"
+ ALT="$k$"> terms of the
+  infinite series, for <IMG
+ WIDTH="15" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img14.png"
+ ALT="$k$"> ranging from 1 to 20.  Then compute
+  another vector named <TT>errors</TT> by subtracting
+  <TT>exp(1)</TT> from all entries so that what remains is the difference
+  between our approximation and MATLAB's computation of <IMG
+ WIDTH="13" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img11.png"
+ ALT="$e$">.
+
+<P>
+<DT>Exercise viii)
+<DD>Much as there was a way to express <IMG
+ WIDTH="13" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img11.png"
+ ALT="$e$"> as an infinite series, the
+value of the natural log of 2 can be expressed as
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\ln 2 = \sum_{k=1}^{\infty} \frac{1}{(2k-1) \cdot (2k)}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="197" HEIGHT="56" BORDER="0"
+ SRC="img15.png"
+ ALT="\begin{displaymath}\ln 2 = \sum_{k=1}^{\infty} \frac{1}{(2k-1) \cdot (2k)}\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+Create a script that approximates the value by summing the first <IMG
+ WIDTH="22" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img13.png"
+ ALT="$N$">
+terms of the series and then test the results by evaluating the expression
+<TT>yourApprox - log(2)</TT>, which represents the difference between
+your approximation and MATLAB's calculation of the value. How does
+this difference vary with the choice of <IMG
+ WIDTH="22" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img13.png"
+ ALT="$N$">?
+
+<P>
+<DT>Exercise ix)
+<DD>In some contexts MATLAB represents a polynomial by storing its
+  coefficents as a sequence in a vector.  For example, the polynomial
+  <!-- MATH
+ $p(x) = 3x^3 - 5x + 2$
+ -->
+<IMG
+ WIDTH="168" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img16.png"
+ ALT="$p(x) = 3x^3 - 5x + 2$"> would be represented as the vector
+  <!-- MATH
+ $[ \,\, 3 \,\, 0 \,\, -\!\!5 \,\, 2]$
+ -->
+<IMG
+ WIDTH="95" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img17.png"
+ ALT="$[ \,\, 3 \,\, 0 \,\, -\!\!5 \,\, 2]$"> (notice the 0 coefficient to
+  designate the term <IMG
+ WIDTH="32" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img18.png"
+ ALT="$0x^2$">).
+
+<P>
+There is a library function <TT>polyval(p,x)</TT> that computes <IMG
+ WIDTH="39" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img19.png"
+ ALT="$p(x)$">
+  given such a vector <IMG
+ WIDTH="14" HEIGHT="33" ALIGN="MIDDLE" BORDER="0"
+ SRC="img20.png"
+ ALT="$p$"> and scalar <IMG
+ WIDTH="15" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img21.png"
+ ALT="$x$">.  However, we can perform the
+  evaluation ourself through use of vectorized operations.  Give an
+  expression or a series of commands to compute <IMG
+ WIDTH="39" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img19.png"
+ ALT="$p(x)$"> given <IMG
+ WIDTH="14" HEIGHT="33" ALIGN="MIDDLE" BORDER="0"
+ SRC="img20.png"
+ ALT="$p$"> and <IMG
+ WIDTH="15" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img21.png"
+ ALT="$x$">.
+
+<P>
+<DT>Exercise x)
+<DD>MATLAB provides a function <TT>rand</TT> that produces a matrix of
+pseudo-random numbers that are uniformly distributed between 0 and 1.
+This means that a particular random number should have a 10% chance
+of being less than or equal to <IMG
+ WIDTH="29" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img22.png"
+ ALT="$0.1$">.
+
+<P>
+Let's test this empirically.  Assuming that variable <IMG
+ WIDTH="22" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img13.png"
+ ALT="$N$"> represents
+the desired number of trials, develop an expression that computes the
+percentage of <IMG
+ WIDTH="22" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img13.png"
+ ALT="$N$"> random numbers that are less than or equal to <IMG
+ WIDTH="29" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img22.png"
+ ALT="$0.1$">.
+Once you have your formula developed, test it by hand on values of <IMG
+ WIDTH="22" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img13.png"
+ ALT="$N$">
+such as <IMG
+ WIDTH="33" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img23.png"
+ ALT="$100$">, <IMG
+ WIDTH="42" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img24.png"
+ ALT="$1000$">, <IMG
+ WIDTH="51" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img25.png"
+ ALT="$10000$">, <IMG
+ WIDTH="27" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img26.png"
+ ALT="$\ldots$">.
+
+<P>
+<DT>Exercise xi)
+<DD>MATLAB also provides a function <TT>randn</TT> that produces a matrix of
+pseudo-random numbers that follow the standard normal distribution
+(i.e., the ``bell curve'').  These have a mean of <IMG
+ WIDTH="14" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img27.png"
+ ALT="$0$"> and a variance
+of <IMG
+ WIDTH="14" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img28.png"
+ ALT="$1$">.  Theoretically, the chance of a single such random number
+being greater than or equal to <IMG
+ WIDTH="14" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img28.png"
+ ALT="$1$"> is approximately 15.8655%.
+
+<P>
+Let's test this empirically.  Assuming that variable <IMG
+ WIDTH="22" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img13.png"
+ ALT="$N$"> represents
+the desired number of trials, develop an expression that computes the
+percentage of <IMG
+ WIDTH="22" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img13.png"
+ ALT="$N$"> normally distributed random numbers that are greater
+than or equal to <IMG
+ WIDTH="14" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img28.png"
+ ALT="$1$">.
+Once you have your formula developed, test it by hand on values of <IMG
+ WIDTH="22" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img13.png"
+ ALT="$N$">
+such as <IMG
+ WIDTH="33" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img23.png"
+ ALT="$100$">, <IMG
+ WIDTH="42" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img24.png"
+ ALT="$1000$">, <IMG
+ WIDTH="51" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img25.png"
+ ALT="$10000$">, <IMG
+ WIDTH="27" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img26.png"
+ ALT="$\ldots$">.
+
+<P>
+</DD>
+</DL>
+
+
+
+<HR>
+Originally by
+<ADDRESS>
+<a href="/~goldwasser">Michael Goldwasser</a>
+</ADDRESS>
+
+<HR>
+
+  </BODY>
+</HTML>
+
+

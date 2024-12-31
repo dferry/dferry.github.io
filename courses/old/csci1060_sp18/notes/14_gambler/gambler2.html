@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+
+<HTML>
+<HEAD>
+<TITLE>Lecture Notes: The Gambler
+</TITLE>
+</HEAD>
+
+<BODY>
+
+<HR>
+
+<H2>
+The Gambler
+</H2>
+
+<p>
+As a followup to <a href="gambler.html">the previous lecture</a>, we
+reexamine the gambler model. 
+Using the <a href="gambler.m">previous solution</a> we would like
+to take this a few steps further.
+
+<ul>
+  <li>
+      To produce graphs such as those given in the previous lecture
+      notes, comparing the chance of success and average number of
+      bets to the starting bankroll. Here is an example showing the
+      statistics for last classes challenge of goal=100, p=0.49.
+      <br>
+      <img width=400 src="bankrollAnalysis_100_0.49_10000.jpg">
+  </li>
+  <li>
+      To produce graphs that plot the success percentage and
+      average number of bets relative to the probability.
+      <br>
+      <img width=400 src="probAnalysis_100_10000.jpg">
+  </li>
+  <li>
+      Although we already track the average number of steps for a
+      given trial, we wish to update our code in order to compile
+      statistics, for each possible bankroll value, of how many steps
+      begin with that bankroll.
+  </li>
+  <li>
+      To animate a single trial showing the current bankroll along the
+      way, as well as a summary of what percentage of time was spent
+      with each intermediate bankroll.
+  </li>
+</ul>
+
+
+<!--
+<p>
+As a step in this direction, here is an 
+<a href="fancy/gambler.m">updated version</a> of the gambler.m file
+that provide an animation of the process when trials==1, and which can
+track the number of steps spent at each individual bankroll.
+-->
+
+
+<HR>
+Originally by
+<ADDRESS>
+<a href="/~goldwasser">Michael Goldwasser</a>
+</ADDRESS>
+<HR>
+
+</BODY>
+</HTML>
+

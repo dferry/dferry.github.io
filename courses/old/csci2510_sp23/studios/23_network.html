@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSCI 3500 - Operating Systems</title></head>
+
+<h2 style="text-align: center;">CSCI 3500: Studio 23<br></h2>
+<h2 style="text-align: center;">Network Layer</h2>
+
+<hr style="width: 100%; height: 2px;">
+
+<p>The network layer is responsible for routing messages between separate
+physical machines. The most common network-layer protocol is the famous
+Internet Protocol (IP). The familiar IP address imposes a structure on
+how to route packets through an IP network.</p>
+
+<p>In this studio, you will:</p>
+
+<ol>
+<li>Learn to split an IP address into a network address and host identifier
+<li>Use the CIDR system to specify groups of IP addresses called subnets
+<li>Compute IP address / subnet inclusion
+<li>Route packets based on the longest matching network address rule
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>
+<p>
+Please complete the required exercises below, as well as any optional
+enrichment exercises that you wish to complete.</p> 
+
+<p>
+As you work through these exercises, please record your answers in a text
+file. When finished, submit your work via the git repository.</p>
+
+<!--by sending your text file and
+source code to <strong>dferry_submit@slu.edu</strong>
+with the phrase <strong>
+Network Layer
+</strong> in the subject line.</p>
+-->
+
+<p><strong> Make sure that the name of each person who worked on these exercises
+is listed in the first answer, and make sure you number each of your responses
+so it is easy to match your responses with each exercise.</strong></p>
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Required Exercises</h3></p>
+
+<ol>
+<p><li>As the answer to the first exercise, list the names of the people who
+worked together on this studio.</p>
+
+<p><li>In IP routing it is useful to subdivide the IP address space
+ into logical subdivisions called <i>subnets</i>.
+An example of a subnet might be the set of all addresses from 152.221.54.0
+to 152.221.54.255, which specifies a subnet containing 256 addresses. Recall that an IPv4
+address is a 32-bit number comprised of four 8-bit integers.
+Which bits are constant and which bits vary in the above subnet range?</p>
+
+<p><li>A compact way of specifying subnets (called <i>CIDR notation</i> or <i>slash notation</i>)
+is to specify the number of bits that are fixed and the number of bits that are allowed
+to vary. For example, 63.48.0.0/12 specifies a subnet defined by the twelve most significant
+bits of the address. These twelve leftmost bits (<code>0011 0011 0011</code>) are called the
+<i>network address</i> and the remaining twenty bits are called the <i>host identifier</i>, meaning
+they specify a particular host in the subnet.</p>
+
+<p>Specify the subnet from Exercise 2 using CIDR notation.</p>
+
+<p><li>Write the network address and the host identifier, in binary,
+for the IP address 152.78.101.35/20.</p> 
+
+<p><li>Subnets are also how the <i>IANA</i> (Internet Assigned Numbers Authority)
+allocates blocks of IP addresses to businesses and organizations. St. Louis
+University has its own allocation. Give the CIDR notation for SLU's IPv4 allocation
+<a href="https://whois.arin.net/rest/net/NET-165-134-0-0-1">given on this webpage</a>.</p>
+
+<p><li>How many bits are in SLU's host identifier? How many IP addresses have been assigned to SLU?</p>
+
+<p><li>Subnets are extremely useful for routing because they allow you to route packets
+to a whole subnet rather than to a specific computer. This way, a router in New York
+doesn't have to keep track of each individual computer in a subnet in Los Angeles. It only
+needs to keep track of how to route a packet to their aggregate network address. To make this kind of routing
+decision you need to be able to tell whether a desired IP address belongs to a subnet. Which
+of the IP addresses below belong to the subnet 38.191.208.0/20? (<i>Hint: You need to compare
+the binary representations of the network addresses, not the decimal.</i>). </p>
+
+<pre>
+A) 38.191.240.22
+B) 38.191.222.47
+C) 38.181.210.128
+D) 38.191.207.255
+</pre>
+
+<p><li>Notice that a single IP address can match multiple network addresses. For example, the
+IP address 165.35.124.22 matches 165.35.124.0/24 as well as 165.35.0.0/16 and
+165.32.0.0/12. Which of the following subnets match the IP address 200.100.50.25?
+(<i>Hint: You need to compare the binary representations of the network addresses, not the decimal.</i>)
+
+<pre>
+A) 200.0.0.0/8
+B) 200.96.0.0/12
+C) 200.64.0.0/16
+D) 200.100.48.0/22
+</pre>
+
+<p><li>As above, subnets are useful because they allow us to make routing
+decisions easily. Recall that a router makes routing decisions by comparing
+the destination IP address of a waiting packet with all of possible destinations
+in its routing table and selecting the "closest" matching destination.
+We can now specify exactly what is meant by 
+finding the "closest" matching router table entry: the closest entry is the
+one with the <i>longest matching network address</i>. For example, the IP address
+20.40.80.160 matches both 20.40.0.0/16 and 20.40.80.0/24. Which subnet
+is the longer match?</p> 
+
+
+<p><li>Suppose a router has the following routing table:</p>
+
+<table border="2">
+        <tr>
+                <th>Destination</th>
+                <th>Interface</th>
+                <th>Cost</th>
+        </tr>
+        <tr>
+                <td>192.168.1.0/24</td>
+                <td>Ethernet0</td>
+                <td>300</td>
+        </tr>
+        <tr>
+                <td>192.168.0.0/16</td>
+                <td>Ethernet1</td>
+                <td>600</td>
+        </tr>
+        <tr>
+                <td>192.168.1.47/32</td>
+                <td>Ethernet2</td>
+                <td>1</td>
+        </tr>
+        <tr>
+                <td>192.168.1.156/32</td>
+                <td>Ethernet3</td>
+                <td>1</td>
+        </tr>
+        <tr>
+                <td>0.0.0.0/0</td>
+                <td>Ethernet5</td>
+                <td>1000</td>
+        </tr>
+</table>
+
+<p>Suppose some packets come into the router with the following
+destination IP addresses. Which interface are they sent out on?
+(Which router table entry has the longest matching network address?)</p>
+
+<pre>
+A) 192.168.1.102
+B) 192.168.24.94
+C) 192.168.1.47
+D) 165.134.107.80
+
+</pre>
+
+</ol>
+
+<p><h3>Optional Enrichment Exercises</h3></p>
+<ol>
+<p><li>An alternative system to using CIDR addresses is to use a
+<i>network mask</i>. This system allows you to specify which individual
+bits of an IP address should be considered the network address rather than
+the host specifier. A network mask is given as a 32-bit number in IP address
+format, and each bit that is a one in the binary representation is considered
+part of the network address. For example, the CIDR address 192.168.0.0/16 is equivalent
+to the address 192.168.0.0 with a network mask of 255.255.0.0. In this case, the
+network mask would be:</p>
+
+<pre>11111111 11111111 00000000 00000000</pre>
+
+<p>The network address approach is strictly more flexible and allows you to specify
+some truly complex routing rules. For example, the CIDR system is incapable of 
+specifying the mask 255.0.255.0, which would give a mask of:</p>
+
+<pre>11111111 00000000 11111111 00000000</pre>
+
+<p>However, such network rules are typically not used in practice.</p>> 
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>

@@ -1,0 +1,705 @@
+
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+
+<HTML>
+<HEAD>
+<TITLE>Lecture Notes: Plotting Data
+</TITLE>
+</HEAD>
+
+<BODY>
+
+
+
+<HR>
+
+<H2>
+Notes 03: Plotting Data
+</H2>
+
+<p>
+<b>Reading:</b>  Gilat Ch. 5
+</p>
+
+<p>
+<b>Code from class:</b> <a href="../../programs/plotting.m">plotting.m</a>
+</p>
+
+<hr>
+
+<ul>
+  <li>
+      <a href="#example">First examples</a>
+      <ul>
+	<li>
+	    <a href="#saveas">Saving a figure to a file</a>
+	</li>
+      </ul>
+  </li>
+      <br>
+  <li>
+      <a href="#detailed">Detailed examples</a>
+      <ul>
+	<li>
+	    <a href="#plot">The <tt>plot</tt> command</a>
+	</li>
+	<li>
+	    <a href="#axes">Controlling the axes</a>
+	</li>
+	<li>
+	    <a href="#labels">Adding labels</a>
+	</li>
+	<li>
+	    <a href="#styles">Line styles</a>
+	</li>
+      </ul>
+  </li>
+      <br>
+  <li>
+      <a href="#combining">Combining multiple graphs</a>
+      <ul>
+	<li>
+	    <a href="#multiplot">Further use of the <tt>plot</tt> command</a>
+	</li>
+	<li>
+	    <a href="#hold">The <tt>hold</tt> command</a>
+	</li>
+	<li>
+	    <a href="#subplot">The <tt>subplot</tt> command</a>
+	</li>
+      </ul>
+  </li>
+      <br>
+  <li>
+      <a href="#additional2d">Additional 2D graph styles</a>
+      <ul>
+	
+	<li>
+	    <a href="#plotyy">The <tt>plotyy</tt> command</a>
+	</li>
+	<li>
+	    <a href="#errorbar">The <tt>errorbar</tt> command</a>
+	</li>
+	<li>
+	    <a href="#area">The <tt>area</tt> command</a>
+	</li>
+	<li>
+	    <a href="#stem">The <tt>stem</tt> command</a>
+	</li>
+	<li>
+	    <a href="#bar">The <tt>bar</tt> command</a></h2>
+	</li>
+	<li>
+	    <a href="#barh">The <tt>barh</tt> command</a>
+	</li>
+	<li>
+	    <a href="#hist">The <tt>hist</tt> command</a></h2>
+	</li>
+	<li>
+	    <a href="#pie">The <tt>pie</tt> command</a>
+	</li>
+	<li>
+	    <a href="#image">The <tt>image</tt> command</a>
+	</li>
+	<li>
+	    <a href="#polar">The <tt>polar</tt> command</a>
+	</li>
+	<li>
+	    <a href="#semilogy">The <tt>semilogy</tt> command</a>
+	</li>
+	<li>
+	    <a href="#semilogx">The <tt>semilogx</tt> command</a>
+	</li>
+	<li>
+	    <a href="#loglog">The <tt>loglog</tt> command</a>
+	</li>
+      </ul>
+  </li>
+      <br>
+  <li>
+      <a href="#3d">3D graph styles</a>
+      <ul>
+	<li>
+	    <a href="#pie3">The <tt>pie3</tt> command</a>
+	</li>
+	<li>
+	    <a href="#mesh">The <tt>mesh</tt> command</a>
+	</li>
+      </ul>
+  </li>
+</ul>
+
+<hr>
+
+<h2><a name="example">First examples</a></h2>
+
+Here is an example from 
+<a
+href="http://www.mathworks.com/access/helpdesk/help/techdoc/index.html?/access/helpdesk/help/techdoc/learn_matlab/f3-27853.html">MathWork's
+MATLAB documentaiton</a>
+<pre>
+x = 0:pi/100:2*pi;
+y = sin(x);
+plot(x,y);
+% Now label the axes and add a title. The characters \pi create the
+% symbol π. See "text strings" in the MATLAB Reference documentation for
+% more symbols:
+xlabel('x = 0:2\pi');
+ylabel('Sine of x');
+title('Plot of the Sine Function','FontSize',12);
+</pre>
+<img src="example1.png" alt="example1" width=600>
+
+
+<p>
+Here's another example from that tutorial.
+<pre>
+t = 0:pi/10:2*pi;
+[X,Y,Z] = cylinder(4*cos(t));
+subplot(2,2,1); mesh(X)
+subplot(2,2,2); mesh(Y)
+subplot(2,2,3); mesh(Z)
+subplot(2,2,4); mesh(X,Y,Z)
+</pre>
+<img src="example2.png" alt="example2" width=600>
+
+<h2><a name="saveas">Saving a figure to a file</a></h2>
+
+<ul>
+  <li>
+      <p>
+      You may do this manually through MATLAB's GUI by going to the
+      <tt>File</tt> menu of the Figure window and selecting
+      <tt>Save</tt>.  By default, it will use a MATLAB Figure file format
+      with suffix <tt>.fig</tt> that is convenient for reloading in
+      MATLAB.  You may also change the file type to export to more
+      standard figure formats (e.g., <tt>.jpg</tt>, <tt>.eps</tt>,
+      <tt>.pdf</tt>, <tt>.png</tt>).
+  <li>
+      <p>
+      You can also perform the save from the MATLAB command window by
+      using a command such as <tt>saveas('myPicture.jpg')</tt> or
+      <tt>saveas(gcf,'myPicture.pdf')</tt>.  The variable <tt>gcf</tt>
+      is a handle designating the current figure (some scripts may
+      open multiple figure windows at once, in which case the first
+      parameter can be used to select from among those figures).
+  </li>
+</ul>
+
+<hr>
+
+<h2><a name="detailed">Detailed examples</a></h2>
+
+<h3><a name="plot">The <tt>plot</tt> command</a></h3>
+
+<ul>
+  <li>
+      <p>
+      <b><tt>plot(y)</tt></b>
+      <br>
+      for vector&nbsp;<tt>y</tt>, makes a line
+      graph using the vector values as y-coordinates.  The
+      corresponding x-coordinates are implicitly 1:length(y).
+      <pre>
+      plot(1 ./ 2 .^ (1:10));
+      </pre>
+      <img src="basicplot.png"  width=600>
+      <br>
+      This plot connects the points (1,&nbsp;1/2), (2,&nbsp;1/4), (3,&nbsp;1/8), ...,  (10,&nbsp;1/1024)
+  </li>
+
+  <li>
+      <p>
+      <b><tt>plot(x, y)</tt></b>
+      <br>
+      for vectors&nbsp;<tt>x</tt> and <tt>y</tt> with equal length, makes
+      a line graph connecting the corresponding x-y points.
+      <pre>
+      x = 0:0.1:1.5;       % steps from 0 to 1.5, at 0.1 intervals
+      y = x .^ 2;          % y = x^2 parabola
+      plot(x,y);
+      </pre>
+      <img src="y=x^2.png" width=600>
+
+      <p>
+      We can plot any pairs of vectors this way so long as they have
+      the same length.  It is not necessary for x to be a simple
+      range.  For example, we could plot x as a function of y as.
+      <pre>
+      y = -1:0.1:1;
+      x = y .^ 2;          % x = y^2 horizontal parabola
+      plot(x,y);
+      </pre>
+      <img src="x=y^2.png" width=600>
+      <p>
+      Here is a classic parametric curve, where both x and y are
+      defined relative to another parameter t.
+      <pre>
+      t = 0:pi/200:8*pi;
+      x = t .* sin(t);
+      y = t .* cos(t);
+      plot(x,y);
+      </pre>
+      <img src="parametric.png" width=600>
+
+      <p>
+      If <tt>x</tt> is a vector and <tt>y</tt> is a <em>matrix</em>,
+      <tt>plot(x,y)</tt> will simultaneously plot individual rows (or columns) of <tt>y</tt>.
+      <pre>
+      x = 0:0.1:1.5;                     % steps from 0 to 1.5, at 0.1 intervals
+      y = [x .^ 2; x .^ 3; x .^ 4];      % three functions in one
+      plot(x,y);
+      </pre>
+      <img src="y=x^k.png" width=600>
+      <br>
+      A similar style can be used with <tt>x</tt> as a matrix and
+      <tt>y</tt> as a vector, in which case all rows (or columns) of
+      <tt>x</tt> will be plotted against the vector <tt>y</tt>.
+  </li>
+</ul>
+
+<h3><a name="axes">Controlling the axes</a></h3>
+
+<p>
+By default, MATLAB automatically scales both axes to make good use of
+the figure window while ensure not to clip any of the plotted
+data. For example, in our earlier graph of the
+equation <tt>y&nbsp;=&nbsp;x&nbsp;.^&nbsp;2</tt>, the x-axis goes from
+0 to 1.5 because that was the range of values in our vector 0:0.1:1.5
+while the y-axis ranges from 0 to 2.5.  Yet in the graph where we
+simultaneously graphed <tt>x^2</tt>, <tt>x^3</tt>, and <tt>x^4</tt>,
+the y-range was scaled from 0 to 6 so that all three plots fit.
+
+<p>
+While auto-mode for axes is usually convenient, there are times when
+we would like to better control the choice.  For example, in the graph
+of <tt>x^2</tt>, the scale for the x-axis is not the same as the scale
+for the y-axis.  This distorts certain aspects of the graph, for
+example if trying to estimate the slope of the curve when x=1.
+We can force the two axes to be drawn with equal scale by using the
+command <tt>axis&nbsp;equal</tt> after the initial plot.
+<pre>
+x = 0:0.1:1.5;       % steps from 0 to 1.5, at 0.1 intervals
+y = x .^ 2;          % y = x^2 parabola
+plot(x,y);
+axis equal;
+</pre>
+<img src="y=x^2-equal.png" width=600>
+
+<p>
+We can also set the axes range manually, using a syntax of the form
+<nobr>axes([xmin xmax ymin ymax])</nobr>.
+<pre>
+x = 0:0.1:1.5;       % steps from 0 to 1.5, at 0.1 intervals
+y = x .^ 2;          % y = x^2 parabola
+plot(x,y);
+axis([-1 1 -0.5 1.5]);
+</pre>
+<img src="y=x^2-manual.png" width=600>
+
+
+<p>
+A separately controllable aspect of the figure is whether grid lines
+are drawn across the primary pane of the graph.  By default, the grid
+lines are not there, but they can be turned on by giving the command
+<tt>grid&nbsp;on</tt>, as in the following.
+<pre>
+x = 0:0.1:1.5;                     % steps from 0 to 1.5, at 0.1 intervals
+y = [x .^ 2; x .^ 3; x .^ 4];      % three functions in one
+plot(x,y);
+grid on;
+</pre>
+<img src="y=x^k-grid.png" width=600>
+
+
+<h3><a name="labels">Adding labels</a></h3>
+
+<p>
+It is possible to augment a figure with a variety of labels
+
+<ul>
+  <li>
+      <p>
+      <b><tt>xlabel('your message goes here')</tt></b>
+      <br>
+      Places the given string along the x-axis.
+  </li>
+  <li>
+      <p>
+      <b><tt>ylabel('your message goes here')</tt></b>
+      <br>
+      Places the given string vertically along the y-axis.
+  </li>
+  <li>
+      <p>
+      <b><tt>title('your message goes here')</tt></b>
+      <br>
+      Places a title above the entire figure.
+  </li>
+  <li>
+      <p>
+      In a case when there are multiple lines on a single graph, 
+      we can add a custom legend to label the lines.  Here
+      is an example.
+      <pre>
+      x = 0:0.1:1.5;                     % steps from 0 to 1.5, at 0.1 intervals
+      y = [x .^ 2; x .^ 3; x .^ 4];      % three functions in one
+      plot(x,y);
+      legend('quadratic', 'cubic', 'quartic');
+      </pre>
+      <img src="y=x^k-legend.png" width=600>
+      <br>
+      It is also possible to control the placement of a legend, for
+      instance repositioning it to the top-left corner with the command
+      <pre>
+      legend('quadratic', 'cubic', 'quartic', 'Location', 'NorthWest');
+      </pre>
+  </li>
+</ul>
+
+
+
+<h3><a name="styles">Line styles</a></h3>
+
+<p>
+We have seen that by default, a graph uses a solid blue line as the
+primary line style.  The line style can be changed by providing what
+is known as a line specifier as extra arguments to a plot call.  The
+line specifier can be used to control three aspects:
+<ul>
+  <li>
+      The color (using one character code for eight common colors)
+  </li>
+  <li>
+      The line style (e.g. <tt>-</tt> for solid line, <tt>--</tt> for
+      dashed line, <tt>:</tt> for dotted line).
+  </li>
+  <li>
+      A "marker" to draw on the actual data points (e.g. <tt>o</tt>
+      for a circle).
+  </li>
+</ul>
+Please see
+<a
+href="http://www.mathworks.com/access/helpdesk/help/techdoc/index.html?/access/helpdesk/help/techdoc/ref/linespec.html&http://www.mathworks.com/access/helpdesk/help/techdoc/creating_plots/f6-20079.html">MATLAB
+documentation</a> for more details.
+Here is an example.
+<pre>
+plot(1 ./ 2 .^ (1:10), 'k*:');     % blac(k), asterisk markers, dotted lines
+title('Inverse powers of two');
+</pre>
+<img src="basicplot-linespec.png"  width=600>
+<p>
+Note that if you use a line specifier and provide a marker type but
+not a line type, then the markers will be drawn without the connecting lines.
+
+
+<hr>
+
+<h2><a name="combining">Combining multiple graphs</a></h2>
+
+<p>
+Typically, each call to <tt>plot</tt> causes a new figure to be
+drawn. However, there are several techniques to combine multiple
+graphs in a single figure.
+
+<ul>
+  
+
+  <li>
+      <h3><a name="multiplot">Further use of the <tt>plot</tt> command</a></h3>
+      <p>
+      We already showed how <tt>plot(x,y)</tt> can be used to plot
+      vector x against all rows of a matrix y.  It is also possible to
+      combine completely indpendent plots in a single call using a
+      format like <tt>plot(xA, yA, xB, yB)</tt>.  This plots
+      <tt>xA</tt> versus </tt>yA</tt>, and <tt>xB</tt> versus
+      <tt>yB</tt>.  It requires that the length of <tt>xA</tt> and
+      <tt>yA</tt> match each other, but not necessarily matching the
+      lengths of <tt>xB</tt> and <tt>yB</tt>.
+      <pre>
+      terms = 0:8;
+      approxE = cumsum(1 ./ factorial(terms));
+      plot(terms approxE, '*-', [terms(1) terms(end)], [exp(1) exp(1)], 'r--');
+      legend('approximation of e', 'e', 'Location', 'SouthEast');
+      </pre>
+      <img src="approxE.png"  width=600>
+  </li>
+
+  <li>
+      <h3><a name="hold">The <tt>hold</tt> command</a></h3>
+      The command <tt>hold&nbsp;on</tt> tells MATLAB that all further
+      plots should be put on the current figure rather than a new
+      figure.  This mode can be turned off by a subsequent
+      <tt>hold&nbsp;off</tt> command.  Here is a way to write the
+      preceding example with two separate calls to plot.
+      <pre>
+      terms = 0:8;
+      approxE = cumsum(1 ./ factorial(terms));
+      plot(terms approxE, '*-');
+      hold on;
+      plot([terms(1) terms(end)], [exp(1) exp(1)], 'r--');
+      legend('approximation of e', 'e', 'Location', 'SouthEast');
+      </pre>
+  </li>
+
+  <li>
+      <h3><a name="subplot">The <tt>subplot</tt> command</a></h3>
+      <p>
+      Instead of overlaying several plots on the same set of axes, a
+      figure window can be subdivided into separate panels of equal
+      size.  This is done by prefacing a normal drawing command
+      with the command <tt>subplot(r, c, n)</tt>,
+      where <tt>r</tt> designates the number of rows in the division,
+      <tt>c</tt> the number of panels in the division, and <tt>n</tt> the
+      cardinality of the current subplot on that grid (numbered in
+      row-major order) at which the drawing should be placed.
+      <pre>
+      x = 0:pi/20:2*pi;
+      subplot(2,1,1);
+      plot(x, sin(x));
+      ylabel('sin(x)');
+      subplot(2,1,2);
+      plot(x, cos(x));
+      ylabel('cos(x)');
+      </pre>
+      <img src="subplot-demo.png"  width=600>
+      
+  </li>
+
+</ul>
+
+<hr>
+
+<h2><a name="additonal">Additional 2D graph styles</a></h2>
+<ul>
+  
+  <li>
+      <h3><a name="plotyy">The <tt>plotyy</tt> command</a></h3>
+  </li>
+
+      <hr>
+
+  <li>
+      <h3><a name="errorbar">The <tt>errorbar</tt> command</a></h3>
+  </li>
+
+      <hr>
+
+  <li>
+      <h3><a name="area">The <tt>area</tt> command</a></h3>
+      When <tt>x</tt> and <tt>y</tt> are vectors, a call to
+      <tt>area(x,y)</tt> is similar to <tt>plot(x,y)</tt>, except that
+      it fills in the area between the x-axis and the curve.
+      <pre>
+      x = 0:pi/200:2*pi;
+      area(x, sin(x));
+      </pre>
+      <img src="sin-area.png"  width=600>
+      <p>
+      In the case that <tt>x</tt> is a vector and <tt>y</tt> is a
+      matrix that has a number of rows matching the length of
+      <tt>x</tt>, the area graph essentially plots the cumulative sums
+      of the rows of <tt>y</tt>.  As an example, here is a colorful
+      way to show the graph of the polynomial <tt>x^2 + 2x + 1</tt>,
+      with three different colors showing the contribution of the
+      three terms.
+      <pre>
+      x = linspace(0,3,100);
+      y = [x .^ 2;  2 .* x; ones(1,length(x))]';    % note the transpose
+      area(x, y);
+      legend('x^2', '2x', '1', 'Location', 'NorthWest');
+      </pre>
+      <img src="poly-area.png"  width=600>
+  </li>
+      
+      <hr>
+
+  <li>
+      <h3><a name="stem">The <tt>stem</tt> command</a></h3>
+      Plots y-values as stems relative to x.
+      <pre>
+      terms = 0:8;
+      approxE = cumsum(1 ./ factorial(terms));
+      stem(terms, approxE);
+      axis( [ -0.5 8.5 0 3] );   % better padding
+      </pre>
+      <img src="approxE-stem.png"  width=600>
+  </li>
+
+      <hr>
+
+  <li>
+      <h3><a name="bar">The <tt>bar</tt> command</a></h3>
+      Used to create vertical bar graphs.
+      <pre>
+      terms = 0:8;
+      approxE = cumsum(1 ./ factorial(terms));
+      bar(terms, approxE);
+      xlabel('Number of terms');
+      ylabel('Approximation of e');
+      </pre>
+      <img src="approxE-bar.png"  width=600>
+  </li>
+
+      <hr>
+
+  <li>
+      <h3><a name="barh">The <tt>barh</tt> command</a></h3>
+      Used to create horizontal bar graphs.
+      <pre>
+      terms = 0:8;
+      powers = 2 .^ terms;
+      barh(terms, powers);
+      </pre>
+      <img src="powers-barh.png"  width=600>
+  </li>
+
+      <hr>
+
+  <li>
+      <h3><a name="hist">The <tt>hist</tt> command</a></h3>
+      Used to create a vertical bar graph by grouping original data
+      set into a histogram.  By default, 10 buckets are created
+      ranging from the minimum to maximum observed values.  The number
+      of desired buckets can be specified as the second parameter.
+      Alternatively, the desired dividing points ("edges") of the
+      buckets can be specified as a vector.
+      <pre>
+      hist(rand(1,500000));     % 500,000 random values in ten buckets
+      </pre>
+      <img src="rand-500000.png"  width=600>
+      <p>
+      Here's an example with using <tt>randn</tt> to produce a normal distribution
+      <pre>
+      hist(randn(1,500000),1000);     % 500,000 random values in 1000 buckets
+      </pre>
+      <img src="randn-500000.png"  width=600>
+
+      <p>
+      Here is an example on a discrete data set, perhaps representing
+      years in which people were born.
+      <pre>
+      birthyear = [1987 1990 1988 1991 1984 1990 1989 1987 1988 1990 1988];
+      range = min(birthyear):max(birthyear);    % 1984:1991 in this case
+      hist(birthyear, range);      
+      </pre>
+      <img src="years-hist.png"  width=600>
+
+      <p>
+      <b>Note about histograms</b>
+      <br>
+      The <tt>hist</tt> function is far more general than we have
+      shown here.  Although it produces a figure by default, the
+      result can instead be stored as a vector. For example, 
+      <pre>
+      birthyear = [1987 1990 1988 1991 1984 1990 1989 1987 1988 1990 1988];
+      range = min(birthyear):max(birthyear);    % 1984:1991 in this case
+      result = hist(birthyear, range);          % no figure produced
+      </pre>
+      In this case, the variable <tt>result</tt> is set to the vector
+      <nobr>[1  0  0  2  3  1  3  1]</nobr>.
+
+      
+  </li>
+
+      <hr>
+
+  <li>
+      <h3><a name="pie">The <tt>pie</tt> command</a></h3>
+      Builds a pie chart from a series of values.  Negative values in
+      the input are ignored.   If the cumulative sum of the values is
+      greater than one, the pie chart is drawn as percentages.
+      <pre>
+      pie( [0.3 0.1 0.25], {'food' 'gas' 'housing'});   % notice labels are enclosed with curly braces not square braces
+      </pre>
+      <img src="budget-pie.png"  width=600>
+      <pre>
+      pie (2 .^ (0:6));     # no explicit labels
+      </pre>
+      <img src="powers-pie.png"  width=600>
+
+      <p>
+      Can provide logical vector to make certain slices "explode".
+      <pre>
+      pie (2 .^ (0:6), [0 0 1 0 1 0]);     % third and fifth piece explode
+      </pre>
+      <img src="explode-pie.png"  width=600>
+      
+      
+  </li>
+
+      <hr>
+
+  <li>
+      <h3><a name="image">The <tt>image</tt> command</a></h3>
+      Can use to draw a two-dimensional array grid, color-coded based
+      on integer indexes into a colormap.
+      <pre>
+      dice = ceil( rand(2,8) * 6);
+      image(dice);
+      colormap(lines);    % better choice of colors
+      axis equal;         % make squares
+      axis off;           % don't bother labeling the axis
+      </pre>
+      <img src="imagemap.png"  width=600>
+  </li>
+      
+      <hr>
+
+  <li>
+      <h3><a name="polar">The <tt>polar</tt> command</a></h3>
+  </li>
+
+      <hr>
+
+  <li>
+      <h3><a name="semilogy">The <tt>semilogy</tt> command</a></h3>
+  </li>
+
+      <hr>
+
+  <li>
+      <h3><a name="semilogx">The <tt>semilogx</tt> command</a></h3>
+  </li>
+
+      <hr>
+
+  <li>
+      <h3><a name="loglog">The <tt>loglog</tt> command</a></h3>
+  </li>
+
+</ul>
+
+<hr>
+
+<h2><a name="3d">3D graph styles</a></h2>
+<ul>
+  
+  <li>
+      <h3><a name="pie3">The <tt>pie3</tt> command</a></h3>
+  </li>
+
+      <hr>
+
+  <li>
+      <h3><a name="mesh">The <tt>mesh</tt> command</a></h3>
+  </li>
+
+</ul>
+
+<!--
+<HR>
+Originally by
+<ADDRESS>
+<a href="/~goldwasser">Michael Goldwasser</a>
+</ADDRESS>
+-->
+<HR>
+
+
+
+</BODY>
+</HTML>
+
+

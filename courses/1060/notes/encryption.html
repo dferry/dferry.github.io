@@ -1,0 +1,132 @@
+
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+
+<HTML>
+<HEAD>
+<TITLE>Encryption in MATLAB
+</TITLE>
+</HEAD>
+
+<BODY>
+
+
+
+
+<HR>
+
+<H2>
+Notes: Text Encryption in MATLAB
+</H2>
+
+
+<hr>
+
+<h3>What is encryption?</h3>
+
+<p>Encryption is the act of converting a <i>plain-text</i> message into an
+enciphered <i>cipher-text</i> that is (supposed to be) unreadable by 
+adversaries or other unauthorized persons. Encryption is a basic building
+block of our digital lives: every time you visit a secure website such as
+your bank, online merchants, or school email that connection is encrypted.
+This means that the web page you see actually goes through a four-step
+process before it shows up on your screen:</p>
+
+<ol>
+<li>You visit a website like <a href="amazon.com">amazon.com</a>
+<li>The web server generates the web page you are supposed to see (which is
+not the same for everyone, for example amazon.com includes specific
+reccomendations based on your purchase history) and then encrypts it
+<li>The web page is sent across the internet in encrypted form
+<li>Your computer recieves the encrypted page and decrypts it before
+displaying the contents on your screen
+</ol>
+
+<p>Because this communication is encrypted it means that nobody else can
+read that data as it is moving through the internet. (Sending an unecrypted
+website would be like sending a letter through the mail without an envelope-
+anyone who handled it could easily see what the contents were.) This means
+that any sensitive data: your bank account balance, your credit card number,
+your Amazon reccomendations, etc. are all hidden from anyone who might be
+watching. However, encryption is used in many other domains as well:
+governments, businesses, and militaries use encryption frequently to
+ensure that their messages are only seen by the people who are intended
+to see them.</p>
+
+<hr>
+
+<h3>Goal today:</h3>
+
+<p>Our goal today is to implement two different encryption algorithms: the
+first is an ancient technique called a Ceasar Cipher, and the second uses
+MATLAB's random numbers to create a more secure
+encoding. A Ceasar Cipher isn't going to fool anybody, and in fact these are
+commonly used as puzzles for kids and adults. Our second encryption method
+isn't going to fool anyone who knows what they're doing 
+(e.g. the <a href="nsa.gov">National Security Agency</a>) but would probably
+be good enough to keep secrets from my Mother (who is not a computer person
+at all). 
+
+<p>Computationally we can view both encryption methods as a function that
+takes three parameters: an input file, an output file, and an encryption
+key. The encryption key is a secret that is shared between the sender and
+reciever of a secret message so they can encode and decode the message
+properly. Anybody with the correct encryption key and a copy of your
+ciphertext will be able to read your messages.</p>
+
+<h3>Test File</h3>
+
+<p>We will use the following file as a test case for our encryption routines,
+a copy of War and Peace by Leo Tolstoy from the Gutenberg Project:
+<a href="warpeace.txt">warpeace.txt</a></p>
+
+<h3>Ceasar Ciphers</h3>
+
+<p>The Caesar Cipher, named after the Roman emperor Julius Caesar, shifts
+each letter of a message up or down by a fixed offset. For example, if we
+wanted to encrypt the word "apple" with an offset of "+3" then we get:</p>
+
+<pre>
+Key:    +3
+Input:  apple
+Output: dssoh
+</pre>
+
+<p>If a letter is close to the end of the alphabet then we can wrap-around
+to the start of the alpabet. For example, we can encrypt:</p>
+
+<pre>
+Key:    +5
+Input:  xylophone
+Output: cdqtumtsj
+</pre>
+
+<p>Where X goes to C because we count up to Z, and then start at A again.</p>
+
+
+<h3>Random-shift Cipher</h3>
+
+<p>One major limitation of the Caesar Cipher is that a given input
+letter will always be mapped to a given output letter under a specific key.
+For example, when we encrypt "apple" above both of the P characters are
+encoded as S. This means anybody with some patience and a little cleverness
+can crack these ciphers easily. It would be far stronger if our encoding did
+not have this property. For example suppose we could do a custom offset for
+each letter:</p>
+
+<pre>
+Offsets: 3 5 2 7 4
+Input:   A P P L E
+Output:  D U R S I
+</pre>
+
+<p>However, the values we use for offsets must be non-obvious but predictable
+if we have the right encryption key. We can satisfy both of these requirements
+with MATLAB's random number generator.</p>
+
+<HR>
+
+
+  </BODY>
+</HTML>
+
+

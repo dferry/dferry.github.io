@@ -1,0 +1,35 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+	<title>Ftrace Source Code Pointers</title>
+
+	<style>
+	.hang{
+		padding-left: 3em ;
+		text-indent: -3em ;
+	}
+	</style>
+
+</head>
+
+<body>
+
+<h3>Ftrace Source Code Pointers</h3>
+
+<hr />
+
+<p>It's not necessary to understand how the kernel function tracer works in
+order to use it or do kernel development, but it is a pretty neat piece of 
+code.</p>
+
+<p class="hang"><b>/kernel/trace/</b> - Directory containing general tracing 
+code.</p>
+<p class="hang"><b>/include/linux/ftrace.h</b> - Function tracer header.</p>
+<p class="hang"><b>/kernel/trace/ftrace.c</b> - Function tracer infrastructure.
+</p>
+<p class="hang"><b>/arch/arm/kernel/ftrace.c</b> - ARM architecture specific
+function tracer code.</p>
+
+</body>
+</html>

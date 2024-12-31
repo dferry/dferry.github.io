@@ -1,0 +1,719 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+<style>
+table.schedule td {
+	height: 4em;
+	overflow: visible;
+}
+
+.due {
+	background-color:yellow;
+}
+</style>
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSCI 3500 - Operating Systems</title></head>
+
+<body><h2 style="text-align: center;"><img alt="SLU logo" src="http://cs.slu.edu/~dferry/SLU_logo_horz.png" style="height:5em"><br></h2><h2 style="text-align: center;">CSCI 3500: Operating Systems - Class Page<br>
+
+</h2><h2 style="text-align: center;">Fall 2016</h2>
+
+<table style="width: 100%; text-align: left;" border="0" cellpadding="2" cellspacing="2"> <tbody> <tr>
+    <td style="vertical-align: top; font-weight: bold; width: 163px;">Instructor</td> 
+    <td style="vertical-align: top; width: 1019px;"><span style="font-family: monospace;"><a href="mailto:dferry@slu.edu">David Ferry</a>,  <a href="http://cs.slu.edu/~dferry/">Homepage</a></span></td> 
+</tr>
+
+<tr>
+    <td style="vertical-align: top; font-weight: bold; width: 163px;">Course Web Site</td> 
+    <td style="vertical-align: top; width: 1019px;"><span style="font-family: monospace;"><a href="http://cs.slu.edu/~dferry/courses/csci3500">http://cs.slu.edu/~dferry/courses/csci3500/</a></span></td>
+</tr>
+
+<tr>
+    <td style="vertical-align: top; font-weight: bold; width: 163px;">Course meeting times</td> 
+    <td style="vertical-align: top; width: 1019px;">Monday, Wednesday, &amp; Friday from 1:10 - 2:00, Ritter Hall Rm. 115</td> 
+</tr> 
+
+<tr>
+    <td style="vertical-align: top; width: 163px;"><span style="font-weight: bold;">Midterm exam</span><br> </td> 
+    <td style="vertical-align: top; width: 1019px;">Oct. 7, regular class time<br> </td>
+</tr> 
+
+<tr>
+    <td style="vertical-align: top; width: 163px;"><span style="font-weight: bold;">Final exam</span><br> </td> 
+    <td style="vertical-align: top; width: 1019px;">Dec. 9th, 12:00 to 1:50<br> </td>
+</tr> 
+
+<tr>
+    <td style="vertical-align: top; font-weight: bold; width: 163px;">Office hours</td>
+    <td style="vertical-align: top; width: 1019px;">Monday &amp; Wednesday from 2:00 to 3:00, Friday from 10:00 to 11:00, also <a href="http://cs.slu.edu/~dferry/schedule.html">by appointment</a></td> 
+</tr> 
+
+<!--
+<tr>
+    <td style="vertical-align: top; font-weight: bold; width: 163px;">Prerequisites</td>
+    <td style="vertical-align: top; width: 1019px;">CSE 422S (Operating Systems) and C/C++ programming experience</td> </tr> 
+-->
+
+<!--
+<tr> 
+    <td style="vertical-align: top; width: 163px;">
+<span style="font-weight: bold;">TA</span><br> </td> 
+    <td style="vertical-align: top; font-weight: bold; width: 1019px;"><span style="font-weight: normal;">Benny Hill (bah2 AT cse.wustl.edu)</span><br style="font-weight: normal;"><span style="font-weight: normal;">Office Hours: Tu, Th 2pm-3pm</span> </td> </tr> </tbody> 
+-->
+</table>
+
+<hr style="width: 100%; height: 2px;">
+
+<font size=+2><strong>Contents</strong></font>
+<ol>
+  <li><a href="#Course Description">Course Description</a>
+  <li><a href="#Prerequisites">Prerequisites</a>
+  <li><a href="#Studios">Studios</a>
+  <li><a href="#Labs">Labs</a>
+  <li><a href="#Schedule">Course Schedule</a>
+  <li><a href="#Textbooks">Textbooks and Other Resources</a>
+  <li><a href="#Grading">Grading</a>
+  <li><a href="#Academic Honesty">Academic Honesty</a>
+  <li><a href="#Academic Support">Academic Support</a>
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Course Description">Course Description</a></h3>
+
+<p>Operating systems are the fundamental bridge between computer hardware and the
+software programs we use and create. As a concept, operating systems are one
+of the oldest software disciplines, yet they continue to adapt and reinvent
+themselves as the computing landscape evolves. Modern operating systems must
+tackle the same challenges of the original mainframes, but must also meet the
+varied needs of personal computers, severs, mobile/embedded devices, and
+virtualized systems.</p>
+
+<p>
+The four elements of this course are lectures, studios, labs, and exams.
+Studios are short assigments intended to be completed primarily within class
+time and to augment lecture topics. Labs are longer assignments that will
+ask students to apply and analyze OS mechanisms. Most class periods will
+consist of a short lecture followed by studio time. Expect a lab assignment
+approximately every two weeks.</p> 
+
+<p>
+The purpose of this course is for each student to:
+<ul>
+  <li>Learn the theory and practice of modern operating systems
+  <li>Understand the tradeoffs inherent in operating system design
+  <li>Complete practical exercises with the Linux operating system
+</ul>
+</p>
+
+<p>
+Topics:
+<ul>
+  <li>Purpose of an OS and modern computer hardware
+  <li>Processes, threads, and scheduling
+  <li>Multi-threaded and concurrent programming with threads
+  <li>Memory allocation and paging
+  <li>File systems
+  <li>Networking
+  <li>Security
+</ul>
+</p>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Prerequisites">Prerequisites</a></h3>
+<ul>
+  <li>CSCI 2100 - Data Structures
+  <li>One of: CSCI 2400 - Computer Architecture or ECE 3217 - Computer Architecture and Organization 
+  <li>Some experience: C or C++
+  <li>Some experience: object-oriented programming
+  <li>Studios and lab assignments are constructed around the Linux terminal, prior
+experience is beneficial but not required
+</ul>
+
+<p>Please see the instructor if you're missing a prerequisite or uncertain
+about your preparation for this course.</p>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Studios">Studios</a></h3>
+
+<p>Computer science is an emminently <i>practical</i> discipline, and
+studios are daily assignments intended to complement and reinforce lectures
+through practice.
+Studios will be completed in a team of two students. Students from different
+teams may discuss studios, but sharing of code or solutions is strictly
+prohibited.</p>
+
+<p>Studios are due in two batches. All studios assigned before the midterm will
+be due the Friday before the midterm. Similarly, all studios assigned after the
+midterm but before the final will be due the Friday before the final exam.
+Studios will be graded on a trimodal scale: complete, partial credit, or no credit.
+Studios that are turned in late or not turned in at all will recieve
+no credit, studios graded as partial will recieve 80% credit.</p>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Labs">Labs</a></h3>
+
+<p>There will be approximately seven lab assignments for this course. These are programming assignments whose purpose is to apply course concepts and to analyze operating system mechanisms. As such, each lab will require a written report detailing your findings in addition to a code submission.</p>
+
+<p>Some labs will require a team of two students, while others are individual projects. Students from different teams may discuss the lab assignments <b>only during course meeting times</b>. Students from the same team are of course encouraged to discuss and work on lab assignments at any time. </p> 
+
+<p>Labs submitted on time (as determined by electronic time stamp) are eligible for full credit. Labs submitted up to 24 hours late will be given a <b>ten percent penalty</b>. Labs submitted between 24 and 48 hours late will be given a <b>twenty percent penalty</b>. Labs submitted after 48 hours late will not be given credit, except in the case of extenuating circumstances pre-approved by the instructor.</p>
+
+<p>The following labs have been assigned:</p>
+
+<ul>
+<li> encrypt - DES encrypting a file
+<li> slush - SLU Shell
+<li> crack - multi-threaded password cracker
+<li> malloc - memory allocator
+<!--
+<li> active - threaded active object
+<li> pool - thread pool
+<li> malloc - 
+<li> proxy - 
+<li> rpc - remote procedure call
+-->
+</ul>
+
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Schedule">Course Schedule</a></h3>
+
+A tentative course schedule is below. <b>Note that this schedule may change
+over the course of the semester.</b> When changes occur, students will be 
+given enough advance notice so that readings and 
+other preparation may be accommodated. 
+
+<center><table class="schedule" border="4" style="width:100%">
+
+
+<tr>
+	<th style="width:5%"></th>
+	<th style="width:15%">Date</th>
+	<th>Topic</th>
+	<th>Readings</th>
+	<th>Assignments</th>
+</tr>
+
+<tr>
+	<th>1</th>
+	<th>Aug 22</th>
+	<th>Intro to OS</th>
+	<th>MOS 1.1 - 1.3</th>
+	<th><a href="labs/01_syscalls.html">Lab 1 Assigned</a><br/>
+	</th>
+</tr>
+
+<tr>
+	<th>2</th>
+	<th>Aug 24</th>
+	<th>Types of OSes, OS concepts</th>
+	<th>MOS 1.4 and 1.5</th> 
+	<th><a href="studios/01_hello_world.html">Studio 1</a></th>
+</tr>
+
+<tr>
+	<th>3</th>
+	<th>Aug 26</th>
+	<th><a href="./labs/crypt_example.c">Lab 1 Discussion<br>(ecb_crypt example)</a></th>
+	<th></th>
+	<th><a href="studios/02_in_out.html">Studio 2</a></th>
+</tr>
+
+<tr>
+	<th>4</th>
+	<th>Aug 29</th>
+	<th>System calls and OS architectures</th>
+	<th>MOS 1.6 - 1.8<br>
+	<code>man syscalls</code></th>
+	<th><strike>Lab 1 Due</strike><br>
+	<a href="studios/03_pointers.html">Studio 3</a></th>
+</tr>
+
+<tr>
+	<th>5</th>
+	<th>Aug 31</th>
+	<th>Processes</th>
+	<th>MOS 2.1</th>
+	<th class="due"><a href="studios/04_errors.html">Studio 4</a><br>
+	<a href="labs/01_syscalls.html">Lab 1 Due</a></th>
+</tr>
+
+<tr>
+	<th>6</th>
+	<th>Sep 2</th>
+	<th><code>fork()</code>, <code>exec()</code>, <code>wait()</code>, and <code>kill()</code></th>
+	<th></th>
+	<th><a href="studios/05_fork.html">Studio 5</a>
+	<br><a href="labs/02_processes.html">Lab 2 Assigned</a></th>
+</tr>
+
+<tr style="background-color:lawngreen">
+	<th>7</th>
+	<th>Sep 5</th>
+	<th>No Class - Labor Day</th>
+	<th></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>8</th>
+	<th>Sep 7</th>
+	<th>Lab 2 Discussion</th>
+	<th></th>
+	<th><a href="studios/06_strtok.html">Studio 6</a></th>
+</tr>
+
+<tr>
+	<th>9</th>
+	<th>Sep 9</th>
+	<th>Pipes, <code>stdin</code>, <code>stdout</code></th>
+	<th>MOS 2.2</th>
+	<th><a href="studios/07_pipes.html">Studio 7</a></th>
+</tr>
+
+<tr>
+	<th>10</th>
+	<th>Sep 12</th>
+	<th>Threads</th>
+	<th></th>
+	<th><a href="studios/08_signals.html">Studio 8</a></th>
+</tr>
+
+<tr>
+	<th>11</th>
+	<th>Sep 14</th>
+	<th>Pthreads, C++11 threads</th>
+	<th>MOS 2.3</th>
+	<th><a href="studios/09_threads.html">Studio 9</a></th>
+</tr>
+
+<tr>
+	<th>12</th>
+	<th>Sep 16</th>
+	<th>Race conditions, critical sections, locks, and atomicity</th>
+	<th>MOS 2.5.1</th>
+	<th><strike>Lab 2 Due</strike><br>
+	<a href="studios/10_race.html">Studio 10</a></th>
+</tr>
+
+<tr>
+	<th>13</th>
+	<th>Sep 19</th>
+	<th>Mutexes, semaphores</th>
+	<th></th>
+	<th><a href="studios/11_mutex.html">Studio 11</a></th>
+</tr>
+
+<tr>
+	<th>14</th>
+	<th>Sep 21</th>
+	<th>Lab 3 Discussion</th>
+	<th></th>
+	<th class="due">Lab 2 Due<br>
+	<a href="labs/03_threads.html">Lab 3 Assigned</a></th>
+</tr>
+
+<tr>
+	<th>15</th>
+	<th>Sep 23</th>
+	<th>Atomic Instructions</th>
+	<th></th>
+	<th><a href="studios/12_atomics.html">Studio 12</a></th>
+</tr>
+
+<tr>
+	<th>16</th>
+	<th>Sep 26</th>
+	<th>OpenMP, Cilk Plus</th>
+	<th>MOS 2.4</th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>17</th>
+	<th>Sep 28</th>
+	<th>Batch and interactive scheduling</th>
+	<th></th>
+	<th></th>
+</tr>
+
+<tr style="background-color:orange">
+	<th>18</th>
+	<th>Sep 30</th>
+	<th>Real-time scheduling</th>
+	<th></th>
+	<th><big>All assigned studios due</big></th>
+</tr>
+
+<tr>
+	<th>19</th>
+	<th>Oct 3</th>
+	<th>Cooperative and Preemptive Scheduling</th>
+	<th></th>
+	<th class="due"><a href="labs/03_threads.html">Lab 3 Due</a></th>
+</tr>
+
+<tr>
+	<th>20</th>
+	<th>Oct 5</th>
+	<th>Midterm review</th>
+	<th></th>
+	<th></th>
+</tr>
+
+<tr class="due">
+	<th>21</th>
+	<th>Oct 7</th>
+	<th>Midterm Exam</th>
+	<th></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>22</th>
+	<th>Oct 10</th>
+	<th>Memory management</th>
+	<th>MOS 3.1</th>
+	<th><a href="studios/13_openmp.html">Studio 13</a></th>
+</tr>
+
+<tr>
+	<th>23</th>
+	<th>Oct 12</th>
+	<th>Address spaces and swapping</th>
+	<th>MOS 3.2</th>
+	<th><a href="studios/14_openmp2.html">Studio 14</a></th>
+</tr>
+
+<tr>
+	<th>24</th>
+	<th>Oct 14</th>
+	<th>Virtual memory and paging</th>
+	<th></th>
+	<th><a href="studios/15_memory.html">Studio 15</a></th>
+</tr>
+
+<tr style="background-color:lawngreen">
+	<th>25</th>
+	<th>Oct 17</th>
+	<th>No class - Fall Break</th>
+	<th></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>26</th>
+	<th>Oct 19</th>
+	<th>Exam Discussion</th>
+	<th></th>
+	<th><a href="studios/csci3500_midterm_fl_2016_reinforcement.docx">Midterm Reinforcement</a></th>
+</tr>
+
+<tr>
+	<th>27</th>
+	<th>Oct 21</th>
+	<th>Page tables and the TLB</th>
+	<th></th>
+	<th><a href="studios/16_page_tables.html">Studio 16</a></th>
+</tr>
+
+<tr>
+	<th>28</th>
+	<th>Oct 24</th>
+	<th>Lab 4 Discussion</th>
+	<th></th>
+	<th><a href="labs/04_malloc.html">Lab 4</a></th>
+</tr>
+
+<tr>
+	<th>29</th>
+	<th>Oct 26</th>
+	<th>Page Replacement Algorithms</th>
+	<th></th>
+	<th><a href="studios/17_page_replacement.html">Studio 17</a></th>
+</tr>
+
+<tr>
+	<th>30</th>
+	<th>Oct 28</th>
+	<th>Linux Memory Maps</th>
+	<th></th>
+	<th><a href="studios/18_tlb.html">Studio 18</a></th>
+</tr>
+
+<tr>
+	<th>31</th>
+	<th>Oct 31</th>
+	<th>Files and the File System</th>
+	<th></th>
+	<th><a href="studios/19_files.html">Studio 19</a></th>
+</tr>
+
+<tr>
+	<th>32</th>
+	<th>Nov 2</th>
+	<th>File allocation on disk</th>
+	<th></th>
+	<th><a href="studios/20_file_systems.html">Studio 20</a></th>
+</tr>
+
+<tr>
+	<th>33</th>
+	<th>Nov 4</th>
+	<th>Directory structure and Inodes</th>
+	<th></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>34</th>
+	<th>Nov 7</th>
+	<th>OSI and TCP/IP Models of Networking</th>
+	<th></th>
+	<th class="due">Lab 4 Due<br>
+	<a href="studios/21_networking.html">Studio 21</a></th>
+</tr>
+
+<tr>
+	<th>35</th>
+	<th>Nov 9</th>
+	<th>Physical and Data Link Layers</th>
+	<th></th>
+	<th><a href="studios/22_datalink.html">Studio 22</a></th>
+</tr>
+
+<tr>
+	<th>36</th>
+	<th>Nov 11</th>
+	<th>Network Layer</th>
+	<th></th>
+	<th><a href="studios/23_network.html">Studio 23</a></th>
+</tr>
+
+<tr>
+	<th>37</th>
+	<th>Nov 14</th>
+	<th>Transport Layer</th>
+	<th></th>
+	<th><a href="studios/24_sockets.html">Studio 24</a></th>
+</tr>
+
+<tr>
+	<th>38</th>
+	<th>Nov 16</th>
+	<th>Session Layer</th>
+	<th></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>39</th>
+	<th>Nov 18</th>
+	<th>Presentation and Application Layers</th>
+	<th></th>
+	<th><a href="studios/25_applications.html">Studio 25</a></th>
+</tr>
+
+<tr>
+	<th>40</th>
+	<th>Nov 21</th>
+	<th>Lab 5 Discussion</th>
+	<th></th>
+	<th><a href="labs/05_chat.html">Lab 5 Assigned</a></th>
+</tr>
+
+<tr style="background-color:lawngreen">
+	<th>41</th>
+	<th>Nov 23</th>
+	<th>No class - Thanksgiving Break</th>
+	<th></th>
+	<th></th>
+</tr>
+
+<tr style="background-color:lawngreen">
+	<th>42</th>
+	<th>Nov 25</th>
+	<th>No class - Thanksgiving Break</th>
+	<th></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>43</th>
+	<th>Nov 28</th>
+	<th>Security Concerns - CIA</th>
+	<th></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>44</th>
+	<th>Nov 30</th>
+	<th></th>
+	<th>Secure Systems and a Trusted Computing Base</th>
+	<th></th>
+</tr>
+
+<tr style="background-color:orange">
+	<th>45</th>
+	<th>Dec 2</th>
+	<th>Permission Domains and Permission Management</th>
+	<th></th>
+	<th><big>All assigned studios due</big></th>
+</tr>
+
+<tr>
+	<th>46</th>
+	<th>Dec 5</th>
+	<th>Final Exam Review</th>
+	<th></th>
+	<th>Lab 5 Due</th>
+
+</tr>
+
+<tr style="background-color:yellow">
+	<th>47</th>
+	<th>Dec 9</th>
+	<th>Final Exam - 12:00 to 1:50</th>
+	<th></th>
+	<th></th>
+</tr>
+
+</table></center>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Textbooks">Textbook and Class Resources</a></h3>
+
+<p>Required Course textbook: <i>Modern Operating Systems, 4th Ed.</i> by 
+Tanenbaum and Bos. A classic computing textbook on the fundamentals of
+operating systems, with a bent towards Unix-like operating systems.
+
+<p><b>Linux skills references:</b></p>
+
+<p>References for Linux software development.</p>
+
+<ul>
+  <p><li><a href="http://heather.cs.ucdavis.edu/~matloff/UnixAndC/Editors/ViIntro.html"><code>vi</code> tutorial</a></p>
+  <p><li>Another <a href="http://www.tutorialspoint.com/unix/unix-vi-editor.htm"><code>vi</code> tutorial</a></p>
+  <p><li><a href="http://www.jesshamrick.com/2012/09/10/absolute-beginners-guide-to-emacs/"><code>emacs</code> tutorial</a></p>
+  <p><li>Another <a href="http://www2.lib.uchicago.edu/keith/tcl-course/emacs-tutorial.html"><code>emacs</code> tutorial</a></p>
+</ul>
+
+<p><b>Software resources:</b></p>
+
+<ul>
+  <p><li><a href="https://chrome.google.com/webstore/detail/secure-shell/pnhechapfaindjhompbnflcldabbghjo?hl=en">Secure Shell</a>: My favorite terminal client- runs through the Chrome browser on nearly any platform. Gives a great, consistent interface between Windows, Mac, and Linux.</p>
+
+  <p><li><a href="https://www.google.com/#q=windows%20shell%20emulator">Google Search for Shell Emulators</a>: Find something that works for you!</p>
+  <p><li><a href="https://winscp.net/eng/download.php">WinSCP</a>: Easily transfer files between your Windows machine and the departmental Linux machines.</p>
+  <p><li><a href="http://man7.org/linux/man-pages/man1/scp.1.html"><code>scp</code> manual page</a>: Transfer files between your Mac/Linux machine and the departmental Linux machines.</p>
+</ul>
+
+<p><b>Linux kernel hacking references:</b></p>
+
+<p>We aren't doing any kernel hacking in this course, but these are great
+references if you're interested.</p>
+
+<ul>
+	<p><li><i>Linux Kernel Development</i> by Robert Love, 2010. 
+This is an excellent, compact, and inexpensive text that gives the reader a good
+understanding of kernel design and critical kernel source code. 
+Written by a Linux kernel veteran.</p> 
+	<p><li><i>
+<a href="http://proquest.safaribooksonline.com/book/operating-systems-and-server-administration/linux/0596005652">Understanding the Linux Kernel</a></i> 
+	by Bovet and Cesati, 2006. This is a more
+	exhaustive reference to the kernel than Love's book, covering many data structures
+	and code snippets in detail. Available online for free through the university's subscription
+	to the O'Riley Safari service.</p>
+	<p><li><i><a href="https://lwn.net/Kernel/LDD3/">Linux Device Drivers</a></i>
+	by Corbet, Rubini, and Kroah-Hartman, 2005. The definitive book on hardware
+	device drivers for Linux. Contains some useful reference material over kernel modules, kernel
+	development, kernel locking, timing, and other topics. Available online for free through
+	lwn.net.</p>
+	<p><li><i><a href="http://lwn.net">LWN.net</a></i> is a news and information outlet
+	for the open source community. They often run very high quality articles about kernel
+	development, kernel architecture, and kernel mechanisms. When I can't find any good
+	references, searching for "LWN (my_topic)" is usualy helpful.</p>
+	<p><li><i><a href="http://linuxjournal.com">Linux Journal</a></i> is a magazine covering
+	the Linux community. They often run very high quality articles about kernel development,
+	kernel architecture, and kernel mechanisms. Similar to above, searching for
+	"Linux Journal (my_topic)" often yields good results.</p>
+	<p><li><a href="http://lxr.free-electrons.com/source/?v=4.1">Linux Cross Reference
+	by <i>free-electrons.com</i></a> This tool easily allows you to browse the Linux source 
+	code as well as search for identifiers.</p>
+	<p><li><i><a href="http://www.kernel.org">kernel.org</a></i> the go-to website
+	for Linux kernel source code.</p>
+</ul>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Grading">Grading</a></h3>
+
+<p>There are three activities for which you will receive credit in this course: studios, labs, and exams. Studios are daily guided assignments primarily designed to familiarize students with course concepts and development tools (i.e. knowledge and comprehension tasks). Lab assignments will ask students to apply general course concepts and analyze OS design alternatives. A midterm and final exam will evaluate your technical understanding of course concepts.</p>
+
+<p>Studios are graded on the following scale: complete, partial credit, or no credit. Studios will not be turned back with detailed comments. Labs and exams will be graded on a points scale and will be turned back with detailed comments.</p>
+
+<p><b>Make up exams will only be given for severe and documented reasons.</b></p>
+
+<p>Your grade will be determined as follows:</p>
+
+<table border="3">
+<tr>
+	<th>Activity</th>
+	<th>Grade Percentage</th>
+</tr>
+<tr>
+	<td>Studios</td>
+	<td>30%</td>
+</tr>
+<tr>
+	<td>Labs</td>
+	<td>30%</td>
+</tr>
+<tr>
+	<td>Midterm</td>
+	<td>20%</td>
+</tr>
+<tr>
+	<td>Final</td>
+	<td>20%</td>
+</tr>
+
+</table>
+
+<p>Grading is done on a straight scale (uncurved) with a 90%, 80%, 70%, and
+60% guaranteeing an A-, B-, C-, and D- respectively.</p>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Academic Honesty">Academic Honesty</a></h3>
+
+<p>Most work assigned in this course, other than exams and some labs, is
+expected to be completed collaboratively. Student teams may change from
+assignment to assignment, but the sharing of written work or significant
+portions of code between teams is strictly prohibited. </p>
+
+<p>Students are expected to adhere to the academic integrity and honesty policies as defined by both the <a href="http://www.slu.edu/Documents/provost/policies_procedures/Academic_Integrity_Policy.pdf">University's academic integrity policy</a> and the <a href="http://www.slu.edu/x12657.xml">College of Arts & Sciences academic honesty policy</a>. The course staff will make final determinations on what constitutes cheating. If in doubt, please ask first.</p>
+
+<p>Some specific guidelines for this course:</p>
+
+<ul>
+<li>Code you submit as solutions to the programming assignments must be written by you or your team. You are not allowed to copy code from other students.</li>
+<li>Copying pieces of code from in-class examples is allowed, but <b>you must cite the source of such code</b> with a comment denoting the start and finish of the copied section.</li>
+<li>Copying small pieces of code from man pages, online references or other sources is generally acceptable, but to be safe you should check with me first. <b>Code from such sources must be cited</b> with a comment denoting the start and finish of the copied section.</li>
+<li>Copied code that is not cited will be considered plagiarism and will be treated as cheating. Citing your code protects you from this. However, copying large portions of code is still grounds for a reduction in grade, even if it is not cheating. Please check with the instructor if you are copying more than a few lines of code!  
+</ul>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Academic Support">Academic Support</a></h3>
+
+<p>In recognition that people learn in a variety of ways and that learning is influenced by multiple factors (e.g., prior experience, study skills, learning disability), resources to support student success are available on campus. Students who think they might benefit from these resources can find out more about:</p>
+<ul>
+<li> Course-level support (e.g., faculty member, departmental resources, etc.) by asking your course instructor.
+<li>University-level support (e.g., tutoring/writing services, Disability Services) by visiting the Student Success Center (BSC 331) or by going to <a href="http://www.slu.edu/succe
+ss">www.slu.edu/success</a>.</p>
+</ul>
+
+<p>Students with disabilities or suspected disabilities are strongly encouraged to
+both bring any additional considerations to the attention of the instructor and
+make full use of the university's <a href="http://www.slu.edu/x24491.xml">
+Disability Resource Center</a>.</p>
+

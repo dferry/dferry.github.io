@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSCI 3500 - Operating Systems</title></head>
+
+<h2 style="text-align: center;">CSCI 3500: Studio 21<br></h2>
+<h2 style="text-align: center;">Intro to Networking</h2>
+
+<hr style="width: 100%; height: 2px;">
+
+<p>Networking concepts are important, but so are networking tools. Modern
+machines have a variety of useful utilities that help you to understand
+the networks that a machine is connected to, and how data flows to and
+from your machine. In this studio we will explore several of these
+command line utilities.</p>
+
+<p>In this studio, you will:</p>
+
+<ol>
+<li>Use a few basic command-line utilities related to networking
+<li>Analyze the TCP/IP and the OSI network model
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>
+<p>
+Please complete the required exercises below, as well as any optional
+enrichment exercises that you wish to complete.</p> 
+
+<p>
+As you work through these exercises, please record your answers in a text
+file. When finished, submit your work by sending your text file and
+source code to <strong>dferry@slu.edu</strong>
+with the phrase <strong>
+Intro to Networking
+</strong> in the subject line.</p>
+
+<p><strong> Make sure that the name of each person who worked on these exercises
+is listed in the first answer, and make sure you number each of your responses
+so it is easy to match your responses with each exercise.</strong></p>
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Required Exercises</h3></p>
+
+<ol>
+<p><li>As the answer to the first exercise, list the names of the people who
+worked together on this studio.</p>
+
+<p><li>In the TCP/IP model, layer two (the internet layer) handles the communication of data between different
+physical devices. To facilitate this all network-connected devices are assigned an <i>internet protocol address</i>,
+or IP address. The <code>ifconfig</code> command provides a variety of information, including this data.
+Issue the <code>ifconfig</code> command and copy/paste the entry under "br0".</p>
+
+<p><li>What are the current IP addresses? These are given by the fields "inet" and "inet6"</p>
+
+<p><li>On a computer with more than one physical network connection, it becomes important to distinguish these different
+physical devices. This is done through a <i>hardware address</i>, also known as a <i>MAC address</i> or <i>ethernet address</i>.
+What is the hardware address for this interface? It is given by the field called "ether".</p>
+
+<p><li>One general concept in networking is that of <i>hosts</i>. Loosely, a host is any device
+that is capable of making or recieving network connections. You can find the current <i>hostname</i>
+of the machine you are currently using with the command <code>hostname</code>. What does this
+command give?</p>
+
+<p><li>You can look up information about other machines, <i>remote hosts</i>, with the
+<code>host</code> command. Try using the <code>host</code> command with a website that you
+visit. What information is returned?</p>
+
+<p><li>Try using the <code>host</code> command with <code>slu.edu</code>. This returns multiple
+IP addresses. Speculate a reason for why this one host maps to multiple IP addresses.</p>
+
+<p><li>Wikipedia maintains a list of network protocols by their placement in the OSI model:</p>
+
+<p><a href="https://en.wikipedia.org/wiki/List_of_network_protocols_(OSI_model)">https://en.wikipedia.org/wiki/List_of_network_protocols_(OSI_model)</a></p>
+
+<p>For this last exercise, pick out one protocol from each traditional layer. Briefly describe
+what it does and, if you can, give short justification for why you think it's been listed at that layer.
+Some layers, like layers 4, 5, and 6, you might have trouble justifying right now. Don't worry too
+hard about the justification!</p> 
+
+</ol>
+
+<p><h3>Optional Enrichment Exercises</h3></p>
+<ol>
+<li>Two very useful programs are called <code>ping</code> and <code>traceroute</code>. These are unfortunately disabled on campus. The first times how long it takes to send a packet to a remote host (as well as other things). The second traces the path between all physical devices that are used to transmit information between your computer and a remote host. Try them at home!
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>

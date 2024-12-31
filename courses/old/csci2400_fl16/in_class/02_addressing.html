@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSCI 3500 - Operating Systems</title></head>
+
+<h2 style="text-align: center;">CSCI 2400: Assembly Class 2<br></h2>
+<h2 style="text-align: center;">Addressing Modes</h2>
+
+<hr style="width: 100%; height: 2px;">
+
+
+<p>We've said several times in class that a modern computer is just two things:
+a processor and a (large) contiguous array of bytes in memory. Assembly
+programming really makes it clear why this is the case: we have CPU operands
+and we have memory that we can reference. Understanding how memory is used
+illustrates exactly what is going on behind every major piece of software you
+use: compilers, operating systems, etc.<p>
+
+
+<p>In today's class you will:</p>
+
+<ol>
+  <li>Access an array of data in memory
+  <li>Analyze data accesses and predict behavior
+  <li>Use the <i>base+displacement</i> and <i>scaled indexed</i> accessing modes
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Exercises</h3></p>
+
+<ol>
+<p><li>Login to hopper.slu.edu- remember you can login with:
+
+<p><code>ssh username@hopper.slu.edu</code></p>
+
+<p><li>Now, download a new program for today's class:</p>
+
+<p><code>wget http://cs.slu.edu/~dferry/courses/csci2400/asm/addressing.s</code></p>
+
+<p><li>Take a look at this program in a text editor. It's pretty close to what
+we had last time, but now we have declared an array named <code>myarray</code>. Print the
+first value of this array using our code from last time as a template.</p>
+
+<p><li>Now, use the <code>leal</code> instruction (<i>load effective address</i>)
+to load the starting address of <code>myarray</code> into register EAX. The first
+operand should be the name of the array, and the second operand should be the EAX
+register. Then, print out the same value as before, but be careful that now you
+need to dereference the EAX register (put parentheses around it). If you get a
+large and unexpected number you're printing the address itself, not the value pointed
+to.</p>
+
+<p><li>Still using the address of the array as computed by <code>leal</code>,
+modify your code to print out the second value of the array. Remember that
+a long value is 4 bytes wide.</p>
+
+<p><li>The first two values of the array are 100 and 200, respectively. Write down
+the 4-byte representation of both of these numbers in either hexadecimal or
+binary. Feel free to use an online calculator.</p>
+
+<p><li>Recall that memory is a <i>contiguous array of bytes</i>. The array we
+have declared also allocates memory contiguously. Write down the eight bytes
+from the previous exercise as they would appear in memory. However, this is
+not the order they would appear as you write them on paper next to each other- the
+least significant byte is stored in the first byte, the second most significant in the
+next byte, and so on.</p>
+
+<p>For example, for the number 500:</p>
+
+<pre>
+Number 500 in binary:
+00000000 00000000 00000001 11110100
+byte 3   byte 2   byte 1   byte 0
+
+Number 500 in memory, with least significant byte first:
+11110100 00000001 00000000 00000000
+byte 0   byte 1   byte 2   byte 3
+</pre>
+
+<p><li>Draw an arrow or otherwise indicate which byte the address of <code>myarray</code>
+refers to. Ask the instructor if you're not sure.</p>
+
+<p><li>Put square brackets [] around the four bytes that are accesssed by the operand (%eax).</p>
+
+<p><li>Put curly brackets {} around the four bytes that are accessed by the operand 4(%eax).</p>
+
+<p><li>Put asterisks ** around the four bytes that are accessed by the operand 3(%eax).</p>
+
+<p><li>Write out the four bytes of 3(%eax) as a binary number and compute its value. </p>
+
+<p><li>Print out the value of 3(%eax) using your program and check the value against your
+answer to the last exercise. What value does your program print?</p>
+
+<p><li>Up to this point we have been doing <i>base + displacement</i> addressing.
+For the last two exercises, we will shift to using the <i>scaled indexed</i> accessing
+mode. Re-write your program to print out the first element of the array using a
+<i>base register</i>, an <i>index register</i>, and a <i>scale</i>. To do so,
+first move the immediate value zero (<code>$0</code>) into the register EBX- this
+will serve as our index register. Since we are dealing with 4-byte data, our scale will
+be 4.</p>
+
+<p>Then, you can access the first element of the array with the operand
+<code>(%eax, %ebx, 4)</code>.
+
+<p><li>Lastly, modify your program to print out all elements of the array
+with the scaled indexed notation. First modify your <code>string</code>
+variable to include seven format specifiers. Then, push all seven values
+of the array onto the stack- incrementing the value of EBX between each. You can
+increment EBX with the instruction:</p>
+
+<p><code>incl %ebx</code></p>
+
+<p>You can print the values in any order you choose, but make sure you understand
+the ordering that you get.</p>
+
+<p><li>Email your program to the instructor when you are done.
+One change from last time- include your answers to each question in your email
+or in a text file and include them with your submission. These will count for
+credit as a homework assignment.</p>
+
+
+<hr style="width: 100%; height: 2px;"><p>

@@ -1,0 +1,1005 @@
+
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+
+<HTML>
+<HEAD>
+<TITLE>Lecture Notes: Arrays in MATLAB
+</TITLE>
+</HEAD>
+
+<BODY>
+
+
+
+<HR>
+
+<H2>
+Notes 02: Arrays in MATLAB
+</H2>
+
+<ul>
+  <li>
+      <a href="#scalar">Scalars</a>
+      <ul>
+	<li>
+	    <a href="#scalar_constants">Predefined constants</a>
+	</li>
+	<li>
+	    <a href="#scalar_operators">Common scalar operators</a>
+	</li>
+	<li>
+	    <a href="#scalar_functions">Common scalar functions</a>
+	</li>
+      </ul>
+  </li>
+  <br>
+  <li>
+      <a href="#vector">Vectors</a>
+      <ul>
+	<li>
+	    <a href="#vector_creating">Creating vectors</a>
+	</li>
+	<li>
+	    <a href="#vector_indexing">Indexing vectors</a>
+	</li>
+	<li>
+	    <a href="#vector_operations">Vector operations</a>
+	</li>
+	<li>
+	    <a href="#vector_scalarfunctions">Applying scalar functions</a>
+	</li>
+	<li>
+	    <a href="#vector_vectorfunctions">Special vector functions</a>
+	</li>
+      </ul>
+  </li>
+  <br>
+  <li>
+      <a href="#array">Two-Dimensional Arrays</a>
+      <ul>
+	<li>
+	    <a href="#array_creating">Creating arrays</a>
+	</li>
+	<li>
+	    <a href="#array_indexing">Indexing arrays</a>
+	</li>
+	<li>
+	    <a href="#array_operations">Array operations</a>
+	</li>
+	<li>
+	    <a href="#matrix_operations">Matrix operations</a>
+	</li>
+      </ul>
+  </li>
+  <br>
+  <li>
+      <a href="#secret">A MATLAB Secret</a>
+  </li>
+</ul>
+
+<hr>
+
+<h2><a name="scalar">Scalars</a></h2>
+
+
+<p>
+Most data in MATLAB is formally represented as an array
+(a.k.a. matrix).  For example, a scalar value (e.g., <tt>5</tt>) is
+formally a 1-by-1 array.
+
+By default, all numeric values are
+represented with double-precision floating point format.
+
+<pre>
+age = 39;
+gravity = 9.8;              % meters/second^2
+speedOfLight = 2.9979e8;    % meters/second
+</pre>
+
+<h3><a name="scalar_constants">Predefined constants</a></h3>
+
+<table border=2>
+  <tr>
+    <th>variable</th>
+    <th>value</th>
+  </tr>
+  <tr>
+    <td><b><tt>pi</tt></b></td>
+    <td align=center>&pi;</td>
+  </tr>
+  <tr>
+    <td><b><tt>i</tt></b><br>
+	<b><tt>j</tt></b></td>
+    <td align=center>square root of -1</td>
+  </tr>
+  <tr>
+    <td><b><tt>Inf</tt></b></td>
+    <td align=center>infinity (e.g., 1/0)</td>
+  </tr>
+  <tr>
+    <td><b><tt>NaN</tt></b></td>
+    <td align=center>"not a number" (e.g., 0/0)</td>
+  </tr>
+</table>  
+
+<p>
+<b>Note:</b>  The standard mathematical value&nbsp;<b><tt>e</tt></b> (the
+base of the natural log) is not a predefined constant.  However, there
+is a predefined function <tt>exp(x)</tt> that calculates the value
+e<small><sup>x</sup></small>.  So the constant <b><tt>e</tt></b>  can
+be computed using the syntax
+<b><tt>exp(1)</tt></b>, as that calculates e<small><sup>1</sup></small>.
+
+
+
+<h3><a name="scalar_operators">Common scalar operators</a></h3>
+
+<p>
+Arithmetic operators, ordered from lowest to highest precedence (with
+ties broken left-to-right)
+
+<table border=2>
+  <tr>
+    <th>syntax</th>
+    <th>semantics</th>
+  </tr>
+  <tr>
+    <td>
+	<tt>a + b</tt>
+	<br>
+	<tt>a - b</tt>
+    </td>
+    <td>
+	addition
+	<br>
+	subtraction
+    </td>
+  </tr>
+  <tr>
+    <td>
+	<tt>a * b</tt>
+	<br>
+	<tt>a / b</tt>
+	<br>
+	<tt>a \ b</tt>
+    </td>
+    <td>
+	multiplication
+	<br>
+	a divided by b
+	<br>
+	b divided by a (equivalent to <tt>b / a</tt>)
+    </td>
+  </tr>
+  <tr>
+    <td>
+	<tt>-a</tt>
+    </td>
+    <td>unary negation</td>
+  </tr>
+  <tr>
+    <td>
+	<tt>a ^ b</tt>
+    </td>
+    <td>exponentiation (a<sup><small>b</small></sup>)</td>
+  </tr>
+</table>  
+
+
+<p>
+Relational operators
+<table border=2>
+  <tr>
+    <th>syntax</th>
+    <th>semantics</th>
+  </tr>
+  <tr>
+    <td>
+	<tt>&lt;</tt>
+    </td>
+    <td>
+	less than
+    </td>
+  </tr>
+  <tr>
+    <td>
+	<tt>&lt;=</tt>
+    </td>
+    <td>
+	less than or equal to
+    </td>
+  </tr>
+  <tr>
+    <td>
+	<tt>&gt;</tt>
+    </td>
+    <td>
+	greater than
+    </td>
+  </tr>
+  <tr>
+    <td>
+	<tt>&gt;=</tt>
+    </td>
+    <td>
+	greater than or equal to
+    </td>
+  </tr>
+  <tr>
+    <td>
+	<tt>==</tt>
+    </td>
+    <td>
+	equal to
+    </td>
+  </tr>
+  <tr>
+    <td>
+	<tt>~=</tt>
+    </td>
+    <td>
+	not equal to
+    </td>
+  </tr>
+</table>  
+
+<h3><a name="scalar_functions">Common mathematical functions</a></h3>
+
+<table border=2>
+  <tr>
+    <th>syntax</th>
+    <th>semantics</th>
+  </tr>
+  <tr>
+    <td>sqrt(x)</td>
+    <td>square root of x</td>
+  </tr>
+  <tr>
+    <td>abs(x)</td>
+    <td>absolute value of x</td>
+  </tr>
+  <tr>
+    <td>factorial(x)</td>
+    <td>x! = 1 * 2 * ... * x</td>
+  </tr>
+  <tr>
+    <td>mod(x,n)</td>
+    <td>returns remainder of x divided by n</td>
+  </tr>
+  <tr>
+    <td>exp(x)</td>
+    <td>e<small><sup>x</sup></small></td>
+  </tr>
+  <tr>
+    <td>log(x)</td>
+    <td>natural logarithm of x</td>
+  </tr>
+  <tr>
+    <td>log10(x)</td>
+    <td>base 10 logarithm of x</td>
+  </tr>
+  <tr>
+    <td>log2(x)</td>
+    <td>base 2 logarithm of x</td>
+  </tr>
+  <tr>
+    <td colspan=2 align=center>forms of rounding</td>
+  </tr>
+  <tr>
+    <td>round(x)</td>
+    <td>returns nearest integer to x</td>
+  </tr>
+  <tr>
+    <td>fix(x)</td>
+    <td>truncates fractional part of x</td>
+  </tr>
+  <tr>
+    <td>ceil(x)</td>
+    <td>returns smallest integer that is greater than or equal to x</td>
+  </tr>
+  <tr>
+    <td>floor(x)</td>
+    <td>returns greatest integer that is less than or equal to x</td>
+  </tr>
+  <tr>
+    <td colspan=2 align=center>trigonometry</td>
+  </tr>
+  <tr>
+    <td>sin(x)</td>
+    <td>sine of x (measured in radians)</td>
+  </tr>
+  <tr>
+    <td>cos(x)</td>
+    <td>cosine of x (measured in radians)</td>
+  </tr>
+  <tr>
+    <td>tan(x)</td>
+    <td>tangent of x (measured in radians)</td>
+  </tr>
+  <tr>
+    <td>
+	sind(x)
+	<br>
+	cosd(x)
+	<br>
+	tand(x)
+    </td>
+    <td>similar as above, but with x measured in degrees</td>
+  </tr>
+  <tr>
+    <td colspan=2 align=center>floating point</td>
+  </tr>
+  <tr>
+    <td>eps</td>
+    <td>distance between 1.0 and the next floating point number</td>
+  </tr>
+  <tr>
+    <td>eps(x)</td>
+    <td>distance between x and other floating point numbers of equal precision. See "help eps" to see commonly used values</td>
+  </tr>
+</table>
+
+<hr>
+
+<h2><a name="vector">Vectors</a></h2>
+
+<p>
+Many applications rely upon one-dimensional data sets.  As a special
+case of an array, we will term such a structure a "vector".
+
+<h3><a name="vector_creating">Creating vectors</a></h3>
+
+There are several convenient ways to create a vector.
+<ul>
+  <li>
+      <p> As a literal.
+<pre>
+v = [6 3 1 0 2];
+u = [];                % an empty vector      
+</pre>
+  </li>
+  <li>
+      <p> Using the <b><tt>:</tt></b> operator to create a range
+
+      <p>Basic format <tt>from:to</tt>, for example
+<pre>
+v = 7:13;           % [7 8 9 10 11 12 13]
+v = 4.2:8.2;        % [4.20 5.20 6.20 7.20 8.20]
+</pre>
+      <p>With an increment <tt>from:incr:to</tt>, for example
+<pre>
+v = 7:2:13;         % [7 9 11 13]
+v = 7:4:13;         % [7 11]
+v = 7:0.25:8;       % [7.00 7.25 7.50 7.75 8.00]
+</pre>
+      <p>With a negative increment
+<pre>
+v = 13:-1:7;        % [13 12 11 10 9 8 7]
+v = 13:-3:7;        % [13 10 7]
+</pre>
+  </li>
+  <li>
+      <p>
+      The <b>zeros</b> function
+<pre>
+v = zeros(1,6);     % results in 1x6 array with values [0 0 0 0 0 0]
+</pre>
+  </li>
+  <li>
+      <p>
+      The <b>ones</b> function
+<pre>
+v = ones(1,6);      % results in 1x6 array with values [1 1 1 1 1 1]
+</pre>
+  </li>
+  <li>
+      <p>
+      The <b>rand</b> function
+<pre>
+v = rand(1,6);      % results in 1x6 array with uniformly random values from 0 to 1
+</pre>
+  </li>
+  <li>
+      <p>
+      The <b>linspace</b> function using the format
+      <tt>linspace(from,to,n)</tt> produces a vector of n&nbsp;evenly
+      spaced values in the range.
+<pre>
+v = linspace(10,20,4);   % results in [10.00 13.33 16.67 20.00]
+</pre>
+  </li>
+</ul>
+
+
+
+<h3><a name="vector_indexing">Indexing vectors</a></h3>
+
+<p>
+Individual elements of a vector can be accessed using indices,
+numbered from
+v<small><sub>1</sub></small>, 
+v<small><sub>2</sub></small>,
+...
+v<small><sub>length(v)</sub></small>. As an example,
+<pre>
+v = [6 3 1 0 2];
+v(1);                % the value 6
+v(5);                % the value 2
+v(length(v));        % a more general form for v(5)
+v(end);              % even more convenient syntax
+</pre>
+
+<p>
+Indexing can also be used to change the contents of a vector. Using
+our previous example,
+<pre>
+v(2) = 17;           % v now has data [6 17 1 0 2];
+v(end) = -4;         % v now has data [6 17 1 0 -4];
+</pre>
+
+<p>
+Note well, it is illegal to use an index less than 1.  However, if you
+use an index that is greater than the current length, the vector will
+automatically be padded with zeros to extend to the new element.
+<pre>
+v(8) = 32;           % v now has data [6 17 1 0 2 0 0 32];
+</pre>
+
+
+<p>
+We can effectively delete an element by setting it to an empty
+subvector.
+<pre>
+v(2) = [];           % 17 removed; v now has data [6 1 0 2 0 0 32];
+</pre>
+
+
+
+<p>
+We can succinctly express multiple indices by using another vector as
+an index.
+<pre>
+v = primes(25);      % results in [2 3 5 7 11 13 17 19 23]
+v([3 8]);            % evaluates to result [5 19]
+v(4:7);              % evaluates to result [7 11 13 17]
+v(1:2:end);          % evaluates to result [2 5 11 17 23]
+v(4:7) = [1 2 3 4];  % v is now [2 3 5 1 2 3 4 19 23]
+v(1:2:end) = 0       % v is now [0 3 0 1 0 3 0 19 0]
+v(1:2:end) = []      % v is now [3 1 3 19]
+</pre>
+
+
+<h3><a name="vector_operations">Vector operations</a></h3>
+
+MATLAB allows us to batch calculations on vector elements. Let's use
+addition as an example.  There are two forms we wish to consider.
+The first is <em>vector&nbsp;+&nbsp;scalar</em>.  This produces a new vector by
+adding the scalar to each individual element of the given vector.
+<pre>
+v = 10:15;           % results in [ 10  11  12  13  14  15]
+v + 8;               % results in [ 18  19  20  21  22  23]
+v - 8;               % results in [  2   3   4   5   6   7]
+8 - v;               % results in [ -2  -3  -4  -5  -6  -7]
+-v;                  % results in [-10 -11 -12 -13 -14 -15]
+</pre>
+
+We can similarly perform multiplications, divisions, and exponentation
+involving a vector and a scalar. However, we wish to introduce new
+forms of those operators that are preceeded by a period, for example
+using <tt>.*</tt> for multiplication (we will revisit the "undotted"
+form of those operators when we discuss matrix operations).
+<pre>
+v = 1:4;             % results in [1      2      3      4    ]
+v .* 8;              % results in [8     16     24     32    ]
+v ./ 8;              % results in [0.125  0.250  0.375  0.500]
+8 ./ v;              % results in [8.000  4.000  2.667  2.000]
+3 .^ v;              % results in [3      9     27     81    ]
+v .^ 3;              % results in [1      8     27     64    ]
+</pre>
+
+
+
+<p>
+These same operators can be used to perform element-by-element
+arithmetic on two vectors, so long as the two vectors have the same
+length.
+<pre>
+u = 9:-2:3;          % results in [ 9      7      5      3    ]
+v = 1:4;             % results in [ 1      2      3      4    ]
+u + v;               % results in [10      9      8      7    ]
+u - v;               % results in [ 8      5      2     -1    ]
+u .* v;              % results in [ 9     14     15     12    ]
+u ./ v;              % results in [ 9.00   3.50   1.67   0.75 ]
+u .^ v;              % results in [ 9     49    125     81    ]
+</pre>
+
+<p>
+You can concatenate two vectors by building a new vector as a literal
+as follows.
+<pre>
+u = 9:-2:5;          % results in [ 9  7  5 ]
+v = 1:4;             % results in [ 1  2  3  4 ]
+w = [u v];           % results in [ 9  7  5  1  2  3  4 ]
+</pre>
+In fact, a standard literal such as [2 3 5] is technically the
+concatenation of three single-element vectors.  Notice as well that
+when concatenating, the lengths of the vectors do not need to be the
+same.
+
+<h3><a name="vector_scalarfunctions">Applying scalar functions</a></h3>
+
+<p>
+When discussing scalars, we introduced many common functions such as
+<tt>sqrt</tt>.  Many of MATLAB's built-in scalar functions can be
+applied en masse to a vector of numbers, in which case they are
+evaluated on an element-by-element basis.
+<pre>
+v = 1:4;          % results in [ 1      2      3      4      ]
+sqrt(v);          % results in [ 1.0000 1.4142 1.7321 2.0000 ]
+</pre>
+
+
+<p>
+In the context of scalars, we also introduced relational operators,
+such as &lt;.  When working with scalars, an expression such as
+<tt>x&nbsp;&lt;&nbsp;y</tt> will result in a logical value of either
+<tt>true</tt> or <tt>false</tt>.  These operators can also be applied
+between a vector and a scalar, or between two equal length vectors.
+The result will be a vector of logical values.
+
+<pre>
+u = 9:-2:3;          % results in [    9      7      5      3 ]
+v = 1:4;             % results in [    1      2      3      4 ]
+u > 6;               % results in [ true   true  false  false ]
+u <= v;              % results in [false  false  false   true ]
+</pre>
+
+
+<h3><a name="vector_vectorfunctions">Special vector functions</a></h3>
+
+<p>
+Although most functions, when applied to a vector, operator on an
+element-by-element basis, there are several functions that are
+specially defined for use with vectors.
+
+<p>
+The <tt>length</tt> function returns the length of the vector (and
+more generally, the largest dimension of an array).
+<pre>
+v = 10:15;           % results in [ 10  11  12  13  14  15]
+length(v);           % returns 6
+</pre>
+
+<p>
+A closely related function is <tt>size</tt>.  Rather than return a
+single number, this method returns a vector giving the size of each
+dimension of a vector.  Since the vectors we have considered are
+technically 1-by-n arrays, we observe the following.
+<pre>
+v = 10:15;           % results in [ 10  11  12  13  14  15]
+size(v);             % returns the vector [1 6]
+</pre>
+
+<p>
+Various statistical measures can be computed on a vector of numbers.
+<pre>
+u = [ 17 28 4 18 20 35 12 ];
+sum(u);                         % returns 134
+mean(u);                        % returns 19.143
+min(u);                         % returns 4
+max(u);                         % returns 35
+</pre>
+
+<pre>
+u = [ 17 28 4 18 20 35 12 ];
+[val pos] = max(u);        % val is 35, pos is 6
+</pre>
+
+
+<p>
+A reversed image of a vector can be created by performing a
+left-to-right flip.
+<pre>
+u = [ 35 20 18 4 28 17];
+v = fliplr(u);              % produces [ 17 28 4 18 20 35 ]
+                            % note that u is still [ 35 20 18 4 28 17]
+</pre>
+
+<p>
+A sorted image of a vector can be created by performing as follows
+<pre>
+u = [ 35 20 18 4 28 17];
+v = sort(u);                % produces [ 4 17 28 20 28 35 ]
+                            % note that u is still [ 35 20 18 4 28 17]
+</pre>
+
+
+
+
+<p>
+The <tt>find</tt> function returns the set of indices at which
+non-zero values are found.
+<pre>
+v = [ 0 0 1 0 1 1 0];
+find(v);                    % returns [3 5 6]
+</pre>
+
+
+<p>
+When applied to a logical vector, true entries are treated as
+non-zero.  It is common to combine find with a relational operator
+as in the following example
+<pre>
+v = [ 35 20 18 4 28 17];
+find(v lt; 25);             % returns [ 2 3 4 6 ]
+</pre>
+
+
+<hr>
+
+<h2><a name="array">Two-Dimensional Arrays</a></h2>
+
+
+<p>
+The vectors we have seen thus far are one-dimensional in nature.
+However, they are really special cases of matlab two-dimensional
+arrays that happen to have one dimension equal to 1.
+
+<h3><a name="array_creating">Creating Arrays</a></h3>
+
+<p>
+The <tt>zeros</tt> and <tt>ones</tt> functions that we used for
+creating vectors are more general.  Earlier we gave the example
+<pre>
+>> v = ones(1,6)
+v =
+      1  1  1  1  1  1
+</pre>
+The two parameters to that function call specify respectively the
+number of rows and number of columns.  So we could have produced a
+column vector with the call
+<pre>
+>> v = ones(1,6)
+v =
+      1
+      1
+      1
+      1
+      1
+      1
+</pre>
+or more generally a two-dimensional array with 4 rows and 2 columns
+<pre>
+>> m = ones(4,2)
+m =
+     1     1
+     1     1
+     1     1
+     1     1
+</pre>
+
+<p>
+It is also possible to create two-dimensional arrays using a
+literal form similar to that which we used for row-vectors (e.g.,
+<nobr><tt>[1 8 -5 3]</tt></nobr>).  When using this syntax, a
+semicolon is used to designate the end of a row.
+<pre>
+>> m = [1 8 -5 3; 2 -3 0 4]
+m =
+     1     8    -5     3
+     2    -3     0     4
+</pre>
+When using such a syntax, <em>you are required to ensure that each row
+has the same number of entries</em>.   Violating this condition
+results in an error.
+<pre>
+>> m = [1 8 -5 3; 2 -3 0 4 5]
+??? Error using ==> vertcat
+CAT arguments dimensions are not consistent.
+</pre>
+
+<p>
+Much as we could concatenate vectors to make a larger vector, we can
+concatenate arrays to make a larger array, <em>so long as the aligned
+dimensions agree</em>.  Here is an example of a horizontal
+concatenation of arrays.
+<pre>
+>> m = [ zeros(3,2) ones(3,4) ]
+m =
+     0     0     1     1     1     1
+     0     0     1     1     1     1
+     0     0     1     1     1     1
+</pre>
+and here is a vertical concatenation
+<pre>
+>> m = [ zeros(2,5); ones(3,5) ]      % note the use of semicolon
+m =
+     0     0     0     0     0
+     0     0     0     0     0
+     1     1     1     1     1
+     1     1     1     1     1
+     1     1     1     1     1
+</pre>
+
+
+<h3><a name="array_indexing">Indexing arrays</a></h3>
+
+<p>
+For a two-dimensional array, you may access a single entry by using a
+(row,column) pair as an index.  Consider the following example
+<pre>
+>> m = magic(4)      % a so-called "magic" square
+m =
+    16     2     3    13
+     5    11    10     8
+     9     7     6    12
+     4    14    15     1
+</pre>
+For this example, <tt>m(2,3)</tt> is 10  as that is the second row,
+third column. Entry <tt>m(1,4)</tt> is 13 as that is the first row,
+fourth column.
+
+<p>
+It is also possible to access one-dimensional or two-dimensional
+slices of an array, for example by using the "colon" notation for one
+or both index parameters.  Continuing with the magic square above,
+<pre>
+>> m(3:4, 2)          % rows 3 and 4, column 2
+ans =
+     7
+    14
+>> m(4, 1:2:3)        % row 4,  columns 1 and 3
+ans =
+     4    15
+>> m(1:2, 3:4)        % rows 1 and 2, columns 3 and 4
+ans =
+     3    13
+    10     8
+</pre>
+
+
+<h3><a name="array_operations">Array operations</a></h3>
+
+<p>
+We already introduced the <tt>size(m)</tt> function earlier.  It returns
+a vector of length two, designating <nobr><tt>[ numRows numColumns ]</tt></nobr>
+
+<p>
+The contents of a matrix can be flipped along several axes of
+symmetry.  A left-to-right flip can be computed with <tt>fliplr</tt>
+as in the following example with the earlier magic square.
+<pre>
+>> fliplr(m)
+ans =
+    13     3     2    16
+     8    10    11     5
+    12     6     7     9
+     1    15    14     4
+</pre>
+An top-to-bottom flip can be accomplished with <tt>flipud</tt> (i.e., up/down) 
+<pre>
+>> flipud(m)
+ans =
+     4    14    15     1
+     9     7     6    12
+     5    11    10     8
+    16     2     3    13
+</pre>
+
+The transpose (a flip across the main diagonal) can be computed with
+the <tt>'</tt> operator.
+<pre>
+>> m'
+ans =
+    16     5     9     4
+     2    11     7    14
+     3    10     6    15
+    13     8    12     1
+</pre>
+
+Notice that transposes can also be useful for converting between
+row-vectors and column vectors, as in
+<pre>
+>> 1:5
+ans =
+     1     2     3     4     5
+
+>> (1:5)'
+ans =
+     1
+     2
+     3
+     4
+     5
+</pre>
+
+
+<h3><a name="matrix_operations">Matrix operations</a></h3>
+
+<p>
+Arrays can be used as a storage mechanism for many purposes. When
+using them for the mathematical abstraction of a matrix, MATLAB offers
+many specialized operations.
+
+<p>
+As an example, let's explore the distinction between the operators
+<tt>.*</tt> and <tt>*</tt>.  The dotted version is an
+element-by-element operation.  Consider the following example
+<pre>
+>> A = [1 2; 3 4]
+A =
+     1     2
+     3     4
+
+>> B = [5 6; 7 8]
+B =
+     5     6
+     7     8
+
+>> A .* B
+ans =
+     5    12
+    21    32
+
+>> A * B
+ans =
+    19    22
+    43    50
+</pre>
+In the case of <nobr><tt>A .* B</tt></nobr>, each entry of the result
+is the product of the corresponding elements of A and B.  For example,
+ans(1,1) is 5 because that is A(1,1) * B(1,1).
+
+<p>
+In the case of the true matrix multiplication, <nobr><tt>A * B
+</tt></nobr>, entry ans(1,1) is 19 as is computed as
+A(1,1) * B(1,1) + A(1,2) * B(2,1).  More generally, ans(r,c) is
+computed as the mathematical dot product of row r of A and column c of
+B.
+
+
+
+<p>
+There are many additional functions to aide when working with
+mathematical matrices.  For example, the syntax <tt>eye(n)</tt>
+produces an n-by-n matrix with ones along the diagonal and zeros
+elsewhere.  A square matrix with some other diagonal can be computed
+using a syntax such as <nobr><tt>diag([5 8 -2 0 1])</tt></nobr>,
+producing the result
+<pre>
+     5     0     0     0     0
+     0     8     0     0     0
+     0     0    -2     0     0
+     0     0     0     0     0
+     0     0     0     0     1
+</pre>
+The <tt>diag</tt> can also be called with an existing matrix as the
+parameter, in which case the result is a vector representing the
+entires along the diagonal.
+
+<p>
+For serious linear algebra, there is far more support in MATLAB.  It
+is possible to compute matrix inverses, eigenvalues, to solve a system
+of linear equations, and much more.
+
+
+<hr>
+
+<h2><a name="secret">A MATLAB Secret</a></h2>
+
+<p>
+Although we can think about two-dimensional arrays as an abtraction,
+their underlying layout in the computer's memory is actually
+one-dimensional.  MATLAB uses what is known as <em>column-major
+order</em>.  For example, the magic square that we have used in an
+example
+<pre>
+m =
+    16     2     3    13
+     5    11    10     8
+     9     7     6    12
+     4    14    15     1
+</pre>
+
+is actually stored internally in 16 consecutive memory cells,
+as if the following column vector
+<pre>
+   16
+    5
+    9
+    4
+    2
+   11
+    7
+   14
+    3
+   10
+    6
+   15
+   13
+    8
+   12
+    1
+</pre>
+If you look carefully, you will see that it stores the first column,
+followed by the second column, and so on.
+<table border=1>
+  <tr>
+    <td align=right>
+	16<br>5<br>9<br>4
+    </td>
+  </tr>
+  <tr>
+    <td align=right>
+	2<br>11<br>7<br>14
+    </td>
+  </tr>
+  <tr>
+    <td align=right>
+	3<br>10<br>6<br>15
+    </td>
+  </tr>
+  <tr>
+    <td align=right>
+	13<br>8<br>12<br>1
+    </td>
+  </tr>
+</table>
+
+
+<p>
+Knowing that we consider it to be a 4x4 array, MATLAB can convert the
+underlying data to a nicely formatted matrix when displayed.  
+A syntax such as <tt>m(2,3)</tt> can be interpreted by MATLAB and mapped to the proper
+underlying element of the stored data (the 11th element, in this case).
+
+<p>
+Although this storage mechanism may seem unimportant to a programmer,
+it becomes relevant in occasional circumstances.   For example, even
+with a 4x4 matrix, MATLAB accepts the syntax <tt>m(11)</tt> to access
+the 11th underlying element.
+
+<p>
+The <tt>find</tt> method can be applied to a matrix, such as
+<nobr><tt>find(m &gt;= 10)</tt></nobr> to find elements of <tt>m</tt> that
+are greater than or equal to 10.  Yet in its standard form, the
+function returns a vector of underlying indices, in this example,
+<pre>
+    1               % i.e. m(1,1)
+    6               % i.e. m(2,2)
+    8               % i.e. m(4,2)
+   10               % i.e. m(2,3)
+   12               % i.e. m(4,3)
+   13               % i.e. m(1,4)
+   15               % i.e. m(3,4)
+</pre>
+
+
+<p>
+Given the underlying representation, MATLAB can easy "reshape" the
+array to some other set of dimensions, so long as the overall number
+of elements is the same.  In reality, little changes behind the scene
+other than the designation as to the number of rows and columns in the
+abstraction.  Given an existing matrix <tt>m</tt>, the syntax to
+reshape is <tt>reshape(m, rows, columsn)</tt>, as shown in the
+following example.
+<pre>
+>> m = reshape(1:12, 3, 4)
+m =
+     1     4     7    10
+     2     5     8    11
+     3     6     9    12
+</pre>
+
+<HR>
+Originally by
+<ADDRESS>
+<a href="/~goldwasser">Michael Goldwasser</a>
+</ADDRESS>
+
+
+
+  </BODY>
+</HTML>
+
+

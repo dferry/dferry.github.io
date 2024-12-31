@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSCI 2510 - Principles of Computing Systems</title></head>
+
+<h2 style="text-align: center;">CSCI 2510: Studio 5<br></h2>
+<h2 style="text-align: center;">Ownership</h2>
+
+<hr style="width: 100%; height: 2px;">
+
+<p>Language: Rust</p>
+
+<hr style="width: 100%; height: 2px;">
+
+<p>One of the most unique features of rust is the concept of <i>ownership</i>.
+		Traditionally, programming languages either did not enforce memory
+		safety, such as in C and C++, or they took total control of memory
+		allocation and deallocation, such as Python and Java. That dichotomy
+		forced programmers to either accept the risk of memory errors, or
+		give up fine-grained control of memory and consequently accept performance problems
+		that come with that.</p>
+		<p>Rust uses a third model, <i>ownership</i> that gives us the best
+		of both worlds but also requires programmers to be explicit about how
+		memory and data is allowed to be used in a program..</p>
+
+
+<p>In this studio, you will:</p>
+
+<ol>
+	<li>Learn the ownership model of Rust</li>
+	<li>Learn the difference between <i>copy</i>, <i>clone</i>, and <i>move</i> semantics in Rust</li>
+	<li>Learn about <i>references</i> and <i>borrowing</i> in Rust</li>
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>
+<p>
+Please complete the required exercises below, as well as any optional
+enrichment exercises that you wish to complete.</p> 
+
+<p>
+For this studio, please create a new Rust project with the name 
+<strong>ownership</strong> (note, case sensitive). 
+As you work through these exercises, 
+please record your answers in a text file in the root level of that
+project. When finished, please add the entire project and push it
+to the SLU Git repository.
+</p>
+
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Required Exercises</h3></p>
+
+<ol>
+	<li><p>When does a Rust object have to implement a <code>drop()</code> method?</p></li>
+	<li><p>What is the difference between the Rust <code>copy()</code> and <code>clone()</code> methods?</p></li>
+	<li><p>If you look up <a href="https://doc.rust-lang.org/std/primitive.u32.html">the documentation</a> for
+		<code>u32</code>, it implements both the <code>copy()</code> and <code>clone()</code> methods.
+		When would you want to have both methods, instead of forcing just one or the other?</p></li>
+	<li><p>Which of the following statements is true?</p>
+		<ul>
+			<li>All clones are copies.</li>
+			<li>All copies are clones.</li>
+		</ul></li>
+	<li><p>Supposing that <code>Y</code> has type <code>String</code>, does the
+		statement <code>X = Y</code> perform a copy, clone, or move?</p></li>
+	<li><p>Supposing that <code>Y</code> has type <code>u32</code>, does the
+		statement <code>X = Y</code> perform a copy, clone, or move?</p></li>
+	<li><p>Supposing that array <code>Y</code> has type <code>[u32,12]</code>, does the
+		statement <code>X = Y</code> perform a copy, clone, or move?</p></li>
+	<li><p>Supposing that <code>Y</code> has type <code>Vec&gt;32&lt;</code>, does the
+		statement <code>X = Y</code> perform a copy, clone, or move?</p></li>
+	<li><p>Is the <code>clone()</code> method ever called automatically? If you don't know,
+		take a look at <a href="https://doc.rust-lang.org/std/clone/trait.Clone.html">the documentation</a>.
+		Why do you think the language designer made this decision?</p></li>
+	<li><p>Why does the following code <i>fail</i> to compile? Try to identify the error on your
+		own, but feel free to try and compile this code if you'd like. How should we fix
+		this code?</p> 
+		<pre>
+fn main() {
+    let mut greeting = String::from("Hello");
+    let mut copy = greeting;
+
+    greeting.push_str(", how are you?");
+    copy.push_str(", world!");
+
+    println!("{greeting}");
+    println!("{copy}");
+}
+		</pre></li>
+
+	<li><p>If <code>F</code> is a function, and <code>x</code> is an argument to that function,
+		does calling the function <code>F(x)</code> perform a copy or move? 
+		How do you know?</p></li>
+	<li><p>In the code snippet below, which function ends up <i>owning</i> the variable <code>S</code>?
+		In other words, where is the <code>drop()</code> method invoked on <code>S</code>?
+		Five points are identified in the code below- identify at which point the variable
+		<code>S</code> is dropped. Why is it dropped there?</p>
+		<pre>
+fn main(){
+
+    let s = String::from("Hello, world!");
+    //Point 1
+
+    println!("Current value of S: {}", &amp;s);
+    //Point 2
+
+    modify(s);
+    //Point 3
+
+    println!("Goodbye.");
+    //Point 4
+}
+//Point 5
+
+fn modify( mut s1: String ){
+    s1.push_str(" How are you?");
+}
+		</pre></li>
+
+	<li><p>Why does the following code <i>fail</i> to compile? Try to identify the error on your
+		own, but feel free to try and compile this code if you'd like. How should we fix it?</p> 
+	<pre>
+fn main() {
+    let s = create_string();
+
+    let b = check_for_world(s);
+
+    println!("Does {s} contain 'world'? {b}");
+}
+
+
+fn create_string() -&gt; String {
+    String::from("Hello, world!")
+}
+
+fn check_for_world( s1: String ) -&gt; bool {
+    s1.contains("world")
+}
+	</pre>
+	</li>
+
+	<li><p>Does the following code fail to compile? Where is the variable <code>S</code> dropped?</p>
+	<pre>
+fn main() {
+
+    let mut s = String::from("Hello, ");
+
+    s.push_str("wor");
+    s.push_str("ld!");
+
+    println!("{s}");
+
+}
+	</pre>
+	</li>	
+
+	<li><p>How many simultaneous <i>non-mutable references</i> can you create to a variable in Rust? Why?</p></li>
+
+	<li><p>How many simultaneous <i>mutable references</i> can you create to a variable in Rust? Why?</p></li>
+
+	<li><p>Explain why the following code does not run:</p>
+	<pre>
+let mut s = String::from("hello");
+
+let r1 = &amp;mut s;
+let r2 = &amp;mut s;
+
+println!("{}, {}", r1, r2);
+	</pre>
+	</li>
+
+	<li><p>Does the following code run? Why or why not?</p>
+	<pre>
+let mut s = String::from("hello");
+
+let r1 = &amp;mut s;
+let r2 = &amp;mut s;
+
+println!("{}", r2);
+	</pre>
+	</li>
+
+</ol>
+
+<p><h3>Optional Enrichment Exercises</h3></p>
+<ol>
+	<li><p>None today!</p></li>
+
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>

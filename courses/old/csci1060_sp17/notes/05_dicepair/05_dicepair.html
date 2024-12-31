@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+
+<HTML>
+<HEAD>
+<TITLE>Lecture Notes: Rolling Pairs of Dice
+</TITLE>
+</HEAD>
+
+<BODY>
+
+
+
+<H2>
+Rolling Pairs of Dice
+</H2>
+
+<p>
+If you roll a pair of dice, their sum will be a number from 2 to 12.
+But the resulting numbers are not equally likely.  For example, you
+are six times as likely to roll a score of 7 than a score of 2,
+because there are six possible outcomes that add to 7&nbsp;<nobr>(1+6,
+2+5, 3+4, 4+3, 5+2, 6+1)</nobr> yet only one outcome to 
+achieve 2&nbsp(1+1).  In fact, the expected probabilities of the
+various outcomes is well known to be
+
+<table cellpadding=7>
+  <tr>
+    <th>outcome:</th>
+    <td>2</td>
+    <td>3</td>
+    <td>4</td>
+    <td>5</td>
+    <td>6</td>
+    <td>7</td>
+    <td>8</td>
+    <td>9</td>
+    <td>10</td>
+    <td>11</td>
+    <td>12</td>
+  </tr>
+  <tr>
+    <th>probability:</th>
+    <td>1/36</td>
+    <td>2/36</td>
+    <td>3/36</td>
+    <td>4/36</td>
+    <td>5/36</td>
+    <td>6/36</td>
+    <td>5/36</td>
+    <td>4/36</td>
+    <td>3/36</td>
+    <td>2/36</td>
+    <td>1/36</td>
+  </tr>
+</table>
+
+
+<p>
+Today, we will develop a program that performs an experiment by
+simulating N trials of rolling a pair of dice, and graphing a
+histogram of the outcomes versus the theoretical prediction.
+We will rely on MATLAB's existing <tt>hist</tt> function, for
+producing such a figure. As an example, here is a graph of 1000 random
+trials.
+
+<p>
+<img src="dicepair.png"  width=800>
+
+
+
+<p>
+Our goal is to write a script <tt>dicepair.m</tt> that produces such
+a figure, assuming that variable <tt>N</tt> is predefined to be the
+number of trials.  We will work on this as a group.  After class, I
+will post a sample solution.
+
+<p>In-class solution: <a href="dicepair.m">dicepair.m</a>
+
+
+<HR>
+Originally by
+<ADDRESS>
+<a href="/~goldwasser">Michael Goldwasser</a>
+</ADDRESS>
+
+<HR>
+
+</BODY>
+</HTML>
+

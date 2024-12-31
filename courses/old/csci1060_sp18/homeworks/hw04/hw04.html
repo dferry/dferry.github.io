@@ -1,0 +1,357 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Assignment 04</TITLE></HEAD>
+
+<BODY>
+
+<HR>
+
+<center>
+<h2>Assignment 04 - Stock Market</h2>
+</center>
+
+
+<h3>Contents:</h3>
+<UL>
+  <li>
+      <a href="#collaboration">Collaboration Policy</a>
+  </li>
+  <LI>
+      <a href="#overview">Overview</a>
+  </LI>
+  <LI>
+      <a href="#submit">Problems to be Submitted</a>
+  </LI>
+  <LI>
+      <a href="#extra">Extra Credit</a>
+  </LI>
+</UL>
+
+<hr>
+
+<H2><A NAME="collaboration">
+Collaboration Policy</A>
+</H2>
+
+<p>
+For this assignment, <b>you are allowed to work with one other
+student</b> if you wish (in fact, we suggest that you do so).
+If any student wishes to have a partner but
+has not been able to locate one, please let the instructor know so
+that we can match up partners.   One member of the partnership should
+submit the final script, making sure that all members' names are
+included as part of comments at the beginning of the file.
+As usual, please submit your solution to <a href="mailto:dferry_submit@slu.edu">dferry_submit@slu.edu</a>.
+
+<p>
+Please make sure you adhere to the policies on academic integrity in this regard.
+
+
+<hr>
+
+<a name="overview"><h2>Overview</h2></a>
+
+<P>
+<b>Topic:</b>  Stock Market
+<br>
+<b>Related Reading:</b>  Ch.&nbsp;6 for control structures and
+Ch.&nbsp;4 for discussion of formatting output via
+<tt>sprintf</tt> or <tt>fprintf</tt>.
+
+</P>
+
+<p>
+For this assignment, we will be revisiting the stock market data
+introduced in the previous assignment.  This time, rather than
+plotting the data graphically, we will be performing various numerical
+analyses.
+As a reminder, the data (<a
+href="djia.txt">download here</a>) has one row for each day
+of market activity.  It is arranged in columns that designate
+<br>
+<br>
+<table border=1>
+  <tr>
+    <th>Year</th>
+    <th>Month</th>
+    <th>Date</th>
+    <th>Daily Opening Price</th>
+    <th>Daily High Price</th>
+    <th>Daily Low Price</th>
+    <th>Daily Closing Price</th>
+    <th>Daily Volume</th>
+  </tr>
+  <tr>
+    <td>1928</td>
+    <td>10</td>
+    <td>01</td>
+	<td align=right>239.43</td>
+	<td align=right>242.46</td>
+	<td align=right>238.24</td>
+	<td align=right>240.01</td>
+	<td align=right>3500000</td>
+  </tr>
+  <tr>
+    <td>1928</td>
+    <td>10</td>
+    <td>02</td>
+	<td align=right>240.01</td>
+	<td align=right>241.54</td>
+	<td align=right>235.42</td>
+	<td align=right>238.14</td>
+	<td align=right>3850000</td>
+  </tr>
+  <tr><td colspan=8>&nbsp;...</td></tr>
+  <tr>
+    <td>2009</td>
+    <td>01</td>
+    <td>29</td>
+	<td align=right>8373.06</td>
+	<td align=right>8373.06</td>
+	<td align=right>8092.14</td>
+	<td align=right>8149.01</td>
+	<td align=right>5067060000</td>
+  </tr>
+  <tr>
+    <td>2009</td>
+    <td>01</td>
+    <td>30</td>
+	<td align=right>8149.01</td>
+	<td align=right>8243.95</td>
+	<td align=right>7924.88</td>
+	<td align=right>8000.86</td>
+	<td align=right>5350580000</td>
+  </tr>
+</table>
+
+<p>
+Please be aware of the following issues:
+<ul>
+  <li>
+      The table only contains data for days that the market was open
+      for trading; there are no entries for weekends and
+      holidays. The significance of this fact is that if you are
+      looking for the first "day" of a month it will not necessarily
+      have date 1.
+  </li>
+      <br>
+  <li>
+      Although it may often be the case that one day's closing price
+      is equal to the following market day's opening price, this is
+      not necessarily the case.   For all of the problems below, we
+      will be very clear as to when you should be using opening, high,
+      low, or closing prices for the analyses.  Please be careful to
+      use the proper column indices.
+  </li>
+</ul>
+
+
+<hr>
+
+<a name="submit"><h2>Problems to be Submitted (20 points)</h2></a>
+
+<p>
+For this assignment, you should produce a single script named
+<b><tt>dow.m</tt></b> that behaves as follows.  It should load the raw
+data and then repeatedly offer the user a menu of possible analyses,
+until the user chooses to quit.  The choices should be
+<ul>
+  <li>
+      Best single month (% gain)
+  </li>
+  <li>
+      Most consecutive days with gain
+  </li>
+  <li>
+      Biggest historical downturn (% drop)
+  </li>
+  <li>
+      Market trends
+  </li>
+  <li>
+      Quit
+  </li>
+</ul>
+You should use the built-in function <tt>menu</tt> to handle the user
+I/O for selecting from this menu.  It is called using the syntax
+<br>
+&nbsp;&nbsp;&nbsp;<nobr><tt>userSelection = menu(title, choice1, choice2, ...);</tt></nobr>
+<br>
+where the parameters are strings to be displayed and the returned
+value is the index of the selected choice.  Type
+<tt>help&nbsp;menu</tt> for documentation.
+
+<p>
+In the remainder of this assignment description, we describe the 
+requirements for the four types of analyses.
+
+<h3>Best Single Month (% gain)</h3>
+
+<p>
+Consider each calendar month in the data set (e.g., September 2007).  For
+a particular month, take the ratio between the
+<em>closing price on the last market day of the month</em> and
+the <em>opening price on the first market day of the month</em>.  The
+gain is computed as that ratio, minus one, then multiplied by 100.
+You are to determine the calendar month with the highest percentage
+gain on record.
+
+Output your results using a format such as
+<pre>
+Opening price on 2007/09/04 was 13358.39
+Closing price on 2007/09/28 was 13895.63
+That is a gain of 4.02%.
+</pre>
+(but this is not actually the best month)
+
+
+<h3>Most Consecutive Days with Gain</h3>
+
+<p>
+Consider a day as having gain if the closing price for the
+day is strictly greater than the opening price for that same day.  You
+are to determine the longest streak of daily gains for the history of
+the market.
+
+Output your results using a format such as
+<pre>
+There were 5 consecutive days of gain
+starting on 2008/11/21 and continuing through 2008/11/28.
+</pre>
+(but this is not actually the longest streak)
+
+
+
+<h3>Biggest Historical Downturn (% drop)</h3>
+
+<p>
+After the housing crsis and market crash the value of the
+stock market dropped about 50% of what it previously was.
+But this is not the worst such percentage drop in history.  
+Determine
+the largest such drop, namely a low point that is the smallest
+percentage when compared to a preceding high point.
+More formally, you are looking for the days <em>a</em>
+and <em>b</em> with <em>a&nbsp;&lt;&nbsp;b</em> chronologically so as to minimize
+the ratio of <nobr><em>low(b) / high(a)</em></nobr>. Output your
+results using a format such as
+<pre>
+High price on 2007/10/11 was 14279.96.
+Low price on 2008/11/21 was 7392.27.
+That is 51.77% of the previous high.
+</pre>
+(but this is not actually the largest percentage drop)
+
+
+<p>
+Make sure to consider the efficiency of your approach. Given the size
+of the data set, there are over 200 million pairs of the form
+<em>a&nbsp;&lt;&nbsp;b</em>.  You do not want to do the computation in
+a brute force manner over all such pairs.  Think about how to
+streamline the search for the solution.
+
+
+<h3>Market Trends</h3>
+
+<p>
+In this problem, we examine some historical trends in the market.  In
+particular, there is reason to believe that market activity is
+different on the very last market day of a year, or the very first
+market day of a year, because some people may time their trades due to
+tax considerations.
+
+<p>
+To test the hypothesis, we want to compute the <em>geometric mean</em>
+of the daily percentage change taken over three sample sets
+<ul>
+  <li>
+      All yearly first market days
+  </li>
+  <li>
+      All yearly last market days
+  </li>
+  <li>
+      All market days
+  </li>
+</ul>
+
+
+<p>
+The <a href="http://en.wikipedia.org/wiki/Geometric_mean">geometric
+mean</a> is computed as follows.  For a day in the sample, 
+compute the daily percentage change as
+<em>close(day)/open(day)</em>.   For all days in a given sample,
+compute the product of those ratios and then take the n<small><sup>th</sup></small>
+root of the product, where <em>n</em> is the number of samples.  Note
+that the n<small><sup>th</sup></small> root can be computed by raising
+the product to the (1/n) power. 
+
+
+
+<p>
+Output your results using the format
+<pre>
+Day type          Geometric Mean
+-------------     --------------
+first of year         ?.??????
+last of year          ?.??????
+typical               ?.??????
+</pre>
+of course, you should replace the question marks with the actual
+answers. Show six significant digits in the result.
+
+
+<hr>
+
+<a name="extra"><h2>Extra Credit (2 points)</h2></a>
+
+<p>
+The initial analysis of market trends shows that the first and last
+day of the year are slightly better than average.  So the next
+interesting question is what is the absolute best calendar date using
+the historical data.
+
+<p>
+Add an extra option to the menu that does a daily analysis.  This
+should internally compute the geometric mean for every possible
+calendar day (e.g., geometric mean for the set of all Jan.&nbsp;1,
+geometric mean for the set of all Jan.&nbsp;2).  Then report which day
+produces the highest such mean using the form
+<pre>
+Best historic date is MM/DD with geometric mean ?.??????.
+</pre>
+
+<p>
+Advice:  One way to approach this problem is to compile statistics
+using 12-by-31 arrays that can be indexed by <em>(month,date)</em>
+pairs.  Make a pass through the entire data set compiling the statistics
+for building the geometric means.   The final challenge is
+to learn how <tt>max</tt> works with arrays, so that you can find
+out what the maximum geometric mean is and also what month and date it
+corresponds to (see <tt>help&nbsp;max</tt> for more information, or
+feel free to come ask me).
+
+<p>
+A second approach would be to use loops to iterate over all possible
+calendar days, and then for a specific one to pull out all entries of
+the data set that match that MM/DD, computing the geometric mean for
+those entries, and then tracking the highest such mean as you go.  For
+this approach, the <tt>find</tt> function can be useful.
+
+<p>
+Good luck!
+
+
+
+
+<hr>
+Originally by
+<ADDRESS>
+<a href="/~goldwasser">Michael Goldwasser</a>
+</ADDRESS>
+<HR>
+
+</body>
+</html>
+

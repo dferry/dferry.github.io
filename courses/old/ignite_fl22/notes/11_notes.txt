@@ -1,0 +1,72 @@
+Chapter 6 Notes
+
+- What is our purpose?
+  - Intelligent design, or more generally, are people created with a purpose?
+  - Are we not created with a purpose, and our goal is to derive our own purpose in life?
+    - Hole puncher vs. humans- the hole puncher was concieved and created for a purpose.
+  - Anxiety of freedom: What do we do, when we're confronted with with the
+    choice to decide what we do?
+    - Mission statement: Guiding principles for an organization
+
+- Where are computers in this?
+  - Some computers are created for specific purpose.
+  - Most programs are created for a specific purpose.
+  - However, the universal turing machine shows us that there are universal
+    machines that can run any program. Here, we can create a machine without
+    a specific purpose in mind at inception, and give it a purpose later.
+
+- More generally with AI, what would an AI think its purpose is? 
+  - Utility function?
+  - Could it derive its own purpose?
+  - How do humans safely and effectively imbue a purpose to an AI?
+    - Paperclip thought experiment, or even paperclip game
+    - https://en.wikipedia.org/wiki/Instrumental_convergence#Paperclip_maximizer
+    - Asimov's Three Laws of Robotics
+
+- The Anti-Expert?
+  - Restricting the domain of discourse to a specific topic might be harder for
+    bots.
+  - A less-restricted domain might be easier to deal with, from a turing test
+    point of view.
+
+- With regard to chatbots:
+  - Chatbots have no purpose other than to chat, "they have nowhere else to be."
+  - Purpose-directed conversation might be a way to break chatbots or ferret
+    out the machines from the people. 
+  - Would a person get exasperated with random behavior? Would a chatbot?
+  - Purpose is part of having a consistent persona.
+
+- There are business purposes for expert systems that have extensive
+    knowledge in a specific subdomain (like IKEA furniture or a phone tree
+    system.)
+  - Are there good reasons to build general purpose systems that can have
+    discussions in any realm? 
+ 
+
+In class:
+  - Activity: Think of your purpose. You do not need to share it.
+  - Discuss: Without sharing your purpose, in what ways does your purpose 
+             shape your behavior? 
+
+
+  - Activity: The anxiety of freedom - mission statement
+    - Google mission statements
+    - Write your own mission statement for your life
+      - Answer some questions:
+        - What kind of person do you want to be?
+        - What kinds of things do you want to do?
+        - What kind of feeling do you want to exemplify?
+        - What kind of relationships do you want to have?
+        - Who inspires you? Why do you admire them?
+      - Based on those answers, Write out your core values and goals:
+        - E.g. Adventure, creativity, education, discipline, service, ... 
+        - E.g. "Learn to program"
+      - Write out a few Big Ideas that cover all your values
+        and goals
+      - Write out a mission statement
+        - 
+
+  - Activity: 1) One person write a set of rules for an AI.
+              2) Another person try to pervert that.
+
+

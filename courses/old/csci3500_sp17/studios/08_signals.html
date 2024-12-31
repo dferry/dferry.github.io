@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSCI 3500 - Operating Systems</title></head>
+
+<h2 style="text-align: center;">CSCI 3500: Studio 8<br></h2>
+<h2 style="text-align: center;">Signals</h2>
+
+<hr style="width: 100%; height: 2px;">
+
+<p><i>Signals</i> are a mechanism for basic inter-process notification and
+event handling. Signals do not convey any data in themselves, 
+but they do allow cooperating processes to invoke remote functions in other
+processes. In addition, signals are the mechanism central to handling certain
+basic functions you expect from an operating system, such as the ability to
+interrupt, suspend, or otherwise modify a currently running program.</p>
+
+<p>In this studio, you will:</p>
+
+<ol>
+<li>Send signals with keyboard shortcuts
+<li>Customize signal handling behavior by registering signal handlers
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>
+<p>
+Please complete the required exercises below, as well as any optional
+enrichment exercises that you wish to complete.</p> 
+
+<p>
+As you work through these exercises, please record your answers in a text
+file. When finished, submit your work by sending your text file and
+source code to <strong>dferry_submit@slu.edu</strong>
+with the phrase <strong>
+Signal Handling
+</strong> in the subject line.</p>
+
+<p><strong> Make sure that the name of each person who worked on these exercises
+is listed in the first answer, and make sure you number each of your responses
+so it is easy to match your responses with each exercise.</strong></p>
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Required Exercises</h3></p>
+
+<ol>
+<p><li>As the answer to the first exercise, list the names of the people who
+worked together on this studio.</p>
+
+<p><li>Download the program <a href="./sleep.c">sleep.c</a>. This program
+runs an infinte loop in a way that doesn't burn a lot of CPU cycles. Compile
+and run this program to see what it does. Use CTRL-C to stop the program.</p>
+
+<p>Copy and paste some program output as the answer to this exercise.</p>
+
+
+<p><li>When you press CTRL-C on the keyboard you're actually generating a
+special signal called the <i>interrupt signal</i>, or <i>SIGINT</i> for short.
+The default behavior of this signal is to kill the recieving process, and since 
+most programs don't handle this signal with customized behavior the result
+is normally that the process is killed.</p>
+
+<p>Open the manual page at <code>man 7 signal</code>. Scroll down to the	
+list of standard signals. What numeric value does SIGINT have? What is the
+associated comment?</code>
+
+
+<p><li>Open a second terminal. Start the <code>sleep.c</code> program in the
+first terminal and make a note of its PID. In the second terminal use the
+<code>kill</code> command documented at <code>man 1 kill</code> to send the
+SIGINT signal to the sleeping process. <i>(Note- despite the name, the
+<code>kill</code> command can send any signal to a process, not just the
+kill signal!</i>. The syntax for doing this is below:</p>
+
+<p><code>kill -s &lt;signal number&gt; &lt;pid&gt;</code></p> 
+
+<p>What happens to the sleeper process?</p>
+
+<p><li>Go back to <code>man 7 signal</code> and look through the list of
+standard signals. Pick another signal to send to a sleeping process.
+What signal did you pick? What happened? Copy and paste the results.</p>
+
+<p><li>Now download the program <a href="./call_sleeper.c">
+call_sleeper.c</a>. This program <code>fork()</code>s and
+<code>exec()</code>s a sleeper program, and then waits for it to
+finish. After the child returns it will print out a success message.</p>
+
+<p>Try running <code>call_sleeper.c</code> and then terminating the
+sleeper with CTRL-C. Which processes terminate: the sleeper, the caller, or
+both? Did the calling program print its success message?</p>
+
+<p><li>We want to be able to interrupt the sleeper process without
+interrupting the caller process. To do so, we can define a custom <i>signal
+handler</i> that intercepts the SIGINT and ignores it. To do so, we can use
+the <code>signal()</code> system call that is documented at <code>man 2
+signal</code>.</p>
+
+<p><i>Note: There is an newer function called <code>sigaction()</code> that is
+the newer, better way to do this. However, the interface is much more
+complicated (but flexible!) so we will use this function instead.</i></p>
+
+<p>First you will need to write the signal handler function. This function
+should have the signature:</p>
+
+<p><code>void &lt;function_name&gt; ( int signum )</code></p>
+
+<p>In the body of that function, print a message stating that your program is
+ignoring SIGINT. Then, in the <code>main()</code> function, make a call to
+<code>signal()</code>. The first parameter should be the signal number for
+SIGINT and the second should be the name of your signal handler function.</p>
+
+<p>Copy and paste your signal handling code.</p>
+
+
+<p><li>Finally, run your new caller program and interrupt it with CTRL-C. If
+done correctly, your sleeper should terminate but your caller should simply
+print your statement that SIGINT is being ignored. Then, the caller will
+print a statement indicating that it successfully waited for the sleeper.</p>
+
+<p>Copy and paste your program output.</p>
+
+<i>NOTE: Once you handle SIGINT in this way, you will no longer be able to
+kill your process with CTRL-C. If you run into trouble you can still terminate
+your program with CTRL-\, which sends the SIGQUIT signal.</i>
+
+<p><li>Signals are frequently used in computer systems to do
+<i>asynchronous event handling</i>- dealing with events that can't
+be predicted accurately. One example might be clicking the red X box on a
+GUI window to close a program. In this case the OS might send a signal to the
+GUI process to tell it to terminate. Give another situation where signal
+handling might be useful.</p>
+
+</ol>
+
+<p><h3>Optional Enrichment Exercises</h3></p>
+<ol>
+<p><li>One frequently used program that handles SIGINT with a custom handler
+is the terminal shell. Try pressing CTRL-C at an empty terminal- what happens?
+Why is this behavior important?</p> 
+<p><li>Linux provides two user-defined signals SIGUSR1 and SIGUSR2 specifically
+for implementing program functionality on top of signals. Try using the system
+call documented at <code>man 2 kill</code> to implement asynchronous
+program communication. For example, have one process wait in a loop until it
+recieves SIGUSR1, and then perform some useful work.</p>
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>

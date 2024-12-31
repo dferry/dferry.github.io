@@ -1,0 +1,46 @@
+This guide assumes that you're working in the SLU CS Linux environment.
+
+If you have never worked with Git before, please see the following document for a brief tutorial on using the system. Make sure you can clone your own repository, make changes, and upload those changes to the server before attempting this exercise. Note that some references to semesters and names may need to be changed, e.g. "spring19" to "fall20" or "3500" to "5030". If you have not done so already, make sure you can login to hopper.slu.edu via SSH, as we will be working on the command line for this. Please email Dennis Thomas our system admin if you have password trouble.
+
+https://cs.slu.edu/~dferry/courses/csci3500/git-info.pdf
+
+This document will take you through the process of forking a Git repository, making changes to that repository, and then merging them back into your original repository. This is a very common workflow for opens ource projects, for example.
+
+Assume project owner has created a "main" repository under their GitLab username. This will be the “central” repo where you’ll merge in changes, do pull requests and code reviews. Each developer will need a “fork” of this repo. You can pretend that you are the maintainer of your own repository, such as git.cs.slu.edu:courses/fall20/csci_5030/dferry.git. You will make a separate copy of this repository, called a fork, and check that out as well. This will result in a repository such as git.cs.slu.edu:dferry/5030.git. You will then make changes to the fork, and then merge them back to the upstream "main" repository.
+
+To do this, log in to GitLab, visit the page for your class repository, and click “Fork”. Then, to the command line! If prompted for a namespace, select your name. After the fork, click on the "Clone" button and copy the value from "Clone with SSH". Note that this SHOULD NOT refer to the original repository under courses/fall20/csci_5030, but rather your own personal namespace such as git.cs.slu.edu:dferry.
+
+Now, login to hopper.slu.edu if you have not already.
+
+$ git clone https://github.com/OthersGitHubUserName/OurProjectName.git
+$ cd OurProjectName
+$ git remote add upstream https://github.com/OwnersGitHubUserName/OurProjectName.git
+$ git status
+$ git branch
+$ git branch -a
+
+Daily workflow! Essential that you follow this process!
+Merge in any changes made by other team members into the central repo:
+$ git fetch upstream
+$ git diff master..upstream/master
+$ git merge upstream/master
+$ git push
+$ git checkout -b newfeature [ don’t experiment on your local master!! even small changes
+require a branch ]
+$ git branch [ you will see your new branch selected with an * ]
+
+[code, test, etc. when done, you will push your new branch back up to the remote]
+
+$ git add file1.cpp file2.cpp
+$ git commit
+$ git push origin newfeature
+
+[ go to GitLab and do a “merge request” (also known as a "pull request" on the upstream repo, this notifies the maintainer of the original repository that you'd like to contribute code to their project. You can use the "Search or Jump To..." box to navigate- type "sandbox" to find these repos.] 
+
+[ Go back to the original repository at courses/fall19/csci_5030/sandbox and click on "Merge Requests" in the left hand navigation bar. You should see your merge request- you can click on it and see spaces for discussion, and GitLab automatically generates a log of all commits and a diff of all changes you can browse. If you are satisfied this is a good merge, then click "Merge." When that’s been accepted and merged into upstream/master, you want to get the changes onto your fork's local master too - remember they’re only on a local branch. Instead of merging the local branch to local master, best to do this: ]
+
+$ git checkout master
+$ git fetch upstream
+$ git merge upstream/master
+$ git branch -d newfeature
+(-D to force delete, but shouldn’t need to if all changes make it cleanly into your master)

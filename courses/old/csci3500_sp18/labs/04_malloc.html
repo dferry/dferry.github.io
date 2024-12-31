@@ -1,0 +1,226 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<style>
+.hang {
+	padding-left: 2em ;
+}
+</style>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSCI 3500 - Operating Systems</title></head>
+
+<h2 style="text-align: center;">CSCI 3500: Lab 4<br></h2>
+<h2 style="text-align: center;"><code>malloc</code> - Memory Allocation</h2>
+
+
+
+<hr style="width: 100%; height: 2px;">
+
+<p>Operating systems provide functionality through the <i>system call</i>
+mechanism. System calls tend to be low-level routines that are closely tied
+to basic system functionality. To make these features more usable, higher level
+<i>system libraries</i> implement higher-level abstractions. For example, consider
+the difference between <code>write()</code> and <code>printf()</code>. For this
+assignment you will take on the role of a system library developer and implement
+your own version of the C memory allocation routine- <code>malloc()</code>.</p>
+
+<p>In this lab, you will:</p>
+
+<ol>
+<li>Write your own memory allocation routines - <code>malloc()</code> , <code>free()</code>, <code>calloc()</code>, and <code>realloc()</code>
+<li>Use the <code>sbrk()</code> system call to request memory from the operating system
+<li>Track allocated chunks of memory with a linked list
+<li>Compile and link other programs to your own allocator
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Parameters</h3></p>
+
+<p>This is a solo assignment. Please do not collaborate with other students on this
+assignment.</p>
+
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Functions:</h3></p>
+
+<p><code>#include &lt;sys/types.h&gt;</code><br>
+<code>void *malloc( size_t size );</code><br>
+<code>void free( void *ptr );</code><br>
+<code>void *calloc( size_t num_of_elts, size_t elt_size );</code><br>
+<code>void *realloc( void *pointer, size_t size);</code></p>
+
+<p><h3>Usage:</h3></p>
+
+<p>Link or compile any C/C++ program.</p>
+
+
+<p><h3>Description</h3></p>
+
+<p>
+This is an individual assignment. You must write this in C (use the gcc compiler), not in C++.
+</p>
+
+<p>
+The goal of this assignment is to replace the memory allocation routines that
+are provided by the C/C++ standard library. The <code>malloc</code> function is called by
+programmers to request a contiguous block of memory. The <code>free</code> function frees
+a block of memory previously allocated, so it can be reused. The <code>calloc</code> and
+realloc functions are minor variants of <code>malloc</code>.
+</p>
+
+<p>
+Read the man page for these functions for more details. In particular, <code>size_t</code>
+is defined in the include file <code>&lt;sys/types.h&gt;</code> and you can treat it like any other
+integer type.
+</p>
+
+<p>
+You are to create a file which contains code implementing the C library functions
+<code>malloc</code>, <code>free</code>, <code>realloc</code>, <code>calloc</code>. 
+This is not a complete program, so you'll need to write test programs as well.
+</p>
+
+<p>
+<code>malloc</code> should maintain a list of free memory blocks and fill incoming requests
+for memory from the list. When searching the free list for a block of suffcient
+size, use the first-fit method. If no large enough block is found, create a new
+free block by calling <code>sbrk()</code>. The new free block should be a multiple of the
+system page size, and large enough to fill the request. If <code>sbrk()</code> fails, set 
+<code>errno</code> to <code>ENOMEM</code> and return <code>NULL</code>, as described in 
+the <code>malloc</code> man page.
+</p>
+
+<p>
+If the requested block is smaller than the found free block, you'll need to split
+the free block into two pieces: one that stays on the free list, and one that
+<code>malloc</code> can return.
+</p>
+
+<p>
+<code>malloc</code> should always return values that are divisible by 8 (long word aligned).
+</p>
+
+<p>
+The <code>free</code> function frees memory allocated by malloc. It should simply add the
+block back onto the free list. If <code>free</code> is called with a <code>NULL</code> pointer, it returns. If
+<code>free</code> is called with a pointer not allocated by <code>malloc</code>, the results are undefined.
+It would be nice if <code>free</code> combined adjacent free blocks, but that is not required.
+</p>
+
+
+
+<p><h3>Hints</h3></p>
+
+<p>
+Start by writing (or gathering) programs that call <code>malloc</code>, <code>free</code>, etc. 
+Make sure you understand what they do, and test them with the built in <code>malloc</code>, etc.
+</p>
+
+<p>
+Call your functions <code>mymalloc</code>, <code>myfree</code>, <code>myrealloc</code>, and <code>mycalloc</code> until you're
+really, really sure everything works. Once you rename them <code>malloc</code>, <code>free</code>, etc.,
+they get called by constructors, by stream I/O, and in all sorts of places that
+will cause programs to fail utterly if the memory functions aren't working. This
+is the reason you are required to use C rather than C++ for this assignment.
+</p>
+
+<p>
+Write <code>mymalloc</code> first and test it thoroughly before attempting the other three
+functions. Test these functions by writing a separate program which has a
+<code>main()</code> and makes calls to <code>mymalloc</code>, <code>myfree</code>, etc. In your test program, you'll
+need to declare <code>mymalloc</code>, <code>myfree</code>, ... as <code>extern</code> functions.
+</p>
+
+<p>
+To write <code>malloc</code>, use a global variable to keep track of the first block on the
+linked list of free blocks. At the beginning of each block of memory, leave extra
+space for a structure that contains the size of the block and a pointer to the
+next block in linked list. (Use a doubly linked list if you prefer.)
+</p>
+
+<p>
+Use <code>sysconf(_SC_PAGESIZE)</code> to find the system's page size when you need to
+request new memory from the system.
+</p>
+
+<p>
+Since blocks need to be long word aligned, you'll need to be able to round a
+number up to the nearest multiple of 8. This is surprisingly tricky. Write a
+function to do this and test it separately.
+</p>
+
+<p>Here is a sample "bad" version of malloc that works, but conforms to very few of the
+specifications given: <a href="bad_malloc.c">bad_malloc.c</a>.
+
+<p>
+Once you're _really_ sure <code>malloc</code> is working, write <code>free</code>. Test some more, and then
+finally write <code>realloc</code> and <code>calloc</code>. The <code>calloc</code> function should call <code>malloc</code> and
+then call <code>memset</code> to clear the newly allocated block. The <code>realloc</code> function
+should call <code>malloc</code> to make a new block, <code>memcpy</code> to move the old information
+into the new block, and then <code>free</code> to release the old block. Beware that in
+<code>realloc</code>, the block can be resized larger or smaller, and the number of bytes
+you copy is the smaller of the old and new sizes.
+</p>
+
+<p>
+When you're sure everything is working, rename your functions <code>malloc</code>, <code>free</code>,
+<code>realloc</code>, <code>calloc</code>. If you now compile any program along with your malloc.c,
+they will get called instead of the standard C/C++ memory allocators.
+</p>
+
+<p>
+I use the programs <code><a href="churn.c">churn.c</a></code> and <code><a href="churn2.c">churn2.c</a></code> to
+heavily test your memory allocators. Feel free to test your functions with these programs as well.
+</p>
+
+
+
+
+<p><h3>Useful man pages</h3></p>
+<p><code>
+malloc(3)<br>
+realloc(3)<br>
+calloc(3)<br>
+free(3)<br>
+sbrk(3)<br>
+sysconf(3)<br>
+memset(3)<br>
+memcpy(3)<br>
+</code></p>
+
+<p><h3>Questions</h3></p>
+
+<ol>
+<p><li>There are no exercises for this lab. Please mark your name clearly in
+<code>malloc.c</code> and your email.</p>
+
+
+</ol>
+<!--
+<p><h3>Optional Enrichment Exercises</h3></p>
+
+<ul>
+<p><li><b>:</b></p>
+</ul>
+-->
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Submission</h3></p>
+<p>Create a .tgz archive of your lab directory and email it to
+<code><big><b>dferry_submit@slu.edu</b></big></code>.
+Your submission must contain a file <code>malloc.c</code>
+which contains definitions for <code>malloc</code>, <code>free</code>,
+<code>realloc</code>, <code>calloc</code> but has no <code>main()</code>
+and with all output (<code>cout</code>, <code>printf</code>) removed.
+
+<p>The simple syntax for creating a .tgz archive is as follows:</p>
+
+<p><code>tar -zvcf new_archive.tgz lab_directory</code></p>
+
+<p>The syntax for unpacking a .tgz archive is:</p>
+
+<p><code>tar -zvxf archive.tgz</code></p>
+
+<p>Note that your archive <b>must not</b> include any binary executable files,
+meaning any compiled programs or intermediate build objects (.o files, for
+example). This will cause your email to be rejected by most services.</p>

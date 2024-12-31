@@ -1,0 +1,37 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+	<title>Linux Process Source Code Pointers</title>
+
+	<style>
+	.hang{
+		padding-left: 3em ;
+		text-indent: -3em ;
+	}
+	</style>
+
+</head>
+
+<body>
+
+<h3>Linux Process Source Code Pointers</h3>
+
+<hr />
+
+<p>Processes are a fundamental abstraction of the operating system. To support
+processes, the OS uses two key data structures (<code>task_struct</code> and
+<code>thread_info</code>), as well as a host of auxiliary functions for
+managing processes in the system.</p>
+
+<p class="hang"><b>arch/arm/include/asm/thread_info.h</b> - Definition of the
+<code>thread_info</code> structure.</p>
+<p class="hang"><b>include/linux/sched.h</b> - Definition of the <code>
+task_struct</code> structure, plus many process management functions.</p>
+<p class="hang"><b>arch/arm/include/asm/switch_to.h</b> - Defintion of the
+process switch routine</p>
+<p class="hang"><b>arch/arm/kernel/entry-armv.S</b> - Implementation of the
+assembly level process switch routine (<code>__switch_to</code>)</p>
+
+</body>
+</html>

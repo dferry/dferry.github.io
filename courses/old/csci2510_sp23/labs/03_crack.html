@@ -1,0 +1,416 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSCI 2510 - Prin. of Comp. Sys.</title></head>
+
+<h2 style="text-align: center;">CSCI 2510: Lab 3<br></h2>
+<h2 style="text-align: center;">Password Cracking</h2>
+
+
+
+<hr style="width: 100%; height: 2px;">
+<!--
+<p><i>
+Quote
+</i></p>
+<p style="text-indent:10%">&mdash;Character, <i>Book</i>, Chapter N<p>
+-->
+
+<p>
+One of the main goals of parallel programming is to increase the speed at which
+computations execute. If we have two or four parallel processing cores to devote
+to our computation, we would hope that it might run two or four times faster. This
+is easiest on so-called "embarassingly parallel" workloads, where there is obvious
+opportunity for massive parallelism. 
+</p>
+
+<p>
+In this lab we will explore basic threaded programming by building a brute-force password
+cracking program, and then accelerating it by assigning work to multiple threads.
+Each password attempt is completely independent of every other password attempt, so
+we can easily distribute this work across multiple threads.
+</p>
+
+<p>In this lab, you will:</p>
+<ol>
+<li>Use <code>pbkdf2()</code> to guess password hashes
+<li>Iterate over aribtrary length strings with characters from 'a' to 'z'
+<li>Create and wait for threads in Rust with <code>thread::scope</code> and
+<code>thread::spawn</code>
+<li>Divide work between multiple parallel threads
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Lab Format</h3></p>
+
+<p>This is an individual assignment. Discussion with other students is
+permitted, but sharing code is strictly prohibited.</p>
+
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Program to Implement</h3></p>
+<p><code>crack</code> - a runnable file that takes a target password hash, and reverses
+that hash by trying all possible passwords until the correct password is found. This
+program accepts five <i>command line arguments</i>- a method for passing information
+to your program that we haven't used bfore this. The program takes five parameters:</p>
+
+<ol>
+<li><b>keysize</b> - What size of password space to search, including all smaller password spaces as well. For example, for a value of '3', your program would search all passwords from 'a' to 'z', then 'aa' to 'zz', and finally 'aaa' to 'zzz'.</li>
+<li><b>iterations</b> - The number of iterations used by the <code>pbkdf2()</code> function. More iterations is slower, and thus more resistant to brute forcing.</li>
+<li><b>salt</b> - "Glued to the password" before hashing. This is not secret and does not increase the difficulty of attacking any one specific password, but does defend against precomputation attacks and multiple users picking the same password.</li>
+<li><b>target</b> - The target password hash to match.</li>
+<li><b>threads</b> - The number of threads to compute hashes with.</li>
+</ol>
+
+<p>Using the interface below, you can run your program by passing arguments through
+<code>cargo run</code>. For example:</p>
+
+<pre>
+cargo run -- 3 16 na 9f31a06f59e8310c7af9f0aa40113bcba456350e 1
+</pre>
+
+<p>The above command tries all passwords of length up to 3, with 16 iterations, salt 'na'
+and checks which one matches the given hash, using one computation thread at any given time. 
+It should print the password "cat".</p>
+
+<p>In the interface file below, note that a function <code>crack()</code> is provided.
+It is a very good idea to provide helper functions that are called by <code>crack()</code>,
+but please do not change the <code>crack()</code> interface, as this will break the testing
+code. Note that this function returns an <code>Option::&lt;String&gt;</code>, which is
+useful in the case that the function fails to find any matching password. If a password
+is found, your function should return <code>Some(password)</code>, but if no match
+is found the function should return <code>None</code>.</p>
+
+<p><h3>Key Concepts</h3></p>
+
+<p>
+In proper practice, user passwords are never stored on the system. Instead, a function
+called a hash is applied to the password. This protects the users of the system from the
+master password file being stolen, and also protects the system administrator from the
+liability of having to store sensitive secrets. However, when a user wants to authenticate,
+they pass their true password to the system, which is then hashed. If the new hash matches
+the stored hash, the user is authenticated. This means the only place that the password ever
+needs to be stored is in the users' head, preserving security!</p>
+
+<p>
+To make things harder
+on crackers, hash functions also use a salt which it combines
+with the password to create the hash. Some hashes, such as the one we are using,
+allow a variable number of iterations to be used, where more iterations slows
+down the hashing process and significantly increases the difficulty of cracking, while
+not seriously slowing down legitimate authentication attempts. Schematically:</p>
+
+<p><code>password + salt + iterations =&gt; pbkdf2() =&gt; hash</code></p>
+
+<p>To crack a password, your program should repeatedly call <code>pbkdf2()</code> using all possible passwords built of up to
+<code>keysize</code> lowercase alphabetic characters. For example, if the given <code>keysize</code> is
+four then your program would iterate over all strings <code>'aaaa', 'aaab', 'aaac', ..., 'zzzz'</code>
+looking for one that hashes to the given input. If a match is not found, it would also look through
+all strings of length less than <code>keysize</code>.</p>
+
+<p>
+When a match to <code>target</code> is found, the program should print the cracked password
+and exit immediately. If the entire space of passwords is searched with no
+match, the program should exit with no output.
+</p>
+
+
+<p><h3>Getting Started</h3></p>
+
+<p>Before getting started, you will want to create a <code>crack</code> package
+and <code>hash_demo</code> package, and add them to your workspace for <code>slumcs</code>.
+Inside the <code>slumcs</code> directory, your <code>Cargo.toml</code> file 
+would have at least the following contents:</p>
+
+<pre>
+[workspace]
+
+members = [
+        "log_component",
+        "send_log",
+	"test_logger",
+	"deadlock_detect",
+	"crack",
+	"hash_demo"
+]
+</pre>
+
+<p>Then, you can create the project for this lab with the following cargo command.</p>
+
+<pre>
+cargo new crack
+cargo new hash_demo
+</pre>
+
+<p>Copy and paste the following files into your new projects. The <code>crack_interface.rs</code>
+should be pasted into your <code>slumcs/crack/src/main.rs</code> and 
+<code>slumcs/hash_demo/src/main.rs</code> files. The first file gives the basic interface to 
+<code>crack</code> and the second file is a little code to get you started with
+<code>pbkdf2()</code> and also allows you to generate your own hashes.</p>
+
+<ul>
+<li><code><a href="crack_interface.rs">crack_interface.rs</a></code></li>
+<li><code><a href="hash_demo.rs">hash_demo.rs</a></code></li>
+</ul>
+
+<p>You will need to add the following dependencies to your <code>Cargo.toml</code> files
+in each project:</p>
+
+<pre>
+[dependencies]
+pbkdf2 = "0.12.1"
+sha2 = "0.10.6"
+hex = "0.4"
+</pre>
+
+<p><h3>Generating Hashes</h3></p>
+
+<p>After creating the <code>hash_demo</code> project as described above, you can run
+this program with command line arguments similar to <code>crack</code>. This program
+takes three arguments:
+
+<ol>
+<li><b>iterations</b> - a positive integer typically in the 1000-500,000 range, for our testing in this lab, I would use much lower values in the range of 16-128</li>
+<li><b>salt</b> - the salt to use</li>
+<li><b>password</b> - the password to hash</li>
+</ol>
+
+<p>For example:</p>
+
+<pre>
+user@hopper:~/slumcs/hash_demo$ cargo run -- 2048 na apple
+   Compiling hash_demo v0.1.0 (/home/dferry/csci2510/system/hash_demo)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.18s
+     Running `/home/dferry/csci2510/system/target/debug/hash_demo 2048 na apple`
+Got password: 'apple', salt: 'na', and iterations: 2048
+hash1: [cb, 44, e0, b0, 15, 0, e0, d2, a7, a2, 2a, 79, 75, 64, b7, 4d, 3a, c9, 33, da]
+cb44e0b01500e0d2a7a22a797564b74d3ac933da
+hash2: [cb, 44, e0, b0, 15, 0, e0, d2, a7, a2, 2a, 79, 75, 64, b7, 4d, 3a, c9, 33, da]
+cb44e0b01500e0d2a7a22a797564b74d3ac933da
+</pre>
+
+<p>This program computes the hash with two different functions with slightly different
+interfaces, so it prints out hash1 and hash2 to prove that they're the same. This program
+also includes a function <code>print_hex()</code> to print the contents of the hash
+without spaces or commas in the way. The hash1 and hash2 lines print it out using
+Rust's debug print, while the following lines are done with <code>print_hex()</code>
+
+<p><h3>Testing</h3></p>
+
+<p>As with the last lab, we can use <code>cargo test</code> to run a set of test
+cases to verify the program is running correctly. However, there are two catches.
+First, your program should print out the password when it finds it, so you want
+test cases to produce output. Second, if you are testing parallel performance you
+will only want to run the test framework with one thread at a time. You can still
+create and use multiple threads inside each test case, but Cargo will only run
+a single test case at a time. You can run your code in this fashion as such:</p>
+
+<pre>
+cargo test -- --nocapture --test-threads=1
+</pre>
+
+<p>You may also generate your own hashes and run your password cracker manually,
+which may be easier while testing and debugging. Do this by running
+<code>crack</code> with the "cargo run" form above.</p>
+
+<p><h3>Hints</h3></p>
+
+<p>
+Start by writing a short program that uses <code>pbkdf2()</code> to encrypt a
+given password and salt.
+</p>
+
+<p>
+You should not make any assumptions about the maximum allowed keysize. 
+</p>
+
+<p>Writing a function to iterate over all passwords 'aaa' to 'zzz' is tricker
+that it might first seem. Start by writing a program that simply prints all
+strings of a given keysize.</p>
+
+<p>After you have a function that iterates over all passwords, insert the
+hash function and check against the target hash. You now have a single-threaded
+password cracker.</p>
+
+<p>Only after having a complete single-threaded password cracker should you think
+about adding threads. This will require some refactoring, but it is significantly
+easier overall than trying to write your multi-threaded cracker outright.</p>
+
+<p>One basic problem in threading is deciding how work is assigned. We are looking
+for reasonable speedup in this lab, but we don't need perfect speedup. A simple
+work division strategy is to split the password space evenly by the starting character.
+For example, if threads=2, then the first thread could check all passwords from
+'aaa' to 'mzz', and the second thread could check 'naa' to 'zzz'. If threads=3, then
+the first thread could cover a through i, the second thread could do j through r,
+and the third thread could do s through z.</p>
+
+<p>A more precise division strategy exists, which sounds complicated at first,
+but really is not. Imagine the characters a to z as the numerals in a base-26
+number system. If you are searching over keysize 4, then there are 26^4 total
+possible passwords. If you are using two threads, then divide this value by
+2 and use that as your division point. Then, convert that value to base-26
+to get the starting password.</p>
+
+<p>For example, 26^4 is 456,976. That value divided by two is 228,488. If we
+convert that to base-26, then we get "naaa", or exactly what our thread division
+strategy from above gives us. This makes sense, because two divides 26 with no remainder.
+Then the first thread starts at "aaaa" and goes up to "naaa", while the second thread
+starts at "naaa" and goes up through "zzzz". If we use three threads, then we divide
+by three and convert to base-26, which gives us the base-10 number 152,325.333 repeating.
+Rounding down, this gives starting points of 0; 152,325; and 304,650 for each thread,
+corresponding to base-26 representations of "aaaa", "irir", and "riri".
+</p>
+
+<p>
+You need to check passwords of length <code>keysize</code>, but don't forget you also need
+to check the shorter ones. The simplest way is probably to write a function that
+checks all passwords which are exactly a given length, and then have <code>crack()</code> call
+it in a loop from 1 to <code>keysize</code>.
+</p>
+
+<!--
+<p><h3>Hints</h3></p>
+<p><ol>
+	<li>You must use the interface I have specified for <code>send_log</code>,
+		but you can structure <code>log_component</code> however you would
+		like.</li>
+	<li><code>log_component</code> needs to have a <code>main()</code> function
+		and produce an executable. <code>send_log</code> is a library
+		and does not produce an executable.</li>
+	<li>When opening the log file, make sure to (1) create it if necessary and
+		(2) open it in append mode so as to not overwrite existing data.</li>
+	<li>The <code>log_component</code> will end up checking all connected clients
+		in a loop of some kind- but you should use <code>thread::sleep</code>
+		in that loop so that it is not running continuously at 100% CPU
+		utilization.</li>
+	<li>Keep in mind move semantics and ownership when you manage the lifetime
+		of your <code>TcpStream</code> objects. Ultimately these should
+		"live" on a dynamically resizable data structure such as a
+		list or a vector.</li>
+	<li>Make sure you set the <code>config</code> crate as a dependency in
+		both the <code>send_log</code> and <code>log_component</code>
+		projects. See the examples above for how to use the crate.</li>
+</ol></p>
+-->
+
+<!--
+<p><h3>Documentation</h3></p>
+<p>The following man pages may be useful:</p>
+<p><ul>
+<li><code>open</code> (2)
+<li><code>close</code> (2)
+<li><code>read</code> (2)
+<li><code>write</code> (2)
+<li><code>strncmp</code> (3)
+<li><code>memcpy</code> (3)
+<li><code>atoi</code> (3)
+<li><code>strtol</code> (3)
+<li><code>perror</code> (3)
+<li><code>errno</code> (2)
+<li><code>exit</code> (3)
+<li><code>xxd</code> (1)
+<li><code>diff</code> (1)
+</ul></p>
+
+<p><h3>Questions</h3></p>
+
+<ol>
+<p><li>As the answer to the first exercise, list the name(s) of the people who
+worked together on this lab.</p>
+
+<p><li>This compression technique works well in some cases, and poorly in
+others. Give an example of each.</p>
+
+<p><li>The <i>compression ratio</i> can be computed as (size before compression)/(size after compression).
+For example if the original file size is 20,000 bytes and the compressed size is
+15,000 bytes then the compression ratio is 1.33. There are three files above of size
+one million bytes each: 1mil_random, 1mil_weak_bias, and 1mil_strong_bias. Each of
+these files contains the numbers 0-4 in random order, but the random file contains all numbers distrbuted
+evenly, while the weak and strong bias files shift the distribution so that the lower number
+values occur more often. For example, zero occurs about 20% of the time in the random
+file, about 75% of the time in the weak bias file, and about 90% of the time in the
+strong bias file.</p>
+
+<p>Which file do you think will compress best? Compute the compression ratio for each file with a compression length of one.</p>
+
+<p><li>The Bash shell includes the nifty command <code>time</code>, which records how
+long a command runs. Record how long it takes to compress the file <code>test4</code>.
+The syntax in this case is "<code>time ./rle test4 output 1 0</code>". 
+This will report three measurements: real, user,
+and sys. How long does your program take to run in real time? 
+
+<p><li>Try the above command again but with a compression length of ten, how
+long does your program take now? Which operations happen more or less
+frequently now? Formulate a hypothesis as to the difference.</p>
+
+<p><li>Indicate which, if any, extra credit exercises have you have attempted.</p>
+</ol>
+
+<p><h3>Optional Enrichment Exercises</h3></p>
+
+<ul>
+<p><li><b>3% Extra Credit</b>: Download the slu_logo.bmp file above,
+this is an uncompressed image file. Compress the file, then uncompress it. 
+Verify that you can still open the
+image in a photo viewer and that it is not distorted.</p>
+
+<p>The compression algorithm you have implemented
+is a form of lossless compression, meaning that the entire uncompressed
+file can be reconstructed and no data is lost. This approach works well
+for highly structured data with lots of repitition. This can happen
+naturally in a case like slu_logo.bmp, where the whole image has just a
+few colors and lots of large same-color regions. Compute the compression
+ratio of your algorithm with slu_logo.bmp. Then, open the file in a
+photo editor (such as Microsoft Paint, Photoshop, or GIMP) and save it
+as a .png file (lossless compression) and a .jpg file (lossy compression).
+Compute the compression ratio for each method.</p> 
+
+<p><li><b>2% Extra Credit</b>: As it turns out, lossy compression can be far
+more effective in some situations than lossless compression. Compression algorithm
+researchers are very skilled at removing data that is virtually imperceptible.
+Download <a href="lab1/uncompressed.bmp">this file</a> and compute the
+compression ratio using your algorithm. Then, use a standard photo editor
+from before to generate a losslessly compressed .png file and a lossily compressed 
+.jpg file and compute their compression ratios. Inspect the files carefully,
+are you able to discern a difference between the three?</p>
+
+
+</ul>
+-->
+
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Submission</h3></p>
+
+<p>Please submit your lab to your course git repository. Your code should be
+entirely contained in your <code>slumcs</code> directory.</p>
+
+<p><a href="../git-info.pdf">A short guide to accessing SLU's git resources</a></p>
+
+<!-- <p>The plan is to have labs submitted via the course git repo. These are currently
+being set up- check back soon for more details.</p> -->
+
+<!--
+<p>Create a .tgz archive of your lab directory and email it to 
+<code><big><b>dferry_submit@slu.edu</b></big></code>. 
+Your submission must include a makefile
+that will compile your program by simply issuing the command 
+<code>make</code>. You must also include a text file with your
+answers to the required exercises. Please include your name and the names of
+any partners in the body of your email.</p>
+
+<p>The simple syntax for creating a .tgz archive is as follows:</p>
+
+<p><code>tar -zvcf new_archive.tgz lab_directory</code></p>
+
+<p>The syntax for unpacking a .tgz archive is:</p>
+
+<p><code>tar -zvxf archive.tgz</code></p>
+
+<p>Note that your archive <b>must not</b> include any binary executable files,
+meaning any compiled programs or intermediate build objects (.o files, for
+example). This will cause your email to be rejected by most services.</p>
+-->
+

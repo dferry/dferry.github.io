@@ -1,0 +1,772 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+<style>
+table.schedule td {
+	height: 4em;
+	overflow: visible;
+}
+
+.due {
+	background-color:yellow;
+}
+.inactive {
+  pointer-events: none;
+  cursor: default;
+  color: black;
+  text-decoration: none;
+}
+</style>
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSCI 4961/4962 - Capstone Project 1/2</title></head>
+
+<body><h2 style="text-align: center;"><img alt="SLU logo" src="http://cs.slu.edu/~dferry/SLU_logo_horz.png" style="height:5em"><br></h2><h2 style="text-align: center;">CSCI 4961/4962 Capstone Project I/II - Class Page<br>
+
+</h2><h2 style="text-align: center;">Fall 2018</h2>
+
+<hr>
+
+<table style="width: 100%; text-align: left;" border="0" cellpadding="2" cellspacing="2"> <tbody> <tr>
+    <td style="vertical-align: top; font-weight: bold; width: 163px;">Instructor</td> 
+    <td style="vertical-align: top; width: 1019px;"><span style="font-family: monospace;"><a href="mailto:david.ferry@slu.edu">David Ferry</a>,  <a href="http://cs.slu.edu/~dferry/">Homepage</a></span></td> 
+</tr>
+
+<tr>
+    <td style="vertical-align: top; font-weight: bold; width: 163px;">Course Web Site</td> 
+    <td style="vertical-align: top; width: 1019px;"><span style="font-family: monospace;"><a href="http://cs.slu.edu/~dferry/courses/capstone">http://cs.slu.edu/~dferry/courses/capstone/</a></span></td>
+</tr>
+
+<tr>
+    <td style="vertical-align: top; font-weight: bold; width: 163px;">Course meeting times</td> 
+    <td style="vertical-align: top; width: 1019px;">Monday from 4:10 - 5:00, Ritter Hall Rm. 216</td> 
+</tr> 
+
+<tr>
+    <td style="vertical-align: top; font-weight: bold; width: 163px;">Office hours</td>
+    <td style="vertical-align: top; width: 1019px;">See <a href="http://cs.slu.edu/~dferry/schedule.html">my schedule</a></td> 
+</tr> 
+</table>
+
+<HR>
+
+
+<h3>Table of Contents</h3>
+<UL>
+  <LI>
+      <A href="#overview">Overview</A>
+  </LI>
+  <LI>
+      <A href="#outcomes">Student Learning Outcomes</A>
+  </LI>
+  <LI>
+      <A href="#roles">Roles</A>
+  </LI>
+  <LI>
+      <A href="#projects">Project Selection</A>
+  </LI>
+  <LI>
+      <A href="#timeline">Project Timeline, Deliverables, Presentations</A>
+  </LI>
+  <LI>
+      <A href="#repo">Repository for Project Artifacts</A>
+  </LI>
+  <LI>
+      <A href="#grading">Grading</A>
+  </LI>
+  <LI>
+      <A href="#integrity">Academic Integrity</A>
+  </LI>
+  <LI>
+  <A href="#titleIX">Title IX Statement</A>
+  </LI>
+  <LI>
+  <A href="#success">Supporting Student Success</A>
+  </LI>
+  <LI>
+  <A href="#disability">Disability Services</A>
+  </LI>
+  <LI>
+  <A href="#writing">University Writing Services</A>
+  </LI>
+  <LI>
+  <A href="#basicneeds">Basic Needs Security</A>
+  </LI>
+</UL>
+
+<HR>
+<H2>
+<A name="overview">Overview</A>
+</H2>
+
+
+
+<p>
+The Capstone Project serves as a
+concluding achievement for graduating students, allowing them to apply knowledge that they have gained 
+from the Computer Science curriculum toward a year-long
+project. Formally, the project is completed as part of a two-semester
+sequence of 2-credit courses: CSCI&nbsp;4961 (Capstone
+Project&nbsp;I) and CSCI&nbsp;4962 (Capstone Project&nbsp;II).
+</p>
+
+
+<HR>
+<H2>
+<A name="outcomes">Student Learning Outcomes</A>
+</H2>
+
+<p>
+After successfully completing this course sequence, students will be able to:
+<ol>
+<li> Communicate with a client regarding project requirements and
+  formally document the requirement specifications.</li>
+
+<li> Develop a project design and plan, including reasonable timeline
+  and effort estimates.</li>
+
+<li> Design, implement and test a medium- to large-scale software
+product which meets given requirements specifications.</li>
+
+<li> Use a range of tools in support of the development of a
+  team-based software product.</li>
+
+<li> Effectively communicate with peers and supervisors in a
+  technical setting.</li>
+
+</ol>
+</p>
+
+
+<HR>
+<H2>
+<A name="roles">Roles</A>
+</H2>
+
+<p>
+Key roles in the capstone course are as follows:
+<ul>
+  <li>
+      <p>
+      <b>Student Team</b>
+      <br>
+      Each project is to be completed by a team of students; in rare
+      situations, that team may consist of a single student.
+      </p> 
+  </li>
+  <li>
+      <p>
+      <b>Client</b>
+      <br>
+      For most projects there will be a clearly identified "Client"
+      who originally proposed the project or is a potential end user
+      of the result; the client may or may not be a CS faculty member.
+      The client typically serves as a primary point-of-contact in shaping
+      the desired specification for the eventual product and may
+      provide feedback on development prototypes.
+      </p> 
+  </li>
+  <li>
+      <p>
+      <b>Supervisor</b>
+      <br>
+      Each project will have a "Supervisor" who is a CS faculty
+      member that oversees the team's progress on the project.  The
+      Supervisor may or may not be the instructor-of-record for the
+      course, and may be the same person as the Client, in cases where
+      the Client is already a CS faculty member. The supervisor and instructor are jointly
+      responsible for evaluating student teams.
+      </p> 
+  </li>
+  <li>
+      <p>
+      <b>Instructor</b>
+      <br>
+      The instructor-of-record for the course is responsible for the
+      administration of the course, assignment of teams, scheduling of presentations, and
+      record-keeping involving grades.
+      </p> 
+  </li>
+</ul>
+
+
+<p>
+The Supervisor and the Instructor will work together in grading the
+performance of the teams. A non-CS Client may be consulted, but has no
+formal responsibilities in regard to evaluation.
+</p>
+
+
+
+<HR>
+<H2>
+<A name="projects">Project Selection</A>
+</H2>
+
+<p>
+At the onset of CSCI&nbsp;4961, the instructor will circulate a
+<a class="inactive" href="projects.html">list of potential projects</a> to consider. These projects are often suggested by
+CS faculty members based on research endeavors or educational tools,
+are based on requests coming from members of the broader SLU
+community, or in some cases from external community groups. Students
+will also be afforded an opportunity to suggest project ideas for
+consideration. Projects should have an appropriate scope for a
+year-long sequence, having a richness in both aspects of design and use
+of technology. <a href="general.html">Past examples of project descriptions will be provided</a>.
+</p>
+
+<p>
+At the beginning of the second week, individual students will be asked to
+submit a <!--<a href="forms/preferences/">ranked list of preferences</a>--> ranked list of preferences for projects of interest, and
+preferences regarding the composition of student teams. The
+supervisors will make final determination of the teams and
+their assignments to projects, while taking into consideration the
+preferences submitted by students. Those assignments will be announced
+by the end of the second week.
+</p>
+
+<p>
+During the third week, each student team must develop a <a href="projectPlan/index.html">formal
+Project Plan</a> that outlines the scope of the project, and the timeline for
+major deliverables for both Capstone&nbsp;I and Capstone&nbsp;II. This plan
+must be approved and signed by both the Supervisor and Instructor no
+later than Friday, September&nbsp;14, 2018
+ to be considered prompt.
+</p>
+
+
+<HR>
+<H2>
+<a name="timeline">Project Timeline, Deliverables, Presentations</a>
+</H2>
+
+<p>
+Each project is unique, and teams may adopt one of a variety of 
+project management styles. However, all teams must adhere to the following
+checkpoints and timeline (details of which follow).
+</p>
+
+<table border=1>
+  <tr>
+    <th>
+	Required Work
+    </th>
+    <th>
+	Deadline
+    </th>
+  </tr>
+
+  <tr>
+    <td>
+	Individual preferences
+    </td>
+    <td>
+	<!--
+	Monday of Week 2
+	<br>
+	-->
+	<nobr>
+	5:00pm Monday, September&nbsp;3, 2018
+
+	</nobr>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+	Project Plan (first draft)
+    </td>
+    <td>
+	<!--
+	End of Week 3
+	<br>
+	-->
+	<nobr>
+	Friday, September 14, 2018
+
+	</nobr>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+	Project Plan (final/signed version)
+    </td>
+    <td>
+	<!--
+	End of Week 4
+	<br>
+	-->
+	<nobr>
+	Friday, September&nbsp;21, 2018
+
+	</nobr>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+	Weekly reports
+    </td>
+    <td>
+	each Monday
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+	<nobr>CSCI 4961: Deliverable #1</nobr>
+	<br>
+	<nobr>CSCI 4962: Deliverable #3</nobr>
+    </td>
+    <td>
+	<!--
+	End of Week 7
+	<br>
+	-->
+	Friday, October&nbsp;12, 2018
+
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+	Midterm presentation
+    </td>
+    <td>
+	<!--
+	Week 8
+	<br>
+	-->
+	<nobr>TBD, week of October 15-19
+</nobr>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+	Final presentation
+    </td>
+    <td>
+	<!--
+	Week 15
+	<br>
+	-->
+	<nobr>Tuesday, December&nbsp;11, 2018
+</nobr>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+	<nobr>CSCI 4961: Deliverable #2</nobr>
+	<br>
+	<nobr>CSCI 4962: Deliverable #4</nobr>
+    </td>
+    <td>
+	<!--
+	End of Week 14
+	<br>
+	-->
+	Friday, December&nbsp;7, 2018
+
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+	Team self-assessment
+    </td>
+    <td>
+	<!--
+	Week 15
+	<br>
+	-->
+	Friday, December&nbsp;14, 2018
+
+    </td>
+  </tr>
+</table>
+
+
+<ul>
+  <li>
+      <p>
+      <b>Deliverables</b>
+      <br>
+      Given the wide range of projects, there is no one-size-fits-all
+      definition for the deliverables, but as part of the initial
+      project plan, the students and Supervisor should outline four major
+      stages of the project that are to be achieved by the four
+      checkpoints in our timeline (middle of first semester, end of
+      first semester, middle of second semester, end of second semester).
+      </p>
+      <p>
+      For teams following a traditional waterfall model, 
+      likely checkpoints are as follows:
+      <ul>
+	<li>
+	    </p>
+	    Deliverable #1: Requirements Specification
+	    <br>
+	    A writen document that clearly define the goals of the
+	    final product in terms of functionality, user interface,
+	    resource usage, and other such factors. This document
+	    should include a project overview, any necessary
+	    background knowledge, and an enumeration of formal
+	    requirements specification for the eventual product
+	    (e.g.,&nbsp;"Requirement&nbsp;7b").
+	    </p>
+	</li>
+	<li>
+	    <p>
+	    Deliverable #2: Design Document
+	    <br>
+	    A writen document that describes a detailed design for achieving the
+	    formal requirements. A design document should
+	    include a description of the major components, their interfaces
+	    and how they interact to form the whole. 
+	    Figures should be included for clarity, such as a UML diagram of
+	    the software design or an ER-diagram for a database.
+	    This document should also contain a discussion of any
+	    third-party technologies or software packages that will be
+	    used in meeting the project goals. Teams should demonstrate 
+	    software prototypes showing that
+	    they have already evaluated and familiarized themselves with
+	    key technologies and design choices.
+	    Finally, this document must include a proposed time-line for the
+	    remainder of the project life cycle, making sure to include
+	    specific sub-goals for the development, implementation, and
+	    testing phases of the project.
+	    </p>
+	</li>
+	<li>
+	    <p>
+	    Deliverable #3: Alpha Version
+	    <br>
+	    The alpha version of the project is a preliminary
+	    implementation that includes all
+	    <em>major</em> functionality of the final product, yet may lack some
+	    advanced features, have a less polished interface, and contain
+	    some known bugs.
+	    </p>
+	</li>
+	<li>
+	    <p>
+	    Deliverable #4: Final Product
+	    <br>
+	    The final product must be submitted, including complete
+	    source code, documentation for deployment and usage,
+	    database schemas, analysis, and so on, as appropriate for
+	    the project. 
+	    </p>
+	</li>
+      </ul>
+      </p>
+      <p>
+      For teams following an agile development process, the
+      deliverables are more naturally going to be a series of
+      working products with increasing refinement.
+
+      For teams exploring research-driven questions, the
+      deliverables might be papers that describe the work and results.
+      </p>
+  </li>
+  <li>
+      <p>
+      <b>Presentations</b>
+      <br>
+      The teams will make four presentations during the
+      two-semester sequence, typically just after a recent deliverable
+      was submitted.
+      Each presentation will be scheduled with 20&nbsp;minutes
+      for a formal presentation, followed by up to 10&nbsp;minutes of
+      questions from faculty members in the audience.
+      Teams should prepare <b>polished presentation materials</b> and
+      for most projects include a <b>live demonstration</b> of the
+      current state of a product.
+      Teams should test the presentation and
+      demonstrations in the designated classroom well in advance of the
+      scheduled presentation.
+      </p>
+      <p>
+      Copy of Slides from Michael Goldwasser's <em><a
+      href="handouts/PresentationPresentation.pdf">Presenting a
+      Professional Professional Presentation</a></em>
+      </p>
+	<p>
+	Here is a sample <a href="handouts/rubric.pdf">project presentation rubric</a>.
+	</p>
+  </li>
+  <li>
+      <p>
+      <b>Weekly Reports</b>
+      <br>
+      Each team is responsible for presenting a brief progress report
+      during most class periods. For Capstone&nbsp;I students, the first
+      report will be on the third week of the semester; Capstone&nbsp;II
+      teams will make their first report on the second week of the
+      semester.
+      </p>
+
+      <p>
+
+      Each weekly presentation should detail what was accomplished
+      during the week <em>by each team member</em>, what challenges were
+      encountered, and a plan for activities in the upcoming week.
+      <em>Each team member must speak for herself or himself.</em>
+      
+      </p>
+
+      <p>
+
+      Please inform the instructor in advance if you need to miss the
+      class meeting; up to two absences can be replaced with emailed
+      weekly reports, but any absences beyond the first two will
+      result in a grade penalty.
+
+      </p>
+  </li>
+  <li>
+      <p>
+      <b>Team Self-Assessment</b>
+      <br>
+	For teams comprised of two or more students, each individual
+	must complete and submit a <a href="teamAssessment.txt"><em>Team Self-Assessment Form</em></a>,
+	detailing his or her perception of the contributions of each team
+	member. This assessment is due to the instructor 
+	after the final presentation each semester.
+
+      </p>
+  </li>
+</ul>
+
+
+<HR>
+<H2>
+<a name="repo">Repository for Project Artifacts</a>
+</H2>
+
+<p>
+<b>All teams will be required to use the department git repositories for
+all project artifacts (e.g., all deliverables, source
+codes, presentation materials).</b> Both the instructor and supervisor
+will be granted access to the repository from the beginning of the
+project. An analysis of contributions to the repository
+may be used as additional evidence of individuals' participation.
+</p>
+
+<HR>
+<H2>
+<a name="grading">Grading</a>
+</H2>
+
+<p>
+Each semester of the capstone project is graded based
+upon the performance during that semester. The evaluation of students'
+artifacts and presentations will be made by a combination of the
+Instructor and project Supervisor. The overall grade will be weighted
+as follows:
+</p>
+
+<p>
+<ul>
+  <li>
+      10% Weekly Reports (including Project Plan for Capstone&nbsp;I)
+  </li>
+  <li>
+      20% Deliverable #1 (CSCI&nbsp;4961) or Deliverable #3 (CSCI&nbsp;4962)
+  </li>
+  <li>
+      15% Midterm Presentation
+  </li>
+  <li>
+      40% Deliverable #2 (CSCI&nbsp;4961) or Deliverable #4 (CSCI&nbsp;4962)
+  </li>
+  <li>
+      15% Final Presentation
+  </li>
+</ul>
+</p>
+
+
+
+<p>
+Letter grades will then be assigned based on the following formula.
+
+
+<DL>
+  <DD>
+      Student percentage above 90% will result in a grade of
+      A.
+  </DD>
+  <DD>
+      Student percentage above 87% will result in a grade of
+      A- or better.
+  </DD>
+  <DD>
+      Student percentage above 83% will result in a grade of
+      B+ or better.
+  </DD>
+  <DD>
+      Student percentage above 80% will result in a grade of
+      B or better.
+  </DD>
+  <DD>
+      Student percentage above 77% will result in a grade of
+      B- or better.
+  </DD>
+  <DD>
+      Student percentage above 73% will result in a grade of
+      C+ or better.
+  </DD>
+  <DD>
+      Student percentage above 70% will result in a grade of
+      C or better.
+  </DD>
+  <DD>
+      Student percentage above 67% will result in a grade of
+      C- or better.
+  </DD>
+  <DD>
+      Student percentage above 60% will result in a grade of
+      D or better.
+  </DD>
+  <DD>
+      Student percentage below 60% will result in a grade of
+      F.
+  </DD>
+</DL>
+
+Although team members will typically receive similar grades, in
+some cases the Instructor and Supervisor may consider the
+relative contribution of individual team members in assigning
+individual grades.
+
+<HR>
+
+
+
+
+
+<H2>
+<A name="integrity">Academic Integrity</A>
+</H2>
+
+<P>
+<em>Academic integrity is honest, truthful and responsible
+conduct in all academic endeavors.</em>
+The mission of Saint Louis University is "the pursuit of truth for the
+greater glory of God and for the service of humanity."
+Accordingly, all acts of falsehood demean and compromise the
+corporate endeavors of teaching, research, health care, and
+community service via which SLU embodies its mission. The
+University strives to prepare students for lives of personal and
+professional integrity, and therefore regards all breaches of
+academic integrity as matters of serious concern.
+</p>
+<p>
+The governing
+University-level Academic Integrity Policy was adopted in Spring
+2015, and can be accessed on the Provost's Office website at: <a
+href="https://www.slu.edu/provost/policies/academic-and-course/policy_academic-integrity_6-26-2015.pdf">https://www.slu.edu/provost/policies/academic-and-course/policy_academic-integrity_6-26-2015.pdf</a>.
+</p>
+<p>
+Additionally, each SLU College, School, and Center has adopted its own
+academic integrity policies, available on their respective
+websites. All SLU students are expected to know and abide by
+these policies, which detail definitions of violations,
+processes for reporting violations, sanctions, and
+appeals. Please direct questions about any facet of academic
+integrity to your faculty, the chair of the department of your
+academic program, or the Dean/Director of the College, School or
+Center in which your program is housed. Specific College of Arts
+and Sciences Academic Honesty Policies and Procedures may be
+<a href="http://www.slu.edu/arts-and-sciences/student-resources/academic-honesty.php">
+found here</a>.
+</p>
+
+
+<hr>
+<H2>
+<A name="titleIX">Title IX Statement</A>
+</H2>
+<p>
+Saint Louis University and its faculty are committed to
+supporting our students and seeking an environment that is free
+of bias, discrimination, and harassment. If you have encountered
+any form of sexual misconduct (e.g. sexual assault, sexual
+harassment, stalking, domestic or dating violence), we
+encourage you to report this to the University. If you speak
+with a faculty member about an incident of misconduct, that
+faculty member must notify SLU's Title&nbsp;IX coordinator, Anna
+R.&nbsp;Kratky (DuBourg Hall, room&nbsp;36; <tt>akratky@slu.edu</tt>; 314-977-3886)
+and share the basic fact of your experience with her. The Title&nbsp;IX coordinator will then be available to assist you in
+understanding all of your options and in connecting you with all
+possible resources on and off campus.
+</p>
+<p>
+If you wish to speak with a confidential source, you may contact
+the counselors at the University Counseling Center at
+314-977-TALK. To view SLU’s sexual misconduct policy and for
+resources, please visit the following web addresses: <a href="http://www.slu.edu/here4you">www.slu.edu/here4you</a> and <a href="https://www.slu.edu/general-counsel">https://www.slu.edu/general-counsel</a>.
+</p>
+
+<hr>
+
+<H2>
+<A name="success">Supporting Student Success</A>
+</H2>
+
+<p>
+In recognition that people learn in a variety of ways and that
+learning is influenced by multiple factors (e.g., prior
+experience, study skills, learning disability), resources to
+support student success are available on campus. The Student
+Success Center, a one-stop shop, which assists students with
+academic and career related services, is located in the Busch
+Student Center (Suite&nbsp;331). Students can visit <a
+href="https://www.slu.edu/life-at-slu/student-success-center/">https://www.slu.edu/life-at-slu/student-success-center/</a> to learn more about tutoring services,
+university writing services, disability services, and academic coaching.
+<hr>
+
+<H2>
+<A name="disability">Disability Services</A>
+</H2>
+<p>
+Students with a documented disability who wish to request
+academic accommodations <b>must</b> contact Disability Services to
+discuss accommodation requests and eligibility
+requirements. Once successfully registered, the student also
+<b>must</b>  notify the course instructor that they wish to access
+accommodations in the course.
+</p>
+<p>
+Please contact Disability Services, located within the Student
+Success Center, at <a href="mailto:Disability_services@slu.edu">Disability_services@slu.edu</a> or 314-977-3484
+to schedule an appointment. Confidentiality will be observed
+in all inquiries. Once approved, information about academic
+accommodations will be shared with course instructors via email
+from Disability Services and viewed within Banner via the
+instructor’s course roster.
+</p>
+<p>
+Note: Students who do not have a documented disability but who
+think they may have one are encouraged to contact Disability Services.
+</p>
+
+<hr>
+<H2>
+<A name="writing">University Writing Services</A>
+</H2>
+<p>Students are encouraged to take advantage of University Writing Services in the Student Success Center; getting feedback benefits writers at all skill levels. Trained writing consultants can help with writing projects, multimedia projects, and oral presentations. University Writing Services offers one-on-one consultations that address everything from brainstorming and developing ideas to crafting strong sentences and documenting sources. For more information, visit <a href="https://www.slu.edu/life-at-slu/student-success-center/">https://www.slu.edu/life-at-slu/student-success-center/</a> or call the Student Success Center at 314-977-3484.</p>
+
+<hr>
+<H2>
+<A name="basicneeds">Basic Needs Security</A>
+</H2>
+<p>Students in personal or academic distress and/or who may be specifically experiencing challenges such as securing food or difficulty navigating campus resources, and who believe this may affect their performance in the course, are encouraged to contact the Dean of Students Office (<a href="mailto:deanofstudents@slu.edu">deanofstudents@slu.edu</a> or 314-977-9378) for support. Furthermore, please notify the instructor if you are comfortable in doing so, as this will enable them to assist you with finding the resources you may need.</p>
+
+
+</BODY>
+</HTML>
+

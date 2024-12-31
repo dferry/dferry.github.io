@@ -1,0 +1,1161 @@
+#These strings are displayed verbatim on the web page
+CourseNum: "CSCI 3500"
+CourseName: "Operating Systems"
+CourseWebsite: '<a href="http://cs.slu.edu/~dferry/courses/csci3500">http://cs.slu.edu/~dferry/courses/csci3500/</a>'
+ClassTime : "Monday, Wednesday, &amp; Friday from 11:00 - 11:50, RTH 115"
+Semester : "Fall 2022"
+MidtermTime : "Oct 10th, during class"
+FinalTime : "Wednesday, December 14th, 9:00 AM"
+
+#These strings control the behavior of the scheduler generator
+StartDate: "August 24th, 2022"
+ClassType : "MWF"
+LinkActivationHours: "72" #Links activate on the schedule approx this number of hours
+                          #before the real time gets there
+SchedHeaderColor: 'White' #Colors can be any CSS color
+SchedColor1: '#e6e6e6' 
+SchedColor2: 'White'
+
+
+Holidays :
+  -
+    name: "Labor Day"
+    date: "September 5th"
+    text: "Labor Day - No Class"
+  -
+    name: "No Classes"
+    date: "September 28th"
+    text: "No Class"
+  -
+    name: "Fall Break"
+    date: "October 28th"
+    text: "Fall Break - No Class"
+  -
+    name: "Thanksgiving"
+    date: "November 23rd"
+    text: "Thanksgiving - No Class"
+  -
+    name: "Thanksgiving"
+    date: "November 25th"
+    text: "Thanksgiving - No Class"
+
+Schedule :
+
+#Note, any day can have multiple items, e.g. the following
+# template has two topics, one reading, one studio, and one lab
+
+### New Day ###
+#  - 
+#    topics:  
+#      - 
+#        text: ""
+#        link: ""
+#        class: ""
+#      - 
+#        text: ""
+#        link: ""
+#        class: ""
+#    readings: 
+#      - 
+#        text: ""
+#        link: ""
+#        class: ""
+#    studios: 
+#      - 
+#        text: ""
+#        link: ""
+#        class: ""
+#    labs:
+#      - 
+#        text: ""
+#        link: ""
+#        class: ""
+          
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Intro to OS"
+        link: "slides/01_Intro_to_OS.pptx"
+        class: ""
+    readings:
+      - 
+        text: "MOS 1.1 - 1.3"
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: "<i>Make sure you can login for next time</i>"
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: "Lab 1 Assigned"
+        link: "labs/01_syscalls.html"
+        class: ""
+
+### New Day ###
+  - 
+    topics:
+      - 
+        text: "What is an OS?"
+        link: "slides/01_Intro_to_OS.pptx"
+        class: ""
+    readings:
+      - 
+        text: "MOS 1.4 and 1.5"
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: "Studio 1"
+        link: "studios/01_hello_world.html"
+        class: ""
+    labs:
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:
+      - 
+        text: "Lab 1 Discussion"
+        link: ""
+        class: ""
+      - 
+        text: "open_demo.c"
+        link: "code/open_demo.c"
+        class: ""
+    readings: 
+      - 
+        text: "Git Setup Documentation"
+        link: "git-info.pdf"
+        class: ""
+      - 
+        text: "Git Submission Tutorial"
+        link: "https://slu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ae2757cb-afef-4957-9949-ad92002947ca"
+        class: ""
+    studios: 
+      - 
+        text: "Studio 2"
+        link: "studios/02_in_out.html"
+        class: ""
+    labs:
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:
+      - 
+        text: "Lab 1 Discussion"
+        link: ""
+        class: ""
+    readings: 
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios: 
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs:
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:
+      - 
+        text: "Class Cancelled"
+        link: ""
+        class: ""
+    readings: 
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios: 
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs:
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:
+      - 
+        text: "System Calls"
+        link: "slides/02_System_Calls.pptx"
+        class: ""
+    readings: 
+      - 
+        text: "MOS 1.6 - 1.8"
+        link: ""
+        class: ""
+      - 
+        text: "<code>man syscalls</code>"
+        link: ""
+        class: ""
+    studios: 
+      - 
+        text: "Studio 3"
+        link: "studios/03_pointers.html"
+        class: ""
+    labs:
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:
+      - 
+        text: "Processes"
+        link: "slides/03_Processes.pptx"
+        class: ""
+    readings: 
+      - 
+        text: "MOS 2.1"
+        link: ""
+        class: ""
+    studios: 
+      - 
+        text: "Studio 4"
+        link: "studios/04_errors.html"
+        class: ""
+      -
+        text: "<i style=\"background-color:yellow\">Studio 1 Due</i>"
+        link: ""
+        class: ""
+    labs:
+      - 
+        text: "Lab 1 Due"
+        link: ""
+        class: "due"
+
+### New Day ###
+  -
+    topics:
+      -
+        text: "<code>fork()</code>, <code>exec()</code>, <code>wait()</code>, and <code>kill()</code>"
+        link: "slides/04_Fork_Exec.pptx"
+        class: ""
+    readings: 
+      -
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      -
+        text: "Studio 5"
+        link: "studios/05_fork.html"
+        class: ""
+    labs:
+      -
+        text: "Lab 2 Assigned"
+        link: "labs/02_processes.html"
+        class: ""
+
+### New Day ###
+  -
+    topics:
+      -
+        text: "Lab 2 Discussion"
+        link: "slides/SLUSH_Discussion.pptx"
+        class: ""
+    readings: 
+      -
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      -
+        text: "Studio 6"
+        link: "studios/06_strtok.html"
+        class: ""
+      -
+        text: "<i style=\"background-color:yellow\">Studios 2-4 Due</i>"
+        link: ""
+        class: ""
+    labs:
+      -
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  -
+    topics:
+      -
+        text: "Pipes, <code>stdin</code>, <code>stdout</code>"
+        link: "slides/SLUSH_Discussion.pptx"
+        class: ""
+      -
+        text: "fork_demo.c"
+        link: "code/fork_demo.c"
+        class: ""
+      -
+        text: "pipe_demo.c"
+        link: "code/pipe_demo.c"
+        class: ""
+      -
+        text: "dup2_demo.c"
+        link: "code/dup2_demo.c"
+        class: ""
+      -
+        text: "strtok_demo.c"
+        link: "code/strtok_demo.c"
+        class: ""
+    readings: 
+      -
+        text: "MOS 2.2"
+        link: ""
+        class: ""
+    studios:
+      -
+        text: "Studio 7"
+        link: "studios/07_pipes.html"
+        class: ""
+    labs:
+      -
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  -
+    topics:
+      -
+        text: "Threads"
+        link: "slides/05_Threads.pptx"
+        class: ""
+    readings: 
+      -
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      -
+        text: "Studio 8"
+        link: "studios/08_signals.html"
+        class: ""
+      -
+        text: "<i style=\"background-color:yellow\">Studios 5 and 6 Due</i>"
+        link: ""
+        class: ""
+    labs:
+      -
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  -
+    topics:
+      -
+        text: "Pthreads, C++11 threads"
+        link: ""
+        class: ""
+      -
+        text: "thread_demo.c"
+        link: "code/thread_demo.c"
+        class: ""
+      -
+        text: "c11threads.cpp"
+        link: "code/c11threads.cpp"
+        class: ""
+    readings: 
+      -
+        text: "MOS 2.3"
+        link: ""
+        class: ""
+    studios:
+      -
+        text: "Studio 9"
+        link: "studios/09_threads.html"
+        class: ""
+      -
+        text: ""
+        link: ""
+        class: ""
+    labs:
+      -
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  -
+    topics:
+      -
+        text: "Race Conditions"
+        link: "slides/06_Race_Conditions.pptx"
+        class: ""
+    readings: 
+      -
+        text: "MOS 2.5.1"
+        link: ""
+        class: ""
+    studios:
+      -
+        text: "Studio 10"
+        link: "studios/10_race.html"
+        class: ""
+    labs:
+      -
+        text: "Lab 2 Due"
+        link: ""
+        class: "due"
+
+### New Day ###
+  -
+    topics:
+      -
+        text: "Locks, Mutexes, Deadlock, Atomic Instructions"
+        link: "slides/07_Atomicity_Mutex.pptx"
+        class: ""
+    readings: 
+      -
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      -
+        text: "Studio 11"
+        link: "studios/11_mutex.html"
+        class: ""
+      -
+        text: "<i style=\"background-color:yellow\">Studios 7 and 8 Due</i>"
+        link: ""
+        class: ""
+    labs:
+      -
+        text: "Lab 3 Assigned"
+        link: "labs/03_threads.html"
+        class: ""
+      -
+        text: "crypt_demo.c"
+        link: "labs/crypt_demo.c"
+        class: ""
+
+### New Day ###
+  -
+    topics:
+      -
+        text: "fork_benchmark.c"
+        link: "code/fork_benchmark.c"
+        class: ""
+      -
+        text: "thread_benchmark.c"
+        link: "code/thread_benchmark.c"
+        class: ""
+      -
+        text: "lock_benchmark.c"
+        link: "code/lock_benchmark.c"
+        class: ""
+      -
+        text: "atomic_benchmark.c"
+        link: "code/atomic_benchmark.c"
+        class: ""
+    readings: 
+      -
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      -
+        text: "Studio 12"
+        link: "studios/12_atomics.html"
+        class: ""
+    labs:
+      -
+        text: ""
+        link: ""
+        class: ""
+
+
+### New Day ###
+  -
+    topics:
+      -
+        text: "Lab 3 Discussion"
+        link: ""
+        class: ""
+    readings: 
+      -
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      -
+        text: ""
+        link: ""
+        class: ""
+    labs:
+      -
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  -
+    topics:
+      -
+        text: "OpenMP, Cilk Plus"
+        link: "slides/08_Concurrency_Platforms.pptx"
+        class: ""
+    readings: 
+      -
+        text: "MOS 2.4"
+        link: ""
+        class: ""
+    studios:
+      -
+        text: "Studio 13"
+        link: "studios/13_openmp.html"
+        class: ""
+      -
+        text: "<i style=\"background-color:yellow\">Studios 9-11 Due</i>"
+        link: ""
+        class: ""
+    labs:
+      -
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  -
+    topics:
+      -
+        text: "Batch and interactive scheduling"
+        link: "slides/09_Scheduling.pptx"
+        class: ""
+    readings: 
+      -
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      -
+        text: "Studio 14"
+        link: "studios/14_openmp2.html"
+        class: ""
+    labs:
+      -
+        text: ""
+        link: ""
+        class: ""
+
+
+### New Day ###
+  -
+    topics:
+      -
+        text: "Real-Time Scheduling"
+        link: "slides/10_Real-Time_Scheduling.pptx"
+        class: ""
+    readings: 
+      -
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      -
+        text: ""
+        link: ""
+        class: ""
+    labs:
+      -
+        text: "Lab 3 Due"
+        link: ""
+        class: "due"
+
+
+### New Day ###
+  -
+    topics:
+      -
+        text: "Midterm Review"
+        link: "in_class/csci3500_midterm_examples.pdf"
+        class: ""
+    readings: 
+      -
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      -
+        text: "<i style=\"background-color:yellow\">Studios 12 and 13 Due</i>"
+        link: ""
+        class: ""
+    labs:
+      -
+        text: ""
+        link: ""
+        class: ""
+
+
+### New Day ###
+  -
+    topics:
+      -
+        text: "Midterm Exam"
+        link: ""
+        class: "due"
+    readings: 
+      -
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      -
+        text: ""
+        link: ""
+        class: ""
+    labs:
+      -
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  -
+    topics:
+      -
+        text: "Memory management in real mode"
+        link: "slides/11_Memory.pptx"
+        class: ""
+      -
+        text: ""
+        link: ""
+        class: ""
+    readings: 
+      -
+        text: "MOS 3.1"
+        link: ""
+        class: ""
+    studios:
+      -
+        text: "Studio 15-a"
+        link: "studios/14_physical_mem.html"
+        class: ""
+    labs:
+      -
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  -
+    topics:
+      -
+        text: "Address spaces, protected mode, and allocation"
+        link: "slides/12_Address_Spaces.pptx"
+        class: ""
+    readings: 
+      -
+        text: "MOS 3.2"
+        link: ""
+        class: ""
+    studios:
+      -
+        text: "Studio 15-b"
+        link: "studios/15_memory.html"
+        class: ""
+    labs:
+      -
+        text: "Lab 4 Assigned"
+        link: "labs/04_malloc.html"
+        class: ""
+
+### New Day ###
+  -
+    topics:
+      -
+        text: "Paging"
+        link: "slides/13_Paging.pptx"
+        class: ""
+    readings: 
+      -
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      -
+        text: "Studio 16"
+        link: "studios/16_page_tables.html"
+        class: ""
+    labs:
+      -
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  -
+    topics:
+      -
+        text: "Page tables and the TLB"
+        link: "slides/14_Page_Tables_TLB.pptx"
+        class: ""
+    readings: 
+      -
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      -
+        text: "Studio 17"
+        link: "studios/17_tlb.html"
+        class: ""
+    labs:
+      -
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  -
+    topics:
+      -
+        text: "Page Replacement Algorithms"
+        link: "https://cs.slu.edu/~dferry/courses/old/csci3500_sp21/slides/15_Page_Replacement.pptx"
+        class: ""
+    readings: 
+      -
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      -
+        text: "Studio 18"
+        link: "https://cs.slu.edu/~dferry/courses/old/csci3500_sp21/studios/18_page_replacement.html"
+        class: ""
+      -
+        text: "<i style=\"background-color:yellow\">Studios 14-15b Due</i>"
+        link: ""
+        class: ""
+    labs:
+      -
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  -
+    topics:
+      -
+        text: "Lab 4 Discussion"
+        link: ""
+        class: ""
+    readings: 
+      -
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      -
+        text: ""
+        link: ""
+        class: ""
+    labs:
+      -
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  -
+    topics:
+      -
+        text: "Files and the File System"
+        link: "slides/16_Files.pptx"
+        class: ""
+    readings: 
+      -
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      -
+        text: "Studio 19"
+        link: "studios/19_files.html"
+        class: ""
+    labs:
+      -
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  -
+    topics:
+      -
+        text: "File systems and allocation on disk"
+        link: "slides/17_File_Systems.pptx"
+        class: ""
+    readings: 
+      -
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      -
+        text: "<i style=\"background-color:yellow\">Studio 16-18 Due</i>"
+        link: ""
+        class: ""
+    labs:
+      -
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  -
+    topics:
+      -
+        text: "Linux Memory Maps"
+        link: ""
+        class: ""
+    readings: 
+      -
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      -
+        text: ""
+        link: ""
+        class: ""
+    labs:
+      -
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  -
+    topics:
+      -
+        text: "Directories"
+        link: "slides/18_Directories.pptx"
+        class: ""
+    readings: 
+      -
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      -
+        text: ""
+        link: ""
+        class: ""
+    labs:
+      -
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  -
+    topics:
+      -
+        text: "More Lab 4 Discussion"
+        link: ""
+        class: ""
+    readings: 
+      -
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      -
+        text: "<i style=\"background-color:yellow\">Studio 19 Due</i>"
+        link: ""
+        class: ""
+    labs:
+      -
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  -
+    topics:
+      -
+        text: "OSI Model of Networking"
+        link: "slides/19_Networks.pptx"
+        class: ""
+    readings: 
+      -
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      -
+        text: "Studio 20"
+        link: "studios/20_file_systems.html"
+        class: ""
+    labs:
+      -
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  -
+    topics:
+      -
+        text: "Physical and Data Link Layers"
+        link: "slides/20_Physical_and_Data_Link.pptx"
+        class: ""
+    readings: 
+      -
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      -
+        text: "Studio 21"
+        link: "studios/21_networking.html"
+        class: ""
+    labs:
+      -
+        text: "Lab 4 Due"
+        link: ""
+        class: "due"
+
+### New Day ###
+  -
+    topics:
+      -
+        text: "Network Layer"
+        link: "slides/21_Network_Layer.pptx"
+        class: ""
+    readings: 
+      -
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      -
+        text: "Studio 22"
+        link: "studios/22_datalink.html"
+        class: ""
+    labs:
+      -
+        text: "Lab 5 Assigned"
+        link: "labs/05_chat.html"
+        class: ""
+
+### New Day ###
+  -
+    topics:
+      -
+        text: "Sockets Demo"
+        link: ""
+        class: ""
+      -
+        text: "client.c"
+        link: "code/client.c"
+        class: ""
+      -
+        text: "server.c"
+        link: "code/server.c"
+        class: ""
+    readings: 
+      -
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      -
+        text: "Studio 23"
+        link: "studios/23_network.html"
+        class: ""
+      -
+        text: "<i style=\"background-color:yellow\">Studios 20 and 21 Due</i>"
+        link: ""
+        class: ""
+    labs:
+      -
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  -
+    topics:
+      -
+        text: "Transport Layer"
+        link: "slides/22_Transport_Layer.pptx"
+        class: ""
+    readings: 
+      -
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      -
+        text: "Studio 24"
+        link: "studios/24_sockets.html"
+        class: ""
+    labs:
+      -
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  -
+    topics:
+      -
+        text: "Sockets Interface"
+        link: "slides/23_Sockets.pptx"
+        class: ""
+    readings: 
+      -
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      -
+        text: "Studio 25"
+        link: "studios/25_applications.html"
+        class: ""
+    labs:
+      -
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  -
+    topics:
+      -
+        text: "Session, Presentation and Application Layers"
+        link: "slides/24_Userspace_Layers.pptx"
+        class: ""
+    readings: 
+      -
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      -
+        text: "<i style=\"background-color:yellow\">Studios 22 and 23 Due</i>"
+        link: ""
+        class: ""
+    labs:
+      -
+        text: "Lab 5 Due"
+        link: ""
+        class: "due"
+
+### New Day ###
+  -
+    topics:
+      -
+        text: "Security Concerns - CIA"
+        link: ""
+        class: ""
+    readings: 
+      -
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      -
+        text: ""
+        link: ""
+        class: ""
+    labs:
+      -
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+#  -
+#    topics:
+#      -
+#        text: "Secure Systems and a Trusted Computing Base"
+#        link: ""
+#        class: ""
+#    readings: 
+#      -
+#        text: ""
+#        link: ""
+#        class: ""
+#    studios:
+#      -
+#        text: ""
+#        link: ""
+#        class: ""
+#    labs:
+#      -
+#        text: ""
+#        link: ""
+#        class: ""
+
+### New Day ###
+  -
+    topics:
+      -
+        text: "Permission Domains and Permission Management"
+        link: ""
+        class: ""
+    readings: 
+      -
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      -
+        text: ""
+        link: ""
+        class: ""
+    labs:
+      -
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  -
+    topics:
+      -
+        text: "Final Exam Review"
+        link: ""
+        class: ""
+    readings: 
+      -
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      -
+        text: "<i style=\"background-color:yellow\">Studio 25 Due</i>"
+        link: ""
+        class: ""
+    labs:
+      -
+        text: ""
+        link: ""
+        class: ""

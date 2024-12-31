@@ -1,0 +1,238 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSCI 3500 - Operating Systems</title></head>
+
+<h2 style="text-align: center;">CSCI 3500: Lab 1<br></h2>
+<h2 style="text-align: center;">File Encryption</h2>
+
+
+
+<hr style="width: 100%; height: 2px;">
+<!--
+<p><i>
+Quote
+</i></p>
+<p style="text-indent:10%">&mdash;Character, <i>Book</i>, Chapter N<p>
+-->
+<p>System calls are the fundamental API provided by an operating system
+to application programs. For example, the <code>read()</code> and
+<code>write()</code> system calls are the basic mechanisms for doing file
+input and output in Linux. All other file I/O routines, such as C++'s stream
+operators (<code>&lt;&lt;</code> and <code>&gt;&gt;</code>) or Python's
+file methods (<code>file.read()</code> and <code>file.write()</code>)
+are built upon these C-interface system calls.</p>
+
+<p>To make sure we never take these high-level interfaces for granted, we're 
+going to work with Linux's system calls directly! We will use
+Linux's file manipulation system calls to write a program that encrypts and
+decrypts files.</p>
+
+<p>In this lab, you will:</p>
+
+<ol>
+  <li>Use the <code>open()</code>, <code>close()</code>, <code>read()</code>,
+and <code>write()</code> system calls to do file I/O
+  <li>Use the <code>malloc()</code> and <code>free()</code> standard library
+functions to allocate raw memory, and use pointers to access that memory
+  <li>Use the <code>ecb_crypt()</code> GNU function to encrypt and decrypt
+data, which implements a type of encryption called DES
+  <li>Perform proper Linux-style error checking on all functions that may
+return an error
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Program name</h3></p>
+<p><code>encrypt</code> - encrypt or decrypt a file using DES encryption</p>
+
+<p><h3>Usage</h3></p>
+<p><code>encrypt &lt;key&gt; &lt;input file&gt; &lt;output file&gt; &lt;mode&gt;</code></p>
+<p><code>key</code>: an 8 character string used as the DES key to encrypt/decrypt</p>
+<p><code>input file</code>: the file to encrypt/decrypt</p>
+<p><code>output file</code>: the result of the operation</p>
+<p><code>mode</code>: specifies whether to encrypt or decrypt- if mode=0, then encrypt the input file, if mode=1 then decrypt the input file</p>
+
+
+<p><h3>Description</h3></p>
+<p><code>encrypt</code> will encrypt and decrypt files using the GNU C library
+function <code>ecb_crypt()</code>. You must use the <code>read()</code> and
+<code>write()</code> system calls (documented at <code>man 2 read</code> and
+<code>man 2 write</code>, respectively) to read the input file and write to
+the output file. </p>
+
+<p><code>encrypt</code> detects the following errors and quits gracefully:</p>
+<p><ul>
+<li>Not enough / too many command line arguments (and prints a usage statement)
+<li>Key length other than 8 characters
+<li>A mode value other than 0 or 1 (hint: use <code>strtol()</code>)
+<li>Any errors returned from <code>open()</code>, <code>close()</code>,
+<code>read()</code>, <code>write()</code>, or <code>malloc()</code>- use the
+function <code>perror()</code> to print useful error messages
+</ul></p>
+
+<p>Upon encountering any error, print a useful message and <code>exit()</code>
+with a negative status code.</p>
+
+<p>If no error is encountered then the program should not produce any output
+to standard output.</p>
+
+<p><h3>Test Input Files</h3></p>
+<p><ul>
+<li><a href="http://www.cse.wustl.edu/~ferryd/csci3500/labs/test1">test1</a></li>
+<li><a href="http://www.cse.wustl.edu/~ferryd/csci3500/labs/test2">test2</a></li>
+<li><a href="http://www.cse.wustl.edu/~ferryd/csci3500/labs/test3">test3</a></li>
+</ul></p>
+
+<p>You can download these files to your local machine with the
+<code>wget</code> program from the Linux command line. See
+<code>man wget</code> for details.</p> 
+
+<p><h3>Hints</h3></p>
+<p><ol>
+<li>Worry about the encryption last! First construct a working program that
+just reads the input file and copies it to the output file. Once that works
+you can add the encryption/decryption step.
+<li>Here's a <a href="./crypt_example.c">demo file</a> showing how to use
+<code>ecb_crypt()</code>
+<li>Three test files are provided for you to experiment with. Each of them
+test a different aspect of your program- make sure your program works with
+all of them!
+<li>Look at the man pages for all the functions you use. All of them will
+give the possible return values as well as how errors are specified. 
+<li>Use the <code>diff</code> program to compare files and highlight any
+differences. This is an easy way to detect whether or not a decrypted file
+is identical to the original source, especially when the files are too large
+to inspect visually!
+<li>Use the <code>wc</code> program to count how many characters are in a
+file.
+<li>The <code>read()</code> system call returns how many bytes it has read.
+This is useful info needed for both <code>ecb_crypt()</code> and <code>write()
+</code>. Keep reading the input until <code>read()</code> returns a 0 (end of
+file) or -1 (error).
+<li>You need to call the <code>des_setparity()</code> function on your key
+before using the encryption function. This is due to the mathematics of
+the DES encryption algorithm implemented by <code>ecb_crypt()</code>.
+<li>The <code>ecb_crypt()</code> function works on arbitrarily long arrays
+of data, but the total size must be evenly divisible by 8. If your message
+is not divisible by 8, then you will need to pad it with blank space ' '
+characters.
+<li>If the number of characters in the input file is not divisible by 8 then
+you don't need to remove the extra padding when you decrypt the file. If you
+compare your two files with <code>diff</code> you will find a difference on
+the last line. You can suppress this by using <code>diff -Z</code>.
+</ol></p>
+
+<p><h3>Documentation</h3></p>
+<p>The following man pages will be useful:</p>
+<p><ul>
+<li><code>open</code> (2)
+<li><code>close</code> (2)
+<li><code>read</code> (2)
+<li><code>write</code> (2)
+<li><code>ecb_crypt</code> (3)
+<li><code>des_setparity</code> (3)
+<li><code>atoi</code> (3)
+<li><code>strtol</code> (3)
+<li><code>strlen</code> (3)
+<li><code>malloc</code> (3)
+<li><code>perror</code> (3)
+<li><code>errno</code> (2)
+<li><code>exit</code> (2)
+<li><code>diff</code> (1)
+<li><code>wc</code> (1)
+</ul></p>
+
+<p><h3>Questions</h3></p>
+
+<ol>
+<p><li>As the answer to the first exercise, list the name(s) of the people who
+worked together on this lab.</p>
+
+<p><li>Linux includes the nifty command <code>time</code>, which records how
+long a command runs. Record how long it takes to encrypt the file <code>test3</code>.
+The syntax in this case is "<code>time ./encrypt key 
+test3 outfile 0</code>". This will report three measurements: real, user,
+and sys. How long does your program take to run in real time? 
+
+<p><li>The third parameter to the <code>read()</code> system call controls
+how many characters can be read at a time. Try modifying this parameter to
+use a few different values: 8, 80, 800, and 4096. Record how long it takes to
+encrypt <code>test3</code> with each setting.</p>
+
+<p><li>Is it faster to make many system calls that read a few characters, or to
+make a few system calls that read many characters? Why do you think this is?
+</p>
+
+<p><li>Indicate which, if any, extra credit exercises have you have attempted.</p>
+</ol>
+
+<p><h3>Optional Enrichment Exercises</h3></p>
+
+<ul>
+<li><b>5% Extra Credit</b>: Implement a second encryption algorithm called
+XOR encryption. This is a very simple encryption method where every character
+of your read buffer is bitwise XOR'ed with a numeric value between 0 and 255.
+Add an addtional command line parameter at the end of the command string that
+must have the value XOR, DES, or be blank (defaults to DES). If this parameter
+specifies XOR, then the key must be a number between 0 and 255, rather than
+the usual DES key. For example:
+
+<p><code>encrypt abcd1234 infile outfile 0 DES</code></p>
+
+<p>should be equivalent to</p>
+
+<p><code>encrypt abcd1234 infile outfile 0</code></p>
+
+<p>However, specifying XOR encryption, as such:</p>
+
+<p><code>encrypt 42 infile outfile 0 XOR</code></p>
+
+<p>indicates that your program should encrypt the messages by bitwise XOR'ing each
+character in the input file with the number 42. Decryption is accomplished by
+XOR'ing each character in the encrypted file with the same value.</p>
+
+<p>The fifth parameter must be one of DES, XOR, or blank. Any other value
+should exit the program with a descriptive error message. The manual page
+<code>strcmp(3)</code> will probably be helpful. Attempting to use DES
+encryption with an XOR key, or vice-versa, should result in a
+descriptive error message and exit.</p>
+
+<li><p>The encryption we have used in this program is very weak! Not only is it
+subject to <a href="https://en.wikipedia.org/wiki/Data_Encryption_Standard#Brute_force_attack">brute force attacks</a>, 
+the particular variant we have used (ECB, which stands for Electronic Code
+Book) will always encrypt the same source data with the same ciphertext. Does
+this sound like a problem to you? Google "ecb penguin" to see what kinds of
+statistical information your supposedly encrypted file can leave!</p> 
+
+<li><p>The encryption program you've written should work on any type of file.
+Try encrypting and decrypting different file types to see if this is really
+the case. You should be able to use it on text, photos, videos,
+even binary executable files! If you decrypt a binary executable file you
+will need to mark it as executable with the command 
+"<code>chmod u+x filename</code>"</p>
+</ul>
+
+
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Submission</h3></p>
+<p>Create a .tgz archive of your lab directory and email it to 
+<code><big><b>dferry@slu.edu</b></big></code>. 
+Your submission must include a makefile
+that will compile your program by simply issuing the command 
+<code>make</code>. You must also include a text file with your
+answers to the required exercises. Please include your name and the names of
+any partners in the body of your email.</p>
+
+<p>The simple syntax for creating a .tgz archive is as follows:</p>
+
+<p><code>tar -zvcf new_archive.tgz lab_directory</code></p>
+
+<p>The syntax for unpacking a .tgz archive is:</p>
+
+<p><code>tar -zvxf archive.tgz</code></p>
+
+<p>Note that your archive <b>must not</b> include any binary executable files,
+meaning any compiled programs or intermediate build objects (.o files, for
+example). This will cause your email to be rejected by most services.</p>

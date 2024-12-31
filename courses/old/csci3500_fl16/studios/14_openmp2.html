@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSCI 3500 - Operating Systems</title></head>
+
+<h2 style="text-align: center;">CSCI 3500: Studio 14<br></h2>
+<h2 style="text-align: center;">OpenMP Configuration</h2>
+
+<hr style="width: 100%; height: 2px;">
+
+<p>In this studio, you will:</p>
+
+<ol>
+<p>Configure the way that OpenMP executes a parallel program
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>
+<p>
+Please complete the required exercises below, as well as any optional
+enrichment exercises that you wish to complete.</p> 
+
+<p>
+As you work through these exercises, please record your answers in a text
+file. When finished, submit your work by sending your text file and
+source code to <strong>dferry@slu.edu</strong>
+with the phrase <strong>
+OpenMP Part 2
+</strong> in the subject line.</p>
+
+<p><strong> Make sure that the name of each person who worked on these exercises
+is listed in the first answer, and make sure you number each of your responses
+so it is easy to match your responses with each exercise.</strong></p>
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Required Exercises</h3></p>
+
+<ol>
+<p><li>As the answer to the first exercise, list the names of the people who
+worked together on this studio.</p>
+
+<p><li>Create a parallel-for loop using the previous studio as a template.
+We are interested in how this loop is actually partitioned across different
+threads. To help us with this, OpenMP assigns its threads a unique identifying
+number, and provides functions to access this.
+For each iteration of your loop you should print out the loop index and the
+currently executing thread in a single <code>printf()</code> statement.
+Use the function <code>omp_get_thread_num()</code> to access the currently
+executing thread's number. Copy and paste your program output.</p>
+
+<p>Note- the OpenMP functions are not included in Linux's man pages, but you
+can access a reference sheet at the following link. Be sure to include
+<code>omp.h</code> and compile with <code>-fopenmp</code></p>
+
+<p><code>http://www.openmp.org/mp-documents/OpenMP-4.5-1115-CPP-web.pdf</code></p>
+
+<p><li>You might wonder just how many threads OpenMP will make. You can query
+this as well. Print out the maximum number of threads OpenMP will use with the
+function <code>omp_get_max_threads()</code>. Print out your result.</p>
+
+<p><li>The maximum number of threads on Hopper is great for high performance,
+but that many threads will become confusing quickly. Set the maximum number
+of threads OpenMP should use to five (5) with the function
+<code>omp_set_num_threads()</code>, and then re-run your loop from the first
+exercise. Copy and paste your results.</p>
+
+
+<p><li>You might wonder how fairly OpenMP schedules its work. 
+Set your loop to have 25 iterations and re-run your loop. How many iterations
+does each thread handle?</p>
+
+<p><li>Think about a situation in which it would be undesirable or unfair for
+OpenMP to assign the same number of loop iterations to each thread. When might
+that be a bad idea?</p>
+
+<p><li>Let's simulate a bad situation for OpenMP by making the first five loop
+iterations take much longer than the others. Use the Linux <code>sleep()</code>
+function to cause the first five loop iterations to sleep for one second. That is,
+inside your loop insert the statement: <code>if ( index &lt;= 4 ) sleep(1);</code>.</p>
+
+<p>What do you think will happen? If the work is split evenly across five threads
+then the program should take about one second. However, if the first five loop
+iterations are allocated to a single thread, then the program will take about
+five seconds.</p>
+
+<p>Run your program and confirm or deny your hypothesis. Time your program with
+the <code>time</code> command.</p>
+
+<p><li>The above behavior is caused by OpenMP's default scheduling policy,
+which <i>statically</i> assigns work to each thread. This means that work
+is assigned at compile time, which can be very efficient, but it is not possible
+to adapt the behavior of the system after that point.
+However, OpenMP supports many different scheduling strategies. 
+Configure your system to <i>dynamically</i> assign work by modifying your
+parallel for loop declaration:</p>
+
+<p><code>#pragma omp parallel for schedule( dynamic, 1 )</code></p>
+
+<p>How long does your program take now?</p>
+
+<p><li>What else has changed about how your program is scheduled?</p>
+
+<p><li>The second parameter to the <code>schedule()</code> modifier is
+called the <i>chunk size</i>. Modify this value and observe the effects. What
+do you think the chunk size specifies?</p>
+
+</ol>
+
+<p><h3>Optional Enrichment Exercises</h3></p>
+<ol>
+<li>No optional exercises
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>

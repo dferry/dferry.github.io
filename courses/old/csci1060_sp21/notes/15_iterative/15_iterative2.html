@@ -1,0 +1,169 @@
+
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+
+<HTML>
+<HEAD>
+<TITLE>Lecture Notes: Code for Iterative Solver
+</TITLE>
+</HEAD>
+
+<BODY>
+
+<HR>
+
+<H2>
+Code for Iterative Solver
+</H2>
+
+<HR>
+
+<p>
+In our <a href="./15_iterative.html">previous lecture</a> we introduced the
+general concept of an iterative solver, and then demonstrated code
+using this technique for computing a square root.  We would like to
+demonstrate how the same approach can be used for the gambler problem.
+But rather than develop the entire code base from scratch, we would
+like to use a more general design framework.
+
+As our first version, we suggest the following <tt>iterativeSolver</tt>
+function.
+<pre>
+function soln = simpleIeterative(initial, updateFunc, params)
+    error = 1e-10;
+    soln = initial;
+    solved = false;
+    while ~solved
+        prev = soln;
+        soln = updateFunc(prev, params);
+        solved = all(abs(soln-prev) &lt;= error);
+    end
+</pre>
+Here, we assume that <tt>initial</tt> is an array that represents the
+initial guess, that <tt>updateFunc</tt> is a function handle
+representing the function that is able to use one guess to
+create the subsequent guess, and that <tt>params</tt> is used to hold
+information that may need to be passed to <tt>updateFunc</tt>.
+
+
+<h3>function handles</h3>
+
+<p>
+In MATLAB, sometimes one function needs to be given access to another
+function as a runtime parameter.  This is done by passing a "handle"
+to one function as a parameter to another.  Syntactically, the
+<tt>@</tt>&nbsp;character is used to create a function handle.  For
+example, the expression <tt>@sum</tt> is a handle to the built-in
+function <tt>sum</tt>.
+
+<h3>square root example</h3>
+
+<p>
+As a simple example, here is an m-file that uses our iterative solver
+to compute square roots.
+
+<pre>
+function x = simpleSqrt(n)
+    guess = 1;
+    x = simpleIterative(guess, @newtonUpdate, n);
+
+function val = newtonUpdate(x, n)
+    val = (x + n/x) / 2;
+</pre>
+
+The <tt>newtonUpdate</tt> function uses Newton's method to compute a
+better approximation for the square root by taking the average of
+<tt>x</tt> and <tt>n/x</tt>.  A handle to this function is passed as a
+parameter to the <tt>simpleIterative</tt> function.
+
+
+<h3>more robust version</h3>
+<p>
+We offer a more robust version of our software named
+<tt><a href="iterativeSolver.m">iterativeSolver.m</a></tt>.
+This uses the same logic as our original version, but it allows for
+more customization by the caller in monitoring the number of
+iterations that are used as well as to see the intermediate results
+within the main loop.  Those intermediate results are reported by
+using a "callback" function as an extra parameter.  The callback is
+similar to the update function, in that it is presumed to be a
+function handler sent by the caller.   The this callback function can
+be coded to do what we want, such as to generate plots of the
+successive approximations.
+
+<p>
+As a further demonstration, we provide a more robust version of the
+square root code, named <tt><a href="newSqrt.m">newSqrt.m</a></tt>,
+that uses the new solver.
+
+
+<h3>Revisiting the gambler problem</h3>
+
+<p>
+When computing the square root, the form of our solution was a scalar.
+For the gambler problem, we wish to consider a solution that is a
+vector representing key information for each possible bankroll from 0
+to the goal. In this case, an update rule must construct a new vector
+of values based on a previous vector.
+
+<p>
+As an example, if we are interested in knowing the chance of an
+overall win, when starting at a given bankroll, our update function
+can be written as follows.
+<pre>
+function new = winUpdate(old, p)
+    new = zeros(1, length(old));
+    new(1) = 0;                   % gambler loses with bankroll 0
+    new(end) = 1;                 % gambler wins with bankroll goal
+    for k = 2:(length(new)-1)
+        new(k) = (1-p) * old(k-1) + p * old(k+1);
+    end
+</pre>
+This logic is based on the analysis from <a href="./15_iterative.html">last
+lecture</a>. To demonstrate this approach, with full animation of
+itermediate results, download the file <tt><a
+href="win.m">win.m</a></tt> and use it together with our robust
+iterative solver.
+
+
+<p>
+If we want to compute the average number of bets for a given starting
+bankroll, we only need to make a minor modification to the above
+approach.  We write a <tt>betsUpdate</tt> function as follows.
+<pre>
+function new = betsUpdate(old, p)
+    new = zeros(1, length(old));
+    new(1) = 0;                     % no more betting with bankroll 0
+    new(end) = 0;                   % no more betting with bankroll goal
+    for k = 2:(length(new)-1)
+        new(k) = 1 + (1-p) * old(k-1) + p * old(k+1);  % one bet plus more...
+    end
+</pre>
+The full version of this program can be
+download as the file <tt><a
+href="bets.m">bets.m</a></tt>.
+
+<p>
+Finally, we offer a program <tt><a href="placed.m">placed.m</a></tt>
+that computes how many bets would be expeced to be placed with each
+intermediate bankroll, given a fixed goal and initial bankroll. Its
+update rule is written as follows, expecting auxillary parameters to
+designate the p value and the assumed starting bankroll.
+<pre>
+function new = placedUpdate(old, params)
+    p = params(1);
+    start = params(2);
+    new = zeros(1, length(old));
+    new(1) = 0;     % never places a bet with bankroll 0
+    new(end) = 0;   % never places a bet with bankroll goal
+    for k = 2:(length(new)-1)
+        new(k) = p * old(k-1) + (1-p) * old(k+1); % must have recently won from index-1
+    end                                           % or lost from index+1
+    new(start) = new(start)+1;                    % initial bankroll gets one extra
+</pre>
+
+<HR>
+
+</BODY>
+</HTML>
+
+

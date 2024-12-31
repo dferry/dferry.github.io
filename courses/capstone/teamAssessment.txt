@@ -1,0 +1,60 @@
+		      Team Peer Evaluation Form
+                      -------------------------
+
+[Note: This format is based on one from CSE 134A at UCSD, and another from U. Fresno]
+
+Each team member is to complete the following questionnaire on his or
+her team-mates.  Ratings and comments made by each member will used to
+help the instructor evaluate the performance of each student.  All
+information will be held in strictest confidence; only the instructor,
+group supervisor, and (when necessary) the chair of the CS department
+will be privy to results of peer evaluations.
+
+---------------------------------------------------------------------------
+
+(1) Give the names of your team members. Include yourself as person A.
+
+  A:
+  B:
+  C:
+  D:
+
+---------------------------------------------------------------------------
+
+(2) Describe in one or two sentences, the major responsibilities of each team member.
+
+  A:
+  B:
+  C:
+  D:
+
+---------------------------------------------------------------------------
+(3) Fill in the table below for each team member. Scores may range
+from 0 to 10 where 0 means absolutely unacceptable, 5 means
+acceptable, and 10 means perfect.
+
+Be thoughtful and honest when discussing what scores each team member
+should receive.  Remember that most people have both strengths and
+weaknesses.  Do not give unbelievable scores. 
+ 
+                       A      B      C      D
+* initiative           .      .      .      .
+* dependability        .      .      .      .
+* quality of work      .      .      .      .
+* quantity of work     .      .      .      .
+
+Please feel free to provide prose comments if you believe those are
+necessary to better explain any quantitative ratings.
+
+---------------------------------------------------------------------------
+
+(4) Describe in one or two paragraphs the major successes and failures
+in how your team worked together. What lessons have you learned from
+these experiences?
+
+
+---------------------------------------------------------------------------
+
+
+
+

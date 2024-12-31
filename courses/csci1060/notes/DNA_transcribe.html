@@ -1,0 +1,75 @@
+
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+
+<HTML>
+<HEAD>
+<TITLE>DNA Transcription in MATLAB
+</TITLE>
+</HEAD>
+
+<BODY>
+
+
+
+
+<HR>
+
+<H2>
+Notes: DNA Transcription in MATLAB
+</H2>
+
+
+<hr>
+
+<h3>What is DNA Transcription?</h3>
+
+<p>Transcription is the process by which your DNA creates RNA, and is an
+essential part of life. Computationally we can look at DNA and RNA as being composed of
+a sequence of several fundamental bases: adenine (A), guanine (G), cytosine (C),
+thymine (T), and uracil (U). While the biological process of transcription is
+quite complex, the high level expression of what happens in terms of bases
+is quite simple.</p>
+
+<p>For an input DNA sequence composed of A, G, C, and T, the output is an 
+RNA sequence composed of A, G, C, and U where: </p>
+
+<ul>
+<li>A becomes U
+<li>T becomes A
+<li>C becomes G
+<li>G becomes C
+</ul>
+
+<p>For example:</p>
+
+<pre> 
+Input  DNA: ATTGCGAGTC
+Output RNA: UAACGCUCAG
+</pre>
+
+<hr>
+
+<h3>Goal today:</h3>
+
+<p>There is one last complication however. In practice DNA seqeuences are
+quite long- for example the human genome is over three billion base pairs.
+Thus, genome data is always stored digitally rather than entered or worked 
+with by hand. Thus our goal today is to write a function that takes two
+input arguments: the name of an input file and the name of an output file.</p>
+
+<p>Our function today will open a DNA input file for reading, convert the
+DNA base pairs there to RNA according to the mapping above, and then write
+the RNA output to the output file. If our function encounters any errors- for
+example if the input or output files can't be opened, then our function will
+print a descriptive error message and quit gracefully rather than crashing.</p>
+
+<p>You can see an example input file here: <a href="DNA.txt">DNA.txt</a></p>
+<p>And the corresponding output file is here: <a href="DNA_transcribed.txt">DNA_transcribed.txt</a></p>
+
+<HR>
+
+
+  </BODY>
+</HTML>
+
+

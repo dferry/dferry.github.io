@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSCI 3500 - Operating Systems</title></head>
+
+<h2 style="text-align: center;">CSCI 3500: Studio 11<br></h2>
+<h2 style="text-align: center;">Mutexes</h2>
+
+<hr style="width: 100%; height: 2px;">
+
+<p><i>Mutual exclusion</i> is an important concept in concurrent and parallel
+programming where different threads of execution cooperate to avoid causing
+racy program behavior. This exclusion is encapsulated at a high level in an
+object called a <i>mutex</i>. A mutex allows for protection of shared data
+by allowing cooperating threads to <i>lock</i> the mutex and thereby claim the
+exclusive use of critical data.</p>
+
+<p>In this studio, you will:</p>
+
+<ol>
+<li>Create a Pthreads mutex
+<li>Use a single mutex to coordinate shared access to a variable
+<li>Measure the overhead of using a mutex
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>
+<p>
+Please complete the required exercises below, as well as any optional
+enrichment exercises that you wish to complete.</p> 
+
+<p>
+As you work through these exercises, please record your answers in a text
+file. When finished, submit your work via the git repository.</p>
+
+<!--by sending your text file and
+source code to <strong>dferry_submit@slu.edu</strong>
+with the phrase <strong>
+Mutex
+</strong> in the subject line.</p>
+-->
+
+<p><strong> Make sure that the name of each person who worked on these exercises
+is listed in the first answer, and make sure you number each of your responses
+so it is easy to match your responses with each exercise.</strong></p>
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Required Exercises</h3></p>
+
+<ol>
+<p><li>As the answer to the first exercise, list the names of the people who
+worked together on this studio.</p>
+
+<p><li>First, make a copy of your code from the previous studio where we
+created a race condition. Our goal today is to fix that race condition.
+We will do this by creating a <code>pthread_mutex_t</code> object,
+initializing it, and then locking and unlocking this mutex around the critical
+section.</p>
+
+<p>Create your <code>pthread_mutex_t</code> object with the help of the man
+page at <code>man pthread_mutex_init</code>. You may intialize your object
+with the static initializer (<code>PTHREAD_MUTEX_INITIALIZER</code>) or with
+the <code>pthread_mutex_init()</code> function (if you use this second
+you can leave the <code>pthread_mutexattr_t</code> pointer NULL). 
+Create this mutex inside your
+<code>main()</code> function. Copy and paste your mutex creation code.</p>
+
+<p><li>Now you must pass a mutex pointer from your <code>main()</code> function
+to the <code>adder()</code> and <code>subtractor()</code> functions from last
+time. Pass these pointers through the fourth parameter of 
+<code>pthread_create()</code>. Leave this answer blank.</p>
+
+<p><li>Take a moment to consider our goal. Previously, the simultaneous
+accesses to your variable caused some data corruption. What do you think the
+result will be if you synchronize your accesses? What will be the numeric
+value? How will this effect the amount of time your program takes to run?</p>
+
+<p><li>Now, use the functions <code>pthread_mutex_lock()</code> and
+<code>pthread_mutex_unlock()</code> to synchronize access to the racy
+variable. This means that your threads should not modify this variable unless
+they have successfully locked the mutex, and after modifying the variable they
+should unlock the mutex.</p>
+
+<p>Run your program many times. Does your program output match your
+expectations? Copy and paste several program outputs.</p>
+
+<p><li>Now we want to quantify the overhead of using this mutex. Locking and
+unlocking the mutex is not free, but it is the cost we pay for correct
+behavior.
+Go back to your original racy program from the previous studio. Modify the
+number of iterations each thread performs to be twenty million
+(20,000,000). Take three timings of this program with the <code>time</code>
+utility. Copy and paste your program output, and calculate the average time.
+</p>
+
+<p><li>Go back into your corrected program that uses your mutex. Set the number
+of iterations to be twenty million (20,000,000). You might
+have noticed that there are two possibilites for where you put your locking
+and unlocking code. You can have each thread perform one lock and unlock
+operation in total, or you can have each thread perform one lock and unlock
+operation for each individual increment or decrement of the racy variable.</p>
+
+<p>Modify your program, if necessary, so that each thread locks and unlocks 
+the mutex
+once per increment or decrement (that is, each thread should lock and unlock
+the mutex twenty million times. Take three time measurements, copy and paste 
+your output, and compute the average. How much longer did this execution
+take?
+</p>
+
+<p><li>Modify your program so that you lock and unlock the mutex
+just once per thread. Repeat your timing experiment and copy/paste the output.
+How does this time compare to the original, racy program?</p>
+
+<p><li>Speculate about what might cause the results from the previous
+exercise.</p>
+
+<p><li>Think of an example of where the first, per-iteration locking strategy
+might be more appropriate. Where might the second, per-thread locking strategy
+be more appropriate? </p>
+
+</ol>
+
+<p><h3>Optional Enrichment Exercises</h3></p>
+<ol>
+<li>No optional exercises
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>

@@ -1,0 +1,306 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+  <HEAD>
+    <TITLE>Assignment #5:  Intel x86 Assembly, Procedures, and the Stack Frame
+    </TITLE>
+  </HEAD>
+
+  <BODY>
+
+
+    <CENTER>
+      <H2>Assignment #5:  Intel x86 Assembly, Procedures, and the Stack Frame</H2>
+    </CENTER>
+
+
+<h3>Contents:</h3>
+<UL>
+  <LI>
+      <a href="#overview">Overview</a>
+  </LI>
+  <LI>
+      <a href="#practice">Practice Problems</a>
+  </LI>
+  <LI>
+      <a href="#submit">Problems to be Submitted</a>
+  </LI>
+</UL>
+
+<HR>
+
+<a name="overview"><h3>Overview</h3></a>
+
+<P>
+<b>Topic:</b>  The Intel x86 ISA, x86 Assembly Programming, Procedure Calls, and the Stack Frame
+<br>
+<b>Related Reading:</b>  class notes and Chapter 3 (esp. sections 3.7 and 3.8)
+</P>
+
+<hr>
+
+<a name="practice"><h3>Practice Problems</h3></a>
+
+<!--
+<P>
+  Make sure you have a complete understanding of all parts of the tutorial program given with the <a href = "../software/">Assembler and Debugger Tutorial</a>, including it's use of variables in memory, and it's use of the stack frame when calling other procedures, which in this case are the C procedures, <tt>printf</tt> (from the C standard library) and <tt>get_number</tt> (from the file <a href="../software/tutorial/input.c">input.c</a>).
+-->
+
+<p>
+Practice problems from the textbook <i>(answers are at the end of the chapter)</i>:
+<ul>
+<!--
+  <li>
+    Practice Problems 3.16-3.18, on pp. 195-196.
+  </li>
+  <p>
+  <li>
+    Practice Problem 3.20, on p. 199.
+  </li>
+  <p>
+  <li>
+    Practice Problem 3.21, on pp. 201-202.
+  </li>
+  <p>
+  <li>
+    Practice Problem 3.22, on p. 202.
+  </li>
+  <p>
+  <li>
+    Practice Problem 3.23, on p. 205.
+  </li>
+  <p>
+-->
+  <li>
+    Practice Problem 3.31, on p. 224.
+  </li>
+  <p>
+  <li>
+    Practice Problem 3.33, on pp. 228-229.
+  </li>
+  <p>
+  <li>
+    Practice Problem 3.34, on pp. 231-232.
+  </li>
+  <p>
+  <li>
+    Practice Problem 3.35, on pp. 233.
+  </li>
+  <p>
+  <li>
+    Practice Problem 3.36, on pp. 234.
+  </li>
+  <p>
+  <li>
+    Practice Problem 3.38, on pp. 238.
+  </li>
+</ul>
+
+<HR>
+
+<a name="submit"><h3>Problems to be Submitted (25 points)</h3></a>
+
+<P>
+When you turn in your assignment, you must include a signed <a href="./cover-sheet.html">cover sheet</a> (<a href="./cover-sheet.pdf">PDF version</a>) with your assignment (<i>you're assignment will not be graded without a completed cover sheet</i>).
+
+<p>
+You are allowed to submit your assignment via email, but if you choose to do so, you must bring a hardcopy of your assignment along with a completed cover sheet to the instructor at the next class.  (<i>Note:  Do not email the instructor any .zip file attachments, as SLU's email may not accept these emails; i.e. the instructor may not receive your email.</i>)
+
+
+
+<OL type=1>
+  <LI> <b>(2 points)</b>
+    <p>
+      What operation is performed by the following sequence of instructions? 
+    </p>
+<pre>
+      pushw  %ax 
+      pushw  %dx 
+      popw   %ax 
+      popw   %dx 
+</pre>
+    </p>
+  </LI>
+
+<!--
+  <LI> <b>(5 points)</b>
+    <P>
+      <b>Create an assembly program that computes the <u>volume</u> of a <a href="http://calculus-geometry.hubpages.com/hub/Volume-of-a-Trapezoidal-Prism-Formula-and-Examples">trapezoidal prism</a></b>, given the integer sizes for A, B, H, and L.
+    </P>
+    <P>
+      Use a procedure to compute the volume, and have that procedure take four input arguments:  length of the prism (L), the height of the trapezoidal cross-section (H), the base width of the trapezoid (B), and the top width of the trapezoid (A).  The corresponding procedure declaration in C would look lie:
+    </P>
+    <P>
+      &nbsp;&nbsp;&nbsp;&nbsp;<tt>int tpVol = volTrapPrism (int L, int H, int A, int B);</tt>
+    </P>
+    <P>
+      <i>Assume:</i> For this problem, use a variable size of 4 bytes (32 bits) for all variables.
+    </P>
+    <P>
+      <i>Note:</i> Be sure to use the C/C++ calling protocol for passing arguments and managing the stack frame.
+    </P>
+    <P>
+      You're welcome to use a similar program, like <a href="../schedule/abs_asm.s">abs_asm.s</a>, as a starting point for your answer.  Remember, the commands to build an assembly file like <tt>abs_asm.s</tt> are:
+<pre>
+      as --32 abs_asm.s -o abs_asm.o
+      gcc -m2 abs_asm.o -o abs_asm
+</pre>
+    </P>
+  </LI>
+-->
+
+  <P>
+
+  <LI> <b>(2 points)</b>
+    <P>
+      Given the four major sections of a process' memory organization (<i>Text</i>, <i>Data</i>, <i>Heap</i>, and <i>Stack</i>), indicate which area each of the following are stored in:
+    </P>
+    <P>
+      <ol type=a>
+        <LI>local variables</LI>
+        <LI>program code</LI>
+        <LI>dynamically-allocated variables, instantiated via <tt>new</tt> or <tt>malloc()</tt></LI>
+        <LI>global variables</LI>
+      </ol>
+    </P>
+  </LI>
+
+<!--
+  <LI> <b>(8 points)</b>
+    <p>
+      For this problem you are given the assembly code:  <a href="./hw5_code.s">hw5_code.s</a>.  This code contains a procedure, <tt>some_procedure()</tt>, which performs some computation over the elements in an array.
+    <p>
+      Given this code, answer the questions below: 
+     
+    <p>
+    <ol type = a>
+      <li>
+        <p>
+          In the procedure, which register holds the loop counter?  How many iterations does the loop execute (i.e. how many times is the loop <u><b>body</b></u> executed) ?
+        </p>
+      </li>
+      <li>
+        <p>
+          Where is the array stored (in which area of memory, relative to the virtual memory organization for the process)?  Within the procedure, which register holds the address of the array?  Which register holds the value of an individual array element?
+        </p>
+      </li>
+      <li>
+        <p>
+	  Why are there <u>two</u> <tt>imul</tt> instructions in the procedure? 
+        </p>
+      </li>
+      <li>
+        <p>
+	  What is the purpose of the &nbsp;<tt>sarl $2, %eax</tt>&nbsp; instruction? &nbsp; <i>Hint:</i>  There is some correlation with both the answer from part <tt>a)</tt>, and the number of elements in the array...
+        </p>
+      </li>
+      <li>
+          What mathematical formula does this procedure compute?
+        </p>
+      </li>
+      <li>
+        <p>
+	  What is the purpose of the &nbsp;<tt>pushl %esi</tt>&nbsp; and &nbsp;<tt>pushl %ebx</tt>&nbsp; instructions, and the &nbsp;<tt>popl %ebx</tt>&nbsp; and &nbsp;<tt>popl %esi</tt>&nbsp; instructions, at the top and bottom of <tt>some_procedure()</tt>, respectively?
+        </p>
+      </li>
+      <li><b>(2 points)</b>
+        <p>
+	  Assuming the processor is currently executing the loop in <tt>some_procedure()</tt>, <b>give a diagram showing the organization of the stack, including the stack frames for <u>both</u> <tt>main()</tt> and <tt>some_procedure()</tt>.</b>  As done in class, identify (via value or description) the contents of each element on the stack.
+        </p>
+      </li>
+    </ol>
+
+    <p>
+      <i>Hint:</i>  This code is relatively similar to an example covered in class.
+  </LI>
+
+  <P>
+-->
+<!--
+  <LI> <b>(3 points)</b>
+    <P>
+      Problem 3.62 at the end of Chapter 3 (p. 301).
+    </P>
+  </LI>
+-->
+
+  <LI> <b>(9 points)</b>
+    <p>
+      Given the following code:
+    </p>
+<pre>
+
+      snippet:
+            pusha
+            pushl $100
+            pushl $25
+            pushl $7
+            call SomeProcedure
+            pop   %eax
+            pop   %eax
+            pop   %eax
+            popa
+            ret
+
+      SomeProcedure:
+            pushl %ebp
+            movl  %esp, %ebp
+            movl  8(%ebp), %eax
+            movl  12(%ebp), %ebx
+            movl  16(%ebp), %edx  #Part D below refers to this line
+            cmpl  %ebx, %eax
+            jle   L1
+            subl  %ebx, %eax
+            jmp   L2
+
+         L1:
+            subl  %eax, %ebx
+            movl  %ebx, %eax
+
+         L2:
+            movl  $0, %ecx
+            addl  %eax, %ecx
+            addl  %ecx, %edx
+            leave
+            ret
+</pre>
+    <ol type = a>
+      <li><b>(2 points)</b>
+	<p>With respect to SomeProcedure:</p>
+        <p><ul>
+          <li>
+            How many input args are there? &nbsp;  How are they passed in?
+          </li>
+          <li>
+            How many outputs are there? &nbsp;  How are they passed out?
+          </li>
+        </ul></p>
+      </li>
+      <li><b>(2 points)</b>
+        <p>
+          What does this procedure do? &nbsp;  Give an equation in terms of the inputs...
+        </p>
+      </li>
+      <li><b>(1 point)</b>
+        <p>What is the purpose of the <code>pusha</code> and <code>popa</code> instructions?</p>
+      </li>
+      <li><b>(4 points)</b>
+        <p>Supposing that <code>SomeProcedure</code> is called from <code>snippet</code>, draw the
+           program stack from 16(%ebp) to (%ebp) after executing instruction <code>movl 16(%ebp), %edx</code>.
+           Also, give the contents of the registers EAX, EBX, ECX, and EDX as of the same line.</p>
+      </li>
+      
+    </ol>
+  </LI>
+  <LI> <b>(12 points)</b>
+  <p>Submit via email, if you haven't already, your six in-class programming assignments.</p>
+  </LI>
+</OL>
+
+<hr>
+<!--
+Last modified: Friday, 24 February 2006
+-->
+
+  </body>
+</html>
+

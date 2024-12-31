@@ -1,0 +1,36 @@
+1) Instructor's Key
+
+2) #include <stdio.h>
+
+3) fprintf requires a FILE* stream, printf does not
+
+4) printf prints to the standard output stream stdout, while fprintf prints to the given output stream
+
+5) Output:
+
+[dferry@hopper 01]$./hello_fprintf 
+Hello, world!
+
+
+6) System calls manual section number: 2
+
+7) #include <unistd.h>
+
+8) left blank
+
+9)
+
+#include <unistd.h>
+
+int main (int argc, char* argv[]){
+
+        char* buf = "Hello world with write!\n";
+
+        write(STDOUT_FILENO, buf, 24);
+
+        return 0;
+}
+
+10) Program outputs a bunch of gibberish- it's writing anything in memory after the buffer ends
+
+

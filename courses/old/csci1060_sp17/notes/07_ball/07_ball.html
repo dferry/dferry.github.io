@@ -1,0 +1,180 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+
+<HTML>
+<HEAD>
+<TITLE>Lecture Notes: Animating the Motion of a Ball
+</TITLE>
+</HEAD>
+
+<BODY>
+
+
+
+<HR>
+
+<H2>
+Animating the Motion of a Ball
+</H2>
+
+
+<p>
+In an earlier homework, we considered the one-dimensional movement of
+a baseball, with an initial vertical velocity of 43.81 meters/second,
+and with gravity as a downward force with a constant acceleration of
+9.8 meters/second/second.
+
+
+<p>
+Based on calculus, the height at time t is equal to
+<br>
+h(t) = v<sub><small>0</small></sub> t - gt<sup><small>2</small></sup>/2
+<br>
+We calculated the height for a rane of times using vectorized
+operations as
+
+<pre>
+g = 9.8;                              % gravity
+v = 43.81;                            % initial velocity (98 mph = 43.81 m/s)
+
+endtime = 2*v/g;                      % when it hits the ground
+timestep = endtime/100;
+t = 0:timestep:endtime;
+height = v .* t - g .* t .^ 2 ./ 2;
+</pre>
+
+
+<hr>
+
+<h4>animating the motion</h4>
+
+<pre>
+g = 9.8;                              % gravity
+v = 43.81;                            % initial velocity (98 mph = 43.81 m/s)
+frames = 100;
+
+endtime = 2*v/g;                      % when it hits the ground
+timestep = endtime/frames;
+t = 0:timestep:endtime;
+height = v .* t - g .* t .^ 2 ./ 2;
+
+window = [-1 1 0 max(height)];
+for h = height
+  plot([0], h, 'o');
+  grid on;
+  axis(window);                      % keep view fixed for all frames (why?)
+  pause(timestep);                   % pause between frames
+end
+</pre>
+
+
+
+<hr>
+
+<h4>two-dimensional motion</h4>
+<p>
+Let's now consider the two-dimensional version of the problem,
+assuming that the ball's initial velocity is directed at an angle of
+60-degrees from horizontal.  The calculus can be applied separately on
+the x and y components of the motion using the formula
+<br>
+x(t) = v<sub><small>x0</small></sub> t
+<br>
+y(t) = v<sub><small>y0</small></sub> t - gt<sup><small>2</small></sup>/2
+<br>
+where
+<br>
+v<sub><small>x0</small></sub> = v cos(angle)
+<br>
+v<sub><small>y0</small></sub> = v sin(angle)
+<br>
+
+Here is our script animating the motion.  This time, rather than
+clearing the plot at each step, we use <tt>hold</tt> so that we can
+overlay each new plot on the existing graph.
+
+<pre>
+g = 9.8;      % gravity
+v = 43.81;    % initial velocity (98 mph = 43.81 m/s)
+angle = 60;   % measured in degrees
+vx = v * cosd(angle);
+vy = v * sind(angle);
+
+endtime = 2*vy/g;
+timestep = endtime/100;
+t = 0:timestep:endtime;
+x = vx .* t;
+y = vy .* t - g .* t .^ 2 ./ 2;
+
+window = [0 1.1*max(x) 0 1.1*max(y)];
+for i = 1:length(t)
+  plot(x(i), y(i), 'o');
+  hold on;
+  grid on;
+  axis equal;                     % necessary to ensure that x and y axes are drawn with equal scale
+  axis(window);
+  pause(timestep);                % pause between frames
+end
+hold off;
+</pre>
+
+<hr>
+<h4>saving an animated image (gif) file</h4>
+<p>
+Lastly, you might want to create an animated image file that does not
+rely on having MATLAB. One common image format (gif) supports animated
+images, and MATLAB can generate such images. We won't cover the steps
+necessary to do this in detail, but if you examine each step you'll see
+that we are converting the plotted graph into individual frames of
+the animated file. The following code between the comments
+"begin image write" and "end image write" only assumes that there is an
+active plot window, so you may copy and paste this code into other
+contexts as you see fit.
+
+<pre>
+filename = 'ball.gif';
+frames = 100;
+
+g = 9.8;
+v = 43.81;
+
+endtime = 2*v/g;
+timestep = endtime/frames;
+t = 0:timestep:endtime;
+heights = v.*t - g.*t.^2./2;
+
+window = [-1 1 0 max(heights)+1];
+for h = heights
+    plot([0], h, 'o')
+    grid on;
+    axis(window);
+    
+    %Image code from MATLAB doc for imwrite
+    %begin image write
+    drawnow
+    frame = getframe(1);
+    im = frame2im(frame);
+    [A, map] = rgb2ind(im,256);
+    if h == heights(1);
+        imwrite(A,map,filename,'gif','LoopCount',Inf,'DelayTime',timestep);
+    else
+    	imwrite(A,map,filename,'gif','WriteMode','append','DelayTime',timestep);
+    end
+    %end image write
+end
+</pre>
+
+<hr>
+
+<img src="ball.gif" />
+
+<HR>
+Originally by
+<ADDRESS>
+<a href="/~goldwasser">Michael Goldwasser</a>
+</ADDRESS>
+
+<HR>
+
+</BODY>
+</HTML>
+

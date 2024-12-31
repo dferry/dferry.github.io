@@ -1,0 +1,754 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+<style>
+table.schedule td {
+	height: 4em;
+	overflow: visible;
+}
+
+.due {
+        background-color:yellow;
+}
+</style>
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSCI 2400 - ECE 3217 - Computer Architecture</title></head>
+
+<body><h2 style="text-align: center;"><img alt="SLU logo" src="http://cs.slu.edu/~dferry/SLU_logo_horz.png" style="height:5em"><br></h2><h2 style="text-align: center;">CSCI 2400 - Computer Architecture <br>
+ECE 3217 - Computer Architecture and Organization <br>
+
+</h2><h2 style="text-align: center;">Fall 2017</h2>
+
+<table style="width: 100%; text-align: left;" border="0" cellpadding="2" cellspacing="2"> <tbody> <tr>
+    <td style="vertical-align: top; font-weight: bold; width: 163px;">Instructor</td> 
+    <td style="vertical-align: top; width: 1019px;"><span style="font-family: monospace;"><a href="mailto:david.ferry@slu.edu">David Ferry</a>,  <a href="http://cs.slu.edu/~dferry/">Homepage</a></span></td> 
+</tr>
+
+<tr>
+    <td style="vertical-align: top; font-weight: bold; width: 163px;">Course Web Site</td> 
+    <td style="vertical-align: top; width: 1019px;"><span style="font-family: monospace;"><a href="http://cs.slu.edu/~dferry/courses/csci2400">http://cs.slu.edu/~dferry/courses/csci2400/</a></span></td>
+</tr>
+
+<tr>
+    <td style="vertical-align: top; font-weight: bold; width: 163px;">Course meeting times</td> 
+    <td style="vertical-align: top; width: 1019px;">Monday, Wednesday, &amp; Friday from 10:00 - 10:50, Ritter Hall Rm. 115</td> 
+</tr> 
+
+<tr>
+    <td style="vertical-align: top; width: 163px;"><span style="font-weight: bold;">Midterm exams</span><br> </td> 
+    <td style="vertical-align: top; width: 1019px;">Oct. 20, Nov. 17, normal class time<br> </td>
+</tr> 
+
+<tr>
+    <td style="vertical-align: top; width: 163px;"><span style="font-weight: bold;">Final exam</span><br> </td> 
+    <td style="vertical-align: top; width: 1019px;">Dec. 18th, 12:00PM - 1:50PM<br> </td>
+</tr> 
+
+<tr>
+    <td style="vertical-align: top; font-weight: bold; width: 163px;">Office hours</td>
+    <td style="vertical-align: top; width: 1019px;">See my <a href="/~dferry/schedule.html">schedule</a></td> 
+</tr> 
+
+<!--
+<tr>
+    <td style="vertical-align: top; font-weight: bold; width: 163px;">Prerequisites</td>
+    <td style="vertical-align: top; width: 1019px;">CSE 422S (Operating Systems) and C/C++ programming experience</td> </tr> 
+-->
+
+<!--
+<tr> 
+    <td style="vertical-align: top; width: 163px;">
+<span style="font-weight: bold;">TA</span><br> </td> 
+    <td style="vertical-align: top; font-weight: bold; width: 1019px;"><span style="font-weight: normal;">Benny Hill (bah2 AT cse.wustl.edu)</span><br style="font-weight: normal;"><span style="font-weight: normal;">Office Hours: Tu, Th 2pm-3pm</span> </td> </tr> </tbody> 
+-->
+</table>
+
+<hr style="width: 100%; height: 2px;">
+
+<font size=+2><strong>Contents</strong></font>
+<ol>
+  <li><a href="#Course Description">Course Description</a>
+  <li><a href="#Acknowledgements">Acknowledgements</a>
+  <li><a href="#Prerequisites">Prerequisites</a>
+  <li><a href="#Assignments">Assignments</a>
+  <li><a href="#Schedule">Course Schedule</a>
+  <li><a href="#Textbooks">Textbooks and Other Resources</a>
+  <li><a href="#Grading">Grading</a>
+  <li><a href="#Links">Links</a>
+  <li><a href="#Academic Honesty">Academic Honesty</a>
+  <li><a href="#Academic Support">Academic Support</a>
+  <li><a href="#Disability Services">Disability Services</a>
+  <li><a href="#Title IX Statement">Title IX Statement</a>
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Course Description">Course Description</a></h3>
+
+<p>Computers are designed to perform useful
+work by executing software, and users of computer systems typically think of
+computer operation in terms of software and source code. However, computers
+are physical artifacts and software ultimately executes on hardware. The 
+purpose of this course is to show how high level programs are achieved in
+hardware, and how modern computer systems are designed in order to
+facilitate efficient execution.</p> 
+
+<p>
+The purpose of this course is for each student to learn:
+<ul>
+	<li>How data is represented in computer hardware
+	<li>How processors operate on data
+	<li>How programs execute on computer hardware
+	<li>x86 processor assembly language
+	<li>Basic organization and operation of modern processors
+</ul>
+</p>
+
+<p>
+Topical Outline:
+<ul>
+  <li>Understand how to represent numbers in binary, decimal, octal, hexadecimal, and arbitrary-base number systems, as well as how to convert between them
+  <li>Be able to add, subtract, multiply, and divide in arbitrary number systems by hand
+  <li>Understand signed and unsigned (two's complement) integer representations
+  <li>Be able to perform the above arithmetic operations as well as bitwise operations, shifts, and modulus operations on signed and unsigned integer representations by hand
+  <li>Understand IEEE floating point representation, and the limits of floating point representation
+  <li>Be able to convert between decimal and floating point by hand
+  <li>Be able to perform arithmetic operations on floating point numbers by hand
+  <li>Be able to contrast floating point and fixed point representations
+  <li>Understand the compilation and linking process, and identify the intermediate build products
+  <li>Be able to write basic C programs
+  <li>Achieve basic proficiency in x86 and x86-64 assembly programming
+  <li>Understand the components and organization of sequential processors
+  <li>Understand the components and organization of pipelined processors
+  <li>Understand the benefits and hazards associated with pipelined processing
+  <li>Be able to fill out a pipeline cycle stage diagram for a given sequence of instructions
+  <li>Understand how caches improve memory system performance as well as cache system characteristics
+  <li>Be able to trace cache activity and identify the contents of a cache after a sequence of operations
+</ul>
+</p>
+
+<p>
+Learning Outcomes:
+<ul>
+  <li>Perform arithmetic in arbitrary number systems (binary, octal, hex, etc.)
+  <li>Utilize signed integer, unsigned integer, and floating point representations as appropriate
+  <li>Understand how software executes on the processor hardware so as to be able to write programs in both assembly and a higher-level language, and convert between the two
+  <li>Identify active processor components in the execution of an instruction and discern the intermediate values produced in a processor
+  <li>Contrast sequential and pipelined processor execution, associated benefits and hazards, and fill out a pipeline cycle stage diagram
+  <li>Understand the organization and tradeoffs in the various levels of the memory heirarchy, and be able to demonstrate the workings of a processor cache
+</ul>
+</p>
+
+<p>Catalog Description: <i>Introduction to the organization and architecture of computer systems, including aspects of digital logic, data representation, assembly level organization, memory systems and processor architectures.</i></p>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Acknowledgements">Acknowledgements</a></h3>
+<p>This course owes a debt of gratitude to Prof. Jason Fritts, who designed the original format.
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Prerequisites">Prerequisites</a></h3>
+<ul>
+  <li>CSCI 1300 - Introduction to Object-Oriented Programming
+  <li>MATH 1660 - Discrete Mathematics
+</ul>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Textbooks">Textbook</a></h3>
+
+<p>Required course textbook: <i>Computer Systems: A Programmer's Perspective, 3rd Ed.</i> by 
+Bryant and O'Hallaron, Pearson, 2016</p>
+
+<p><a href="http://csapp.cs.cmu.edu/" target="new">(book's website)</a><br/>
+<p><a href="http://csapp.cs.cmu.edu/3e/code.html" target="new">(code examples)</a><br/>
+<p><a href="http://csapp.cs.cmu.edu/3e/errata.html" target="new">(book errata)</a></p>
+
+
+<p>Supporting: <a href="http://en.wikibooks.org/wiki/C_Programming"><i>C Programming</i></a> (a free online book providing a useful C reference)</p>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Assignments">Assignments</a></h3>
+
+<p>There will be approximately 7-9 assignments for this course. These are a mix of written and programming assignments whose purpose is to apply course concepts.</p>
+
+<p>Assignments submitted on time will be given full credit. Assignments submitted up to 24 hours late will be given a <b>ten percent penalty</b>. Assignments submitted between 24 hours and 48 hours late will be given a <b>twenty percent penalty</b>. Assignments submitted after 48 hours late will not be given credit, except in the case of extenuating circumstances pre-approved by the instructor.</p>
+
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Schedule">Course Schedule</a></h3>
+
+A tentative course schedule is below. <b>Note that this schedule may change
+over the course of the semester.</b> When changes occur, students will be 
+given enough advance notice so that readings and 
+other preparation may be accommodated. 
+
+<center><table class="schedule" border="4" style="width:100%">
+
+
+<tr>
+	<th style="width:15%">Date</th>
+	<th>Topic</th>
+	<th>Readings</th>
+	<th>Notes</th>
+</tr>
+
+<tr>
+	<th>Aug 28</th>
+	<th><a href="http://cs.slu.edu/~dferry/courses/csci2400/slides/csci2400_intro.pptx">Course Intro</a> <a href="http://cs.slu.edu/~dferry/courses/csci2400/slides/csci2400_intro.pdf">(PDF)</a></th>
+	<th>CSAPP Ch. 1</th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Aug 30</th>
+	<!--<th>Topic: Data Representation</th>-->
+ 	<th><a href="http://cs.slu.edu/~dferry/courses/csci2400/slides/csci2400_data_repr.pptx">Data Representation: bits, bytes, ints, text, pointers</a> <a href="http://cs.slu.edu/~dferry/courses/csci2400/slides/csci2400_data_repr.pdf">(PDF)</a><br> 
+<!-- 	Topic: Bits. Bytes. Binary, Octal, and Hexadecimal number systems.</th> -->
+	<th>CSAPP Ch. 1<br>
+	<a href="https://en.wikipedia.org/wiki/List_of_monochrome_and_RGB_palettes">Bit-Depth and Color Representation</a></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Sep 1</th>
+	<th>Topic: Unsigned integer representation</th>
+	<th>CSAPP Ch. 1</th>
+	<th></th>
+</tr>
+
+<tr style="background-color:lawngreen">
+	<th>Sep 4</th>
+	<th>Labor Day - No class</th>
+	<th></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Sep 6</th>
+	<th>Topic: Signed integer representation</th>
+	<th>CSAPP Sec. 2.1-2.4</th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Sep 8</th>
+	<th>Topic: Text data and pointers</th>
+	<th>CSAPP Sec. 2.1-2.4<br>
+<a href="http://www.ascii-code.com/">Ascii Table</a><br>
+	<a href="https://unicode-table.com/en/">Unicode Table</a><br></th>
+ 	<th><a href="assignments/hw01.html">Hwk #1 Assigned</a></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Sep 11</th>
+<!--	<th>Topic: Bitwise and Arithmetic Operations</th>-->
+ 	<th><a href="slides/csci2400_bitwise_arith_operations.pptx">Topic: Bitwise and Arithmetic Operations</a> <a href="slides/csci2400_bitwise_arith_operations.pdf">(PDF)</a></th> 
+	<th>CSAPP Sec. 2.2-2.4<!--<br>
+	<a href="programs/int_to_u.c">int_to_u.c</a><br>
+	<a href="programs/u_to_int.c">u_to_int.c</a><br>
+	<a href="programs/printchar.c">printchar.c</a><br>
+	<a href="programs/pointers.c">pointers.c</a>--></th>
+
+	<th></th>
+</tr>
+
+<tr>
+	<th>Sep 13</th>
+	<th>Topic: Complements, Addition, Subtraction</th>
+	<th>CSAPP Sec. 2.2-2.4</th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Sep 15</th>
+<!--	<th>Topic: Multiplication, Division<br>
+	Topic: Floating Point</th>-->
+ 	<th>Topic: Multiplication, Division<br> 
+ 	<a href="slides/csci2400_floating_point.pptx">Topic: Floating Point</a> <a href="slides/csci2400_floating_point.pdf">(PDF)</a></th>
+	<th>CSAPP Sec. 2.2-2.4</th>
+<!--	<th style="background-color:orange">Hwk #1 Due</th> -->
+	<th></th>
+</tr>
+
+<tr>
+	<th>Sep 18</th>
+	<th>Topic: Floating Point Examples</th>
+	<th>CSAPP Sec. 2.3-2.4</th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Sep 20</th>
+	<th>Topic: IEEE Floating Point</th>
+	<th>CSAPP Sec. 2.3-2.4</th>
+	<th class="due">Homework #1 Due</th>
+</tr>
+
+<tr>
+	<th>Sep 22</th>
+	<th>Topic: Floating Point Add, Multiply, Cast</th>
+	<th>CSAPP Sec. 2.3-2.4</th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Sep 25</th>
+ 	<th><a href="slides/csci_C.pptx">Topic: Intro to Linux and C</a> <a href="slides/csci_C.pdf">(PDF)</a><br> 
+	<th>No Readings</th>
+ 	<th><a href="assignments/hw02.html">Hwk #2 Assigned</a></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Sep 27</th>
+<!--	<th>Topic: Intro to Linux and C</th>-->
+<!--	<th>Intro to Linux and C</th>-->
+ <th><a href="in_class/c_programs.html">C Programming Exercises</a></th> 
+<!--	<th><a href="programs/hello.c">hello.c</a><br>
+<a href="programs/int_to_u.c">int_to_u.c</a><br>
+<a href="programs/u_to_int.c">u_to_int.c</a><br>
+<a href="programs/printchar.c">printchar.c</a></th>-->
+	<th></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Sep 29</th>
+	<th>Continuing Intro to C</th>
+	<th><!--<a href="programs/strings_arrays.c">strings_arrays.c</a><br>
+<a href="programs/pointers.c">pointers.c</a>--></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Oct 2</th>
+	<th>Continuing Intro to C</th>
+	<th><!--<a href="programs/factorial.c">factorial.c</a><br>
+<a href="programs/factorial2.c">factorial2.c</a><br>
+<a href="programs/primes.c">primes.c</a><br>
+<a href="programs/primes2.c">primes2.c</a><br>
+<a href="programs/primes3.c">primes3.c</a><br>
+<a href="programs/primes4.c">primes4.c</a><br>
+<a href="programs/fibonacci.c">fibonacii.c</a>--></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Oct 4</th>
+<!--	<th>Topic: Machine-Level Programming</th>-->
+ 	<th><a href="slides/csci2400_machine_prog.pptx">Topic: Machine-Level Programming</a> <a href="slides/csci2400_machine_prog.pdf">(PDF)</a></th>
+	<th>CSAPP Sec. 3.1-3.5</th>
+ 	<th>Hwk #2 Due</th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Oct 6</th>
+	<th>Topic: History of x86 ISA</th>
+	<th>CSAPP Sec. 3.1-3.5</th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Oct 9</th>
+	<th>Topic: Turning C into Object Code / Assembly Example</th>
+	<th>CSAPP Sec. 3.1-3.5</th>
+<!-- 	<th><a href="in_class/c_programs.html">C Programs Due</a></th> -->
+ 	<th><a href="assignments/hw03.html">Hwk #3 Assigned</a></th> 
+</tr>
+
+<tr>
+	<th>Oct 11</th>
+	<th>Topic: Assembly Instructions, Registers, Operands, <tt>mov</tt> and <tt>swap</tt> example</th>
+	<th>CSAPP Sec. 3.1-3.5</th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Oct 13</th>
+	<th><!--Program: <a href="asm/basic.s">basic.s</a>-->Assembly Demo Day 1</th>
+	<th>CSAPP Sec. 3.1-3.5</th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Oct 16</th>
+	<th>Assembly Demo Day 2</th>
+	<th></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Oct 18</th>
+	<th>Exam #1 Review</th>
+	<th></th>
+ 	<th>Hwk #3 Due</th>
+	<th></th>
+</tr>
+
+<tr style="background-color:yellow">
+	<th>Oct 20</th>
+	<th>Exam #1</th>
+	<th></th>
+	<th></th>
+</tr>
+
+<tr style="background-color:lawngreen">
+	<th>Oct 23</th>
+	<th>No class - Fall Break</th>
+	<th></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Oct 25</th>
+	<th>Exam Discussion</th>
+	<th>CSAPP Sec. 3.4-3.6</th>
+	<th><!--<a href="assignments/2400_midterm_reinforcement.docx">Midterm Reinforcement</a>--></th>
+</tr>
+
+<tr>
+	<th>Oct 27</th>
+<!--	<th>Assembly Programming 1</th>-->
+ 	<th>Assembly Programming 1: <a href="in_class/01_hello_world.html">Hello, world!</a></th> 
+	<th>CSAPP Sec. 3.4-3.6</th>
+ 	<th><a href="assignments/hw04.html">Hwk #4 Assigned</a></th> 
+<!--	<th></th>-->
+</tr>
+
+<tr>
+	<th>Oct 30</th>
+<!--	<th>Topic: Machine Programming<br>
+	Assembly Programming 2</th>-->
+ 	<th><a href="slides/csci2400_machine_control.pptx">Topic: Machine Programming 2</a> (<a href="slides/csci2400_machine_control.pdf">PDF</a>)<br> 
+ Assembly Programming 2: <a href="in_class/02_addressing.html">Addressing</a></th>
+	<th>CSAPP Sec. 3.4-3.6</th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Nov 1</th>
+<!--	<th>Assembly Programming 3</th> -->
+ 	<th>Assembly Programming 3: <a href="in_class/03_arithmetic.html">Arithmetic</a></th>
+	<th>CSAPP Sec. 3.6-3.7</th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Nov 3</th>
+<!--	<th>Assembly Programming 4</th>-->
+ 	<th>Assembly Programming 4: <a href="in_class/04_flags.html">Flags</a></th> 
+	<th>CSAPP Sec. 3.6-3.7</th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Nov 6</th>
+	<!--	<th>Assembly Programming 5</th>-->
+ 	<th>Assembly Programming 5: <a href="in_class/05_flow.html">Control Flow</a></th>
+	<th>CSAPP Sec. 3.6-3.7</th>
+ 	<th>Hwk #4 Due</th> 
+<!--	<th></th>-->
+</tr>
+
+<tr>
+	<th>Nov 8</th>
+<!--	<th>Assembly Programming 6</th>-->
+ 	<th>Assembly Programming 6: <a href="in_class/06_array.html">Array Search</a></th>
+	<th>CSAPP Sec. 3.7-3.8</th>
+<!--	<th></th>-->
+ 	<th><a href="assignments/hw05.html">Hwk #5 Assigned</a></th> 
+<!--	<th>Hwk #5 Assigned</th>  -->
+</tr>
+
+<tr>
+	<th>Nov 10</th>
+	<th>In-Class Programming</th>
+	<th>CSAPP Sec. 3.7-3.8</th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Nov 13</th>
+	<th>In-Class Programming</th>
+	<th>CSAPP Sec. 3.7-3.8</th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Nov 15</th>
+	<th>Exam Review</th>
+	<th>CSAPP Sec. 3.7-3.8</th>
+	<th></th>
+</tr>
+
+<tr style="background-color:yellow">
+	<th>Nov 17</th>
+	<th>Exam #2</th>
+	<th></th>
+	<th>Hwk #5 Due</th>
+</tr>
+
+<tr>
+	<th>Nov 20</th>
+<!--	<th>Topic: Intro to the Y86 ISA</th> -->
+ 	<th><a href="slides/csci2400_intro_Y86.pptx">Topic: Intro to the Y86 ISA</a> - an Instruction Set to Implement</th>
+	<th>CSAPP Sec. 4.1-4.3</th>
+	<th></th>
+</tr>
+
+<tr style="background-color:lawngreen">
+	<th>Nov 22</th>
+	<th>No class - Thanksgiving Break</th>
+	<th></th>
+	<th></th>
+</tr>
+
+<tr style="background-color:lawngreen">
+	<th>Nov 24</th>
+	<th>No class - Thanksgiving Break</th>
+	<th></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Nov 27</th>
+<!--	<th>Topic: Sequential Processor Architecture</th>-->
+	<th><a href="slides/csci2400-seq-arch.pptx">Topic: Sequential Processor Architecture</a> (<a href="slides/csci2400-seq-arch.pdf">PDF</a>)</th>
+	<th>CSAPP Sec. 4.1-4.3</th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Nov 29</th>
+	<th>Continuing Sequential Architecture</th>
+	<th>CSAPP Sec. 4.1-4.3</th>
+ 	<th><a href="assignments/hw06.html">Hwk #6 Assigned</a></th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Dec 1</th>
+<!--	<th>Topic: Pipelined Processor Architecture</th>-->
+ 	<th><a href="slides/csci2400-pipeline-arch.pptx">Topic: Pipelined Processor Architecture</a> (<a href="slides/csci2400-pipeline-arch.pdf">PDF</a>)</th>
+	<th>CSAPP Sec. 4.3-4.5</th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Dec 4</th>
+	<th>Continuing Pipelined Architecture</th>
+	<th>CSAPP Sec. 4.3-4.5</th>
+	<th></th>
+</tr>
+
+<tr>
+	<th>Dec 6</th>
+	<th>Pipeline Hazards</th>
+	<th>CSAPP Sec. 4.3-4.5</th>
+	<th>Hwk #6 Due</th>
+</tr>
+
+<tr>
+	<th>Dec 8</th>
+	<th>Topic: Cache Organization</th>
+<!-- 	<th><a href="slides/csci2400_cache.pptx">Topic: Cache Organization</a></th> -->
+	<th>CSAPP Sec. 4.5, 6.2-6.4, 9.4, and 9.6</th>
+<!-- 	<th>HW #6 Due -->
+<!-- 	<br><a href="assignments/hw07.html">Hwk #7 Assigned</a></th> -->
+	<th></th>
+</tr>
+
+<tr>
+	<th>Dec 11</th>
+	<th>Topic: Cache Organization</th>
+	<th>CSAPP Sec. 4.5, 6.2-6.4, 9.4, and 9.6</th>
+	<th></th>
+
+</tr>
+
+<tr style="background-color:yellow">
+	<th>Dec 18</th>
+	<th>Final Exam - 12:00 to 1:50</th>
+	<th></th>
+<!-- 	<th>Hwk #7 Due</th> -->
+	<th></th>
+</tr>
+
+</table></center>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Grading">Grading</a></h3>
+
+<p>Your grade will be determined as follows:</p>
+
+<table border="3">
+<tr>
+	<th>Activity</th>
+	<th>Grade Percentage</th>
+</tr>
+<tr>
+	<td>Assignments</td>
+	<td>45%</td>
+</tr>
+<tr>
+	<td>Participation</td>
+	<td>5% each</td>
+</tr>
+<tr>
+	<td>Midterm Exams</td>
+	<td>15% each</td>
+</tr>
+<tr>
+	<td>Final</td>
+	<td>20%</td>
+</tr>
+
+</table>
+
+<p>Grading is done on a straight scale (uncurved). The following
+scores are guaranteed. The grading scale may be curved upwards (in your favor)
+at the discretion of the instructor. 
+
+<ul>
+<li> 93% guarantees an A
+<li> 90% guarantees an A-
+<li> 87% guarantees a B+
+<li> 83% guarantees a B
+<li> 80% guarantees a B-
+<li> 77% guarantees a C+
+<li> 73% guarantees a C
+<li> 70% guarantees a C-
+<li> 60% guarantees a D
+</ul>
+
+</p>
+
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Links">Links / Resources</a></h3>
+
+<dl>
+<!--
+      <p>
+        <dt><b>MIPS Processors:</b></dt>
+        <dd><a href="http://www.mips.com/" target="new">MIPS Technologies</a></dd>
+        <dd><a href="http://www.mips.com/products/architectures/mips32/" target="new">MIPS-32 Architecture</a></dd>
+      </p>
+
+      <p>
+        <dt><b>Atmel AVR Introduction and Tutorials:</b></dt>
+        <dd><a href="./AVR/AVR Introduction.pdf" target="new">Introduction to Atmel AVR Microcontrollers</a></dd>
+        <dd><a href="./AVR/AVR Novice Development Guide.pdf" target="new">AVR Novice Development Guide</a></dd>
+        <dd><a href="./AVR/Newbies guide to AVR development.pdf" target="new">Newbies Guide to AVR Development</a></dd>
+        <dd><a href="./AVR/Microprocessor Report 1997 - Atmel AVR.pdf" target="new">Atmel AVR Overview in 1997 Microprocessor Report</a></dd>
+      </p>
+
+      <p>
+        <dt><b>Atmel AVR Instruction Set and Assembly Guides:</b></dt>
+        <dd><a href="./AVR/AVR Instruction Set.pdf" target="new">AVR Instruction Set</a></dd>
+        <dd><a href="http://www.avr-asm-tutorial.net/avr_en/beginner/COMMANDS.html">List of AVR Instructions (sorted by function)</a> by Gerhard Schmidt &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>(Note:  includes most, but not all, instructions)</i></dd>
+        <dd><a href="./AVR/beginner_en.pdf" target="new">Beginners Introduction to the Assembly Language of ATMEL-AVR-Microprocessors</a> by Gerhard Schmidt</dd>
+        <dd><a href="./AVR/AVR Assembler User Guide.pdf" target="new">AVR Assembler User Guide</a></dd>
+      </p>
+
+      <p>
+        <dt><b>Atmel AVR Datasheets:</b></dt>
+        <dd><a href="./AVR/ATmega32A Datasheet.pdf" target="new">ATmega32A Datasheet (short version)</a></dd>
+        <dd><a href="./AVR/ATmega32A Datasheet - Long version.pdf" target="new">ATmega32A Datasheet (long version)</a></dd>
+        <dd><a href="./AVR/AVR STK500 User Guide.pdf" target="new">STK500 User Guide</a></dd>
+      </p>
+-->
+
+      <p>
+        <dt><b>Data Representation:</b></dt>
+        <dd><a href="http://en.wikipedia.org/wiki/ASCII" target="new">ASCII info on Wikipedia</a> &nbsp;&nbsp; <a href="http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters" target="new">(table of printable characters)</a></dd>
+        <dd><a href="http://www.jimprice.com/jim-asc.shtml" target="new">ASCII Table at JimPrice.com</a></dd>
+        <dd><i>(An ASCII table is available in the textbook, though it's not as easy to read)</i></dd>
+      </p>
+
+      <p>
+        <dt><b>Digital Logic:</b></dt>
+	<dd><a href="http://www.softronix.com/logic.html" target="new">MultiMedia Logic digital logic simulator</a></dd>
+        <dd><a href="http://www.play-hookey.com/digital/" target="new">Intro to Digital Logic at www.play-hookey.com</a></dd>
+      </p>
+
+      <p>
+        <dt><b>Intel x86 Assembly:</b></dt>
+        <dd><a href="./slides/template.s">template.s</a> -- a simple .s assembly file you can use as a template for further development</dd>
+        <dd><a href="./slides/tutorial.html" target="new">x86 Assembly and GDB Debugger Tutorial</a></dd>
+      </p>
+
+      <p>
+        <dt><b>Linux/Unix links:</b></dt>
+        <dd><a href="./slides/davechild_linux-command-line.pdf" target="new">Linux Command Line Cheat Sheet</a> &nbsp; by Dave Child </dd>
+        <dd><a href="http://www.ee.surrey.ac.uk/Teaching/Unix/" target="new">Unix Tutorial for Beginners</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i>(great tutorial if you're new to Linux)</i></dd>
+      </p>
+
+      <p>
+        <dt><b><tt>vi</tt> Editor:</b></dt>
+        <dd><a href="http://www.lagmonster.org/docs/vi.html" target="new"><tt>vi</tt> Cheat Sheet</a></dd>
+      </p>
+
+      <p>
+        <dt><b>Assembly Programming Games! (no experience necessary)</b></dt>
+        <dd><a href="http://www.zachtronics.com/tis-100/" target="new">TIS-100</a></dd>
+        <dd><a href="http://www.zachtronics.com/shenzhen-io/" target="new">Shenzhen I/O</a></dd>
+      </p>
+<!--
+      <p>
+        <dt><b>Python Programming Environment:</b></dt>
+        <dd><a href="http://mathcs.slu.edu/~goldwasser/demos/python/" target="new">Prof. Goldwasser's Python simulator</a></dd>
+      </p>
+-->
+
+    </dl>
+
+
+<hr style="width: 100%; height: 2px;"><p>
+        <h3><a name="Academic Honesty">Academic Honesty</a></h3>
+<p>
+<i>Academic integrity is honest, truthful and responsible conduct in all academic endeavors.</i> The mission of Saint Louis University is "the pursuit of truth for the greater glory of God and for the service of humanity."  Accordingly, all acts of falsehood demean and compromise the corporate endeavors of teaching, research, health care, and community service via which SLU embodies its mission. The University strives to prepare students for lives of personal and professional integrity, and therefore regards all breaches of academic integrity as matters of serious concern.
+</p>
+<p>
+The governing University-level Academic Integrity Policy was adopted in Spring 2015, and can be accessed on the Provost's Office website <a href="http://www.slu.edu/Documents/provost/academic_affairs/University-wide%20Academic%20Integrity%20Policy%20FINAL%20%206-26-15.pdf">here</a>. The College of Arts and Sciences policies on academic honesty can be found <a href="http://www.slu.edu/college-of-arts-and-sciences-home/undergraduate-students/academic-honesty">here</a>.
+</p>
+<p>
+If you are ever in doubt whether a particular action is a violation of academic honesty, please ask first!
+</p>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Academic Support">Academic Support</a></h3>
+
+<p>In recognition that people learn in a variety of ways and that learning is influenced by multiple factors (e.g., prior experience, study skills, learning disability), resources to support student success are available on campus. The Student Success Center assists students with academic and career related services, is located in the Busch Student Center (Suite, 331) and the School of Nursing (Suite, 114). Students can visit www.slu.edu/success to learn more about: </p>
+
+<ul>
+<li>Course-level support (e.g., faculty member, departmental resources, etc.) by asking your course instructor.
+<li>University-level support (e.g., tutoring services, university writing services, disability services, academic coaching, career services, and/or facets of curriculum planning).
+</ul>
+
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Disability Services">Disability Services</a></h3>
+<p>
+Students with a documented disability who wish to request academic accommodations must contact Disability Services to discuss accommodation requests and eligibility requirements. Once successfully registered, the student also must notify the course instructor that they wish to access accommodations in the course.
+</p>
+<p>
+Please contact Disability Services, located within the Student Success Center, at Disability_services@slu.edu or 314.977.
+3484 to schedule an appointment. Confidentiality will be observed in all inquiries. Once approved, information about the student’s eligibility for academic accommodations will be shared with course instructors via email from Disability Services and viewed within Banner via the instructor’s course roster.
+</p>
+<p>
+Note: Students who do not have a documented disability but who think they may have one are encouraged to contact to Disability Services.
+</p>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Title IX Statement">Title IX Statement</a></h3>
+<p>
+Saint Louis University and its faculty are committed to supporting our students and seeking an environment that is free of bias, discrimination, and harassment. If you have encountered any form of sexual misconduct (e.g. sexual assault, sexual harassment, stalking, domestic or dating violence), we encourage you to report this to the University. If you speak with a faculty member about an incident of misconduct, that faculty member must notify SLU’s Title IX coordinator, Anna R. Kratky (DuBourg Hall, room 36; akratky@slu.edu; 314-977-3886) and share the basic facts of your experience with her. The Title IX coordinator will then be available to assist you in understanding all of your options and in connecting you with all possible resources on and off campus.
+</p>
+<p>
+If you wish to speak with a confidential source, you may contact the counselors at the University Counseling Center at 314-977-TALK. To view SLU’s sexual misconduct policy and for resources, please visit the following web addresses:
+<ul>
+<li><a href="http://www.slu.edu/general-counsel-home/office-of-institutional-equity-and-diversity/sexual-misconduct-policy">
+http://www.slu.edu/general-counsel-home/office-of-institutional-equity-and-diversity/sexual-misconduct-policy</a>
+<li><a href="http://www.slu.edu/here4you">http://www.slu.edu/here4you</a>
+</ul>

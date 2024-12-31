@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSCI 3500 - Operating Systems</title></head>
+
+<h2 style="text-align: center;">CSCI 3500: Studio 7<br></h2>
+<h2 style="text-align: center;">Pipes</h2>
+
+<hr style="width: 100%; height: 2px;">
+
+<p>Pipes are a basic but fundamental method of inter-process communication.
+They allow processes to communicate with each other as though they were
+reading and writing to a shared file, when in fact they're accessing a
+special mechanism provided by the operating system. Along with the system call
+<code>dup2()</code> they permit the seamless redirection of program input and
+output.</p>
+
+
+<p>In this studio, you will:</p>
+
+<ol>
+<li>Create a pipe using the <code>pipe()</code> system call
+<li>Redirect file streams usin the <code>dup2()</code> system call
+<li>Connect unrelated child processes through the use of pipes
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>
+<p>
+Please complete the required exercises below, as well as any optional
+enrichment exercises that you wish to complete.</p> 
+
+<p>
+As you work through these exercises, please record your answers in a text
+file. When finished, submit your work via the Git repository.</p> 
+
+<!--by sending your text file and
+source code to <strong>dferry_submit@slu.edu</strong>
+with the phrase <strong>
+Pipes
+</strong> in the subject line.</p> 
+-->
+
+
+<p><strong> Make sure that the name of each person who worked on these exercises
+is listed in the first answer, and make sure you number each of your responses
+so it is easy to match your responses with each exercise.</strong></p>
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Required Exercises</h3></p>
+
+<ol>
+<p><li>As the answer to the first exercise, list the names of the people who
+worked together on this studio.</p>
+
+<p>The <b>real</b> power of pipes lies in their ability to connect unrelated
+processes, <i>even if the original programmers didn't intend that</i>! In order
+to explore pipes today, we will need two simple programs.</p>
+
+<p>Program 1: Write a short program that:
+<ol>
+<li>Prints a string to standard output and then returns.
+</ol></p>
+<p><i>Hint! This was the goal of Studio 1!</i></p>
+
+<p>Program 2: Write a short program that:
+<ol>
+<li>Inside an infinite loop:
+<li>Gets an input string from standard input using the function <code>fgets()</code>
+<li>If the return value of <code>fgets()</code> is NULL, then break
+<li>Prints the user input back to the console with <code>printf("Program 2 got: %s\n", input)</code>
+</ol></p>
+<p><i>Hint! This was also the starting point for Studio 6! (minus the infinte loop)</i></p>
+
+<p>When you execute program 1, it should print a string and return. When you 
+execute program 2, it should repeatedly receive user input and print the user
+input back to the console until you enter the end of file character (CTRL-D). 
+Once finished, copy and paste these programs as the answer to this 
+question.</p>
+
+<p><li>Now, create a new program called <code>pipe.c</code>. This program
+should <code>fork()</code> and <code>execvp()</code> two children. The first
+child should <code>execvp()</code> your Program 1, and the second child should
+<code>execvp()</code> your Program 2. Then the parent program should wait on
+both children with <code>waitpid()</code>.</p>
+
+<p><i>Hint:</i> suppose your Program 1 is called <code>print</code>, the code
+to call <code>execvp()</code> correctly follows. Make sure you understand each
+part!</p>
+
+<p><code>char* cmd = "./print";<br>
+char* myargv[] = {"print", '\0'};<br>
+int ret = execvp( cmd, myargv );<br>
+if( ret == -1 ) perror("Error exec'ing print");</code><p>
+
+<p>If your code is working correctly, then your program <code>pipe.c</code>
+will never return. This is because the input program, Program 2, cannot
+recieve any input and will never terminate. You can kill these programs with
+CTRL-C. We will fix this problem eventually.</p>
+
+<p>Copy and paste your program output as the answer to this exercise.</p>
+
+
+<p><li>Now we will create a pipe to connect the two child processes. In the
+parent, before the first call to <code>fork()</code>, make a call to
+<code>pipe()</code>. This function accepts a single argument of type
+<code>int fd[2]</code>.</p>
+
+<p>Look at the manual page at <code>man 2 pipe</code>. Which element of
+<code>fd[2]</code> contains the read end of the pipe after <code>pipe()</code>
+successfully returns? Which elemnt contains the write end?</p>
+
+
+<p><li>Our goal now is to write the output of Program 1 into the input of
+Program 2. However, we don't
+want to have to modify Program 1 or Program 2. The solution is to
+<i>redirect</i> the <code>stdout</code> stream of Program 1 into the
+write end of the pipe, and then redirect the read end of the pipe into the
+<code>stdin</code> stream of Program 2. To do this we will use the system call
+<code>dup2()</code>.</p>
+
+<p>Open the manual page for this function with <code>man 2 dup2</code>. 
+Unfortunately it can be confusing. Let's rephrase our objective in the language
+of this manual page. We want to... 
+
+<ol>
+<li><i>close <code>STDOUT_FILENO</code> in Program 1, replacing it with the write end of the pipe</i>
+<li><i>close <code>STDIN_FILENO</code> in Program 2, replacing it with the read end of the pipe</i>
+</ol></p>
+
+<p>The function <code>dup2()</code> takes two arguments. Which argument is <i>closed</i>
+when the function succeeds?</p>
+
+<p><li>Now use the <code>dup2()</code> function in the manner described in the
+previous exercise. Insert the call to <code>dup2()</code> after 
+forking the first child, but before executing your Program 1. Replace the
+<code>STDOUT_FILENO</code> descriptor with the write end of the pipe.
+Similarly, replace 
+<code>STDIN_FILENO</code> with the read end of the pipe in your second child.
+Copy and paste your <code>dup2()</code> code.</p>
+
+
+
+<p><li>Now execute your <code>pipe.c</code> program. The output of your
+Program 1 should be read in by your Program 2, and then re-printed with the
+Program 2 preface. For example, your output might read:</p>
+
+<p><code>Program 2 got: Program 1 output line</code></p>
+
+<p>Note that your program still shouldn't terminate. This is because your
+parent program (<code>pipe.c</code>) is <code>waitpid()</code>-ing on the
+second child, and the second child still does not terminate. Use the
+CTRL-C shortcut to kill your processes.
+
+<p>Copy and paste your program output as the answer to this exercise.</p>
+
+<p><li>The reason your Program 2 does not terminate is because it will
+continually check the read end of your pipe for more data as long as the write
+end of the pipe is still open. Once all of the write ends of the pipe have
+been closed the pipe will deliver an end-of-file notification, letting the
+reader(s) know that no further data will be coming.</p>
+
+<p>Use the <code>close()</code> system call to tidy up your access to the
+pipe. Remember that three processes now have access: the parent and the
+two children. Your parent is not reading or writing the pipe, so it should
+close both the read and write ends. Your Program 1 child does not need to
+read from the pipe, so it should close the read end. Your Program 2 child
+does not need to write to the pipe, so it should close the write end.</p>
+
+<p>Once the above steps are complete, the <code>pipe.c</code> should execute
+and then terminate correctly. Copy and paste your output.</p>
+
+<p><li>If you think about it, you just achieved a pretty impressive feat.
+You just shared data between two programs who had no idea that each other
+existed. In fact, your programs have no idea where their data comes from, 
+and no idea where it goes. They simply read and write to file streams,
+and the operating system can redirect these file streams at will. For all they
+know they could be acting on an actual file, a virtual file, a network
+socket, or any other suitable I/O channel, and the operating system 
+seamlessly does all the heavy lifting in the background. Give two advantages
+to this stream ambiguity.</p>
+
+
+</ol>
+
+<p><h3>Optional Enrichment Exercises</h3></p>
+<ol>
+<li>No optional exercises
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>

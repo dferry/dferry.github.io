@@ -1,0 +1,597 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+  <HEAD>
+    <TITLE>Assignment #7:  Pipelining and Hazards, and Cache and Memory Hierarchies
+    </TITLE>
+  </HEAD>
+
+  <BODY>
+
+    <CENTER>
+      <H2>Assignment #7:  Pipelining and Hazards, and Cache and Memory Hierarchies</H2>
+
+    </CENTER>
+
+
+<h3>Contents:</h3>
+<UL>
+  <LI>
+      <a href="#overview">Overview</a>
+  </LI>
+  <LI>
+      <a href="#practice">Practice Problems</a>
+  </LI>
+  <LI>
+      <a href="#submit">Problems to be Submitted</a>
+  </LI>
+<!--
+  <LI>
+      <a href="#extra">Extra Credit</a>
+  </LI>
+-->
+</UL>
+
+<HR>
+
+<a name="overview"><h3>Overview</h3></a>
+
+<P>
+<b>Topics:</b>  Pipelining and Data Dependencies and Hazards, Memory Hierarchies, Average Memory Access Time, and Cache Organization
+<br>
+<b>Related Reading:</b>  Sections 4.5, 6.2-6.4, and class notes 
+</P>
+
+<HR>
+
+<a name="practice"><h3>Practice Problems</h3></a>
+
+<p>
+Practice problems from the textbook <i>(answers are at the end of the chapter)</i>:
+<ul>
+<!--
+  <li>
+    Practice Problem 9.4 on p. 798, parts (a)-(c), but ignore parts relating to TLB (TLBT, TLBI).
+  </li>
+-->
+  <li>
+    Practice Problem 6.9 on pp. 616.
+  </li>
+  <li>
+    Practice Problems 6.10 and 6.11 on p. 624.
+  </li>
+  <li>
+    Practice Problems 6.12 - 6.16 on pp. 628-630.
+  </li>
+</ul>
+
+<hr>
+
+<a name="submit"><h3>Problems to be Submitted (25 points)</h3></a>
+
+<P>
+When you turn in your assignment, you must include a signed <a href="./cover-sheet.html">cover sheet</a> (<a href="./cover-sheet.pdf">PDF version</a>) with your assignment (<i>you're assignment will not be graded without a completed cover sheet</i>).
+
+<p>
+You are allowed to submit your assignment via email, but if you choose to do so, you must bring a hardcopy of your assignment along with a completed cover sheet to the instructor at the next class.  (<i>Note:  Do not email the instructor any .zip file attachments, as SLU's email may not accept these emails; i.e. the instructor may not receive your email.</i>)
+
+<OL type=1> 
+  <!-- 
+  <LI> <b>(3 points)</b>
+    <P>
+      Using the same example from Section 9.6.4 for mapping 64-byte <i>(2<sup>6</sup>)</i> pages from a 14-bit virtual address space to 12-bit physical memory, 
+    </P>
+
+    <P>
+      <img src = "./14bitV_and_12bitP_addressing.PNG" height="200">
+    </P>
+
+    <P>
+      The table from Fig. 9.20(b) on p. 796 shows a potential mapping of virtual pages (VPN) to physical pages (PPN).
+    </P>
+
+    <P>
+      <img src = "./VPN_to_PPN_table.PNG" height="230">
+    </P>
+
+    <P>
+      Given this table, for the following virtual addresses, determine their mapping and indicate either the corresponding physical address or <b>page fault</b> <i>(if the page is not in memory)</i>:
+      <ol type=a>
+        <LI>0x02AD</LI>
+        <LI>0x015A</LI>
+        <LI>0x011E</LI>
+      </ol>
+    </P>
+  </LI> -->
+
+  <LI> <b>(6 points)</b>
+<pre>
+The following table gives the parameters for a number of different caches. For each 
+cache, fill in the missing fields in the table. Recall that m is the number of
+physical address bits, C is the cache size (number of data bytes), B is the block size 
+in bytes, E is the associativity, S is the number of cache sets, t is the number of
+tag bits, s is the number of set index bits, and b is the number of block offset bits.
+
+Cache  m   C     B   E          S              t              s              b
+
+1.     32  1024  4   4    _____________  _____________  _____________  _____________
+
+2.     32  1024  4   256  _____________  _____________  _____________  _____________
+
+3.     32  1024  8   1    _____________  _____________  _____________  _____________
+
+4.     32  1024  8   128  _____________  _____________  _____________  _____________
+
+5.     32  1024  32  1    _____________  _____________  _____________  _____________
+
+6.     32  1024  32  4    _____________  _____________  _____________  _____________
+</pre>
+  </LI>
+
+  <LI> <b>(12 points)</b>
+  <!--
+    <P>
+      Answer the following related questions:
+      <OL type=a>
+        <LI><a href="./prob6_31.html">Problem #6.31</a>, at the end of Chapter 6 (pp. 634-635)</LI>
+        <LI><a href="./prob6_32.html">Problem #6.32</a>, at the end of Chapter 6 (p. 635)</LI>
+        <LI>Repeat Problem #6.32 for the address 0x13DE </LI>
+        <LI>Repeat Problem #6.32 for the address 0x16C9 </LI>
+      </OL>
+    </P>
+    <P>
+      <i>Hint:</i>  Be careful of your answer on part b.
+    </P>
+  -->
+
+<pre>
+Suppose we have a system with the following properties:
+. The memory is byte addressable.
+. Memory accesses are to 1-byte words (not to 4-byte words).
+. Addresses are 13 bits wide.
+. The cache is four-way set associative (E = 4), with a 4-byte block size (B = 4)
+and eight sets (S = 8).
+
+Consider the following cache state. All addresses, tags, and values are given in
+hexadecimal format. The Index column contains the set index for each set of four
+lines. The Tag columns contain the tag value for each line. The V columns contain
+the valid bit for each line. The Bytes 0–3 columns contain the data for each line,
+numbered left-to-right starting with byte 0 on the left.
+</pre>
+
+<img src="hw7cache.PNG" width="690em" height="200em"/>
+
+<p>
+<b>Part 1:</b></br>
+</br>
+A. What is size (C) of this cache in bytes?</br>
+</br>
+B. The box that follows shows the format of an address (one bit per box).</br>
+Indicate (by labeling the diagram) the fields that would be used to determine</br>
+the following:</br>
+</br>
+CO The cache block offset</br>
+CI The cache set index</br>
+CT The cache tag</br>
+</p>
+
+<table border="1">
+<tr>
+<th>12</th>
+<th>11</th>
+<th>10</th>
+<th>9</th>
+<th>8</th>
+<th>7</th>
+<th>6</th>
+<th>5</th>
+<th>4</th>
+<th>3</th>
+<th>2</th>
+<th>1</th>
+<th>0</th>
+</tr>
+<tr>
+<td width="40em" height="30em"> </td>
+<td width="40em" height="30em"> </td>
+<td width="40em" height="30em"> </td>
+<td width="40em" height="30em"> </td>
+<td width="40em" height="30em"> </td>
+<td width="40em" height="30em"> </td>
+<td width="40em" height="30em"> </td>
+<td width="40em" height="30em"> </td>
+<td width="40em" height="30em"> </td>
+<td width="40em" height="30em"> </td>
+<td width="40em" height="30em"> </td>
+<td width="40em" height="30em"> </td>
+<td width="40em" height="30em"> </td>
+</tr>
+</table>
+
+<p>
+<b>Part 2:</b></br>
+Supppose that a program using the cache above references the 1-byte</br>
+word at address <b>0x071A</b>. Indicate the cache entry accessed and the cache byte</br>
+value returned in hex. Indicate whether a cache miss occurs. If there is a cache</br>
+miss, enter "MISS" for "Cache byte returned". Hint: Pay attention to those valid bits!</br>
+</p>
+
+<p>A. Address in binary (one bit per box):</p>
+
+<table border="1">
+<tr>
+<th>12</th>
+<th>11</th>
+<th>10</th>
+<th>9</th>
+<th>8</th>
+<th>7</th>
+<th>6</th>
+<th>5</th>
+<th>4</th>
+<th>3</th>
+<th>2</th>
+<th>1</th>
+<th>0</th>
+</tr>
+<tr>
+<td width="40em" height="30em"> </td>
+<td width="40em" height="30em"> </td>
+<td width="40em" height="30em"> </td>
+<td width="40em" height="30em"> </td>
+<td width="40em" height="30em"> </td>
+<td width="40em" height="30em"> </td>
+<td width="40em" height="30em"> </td>
+<td width="40em" height="30em"> </td>
+<td width="40em" height="30em"> </td>
+<td width="40em" height="30em"> </td>
+<td width="40em" height="30em"> </td>
+<td width="40em" height="30em"> </td>
+<td width="40em" height="30em"> </td>
+</tr>
+</table>
+
+<p>B. Memory Reference</p>
+
+<table border="1">
+<tr>
+<th>Parameter</th>
+<th width="100em">Value</th>
+</tr>
+<tr>
+<td>Cache Offset (CO)</td>
+<td align="left">&nbsp;0x</td>
+</tr>
+<tr>
+<td>Cache Index (CI)</td>
+<td align="left">&nbsp;0x</td>
+</tr>
+<tr>
+<td>Cache Tag (CT)</td>
+<td align="left">&nbsp;0x</td>
+</tr>
+<tr>
+<td>Cache Hit? (Y/N)</td>
+<td></td>
+</tr>
+<tr>
+<td>Cache Byte Returned&nbsp;&nbsp;</td>
+<td align="left">&nbsp;0x</td>
+</tr>
+</table>
+
+<p>
+<b>Part 3:</b></br>
+Supppose that a program using the cache above references the 1-byte</br>
+word at address <b>0x13DE</b>. Indicate the cache entry accessed and the cache byte</br>
+value returned in hex. Indicate whether a cache miss occurs. If there is a cache</br>
+miss, enter "MISS" for "Cache byte returned". Hint: Pay attention to those valid bits!</br>
+</p>
+
+<p>A. Address in binary (one bit per box):</p>
+
+<table border="1">
+<tr>
+<th>12</th>
+<th>11</th>
+<th>10</th>
+<th>9</th>
+<th>8</th>
+<th>7</th>
+<th>6</th>
+<th>5</th>
+<th>4</th>
+<th>3</th>
+<th>2</th>
+<th>1</th>
+<th>0</th>
+</tr>
+<tr>
+<td width="40em" height="30em"> </td>
+<td width="40em" height="30em"> </td>
+<td width="40em" height="30em"> </td>
+<td width="40em" height="30em"> </td>
+<td width="40em" height="30em"> </td>
+<td width="40em" height="30em"> </td>
+<td width="40em" height="30em"> </td>
+<td width="40em" height="30em"> </td>
+<td width="40em" height="30em"> </td>
+<td width="40em" height="30em"> </td>
+<td width="40em" height="30em"> </td>
+<td width="40em" height="30em"> </td>
+<td width="40em" height="30em"> </td>
+</tr>
+</table>
+
+<p>B. Memory Reference</p>
+
+<table border="1">
+<tr>
+<th>Parameter</th>
+<th width="100em">Value</th>
+</tr>
+<tr>
+<td>Cache Offset (CO)</td>
+<td align="left">&nbsp;0x</td>
+</tr>
+<tr>
+<td>Cache Index (CI)</td>
+<td align="left">&nbsp;0x</td>
+</tr>
+<tr>
+<td>Cache Tag (CT)</td>
+<td align="left">&nbsp;0x</td>
+</tr>
+<tr>
+<td>Cache Hit? (Y/N)</td>
+<td></td>
+</tr>
+<tr>
+<td>Cache Byte Returned&nbsp;&nbsp;</td>
+<td align="left">&nbsp;0x</td>
+</tr>
+</table>
+
+<p>
+<b>Part 4:</b></br>
+Supppose that a program using the cache above references the 1-byte</br>
+word at address <b>0x16C9</b>. Indicate the cache entry accessed and the cache byte</br>
+value returned in hex. Indicate whether a cache miss occurs. If there is a cache</br>
+miss, enter "MISS" for "Cache byte returned". Hint: Pay attention to those valid bits!</br>
+</p>
+
+<p>A. Address in binary (one bit per box):</p>
+
+<table border="1">
+<tr>
+<th>12</th>
+<th>11</th>
+<th>10</th>
+<th>9</th>
+<th>8</th>
+<th>7</th>
+<th>6</th>
+<th>5</th>
+<th>4</th>
+<th>3</th>
+<th>2</th>
+<th>1</th>
+<th>0</th>
+</tr>
+<tr>
+<td width="40em" height="30em"> </td>
+<td width="40em" height="30em"> </td>
+<td width="40em" height="30em"> </td>
+<td width="40em" height="30em"> </td>
+<td width="40em" height="30em"> </td>
+<td width="40em" height="30em"> </td>
+<td width="40em" height="30em"> </td>
+<td width="40em" height="30em"> </td>
+<td width="40em" height="30em"> </td>
+<td width="40em" height="30em"> </td>
+<td width="40em" height="30em"> </td>
+<td width="40em" height="30em"> </td>
+<td width="40em" height="30em"> </td>
+</tr>
+</table>
+
+<p>B. Memory Reference</p>
+
+<table border="1">
+<tr>
+<th>Parameter</th>
+<th width="100em">Value</th>
+</tr>
+<tr>
+<td>Cache Offset (CO)</td>
+<td align="left">&nbsp;0x</td>
+</tr>
+<tr>
+<td>Cache Index (CI)</td>
+<td align="left">&nbsp;0x</td>
+</tr>
+<tr>
+<td>Cache Tag (CT)</td>
+<td align="left">&nbsp;0x</td>
+</tr>
+<tr>
+<td>Cache Hit? (Y/N)</td>
+<td></td>
+</tr>
+<tr>
+<td>Cache Byte Returned&nbsp;&nbsp;</td>
+<td align="left">&nbsp;0x</td>
+</tr>
+</table>
+
+  </LI>
+
+<p></p>
+
+  <LI> <b>(6 points)</b>
+    <P>
+      A given computer system has the following cache access times:<br>
+      <ul>
+	<li>L1 cache:   3 processor cycles</li>
+	<li>L2 cache:  10 processor cycles</li>
+	<li>L3 cache:  30 processor cycles</li>
+	<li>Main memory:  120 processor cycles</li>
+      </ul>
+    </P>
+    <P>
+      <ol type=a>
+        <LI>
+          <P>
+            Program <i>A</i> has the following <b>miss</b> rates:
+              <ul>
+        	<li>L1 cache:  4%</li>
+        	<li>L2 cache:  30%</li>
+        	<li>L3 cache:  50%</li>
+        	<li>Main memory:  <i>(assume it always hits in main memory;  i.e. miss rate is 0%)</i></li>
+              </ul>
+          </P>
+          <P>
+            <ol type=i>
+              <LI>
+                <P>
+		  What are the hit rates for each level? 
+                </P>
+              </LI>
+              <LI>
+                <P>
+		  What is the average memory access time (AMAT) for Program <i>A</i>? Define the AMAT to be:
+                </P>
+		<p>
+		  <i>AMAT = (Hit Time) + (Miss Rate in L1)*(Average Miss Penalty)</i>
+		</p>
+		<p>Where the Average Miss Penalty is defined for each level to be:</p>
+		<p>
+		  <i>AMP = (Hit Time) + (Miss Rate at that level)*(Average Miss Penalty at the previous level)</i>
+		</p>
+		<p>
+		  <b>Hint: Start by computing the AMP for memory.</b>
+		</p>
+              </LI>
+            </ol>
+          </P>
+        </LI>
+        <LI>
+          <P>
+            Program <i>B</i> has the following <b>hit</b> rates:
+              <ul>
+        	<li>L1 cache:  93%</li>
+        	<li>L2 cache:  80%</li>
+        	<li>L3 cache:  65%</li>
+        	<li>Main memory:  <i>(assume it always hits in main memory;  i.e. hit rate is 100%)</i></li>
+              </ul>
+          </P>
+          <P>
+            <ol type=i>
+              <LI>
+                <P>
+		  What are the miss rates for each cache level?
+                </P>
+              </LI>
+              <LI>
+                <P>
+		  What is the average memory access time (AMAT) for Program <i>B</i>?
+                </P>
+              </LI>
+            </ol>
+          </P>
+        </LI>
+        <LI>
+          <P>
+	    Oftentimes, the program with the lower L1 cache miss rate has the better (lower) average memory access time (AMAT)?  Is that true in this case?  If not, why?
+          </P>
+        </LI>
+        <LI>
+          <P>
+            For Program <i>A</i>, what speedup would be achieved if you were able to optimize the program to achieve an 85% hit rate in L2 cache?<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>Note:</i>  "Speedup" refers to the ratio <i>(fraction)</i> of the original AMAT (with 30% miss rate) to the new AMAT (with 85% hit rate).
+          </P>
+        </LI>
+        <LI>
+          <P>
+            For Program <i>B</i>, if the L1 cycle access time was increased from 3 cycles to 4 cycles (during architecture design), what <u>minimum hit rate</u> would be needed in the L1 cache to achieve the same AMAT?
+          </P>
+	</LI>
+      </ol>
+    </P>
+  </LI>
+
+<!--
+  <LI> <b>(6 points)</b>
+    <P>
+      Using the following assembly code
+-->
+
+<!--
+, identify all the true (a.k.a. read-after-write) data dependencies.  Identify them by drawing circles around the dependent operands and drawing arrows between them - in a fashion similar to that used in class, and demonstrated on p. 398.
+    </p>
+    <P>
+      You are welcome to use the following <a href="./hw06_prob5.html">diagram of the code</a>, which lays out the code with ample space to allow you to easily draw and distinguish the data dependencies.
+    </P>
+-->
+<!--
+<pre>
+      some_proc:
+           mrmovl   4(%esp), %ecx
+           mrmovl   8(%esp), %edx
+           mrmovl   12(%esp), %ebx
+      
+        LOOP:
+           mrmovl   0(%ecx), %edi
+           mrmovl   0(%edx), %eax
+           addl     %eax, %edi
+           rmmovl   %edi, 0(%edx)
+           iaddl    $4, %ecx
+           iaddl    $4, %edx
+           iaddl    $-1, %ebx
+           jne      LOOP
+
+           ret
+</pre>
+    </P>
+      <OL type=a>
+        <li>
+          <P>
+            Identify all the true (a.k.a. read-after-write) data dependencies.  Identify them by drawing circles around the dependent operands and drawing arrows between them (i.e. draw an arrow from each register write to the next read of that register...  in a fashion similar to that used in class, and demonstrated on p. 398).
+          </P>
+          <P>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>Hint:</i>  Be mindful of loop-based dependencies.
+          </P>
+        </li>
+        <li>
+          <P>
+            Using a <a href="./highlevel_pipeline_diagram.pdf">high-level pipeline diagram</a> (such as used in Figures 4.44 or 4.54), for the sequence of code given above, show the state of the pipeline from cycles <b><i>t</i></b> through <b><i>t</i> + 16</b> <i>(i.e. until you run out of room on the paper)</i>.
+	  </p>
+	  <p>
+	    Assume the &nbsp; <b><tt>mrmovl 0(%ecx), %edi</tt></b> &nbsp; instruction is in the <u>Fetch</u> stage in cycle <b><i>t</i></b>.
+	  </p>
+          <p>
+	    <b>Watch out for Load-Use data hazards and Branch Mispredict control hazards.</b>
+          </p>
+          <p>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>Note 1:</i>  Assume that the conditional branch is predicted as <b>not taken</b> (i.e. condition is False), but upon execution, it resolves as <b>taken</b> (i.e. condition is True).<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>Note 2:</i>  Assume that forwarding/bypassing is being used in the pipeline.<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>Note 3:</i>  This example assumes the existence of an <tt>iaddl</tt> instruction <i>(which is just like <tt>addl</tt>, but allows an immediate for first source)</i>.
+          </p>
+        </li>
+        <li>
+          <P>
+            At the end of the <b><i>t</i> + 4</b> cycle of execution, which registers are being <u>read</u> and which are being <u>written</u>?
+	  </p>
+      </li>
+    </ol>
+  </LI>
+-->
+</OL>
+
+<hr>
+<!--
+Last modified:  Saturday, 19 April 2008
+-->
+
+  </body>
+</html>
+

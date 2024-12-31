@@ -1,0 +1,192 @@
+Outline: 
+1) Go over triangle program unit testing cases- students wrote down a set of tests for the program. Have students self-evaluate how many they got and discuss. Don't worry! Good testing is a skill that can be developed just like anything else... ask QA people how good they get at testing.
+2) Talk about Extreme Programming as predecessor to Agile and Scrum.
+3) Discuss readings and videos and scrum methodology.
+
+Part 1)
+
+Example “self-test” from Myers’ classic book (The Art of Software Testing, 1979). A program that takes three integers as input (supposed to represent side lengths of a triangle) and outputs “scalene”, “isosceles”, “equilateral”, or “error” (not a triangle or some other problem). For definiteness and modernity, imagine that this is implemented as a REST API and that the input comes in as bytes in JSON format, e.g. this is a valid input:
+{
+"a" : 3,
+"b" : 4,
+"c" : 5
+}
+Write out a test set on a piece of paper. Then ask these 14 questions; “do you have a test case or test cases that...”
+* is a valid scalene triangle?
+* is a valid equilateral triangle?
+* is a valid isosceles triangle?
+* is a non-triangle? e.g. (1,2,5) (use triangle inequality)
+* has one side = 0?
+* has one side negative?
+* is (0,0,0)?
+* contains all three permutations of an isosceles triangle? e.g. (2,3,3), (3,2,3), (3,3,2)
+* is a “degenerate” triangle (sum of two equals the third)?
+* contains all three permutations of the longest side in a degenerate triangle? e.g. (2,3,5),(5,2,3),(2,5,3)
+* contains floats and not ints?
+* contains less than 3 numbers?
+* Did you specify what the answers should be next to each test case?
+
+Average among professional programmers: 7.8/14. 
+
+Some more, given the JSON specification:
+* that contains non-UTF-8 encoded text?
+* that contains malformed JSON?
+* that is well-formed but isn’t a hash?
+* that represents values of a,b,c as strings not numbers (OK?)
+
+
+
+Part 2) Extreme Programming
+
+Before there was Agile and Scrum... there was Extreme Programming (XP)
+
+* Vanderburg does a good job of basic history:
+* Early software practices (i.e. ad-hoc or waterfall) often didn't work
+
+Waterfall problems:
+* Heavyweight, rigid processes
+* Long feedback loops
+* Excessive documentation
+* Problems after delivery or change in requirements implies 100% cost overruns and months of extra time
+
+
+Extreme Programming (XP) takes all of the lessons learned (as of about 1996-1999), identifies good qualities in programming practice, and takes those practices to the extreme. Four main practices:
+* Coding - code is the unit of contribution (not documentation)
+* Testing - all code needs tests before it is written and must pass before it can be integrated
+* Listening - programmers must listen to customer's needs and business logic
+* Designing - system design should be as simple as possible
+
+Taken to the extreme:
+* Code reviews are good, so we should use pair-programming to code review constantly
+* Testing is good, so the programmer should have unit tests for every feature and every change, and the customer should have their own acceptance tests. All tests would be run at the end of every day. (What if a feature takes more than a day to develop?)
+* Frequent communication with the customer is important, so the customer should send a representative that is always on site and able to provide instant feedback.
+* Design is good, so rather than making one design document to start and then implementing that, we should always be designing incrementally as we code, test, and communicate. Build the simplest possible system and only add complexity when the current feature needs it. 
+
+Underlying principle: Short iterations are good, so make feedback loops as tight as possible. Pair programming gets feedback down to seconds/minutes. Unit testing and daily testing gets feedback down to hours and a day. Nothing goes unquestioned for weeks or months.
+
+Many individual XP principles (more than below):
+
+* Have a simple shared metaphor about how the system works. Shared between developers and customer, so no technical language, but use stories and names instead. Facilitates both developer and customer understanding of what is supposed to happen. E.g. Assembly Line program: a data item enters the factory and is put on a conveyor belt, and as it goes along the conveyor a worker at each station has their own story about what happens, etc.  
+* Get a simple system running quickly, and then everything else is a release on a short cycle
+* Keep things as simple as possible, and remove complexity wherever possible
+* Collective ownership- anybody can change/fix anything
+* Sustainable pace- measure your "project velocity" and understand what that means, 40 hour work weeks max, adding new bodies to a project slows it down, not speeds it up
+* Customer must be always available- have a customer's expert on hand to provide feedback and set priorities during planning
+
+
+
+Part 3) Agile and Scrum
+
+Agile Alliance- Agile 101 introduction:
+
+"Agile is the ability to create and respond to change. It is a way of dealing with, and ultimately succeeding in, an uncertain and turbulent environment."
+
+That's an odd way to talk about building software, isn't it? 
+* Yes and no... Agile is a philosophy
+* Scrum and XP (and other) are frameworks that implement that philosophy
+* It's a set of values and principles
+* It's not a set of practices and rituals=
+
+The Agile Manifesto:
+
+We value
+* Individuals and interactions over processes and tools
+* Completed functionality over comprehensive documentation
+* Customer collaboration over contract negotiation
+* Responding to change over following a plan
+That is, while there is value in the items on the right, the items on the left matter more.
+
+Those four words: Individuals, Completion, Customer Collaboration, and Responding to Change are the positives
+
+The four anti-words: Processes, Comprehensive Documentation, Contract Negotiation, Following the Plan
+
+
+
+Small Group Discussion question (3 mins): Juxtapose those sets of words, what are your reactions?
+
+
+
+The Agile Principles:
+
+1 Our highest priority is to satisfy the customer through early and continuous delivery of valuable software.
+
+2 Welcome changing requirements, even late in development. Agile processes harness change for the customer’s competitive advantage.
+
+3 Deliver working software frequently, from a couple of weeks to a couple of months, with a preference to the shorter timescale.
+
+4 Business people and developers must work together daily throughout the project.
+
+5 Build projects around motivated individuals. Give them the environment and support they need, and trust them to get the job done.
+
+6 The most efficient and effective method of conveying information to and within a development team is face-to-face conversation.
+
+7 Working software is the primary measure of progress.
+
+8 Agile processes promote sustainable development. The sponsors, developers, and users should be able to maintain a constant pace indefinitely.
+
+9 Continuous attention to technical excellence and good design enhances agility.
+
+10 Simplicity–the art of maximizing the amount of work not done–is essential.
+
+11 The best architectures, requirements, and designs emerge from self-organizing teams.
+
+12 At regular intervals, the team reflects on how to become more effective, then tunes and adjusts its behavior accordingly.
+
+
+Some notes:
+
+* No details about the process/methodology here! Principles that should underlie any good process.
+* Human aspects here (#4, #5, #6, #8, #11, #12)! Especially 5 and 8: Happy developers produce good code.
+* Customer aspects here (#1, #2, #4, #8)- Happy customers come back.
+* Bald assertions mostly! Remember to read everything critically. Compare with your experience as a developer. Are there contexts where you’d disagree with any of these principles?
+
+
+
+Small group discussion (5 mins): Discuss that last point- how do these principles compare to your experience? Realistic or unrealistic in general?
+Large group discussion: Any one or two points you'd like to relay from small group? 
+
+
+Scrum
+
+“Scrum in 30 seconds”.
+* A product owner creates a prioritized wish list called a product backlog . Final arbiter of requirements. Team members can add things too. Backlog items are customer-centric features. The form of backlog items is up to you; user stories, or whatever.
+* During sprint planning, the team pulls a small chunk from the top of product backlog to create a sprint backlog, and transforms those into a set of specific tasks that need to be completed.
+* The team has a certain amount of time, a sprint, to complete its work - usually two to four weeks - but meets each day (15 minute standup) to assess its progress (daily scrum).
+* Along the way, the Scrum Master keeps the team focused on its goal. No management
+authority.
+* At the end of the sprint, the work should be potentially shippable, as in ready to hand to a customer, put on a store shelf, or show to a stakeholder. Sprint review shows the product owner (and potentially other stakeholders) a working demo, those stakeholders provide feedback.
+* Sprint retrospective is for team to self-assess their performance. What went well, what could be improved?
+* As the next sprint begins, the team chooses another chunk of the product backlog and begins working again.
+
+
+Video Introduction to Scrum: 
+* Scrum is hard! If it’s not hard, you’re probably not doing it right.
+* There is no Product Manager!!! That role is split between the product owner and the team itself.
+* Sprint planning meeting: divided into two parts; first we select spring backlog items for the sprint from the product backlog, and second we do our best to divide those into actual tasks to implement the backlog items (which are more like features or user stories).
+* Daily scrum is forward-focused: What did I do yesterday, what do I need to do next, and what is blocking or preventing me from doing that? It is a report to teammates, not to product owner.  
+* Sprint review: Demos potentially shippable product to product owner or other stakeholders. Validates whether backlog items have been completed.
+* Sprint retrospective: About the process, not the product. What went well, what didn’t, what can be improved?
+
+
+
+Small Group Discussion: What is "potentially shippable" mean to you?
+Small Group Discussion: What does "done" mean to you?
+Small Group Discussion: What happens if you're near the end of a sprint and you're not going to get all of your backlog items done?
+
+
+Homework:
+
+How agile software developers saved healthcare reform in America. Read and create a list of commonalities with Scrum methodology:
+https://time.com/10228/obamas-trauma-team/
+
+Daily Standup Meeting training
+https://www.collab.net/services/training/agile_e-learning
+
+“Dark Scrum”:
+https://ronjeffries.com/articles/016-09ff/defense/
+
+“The State of Agile Software in 2018”
+https://martinfowler.com/articles/agile-aus-2018.html
+
+Scrum anti-patterns
+https://productcoalition.com/scrum-sprint-anti-patterns-68811a3c306d

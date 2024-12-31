@@ -1,0 +1,1104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+<style>
+table.schedule td {
+	height: 4em;
+	overflow: visible;
+}
+.inactive {
+  pointer-events: none;
+  cursor: default;
+  color: black;
+  text-decoration: none;
+}
+</style>
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSCI 1060 - Scientific Programming</title></head>
+
+<body><h2 style="text-align: center;"><img alt="SLU logo" src="http://cs.slu.edu/~dferry/SLU_logo_horz.png" style="height:5em"><br></h2><h2 style="text-align: center;">CSCI 1060 - Scientific Programming <br>
+
+</h2><h2 style="text-align: center;">Spring 2018</h2>
+
+<table style="width: 100%; text-align: left;" border="0" cellpadding="2" cellspacing="2"> <tbody> <tr>
+    <td style="vertical-align: top; font-weight: bold; width: 163px;">Instructor</td> 
+    <td style="vertical-align: top; width: 1019px;"><span style="font-family: monospace;"><a href="mailto:dferry@slu.edu">David Ferry</a>,  <a href="http://cs.slu.edu/~dferry/">Homepage</a></span></td> 
+</tr>
+
+<tr>
+    <td style="vertical-align: top; font-weight: bold; width: 163px;">Course Web Site</td> 
+    <td style="vertical-align: top; width: 1019px;"><span style="font-family: monospace;"><a href="http://cs.slu.edu/~dferry/courses/csci1060">http://cs.slu.edu/~dferry/courses/csci1060/</a></span></td>
+</tr>
+
+<tr>
+    <td style="vertical-align: top; font-weight: bold; width: 163px;">Course meeting times</td> 
+    <td style="vertical-align: top; width: 1019px;">Monday, Wednesday, &amp; Friday from 9:00 - 9:50, McDonnell Douglas Hall Rm. 1066</td> 
+</tr> 
+
+<tr>
+    <td style="vertical-align: top; width: 163px;"><span style="font-weight: bold;">Midterm exams</span><br> </td> 
+    <td style="vertical-align: top; width: 1019px;">Friday Feb. 23rd, Wednesday Mar. 28th<br> </td>
+</tr> 
+
+<tr>
+    <td style="vertical-align: top; width: 163px;"><span style="font-weight: bold;">Final exam</span><br> </td> 
+    <td style="vertical-align: top; width: 1019px;">May 9th, 8:00AM - 9:50AM<br> </td>
+</tr> 
+
+<tr>
+    <td style="vertical-align: top; font-weight: bold; width: 163px;">Office hours</td>
+    <td style="vertical-align: top; width: 1019px;">See <a href="/~dferry/schedule.html">my schedule</a></td> 
+</tr> 
+
+<!--
+<tr>
+    <td style="vertical-align: top; font-weight: bold; width: 163px;">Prerequisites</td>
+    <td style="vertical-align: top; width: 1019px;">CSE 422S (Operating Systems) and C/C++ programming experience</td> </tr> 
+-->
+
+<!--
+<tr> 
+    <td style="vertical-align: top; width: 163px;">
+<span style="font-weight: bold;">TA</span><br> </td> 
+    <td style="vertical-align: top; font-weight: bold; width: 1019px;"><span style="font-weight: normal;">Benny Hill (bah2 AT cse.wustl.edu)</span><br style="font-weight: normal;"><span style="font-weight: normal;">Office Hours: Tu, Th 2pm-3pm</span> </td> </tr> </tbody> 
+-->
+</table>
+
+<hr style="width: 100%; height: 2px;">
+
+<font size=+2><strong>Contents</strong></font>
+<ol>
+  <li><a href="#Course Description">Course Description</a>
+  <li><a href="#Acknowledgements">Acknowledgements</a>
+  <li><a href="#Prerequisites">Prerequisites</a>
+  <li><a href="#Assignments">Assignments</a>
+  <li><a href="#Schedule">Course Schedule</a>
+  <li><a href="#Textbooks">Textbooks and Other Resources</a>
+  <li><a href="#Grading">Grading</a>
+  <li><a href="#Links">Links</a>
+  <li><a href="#Academic Honesty">Academic Honesty</a>
+  <li><a href="#Academic Support">Academic Support</a>
+  <li><a href="#Disability Services">Disability Services</a>
+  <li><a href="#Title IX Statement">Title IX Statement</a>
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Course Description">Course Description</a></h3>
+
+<p>Computing allows scientists and engineers to quantify
+and analyze problems to a terrific degree. 
+The particulars of how
+computers are used will vary from field to field and problem
+to problem, but the <i>process</i> of computer programming (or
+more generally- computer-aided problem solving)
+is similar for everybody.
+Computers are machines
+that are incapable of original thought or imagination. Using one
+effectively requires a solid understanding of what a computer is
+and is not capable of, and then the mental plasticity to transform
+the real-world problem into a computer model that (hopefully)
+bears some significance to the original problem that must be solved.
+The goal of this course is to teach students this process of
+solving real-world scientific and engineering problems via
+computer programming.</p>
+
+<p>
+Learning Outcomes- At the end of this course, students should be able to:
+<ul>
+	<li>Solve word problems with a computer
+	<li>Write a program to solve a parameterized problem (i.e. solve a class of word problems)
+	<li>Simulate simple physical situations deterministically and stochastically
+	<li>Use computer data to support the selection of a solution out of several competing alternatives
+	<li>Use functions to divide a program into small, easy to read and maintain pieces of code
+	<li>Use appropriate control structures (if-else statements, for loops, while loops, etc.) to achieve a desired result and structure code
+</ul>
+</p>
+
+<p>Catalog Description: <i>Elementary computer programming concepts with an emphasis on problem solving and applications to scientific and engineering applications. Topics include data acquisition and analysis, simulation and scientific visualization.</i></p>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Acknowledgements">Acknowledgements</a></h3>
+<p>This course owes a debt of gratitude to Prof. Michael Goldwasser, from whom I took the original course material and format.</p>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Prerequisites">Prerequisites</a></h3>
+<ul>
+  <li>Calculus I or concurrent enrollment in same
+</ul>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Textbooks">Textbook</a></h3>
+
+<p>Recommended course textbook: <i>MATLAB An Introduction with Applications</i> by 
+Amos Gilat, Published by Wiley</p>
+
+<p><i>Note:</i> The textbook is recommended for your benefit as a supplementary resource but is not required. Any recent edition of the book is suitable.</p>
+
+<p><a href="http://bcs.wiley.com/he-bcs/Books?action=index&itemId=111929925X&bcsId=10760" target="new">(book's website - supplementary videos, example problems, and errata)</a><br/>
+
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Assignments">Assignments</a></h3>
+
+<p>There will be approximately 10 assignments for this course and a course project. These are a mix of written and programming assignments whose purpose is to apply course concepts.</p>
+
+<p>Assignments submitted on time will be given full credit. Assignments submitted up to 24 hours late will be given a <b>ten percent penalty</b>. Assignments submitted between 24 hours and 48 hours late will be given a <b>twenty percent penalty</b>. Assignments submitted after 48 hours late will not be given credit, except in the case of extenuating circumstances pre-approved by the instructor.</p>
+
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Schedule">Course Schedule</a></h3>
+
+<p>
+A tentative course schedule is below. <b>Note that this schedule may change
+over the course of the semester.</b> When changes occur, students will be 
+given enough advance notice so that readings and 
+other preparation may be accommodated.</p> 
+
+<table cellpadding=3 border=1>
+
+  <tr>
+    <th> Week</th>
+    <th> Day</th>
+    <th> Topic</th>
+    <th> Reading</th>
+    <th> Notes</th>
+  </tr>
+
+  <!--===================================================================-->
+
+  <tr>
+    <td rowspan=3 align=center>
+    Jan&nbsp;15-Jan&nbsp;19
+    </td>
+    <td>
+	Mon
+    </td>
+    <td rowspan=1 colspan=3 align=center>
+	<font color=red><b>No Class: Martin Luther King Day</b></font>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+	Wed
+    </td>
+    <td>
+	Introduction, Course Overview<br><a href="notes/00_intro/00_intro.html">Intro Program</a>
+    </td>
+    <td>
+	Syllabus (this website)
+    </td>
+    <td>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+	Fri
+    </td>
+    <td>
+	<a href="notes/01_overview.html">
+	Overview of MATLAB</a>
+	<br>
+	<a href="notes/02_types.html">
+	Scalars, operators, and precedence
+	</a>
+    </td>
+    <td>
+	Gilat Ch. 1
+    </td>
+    <td>
+	<a href="homeworks/hw01/intro.html">Homework #1 Assigned</a>
+    </td>
+  </tr>
+
+  <!--===================================================================-->
+  
+  <tr>
+    <td rowspan=3 align=center>
+    Jan&nbsp;22-Jan&nbsp;26
+    </td>
+    <td>
+	Mon
+    </td>
+    <td>
+	<a href="notes/02_types.html#vector">
+	Vectors in MATLAB
+	</a>
+    </td>
+    <td>
+	Gilat Ch. 2
+    </td>
+    <td>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+	Wed
+    </td>
+    <td>
+	<a href="notes/02_types.html#array">Two-Dimensional Arrays in MATLAB</a>
+<!--	<a href="lectures/vectorized">-->
+<!--	Vectorized Operations-->
+<!--	</a>-->
+    </td>
+    <td>
+    </td>
+    <td>
+	Homework #1 Due
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+	Fri
+    </td>
+    <td>
+<!--	<a href="lectures/arrays/#array">-->
+<!--	Two-dimensional arrays in MATLAB-->
+<!--	</a>-->
+	<a href="notes/03_vector_ops/03_vector_ops.html">Vectorized Operations</a>
+    </td>
+    <td>
+	Gilat Ch. 3.1 - 3.6
+    </td>
+    <td>
+	<a href="homeworks/hw02/vops.html">Homework #2 Assigned</a>
+    </td>
+  </tr>
+
+  <!--===================================================================-->
+  
+  <tr>
+    <td rowspan=3 align=center>
+    Jan&nbsp;29-Feb&nbsp;2
+    </td>
+    <td>
+	Mon
+    </td>
+    <td>
+	<a href="notes/04_plots/04_plots.html">Plotting Data</a>
+	
+    </td>
+    <td>
+	Gilat Ch. 5.1 - 5.4
+    </td>
+    <td>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+	Wed
+    </td>
+    <td>Case Study: <a href="notes/05_dicepair/05_dicepair.html">Rolling Pairs of Dice</a></td>
+	<!--<td>Case Study: Rolling Pairs of Dice</td>-->
+    <td>
+	Gilat Ch. 5.8
+    </td>
+    <td>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+	Fri
+    </td>
+    <td>
+	<a href="notes/06_control.html">Control Structures</a>
+    </td>
+    <td>
+	Gilat Ch. 6.1 - 6.6
+    </td>
+    <td>
+	Homework #2 Due<br> 
+    </td>
+  </tr>
+
+  <!--===================================================================-->
+  
+  <tr>
+    <td rowspan=3 align=center>
+    Feb&nbsp;5-Feb&nbsp;9
+    </td>
+    <td>
+	Mon
+    </td>
+    <td>
+	Animations
+	<br>
+	Case Study:  <a href="notes/07_ball/07_ball.html"> The Motion of a Ball</a>
+    </td>
+    <!--<td>Animations<br>Case Study: The Motion of a Ball</td>-->
+    <td>
+
+    </td>
+    <td>
+	<a href="homeworks/hw03/hw03.html">Homework #3 Assigned</a>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+	Wed
+    </td>
+    <td>
+	Discrete Simulation
+	<br>
+	Case Study:  <a href="notes/08_motion/08_motion.html"> Approximate Motion of a Ball</a>
+    </td>
+	<!--<td>Discrete Simulation<br>Case Study: Approximate Motion of a Ball</td>-->
+    <td>
+
+    </td>
+    <td>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+	Fri
+    </td>
+    <td>
+	Control Structures:
+	<a href="notes/09_stocks/09_stocks.html">Stock Market Analysis</a>
+    </td>
+    <td>
+
+    </td>
+    <td>
+	<span style="color:red; text-decoration:line-through">Homework #3 Due</span>
+    </td>
+  </tr>
+
+  <!--===================================================================-->
+  
+  <tr>
+    <td rowspan=3 align=center>
+    Feb&nbsp;12-Feb&nbsp;16
+    </td>
+    <td>
+	Mon
+    </td>
+    <td>
+	<a href="notes/10_inout.html">Basic Input and Output Commands</a>
+    </td>
+    <td>
+	Gilat Ch. 4
+    </td>
+    <td>
+	Homework #3 Due <br>
+	<a href="homeworks/hw04/hw04.html">Homework #4 Assigned</a>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+	Wed
+    </td>
+    <td>
+<!--	More <a href="lectures/stocks">Stock Market Analysis</a>-->
+	<a href="notes/09_stocks/09_stocks.html">More Stock Market Analysis</a>
+    </td>
+    <td>
+
+    </td>
+    <td>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+	Fri
+    </td>
+    <td>
+	<a href="notes/11_functions.html">Functions</a>
+    </td>
+    <td>
+	Gilat Ch. 7
+    </td>
+    <td>
+    </td>
+  </tr>
+
+  <!--===================================================================-->
+  
+  <tr>
+    <td rowspan=3 align=center>
+    Feb&nbsp;19-Feb&nbsp;23
+    </td>
+    <td>
+	Mon
+    </td>
+    <td>
+	Case Study: <a href="notes/12_rainfall.html">Record Rainfall</a>
+    </td>
+    <td>
+    </td>
+    <td>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+	Wed
+    </td>
+    <td>
+    </td>
+    <td>
+    </td>
+    <td>
+	Homework #4 Due
+    </td>
+  <tr>
+    <td>
+	Fri
+    </td>
+    <td colspan=3 align=center><font color=green>
+	<b>First Exam (includes material through Feb 14)</b>
+<!--	(includes material through Feb&nbsp;11
+	- <a href="handouts/exam1-info.pdf">info</a>
+	)-->
+	</font>
+    </td>
+  </tr>
+
+  <!--===================================================================-->
+  
+  <tr>
+    <td rowspan=3 align=center>
+    Feb&nbsp;26-Mar&nbsp;2
+    </td>
+    <td>
+	Mon
+    </td>
+    <td>
+	Use of subfunctions
+	<br>
+	Case Study: <a class="inactive" href="notes/13_stockhw/13_stockanalysis.html">Stock Market Analysis solution set</a>
+    </td>
+    <td>
+
+    </td>
+    <td>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+	Wed
+    </td>
+    <td>
+	Random Processes 
+	<br>
+	Case Study: <a  href="notes/14_gambler/gambler.html">the gambler</a>
+    </td>
+    <td>
+    </td>
+    <td>
+	<a href="homeworks/hw05/functions.html">Homework #5 Assigned</a>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+	Fri
+    </td>
+    <td>
+	The gambler simulation and random walks
+	<br>
+	(<a href="notes/14_gambler/gambler2.html">additional notes</a>)
+    </td>
+    <td>
+
+    </td>
+    <td>
+    </td>
+  </tr>
+
+  <!--===================================================================-->
+  
+  <tr>
+    <td rowspan=3 align=center>
+    Mar&nbsp;5-Mar&nbsp;9
+    </td>
+    <td>
+	Mon
+    </td>
+    <td>
+	<a href="notes/15_iterative/15_iterative.html">Iterative Solvers</a>
+    </td>
+    <td>
+    </td>
+    <td>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+	Wed
+    </td>
+    <td>
+	More on Iterative Solvers
+<!--	<a href="lectures/iterative2">General code for iterative solver</a>-->
+    </td>
+    <td>
+    </td>
+    <td><span style="color:red; text-decoration:line-through">Assignment #5 Due</span>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+	Fri
+    </td>
+    <td>
+	Random Solver
+	<!--(more with gambling solver)-->
+    </td>
+    <td>
+    </td>
+    <td>Assignment #5 Due
+    </td>
+  </tr>
+
+  <!--===================================================================-->
+  
+  <tr>
+    <td rowspan=3 align=center>
+    Mar&nbsp;12-Mar&nbsp;16
+    </td>
+    <td>
+	Mon
+    </td>
+	<td rowspan=3 colspan=3 align=center>
+	<font color=red><b>No Class: Spring Break</b></font>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+	Wed
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+	Fri
+    </td>
+  </tr>
+
+  <!--===================================================================-->
+  
+  <tr>
+    <td rowspan=3 align=center>
+    Mar&nbsp;19-Mar&nbsp;23
+    </td>
+    <td>
+	Mon
+    </td>
+    <td>
+	<a href="notes/16_fileio.html">File I/O</a>
+    </td>
+    <td>
+	Gilat Ch. 4.3-4.4
+    </td>
+    <td>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+	Wed
+    </td>
+    <td>
+	Case Study: DNA to RNA Transcription <a href="notes/transcribe.m">(code)</a>
+    </td>
+    <td>
+    </td>
+    <td>
+	<a href="homeworks/hw06/06_fire.html">Homework #6 Assigned</a>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+	Fri
+    </td>
+    <td>
+	Case Study: Encryption
+<!--	Case Study: DNA to RNA Transcription (<a href="handouts/transcribe.m">code</a>)-->
+<!--	<br>-->
+<!--	Case Study: Encryption (<a href="handouts/crypt.m">code</a>)-->
+    </td>
+    <td>
+    </td>
+    <td>
+    </td>
+  </tr>
+
+  <!--===================================================================-->
+  
+  <tr>
+    <td rowspan=3 align=center>
+    Mar&nbsp;26-Mar&nbsp;30
+    </td>
+    <td>
+	Mon
+    </td>
+    <td>
+	Exam 2 Review
+    </td>
+    <td>
+	Exam review programs: <a href="notes/exam_review/argDemo.m">argDemo.m</a>, <a href="notes/exam_review/myAverage.m">myAverage.m</a>, <a href="notes/exam_review/convertASCII.m">convertASCII.m</a>, <a href="notes/exam_review/approxPi.m">approxPi.m</a>
+    </td>
+    <td>
+	<span style="color:red; text-decoration:line-through">Homework #6 Due</span>
+    </td>
+</tr>
+<tr>
+    <td>
+	Wed
+    </td>
+    <td colspan=2 align=center><font color=green>
+	<b>Second Exam (take home - no class)</b> (download <a href="exam/result.txt" download>result.txt</a> and <a href="exam/warpeace.txt" download>warpeace.txt</a>) <!-- , and <a href="exam/pickRPS.p">pickRPS.p</a>)-->
+	</font>
+    </td>
+<td>Homework #6 Due</td>
+  </tr>
+
+  <tr>
+    <td>
+	Fri
+    </td>
+	<td rowspan=1 colspan=3 align=center>
+	<font color=red><b>No Class: Good Friday</b></font>
+        </td>
+  </tr>
+
+  <!--===================================================================-->
+  
+  <tr>
+    <td rowspan=3 align=center>
+    Apr&nbsp;2-Apr&nbsp;6
+    </td>
+    <td>
+	Mon
+    </td>
+	<td rowspan=1 colspan=3 align=center>
+	<font color=red><b>No Class: Easter Monday</b></font>
+        </td>
+  </tr>
+
+  <tr>
+    <td>
+	Wed
+    </td>
+    <td>
+	<a href="notes/165_cells_structures.html">Cell Arrays, Structures</a>
+    </td>
+    <td>
+<!--	MATLAB docs (<a href="http://www.mathworks.com/access/helpdesk/help/techdoc/index.html?/access/helpdesk/help/techdoc/matlab_prog/br04bw6-98.html">cell arrays</a>, <a href="http://www.mathworks.com/access/helpdesk/help/techdoc/index.html?/access/helpdesk/help/techdoc/matlab_prog/br04bw6-38.html">structures</a>)-->
+    </td>
+    <td>
+	<a href="homeworks/hw07/proposal.html">Project Proposal Assigned</a><br><hr>
+	<a href="homeworks/hw08/hw08.html">Homework #8 Assigned</a>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+	Fri
+    </td>
+    <td>
+<!--	Data Representation and	Compression-->
+<!--	<br>-->
+<!--	(text, audio)-->
+    	<a  href="notes/17_audio/17_audio.html">Basic sound processing in MATLAB</a>
+    </td>
+    <td>
+    </td>
+    <td>
+    </td>
+  </tr>
+
+  <!--===================================================================-->
+  
+  <tr>
+    <td rowspan=3 align=center>
+    Apr&nbsp;9-Apr&nbsp;13
+    </td>
+    <td>
+	Mon
+    </td>
+    <td>
+	<a href="notes/17_audio/17_audio.html">Synthesized sounds</a>
+    </td>
+    <td>
+    </td>
+    <td>
+    </td>
+
+
+  </tr>
+
+  <tr>
+    <td>
+	Wed
+    </td>
+    <td>
+    </td>
+    <td>
+
+    </td>
+    <td>
+	Project Proposal Due
+    </td>
+
+
+  </tr>
+
+  <tr>
+    <td>
+	Fri
+    </td>
+    <td>
+	<a href="notes/18_maze/index.html">Traversing Mazes</a>
+    </td>
+    <td>
+
+    </td>
+    <td>
+    </td>
+<!--	<td rowspan=1 colspan=3 align=center>
+	<font color=red><b>No Class: Good Friday</b></font>
+        </td>-->
+  </tr>
+
+  <!--===================================================================-->
+  
+  <tr>
+    <td rowspan=3 align=center>
+    Apr&nbsp;16-Apr&nbsp;20
+    </td>
+    <td>
+	Mon
+    </td>
+    <td>
+
+    </td>
+    <td>
+
+    </td>
+    <td>
+    </td>
+<!--	<td rowspan=1 colspan=3 align=center>
+	<font color=red><b>No Class: Easter Monday</b></font>
+        </td>-->
+  </tr>
+
+  <tr>
+    <td>
+	Wed
+    </td>
+    <td>
+	<a  href="notes/19_image/19_image.html">Image Data</a>
+    </td>
+    <td>
+
+    </td>
+    <td>
+	Homework #8 Due<br><hr>
+	Homework #9 Assigned
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+	Fri
+    </td>
+    <td>
+<!--	<a href="lectures/components">Finding components of an image</a>-->
+    </td>
+    <td>
+
+    </td>
+    <td>
+    </td>
+  </tr>
+
+
+  <!--===================================================================-->
+  
+  <tr>
+    <td rowspan=3 align=center>
+    Apr&nbsp;23-Apr&nbsp;27
+    </td>
+    <td>
+	Mon
+    </td>
+    <td>
+	<!--(more about finding components)-->
+    </td>
+    <td>
+
+    </td>
+    <td>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+	Wed
+    </td>
+    <td>
+	<a  href="notes/20_watermark/index.html">Digital Watermarking</a>
+    </td>
+    <td>
+    </td>
+    <td>
+
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+	Fri
+    </td>
+    <td>
+<!--	<a href="lectures/smoothing">Curve Fitting and Smoothing Images</a>-->
+	<a class="inactive" href="notes/21_image_comp/21_image_comp.html">Finding components of an image</a>
+    </td>
+    <td>
+    </td>
+    <td>
+	Homework #9 Due
+    </td>
+  </tr>
+
+
+  <!--===================================================================-->
+  
+  <tr>
+    <td rowspan=3 align=center>
+    Apr&nbsp;30-May&nbsp;4
+    </td>
+    <td>
+	Mon
+    </td>
+    <td rowspan=3>
+	<a href="notes/22_cpp/22_cpp.html">
+	An Introduction to
+	C++ Programming
+	</a>
+    </td>
+    <td>
+    </td>
+    <td>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+	Wed
+    </td>
+    <td>
+
+    </td>
+    <td>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+	Fri
+    </td>
+    <td>
+    </td>
+    <td>
+    </td>
+  </tr>
+
+
+  <!--===================================================================-->
+  
+  <tr>
+    <td align=center>
+    May&nbsp;7th
+    </td>
+    <td>
+	Mon
+    </td>
+    <td rowspan=1 colspan=3 >
+	Project Presentations (<a href="homeworks/hw10/final_project.html">Presentation and Project Submission Guidelines</a>)
+    </td>
+  </tr>
+
+<!--
+  <tr>
+    <td colspan=5>
+    <p></p>
+    </td>
+  </tr>
+-->  
+
+  <tr>
+    <td align=center>
+    May&nbsp;9th
+    </td>
+    <td>
+	Fri
+    </td>
+	<td rowspan=1 colspan=3 align=center>
+	Project Presentations (8:00AM-9:50AM)
+    </td>
+  </tr>
+
+</table>
+
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Grading">Grading</a></h3>
+
+<p>Your grade will be determined as follows:</p>
+
+<table border="3">
+<tr>
+	<th>Activity</th>
+	<th>Grade Percentage</th>
+</tr>
+<tr>
+	<td>Assignments</td>
+	<td>40%</td>
+</tr>
+<tr>
+	<td>Project</td>
+	<td>20%</td>
+</tr>
+<tr>
+	<td>Midterm Exams</td>
+	<td>20% each</td>
+</tr>
+<!--<tr>
+	<td>Final</td>
+	<td>20%</td>
+</tr>-->
+
+</table>
+
+<p>Grading is done on a straight scale (uncurved). The following
+scores are guaranteed. The grading scale may be curved upwards (in your favor)
+at the discretion of the instructor. 
+
+<ul>
+<li> 93% guarantees an A
+<li> 90% guarantees an A-
+<li> 87% guarantees a B+
+<li> 83% guarantees a B
+<li> 80% guarantees a B-
+<li> 77% guarantees a C+
+<li> 73% guarantees a C
+<li> 70% guarantees a C-
+<li> 60% guarantees a D
+</ul>
+
+</p>
+
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Links">Links / Resources</a></h3>
+
+<h4>MATLAB</h4>
+
+<p>The majority of this course is centered around using MATLAB, an industry
+standard software for scientific and engineering computing. You can access
+this software in at least the following ways:</p>
+
+<ul>
+<li><p>You can install MATLAB on your personal machine and use it via SLU's license via the
+instructions <a href="https://www.slu.edu/its/services-and-products/research-technology-group/mathworks">here</a>.
+
+<li><p>Computer labs: The computers in McDonnell Hall should all have access to MATLAB.
+
+<li><p>Departmental server: You can use MATLAB from most personal machines by connecting to 
+the Computer Science department server called Hopper. When you are enrolled in this course
+you should automatically be emailed login credentials.
+(If not, contact <a href="http://cs.slu.edu/people/dennisthomas">Dennis Thomas</a>.)
+You can then login by:
+<ol>
+<li>Download and install the free software <a href="https://www.nomachine.com/">NoMachine</a>
+<li>Manually create a new connection. The connection protocol is SSH over port 22. 
+The server/hostname you to connect to is "hopper.slu.edu"
+<li>Click to connect- the first time you will have to accept the server's SSH key.
+<li>Find "Terminal" or "XTerm" in the applications menu. In the terminal type "matlab" and press enter.
+<li>Note- please LOG OUT of Hopper when you are done using it. DO NOT just hit the red X at the top of the
+NoMachine window. This second method will not actually close your virtual desktop- it will continue to run
+and consume department resources, making the system admin very upset! (He will probably close your desktop for
+you as well.) Individually you won't cause a big problem, but a hundred idle desktop sessions can cause
+noticeable problems for other users.
+</ol>
+
+
+<!--<li><p>You can purchase a MATLAB student license for use on your personal machine directly from Mathworks
+<a href="https://www.mathworks.com/academia/student_version.html">here</a> for $99. (There is a cheaper option,
+but if you are planning on going this route it is worthwhile to get the full package, as your other classes are
+likely to need the full software suite.) -->
+</ul>
+
+<h4>Great reads that deal with computing in an engineering context:</h4>
+<ul>
+	<li><i>Skunk Works: A Personal Memoir of My Years at Lockheed</i> by Ben Rich - Discusses (among other things) how computers helped the F117 stealth fighter achieve a stealthy radar cross section the size of a 3mm ball bearing.
+	<p> 
+	<li><i>Failure Is Not an Option: Misson Control From Mercury to Apollo 13 and Beyond</i> by Gene Kranz - Discusses (among other things) the evolution of the computer command and control technology from the early Redstone rocket program through the Apollo program. Includes a great discussion of the infamous 1201 and 1202 program alarms that ocurred in the Apollo Guidance Computer during the Apollo 11 lunar descent phase.
+	<p>
+	<li><i><a href="http://research.microsoft.com/en-us/um/people/mbj/Mars_Pathfinder/Mars_Pathfinder.html">What Really Happened on Mars?</a></i> by Mike Jones and a follow up <a href="http://research.microsoft.com/en-us/um/people/mbj/mars_pathfinder/Authoritative_Account.html">first person account</a> by Mars Pathfinder software team lead Glenn Reeves of NASA's Jet Propulsion Laboratory. Both discuss the cause and resolution of a computer failure that threatened the wildly successful Mars Pathfinder mission. Relatively technical.
+</ul>
+
+<hr style="width: 100%; height: 2px;"><p>
+	<h3><a name="Academic Honesty">Academic Honesty</a></h3>
+<p>
+<i>Academic integrity is honest, truthful and responsible conduct in all academic endeavors.</i> The mission of Saint Louis University is "the pursuit of truth for the greater glory of God and for the service of humanity."  Accordingly, all acts of falsehood demean and compromise the corporate endeavors of teaching, research, health care, and community service via which SLU embodies its mission. The University strives to prepare students for lives of personal and professional integrity, and therefore regards all breaches of academic integrity as matters of serious concern.
+</p> 
+<p>
+The governing University-level Academic Integrity Policy was adopted in Spring 2015, and can be accessed on the Provost's Office website <a href="http://www.slu.edu/Documents/provost/academic_affairs/University-wide%20Academic%20Integrity%20Policy%20FINAL%20%206-26-15.pdf">here</a>. The College of Arts and Sciences policies on academic honesty can be found <a href="http://www.slu.edu/college-of-arts-and-sciences-home/undergraduate-students/academic-honesty">here</a>.
+</p>
+<p>
+If you are ever in doubt whether a particular action is a violation of academic honesty, please ask first!
+</p>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Academic Support">Academic Support</a></h3>
+
+<p>In recognition that people learn in a variety of ways and that learning is influenced by multiple factors (e.g., prior experience, study skills, learning disability), resources to support student success are available on campus. The Student Success Center assists students with academic and career related services, is located in the Busch Student Center (Suite, 331) and the School of Nursing (Suite, 114). Students can visit www.slu.edu/success to learn more about: </p>
+
+<ul>
+<li>Course-level support (e.g., faculty member, departmental resources, etc.) by asking your course instructor.
+<li>University-level support (e.g., tutoring services, university writing services, disability services, academic coaching, career services, and/or facets of curriculum planning).
+</ul>
+
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Disability Services">Disability Services</a></h3>
+<p>
+Students with a documented disability who wish to request academic accommodations must contact Disability Services to discuss accommodation requests and eligibility requirements. Once successfully registered, the student also must notify the course instructor that they wish to access accommodations in the course.
+</p>
+<p>
+Please contact Disability Services, located within the Student Success Center, at Disability_services@slu.edu or 314.977.3484 to schedule an appointment. Confidentiality will be observed in all inquiries. Once approved, information about the student’s eligibility for academic accommodations will be shared with course instructors via email from Disability Services and viewed within Banner via the instructor’s course roster.  
+</p>
+<p>
+Note: Students who do not have a documented disability but who think they may have one are encouraged to contact to Disability Services.
+</p>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h3><a name="Title IX Statement">Title IX Statement</a></h3>
+<p>
+Saint Louis University and its faculty are committed to supporting our students and seeking an environment that is free of bias, discrimination, and harassment. If you have encountered any form of sexual misconduct (e.g. sexual assault, sexual harassment, stalking, domestic or dating violence), we encourage you to report this to the University. If you speak with a faculty member about an incident of misconduct, that faculty member must notify SLU’s Title IX coordinator, Anna R. Kratky (DuBourg Hall, room 36; akratky@slu.edu; 314-977-3886) and share the basic facts of your experience with her. The Title IX coordinator will then be available to assist you in understanding all of your options and in connecting you with all possible resources on and off campus.
+</p>
+<p>
+If you wish to speak with a confidential source, you may contact the counselors at the University Counseling Center at 314-977-TALK. To view SLU’s sexual misconduct policy and for resources, please visit the following web addresses: 
+<a href="http://www.slu.edu/general-counsel-home/office-of-institutional-equity-and-diversity/sexual-misconduct-policy 
+www.slu.edu/here4you">
+http://www.slu.edu/general-counsel-home/office-of-institutional-equity-and-diversity/sexual-misconduct-policy 
+www.slu.edu/here4you</a>
+</p>

@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<style>
+.hang {
+	padding-left: 2em ;
+}
+</style>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSCI 3500 - Operating Systems</title></head>
+
+<h2 style="text-align: center;">CSCI 3500: Lab 5<br></h2>
+<h2 style="text-align: center;"><code>chat</code> - Network Chat Client</h2>
+
+
+
+<hr style="width: 100%; height: 2px;">
+
+<p></p>
+
+<p>In this lab, you will:</p>
+
+<ol>
+<li>Write a chat server that manages multiple concurrent connections
+<li>Write a chat client
+<li>Perform asynchronous message passing between arbitrary numbers of clients
+<li>Perform concurrent, nonblocking I/O
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Parameters</h3></p>
+
+<p>This is a group assignment.</p>
+
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Usage:</h3></p>
+
+<p><code>server &lt;IP address&gt; &lt;port number&gt;<br>
+client &lt;IP address&gt; &lt;port number&gt;</code></p>
+
+
+<p><h3>Description</h3></p>
+
+<p>
+The goal of this assignment is to write a networked chat server and client.
+Multiple users will connect concurrently to a single server process via
+individual chat clients. The client program will send messages from 
+users to the server, and will print messages from the server to the user's
+terminal screen. The server will keep track of connected clients, and when
+it recieves a message from any client it will pass that message along to
+all other connected clients. Each user will also have a name that is used
+to identify their statements.</p>
+
+<p>Each user, when they first connect, should get a default name
+consisting of the string "User" followed by a unique set of digits.
+When a user connects to the server any other connected users should
+recieve a message stating "<code>&lt;user name&gt; has connected</code>".</p>
+
+<p>Additionally, the client will support two
+special commands <code>name</code> and <code>quit</code>.</p>
+
+<p><code>name</code> command: When the client enters the phrase "<code>name</code>"
+followed by a space and at least one character, everything after the space
+will become the user's name. The system will then send this name in front of
+any subsequent chat messages. If the user specifies another name their current
+name is replaced. Lastly, when any
+user changes their name then all other users should recieve the message
+"<code>&lt;old name&gt; has changed their name to &lt;new name&gt;</code>"</p>
+
+<p><code>quit</code> command: When the client enters the phrase "<code>quit</code>"
+the client program will terminate. All other connected users should recieve
+the message "&lt;user name&gt; has quit".</p>
+
+<p>Messages should always be printed to all terminals in less than a second,
+regardless of the current state of the system. (This means that your client
+should be able to display text even while waiting for input, and your
+server should be able to respond to an incoming request by <i>any</i>
+client at <i>any</i> time.)</p>
+
+<p>If a client suddenly finds its socket to be closed then it should quit
+and print a message saying the server shut down unexpectedly. If the
+server finds a socket unable to be used it should print the same message
+as though the user quit normally.</p>
+
+<p><h3>Hints</h3></p>
+
+<ul>
+
+<p><li>Test all your code locally. Specifying an IP address of <code>127.0.0.1</code>
+(the loopback address) will cause all traffic to stay local. Using this IP
+you can run your client and your server on the same machine. I won't require you
+to test your code across the internet, but it should work in theory. (Things
+like firewalls can make this harder than it it first seems. I'm happy to give advice
+on how to get this running if you'd like.)</p>
+
+<p><li>Your programs should accept any port number, but in practice you probably want
+to use a large, random number. Better yet, look up a list of commonly used ports
+online and pick one that's not used.</p>
+
+<p><li>Your server and each of your clients must specify the <i>same</i> port number
+to communicate. How do you tell clients apart? The sockets interface makes this
+easy! You might have noticed in the studio that your server gets a
+different file descriptor from <code>accept()</code> than from <code>socket()</code>.
+In fact, <code>accept()</code> returns a different descriptor for each 
+individual connection.</p>
+
+<p><li>As a distributed system, some features (like keeping track of a name) may be done in the
+client or in the server. It's up to you to decide how to implement features.</p>
+
+<p><li>The client should be prepared to display a message at all times, even if the
+program is also waiting for user input. A great way to accomplish this is to use
+a <code>pthread</code> to wait for server messages and print them to the
+screen when they arrive. Don't worry about incoming messages messing up the display
+of half-written messages.</p>
+
+<p><li>The first major challenge in your server is keeping track of an arbitrary number of
+clients that can connect and drop out at any time. This requires a data structure
+such as a linked list. Thankfully you can rely on library functions such as <code>malloc</code>
+this time around. </p>
+
+<p><li>The second major challenge in writing your server is the asynchronous nature of the system.
+Your server needs to be able to respond to a message from any client quickly, and
+in particular your server cannot block (wait) on calls to <code>read()</code> sockets
+or calls to <code>accept()</code> new connections. You can set sockets to be
+<i>nonblocking</i>. With a nonblocking socket calls to <code>read()</code> will fail and
+return an error if there is nothing to read. Similarly, calls to <code>accept()</code>
+will fail and return an error if there are no new connections to accept. In both
+cases the function returns an error value and sets <code>errno</code> to be one of
+<code>EAGAIN</code> or <code>EWOULDBLOCK</code>.</p>
+
+<p><li>Search the <code>accept4()</code> man page and the <code>socket()</code> man page
+for the phrase "<code>SOCK_NONBLOCK</code>" for details on how to make sockets
+nonblocking. You will want to set the socket returned from <code>socket()</code>
+as nonblocking, as well as the sockets returned from <code>accept()</code> (for
+this second one, use the <code>accept4()</code> variant).</p>
+
+<p><li>Use <code>sprintf()</code> to format strings (char buffers) easily. For example, if you
+have a <code>name</code> string and a <code>message</code> string, and you want to
+combine these into a <code>toSend</code> string, you can use something like:</p>
+
+<p><code>sprintf(toSend, "%s: %s", name, message);</code></p>
+
+<p>If you find yourself wanting to use <code>strcpy()</code> or <code>strncpy()</code>,
+consider using <code>sprintf()</code> instead.</p>
+
+<p><li>Make sure your client only uses the commands <code>name</code> and <code>quit</code>
+when it is appropriate. You shouldn't let clients set their names to be empty. The
+client shouldn't quit on the input "quite right!"</p>
+
+<p><li>Each client should only make one connection. Call <code>connect()</code>
+only once in your client code. In particular, don't call <code>connect()</code>
+every time you send a message. The connection that is established can be used
+over and over.</code></p>
+</ul>
+
+
+<p><h3>Useful man pages</h3></p>
+<p><code>
+socket(2)<br>
+bind(2)<br>
+listen(2)<br>
+accept(2)<br>
+accept4(2)<br>
+connect(2)<br>
+shutdown(2)<br>
+shutdown(2)<br>
+ip(7)<br>
+pthread_create(3)
+read(2)<br>
+write(2)<br>
+snprintf(2)<br>
+</code></p>
+
+<p><h3>Questions</h3></p>
+
+<ol>
+<p><li>There are no exercises for this lab. Please mark your group clearly in
+your client code, your server code, and in your submission email.</p>
+
+
+</ol>
+<!--
+<p><h3>Optional Enrichment Exercises</h3></p>
+
+<ul>
+<p><li><b>:</b></p>
+</ul>
+-->
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Submission</h3></p>
+
+<p>Submit your program code via the Git repository.</p>
+<!--
+<p>Create a .tgz archive of your lab directory and email it to
+<code><big><b>dferry_submit@slu.edu</b></big></code><p>.
+
+<p>The simple syntax for creating a .tgz archive is as follows:</p>
+
+<p><code>tar -zvcf new_archive.tgz lab_directory</code></p>
+
+<p>The syntax for unpacking a .tgz archive is:</p>
+
+<p><code>tar -zvxf archive.tgz</code></p>
+
+<p>Note that your archive <b>must not</b> include any binary executable files,
+meaning any compiled programs or intermediate build objects (.o files, for
+example). This will cause your email to be rejected by most services.</p>
+-->
+

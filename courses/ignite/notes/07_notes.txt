@@ -1,0 +1,114 @@
+Chapter 4 - Site-Specificity vs. Pure Technique
+
+* Chapter Topics:
+  - ELIZA
+  - Scaling Therapy (Psychology without Psychologists)
+  - Reacting Locally (Give people a checklist and they loose half their IQ,
+    give people authority and trust them and they double their IQ)
+  - A Robot Will Be Doing Your Job (human jobs, then mechanization, then
+    automation)
+  - "I Can't Communicate" (Site-specificity and context vs. Pure Technique
+    in communication, an examination of customer service and similar
+    communication roles in the modern world)
+  - Maggot Therapy (AI and automation show us what is truly human, rather
+    than taking away human activity)
+  - Art Cannot be Scaled (Artists get bored and continually challenge
+    themselve, as soon as something is easy, a different challenge is taken)
+  - Site-Specificity in Conversation (Good conversation is tailored to the
+    audience, the speaker, the context, the location, etc. Consider the
+    professional stage actor that has to literally recreate the same
+    communication performance many times per week)
+
+* Site-Specificity
+  - Comes from architecture: Do you plan a new building with the specific
+    site in mind, or not? Computer tools allow an architect to take the same
+    basic building plan and tweak it to different sites.
+  - Can be applied to any other endeavor, for example, Google the phrase
+    site-specific art.
+  - Another way of asking: Is this specific endeavor location-dependent or
+    context-dependent? Do you lose something if you take away the specific
+    location or the specific context? 
+  - Aesthetically, window orientation is an example of site-specificity-
+    a site might have great views in one or two directions. Technically,
+    utilities, subsoil structure, other local conditions may need to be
+    taken into account when building.
+* Pure Technique
+  - From Joseph Wizenbaum, a psychologist. It is providing psychotherapy
+    while explicitly not getting into a patients' specific context or
+    background. 
+  - Explicitly **not** a method. Between method and method's opposite.
+  - Pure technique can be described as a lack of "judgement," or "discovery"
+    or "figuring out." 
+  - The lack of site-specificity. An endeavor can be adequately mechanized
+    into a list of instructions or a checklist that makes no mention of and
+    is not concerned with location or other contextual factors.
+
+* Site-Specificity vs. Pure Technique
+  - Site-specificity sounds good, but is it always good? Is it always
+    really what we want? 
+    - Do you really want the cashier to have a long, 2-3 minute conversation
+      with you every time you go to the store? What if you're the 5th person
+      in line? 
+    - What about a customer service rep on the phone?
+    - What about a concierge?
+    - When do you really want a custom, unique experience?
+  - Pure technique
+    - Removes complexity, judgement, and decision making from process
+    - Comfort in pure technique
+      - We don't want to think about every decision all the time (morning
+        routine, think about the guy who couldn't pick between the wallet and
+        the pen)
+    - Allows processes to go faster
+    - Allows processes to scale
+      - Assembly lines are good examples of pure technique, we remove all
+        decision making on purpose
+      - Interchangeable parts vs. craftwork is another example, craftwork
+        can be beautiful, unique, and individualized, but it costs much more,
+        it takes a long time to produce, and it can't be fixed or repaired
+        easily
+ 
+* Human technique vs. mechanization vs. automation
+  - Things never go from "human" to "AI automation"
+  - They go from "human" to "mechanized" to "AI automation"
+  - Mechanization means pure technique in the language of the chapter- the
+    jobs have been reduced to a mindless checklist. This is precisely what has
+    made the jobs capable of being automated
+  - The middle step is where we drain the humanness and creativity from jobs
+  - If robots, AI, and automation went away tomorrow, people would be doing
+    mechanized jobs like they were robots
+    - This does not mean these are not "good jobs," lots of people just want
+      a good job with good benefits to provide for themselves
+    - But, they are not jobs where people find intellectual value or creative
+      value in the work itself
+      - They can still find value in doing the work and providing the service
+      - Takes us back to the big question: What is human work?
+
+Class Activity:
+
+0. Do now - what is your conception of Pure Technique, site specificity,
+   and method?
+
+1. Summarize site specificity vs. pure technique
+
+2. Discussion: Therapy
+   - Can a therapist do their work in a pure technique fashion?
+   - Which would you prefer?
+
+3. Summarize automation vs mechanization vs whatever else (human work)
+   - If it can be mechanized, then it can be automated
+
+4. Discussion: Mechanization
+   - Who has worked in a mechanized job?
+   - Teaching is arguably "Pure Technique"
+     - Every textbook, tutorial, or other written work of teaching is arguably
+       an implicit argument for the mechanization of teaching
+     - And yet people keep going to teachers for some reason
+   - Same argument for therapy- self-help books are mechanized therapy
+     - Does being a "wounded healer" make a therapist a better therapist?
+   
+5. How far does mechanization, or pure technique, apply? Art, philosophy,
+   science, etc? 
+   - What jobs can be mechanized? 
+   - How do tools help augment human creators rather than supplant them?
+
+

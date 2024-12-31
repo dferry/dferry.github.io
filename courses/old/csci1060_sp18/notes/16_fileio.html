@@ -1,0 +1,322 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+
+<HTML>
+<HEAD>
+<TITLE>Lecture Notes: File Input and Output
+</TITLE>
+</HEAD>
+
+<BODY>
+
+<HR>
+
+<H2>
+File Input and Output
+</H2>
+
+<p>
+<b>Reading:</b>  Ch.&nbsp;4.3-4.4
+</p>
+
+<hr>
+Code from class: <a href="../programs/fileIO.m">fileIO.m</a>
+<hr>
+
+<ul>
+  <li>
+      <a href="#file">Overview of File I/O</a>
+  </li>
+  <li>
+      <a href="#lowlevelFiles">Low-Level File I/O</a>
+      <ul>
+	<li>
+	    <a href="#open">Opening a File</a>
+	</li>
+	<li>
+	    <a href="#fid">File Identifiers</a>
+	</li>
+	<li>
+	    <a href="#closing">Closing a File</a>
+	</li>
+	<li>
+	    <a href="#writing">Writing to a File</a>
+	</li>
+	<li>
+	    <a href="#reading">Reading from a File</a>
+	</li>
+	<li>
+	    <a href="#position">Position within a File</a>
+	</li>
+      </ul>
+  </li>
+  <li>
+      <a href="#highlevelFiles">High-Level File I/O</a>
+  </li>
+</ul>
+
+<hr>
+
+<h2><a name="file">Overview of File I/O</a></h2>
+
+When reading or writing large amounts of data, it is often much more
+convenient to interact with files.  There are two basic approaches to
+working with files.  MATLAB has built-in support for reading or
+writing using many common high-level file formats (e.g., Excel files,
+comma-separated values, XML, WAV, AVI, and much more).   It also
+provides low-level support for reading from or writing to files one
+character at a time.
+
+<hr>
+
+<h2><a name="lowlevelFiles">Low-Level File I/O</a></h2>
+
+
+<h3><a name="open">Opening a File</a></h3>
+
+The first step to reading or writing a file is to formally open the
+file from within MATLAB.  This is done using a call of the form
+<b><tt>fopen(filename,&nbsp;permission)</tt></b> where
+<ul>
+  <li>
+      <b><tt>filename</tt></b> is a string that represents the filename on
+      the system.  By default, this is in the current working
+      directory, but a full path can be used to specify a file
+      elsewhere on the system.
+  </li>
+      <br>
+  <li>
+      <b><tt>permissions</tt></b> is a string chosen from the following designators:
+      <ul>
+	<li>
+	    <tt>'r'</tt>
+	    for reading only
+	</li>
+	<li>
+	    <tt>'w'</tt>
+	    for writing only
+	</li>
+	<li>
+	    <tt>'a'</tt>
+	    for appending only
+	</li>
+	<li>
+	    <tt>'r+'</tt>
+	    for both reading and writing
+	</li>
+      </ul>
+
+      By default, if the caller does not send a permission designator,
+      <tt>'r'</tt> is assumed.
+  </li>
+
+</ul>
+
+
+
+<h3><a name="fid">File Identifiers</a></h3>
+
+<p>
+Since a program might open several files simulatneously for different
+purposes, there must be a way to keep track of which file is which for
+further commands.  MATLAB does this by using unique integer known
+as a <em>file identifier</em>.   The call to <tt>fopen</tt> sends back
+this ID as a return value.  So a typical syntax for opening a file
+would be
+<pre>
+fid = fopen('sample.txt');           % opens the file for reading
+</pre>
+We can later use that ID value with other file operations (e.g.,
+<tt>fprintf</tt>, <tt>fscanf</tt>, <tt>fclose</tt>).
+
+<p>
+It is possible that the call to <tt>fopen</tt> fails to properly open
+the file, either because it cannot be found or because the user does
+not have the necessary permissions for accessing the file in that
+way.  In this case, the call to <tt>fopen</tt> returns the value
+<tt>-1</tt> as a result, and in fact, returns an error message as a
+second return value.  The program can then look for that as a signal
+of a problem.  For example, here is an example from the MATLAB
+docuemntation that promps a user for the name of a file to
+open, repeating until successful.
+<pre>
+fid=0;
+while fid < 1
+   filename=input('Open file: ', 's');
+   [fid,message] = fopen(filename, 'r');
+   if fid == -1
+     disp(message)
+   end
+end
+</pre>
+
+
+<p>
+MATLAB also uses certain IDs for some standard file-like objects
+<table>
+  <tr>
+    <th>fid</th>
+    <th>purpose</th>
+  </tr>
+  <tr>
+    <td>0</td>
+    <td>standard input</td>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>standard output</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>standard error</td>
+  </tr>
+</table>
+
+
+
+<h3><a name="closing">Closing a File</a></h3>
+
+<p>
+When you are finished accessing an open file, you should close it by
+calling <tt>fclose(fid)</tt> using the appropriate file
+identifier. This ensures that the file is properly saved and it frees
+us the numeric identifier for reuse.  You may also use the syntax
+<tt>fclose('all')</tt> to close all open files (other than the
+"standard" filelike objects).
+
+
+<h3><a name="writing">Writing to a File</a></h3>
+
+<p>
+Once a file has been opened for writing, we can use <tt>fprintf</tt>
+to write text to it.   By default, a command such as <tt>fprintf('Hello\n')</tt>
+sends the characters to the <em>standard output</em>.  But we can send
+those characters to an open file by giving the file identifier as a
+first parameter. As an example, here is a small script that creates a
+new text file.
+<pre>
+fid = fopen('sample.txt', 'w');      % opens file sample.txt for writing
+fprintf(fid, 'Hello\n');             % writes to that file, based on identifier fid
+fclose(fid);                         % closes and saves the file
+</pre>
+
+
+<h3><a name="reading">Reading from a File</a></h3>
+
+<p>
+There are several functions for reading from a file.
+
+<p>
+<b><tt>data = fread(fid)</tt></b>
+<br>
+This reads the entire remainder of the open file into a string.
+
+<p>
+<b><tt>data = fread(fid, n)</tt></b>
+<br>
+This reads a maximum of the next <tt>n</tt> bytes of the open file.
+
+
+<p>
+<b><tt>line = fgetl(fid)</tt></b>
+<br>
+Reads the next line from the file and returns that line (but without
+the ending newline character) as a result.
+
+<p>
+<b><tt>line = fgets(fid)</tt></b>
+<br>
+Almost identical to <tt>fgetl</tt>, but the returned string for this
+form includes the ending newline character (if any).
+
+
+<p>
+<b><tt>fscanf</tt></b> is the most versatile function for reading
+formatted data from an open file.  It uses formatting strings in a way
+reminiscent of the way <tt>fprintf</tt> is used to write to a file.
+Most notably, it uses <tt>%s</tt> to read a string (delimited by
+whitespace), <tt>%d</tt> to read an integer, and <tt>%g</tt> to read a
+floating-point value.
+
+<p>
+Furthermore, <tt>fscanf</tt> is vectorized in the sense that the call
+<tt>fscanf(fid,&nbsp;'%d')</tt> will not just read a single integer,
+but will attempt to read as many integers as it can until reaching a
+portion of the file that does not match an integer format.  Those
+integers will be returned as a vector.
+
+<p>
+If you want to limit the scan to a maximum number of elements to read,
+you can specify that limit as a third element.  For example,
+<tt>fscanf(fid,&nbsp;'%d',&nbsp;1)</tt> will only attempt to read the
+next integer.
+
+
+
+<h3><a name="position">Position within a file</a></h3>
+
+<p>
+When a file is open, MATLAB internally maintains the position at which
+it is currently reading or writing. This is essentially like the cursor
+in a word processor. When initially opened for reading
+or writing, the position is at the beginning of the file (or when
+opened for appending, the position is at the end of the file).
+
+<p>
+We can query the current position using the syntax
+<pre>
+position = ftell(fid)
+</pre>
+where position measures the number of bytes from the beginning of the
+file (with -1 returned when the file is not properly opened).
+
+<p>
+It is also posible to reposition the current cursor using a syntax
+<pre>
+fseek(fid, offset, origin)
+</pre>
+where <tt>offset</tt> is a number that can be positive or negative, and
+<tt>origin</tt> is a string designate the frame of reference for the
+seek, as
+<ul>
+  <li>
+      <tt>'bof'</tt> to measure from beginning of file
+  </li>
+  <li>
+      <tt>'cof'</tt> to measure from current position of file
+  </li>
+  <li>
+      <tt>'eof'</tt> to measure from end of file
+  </li>
+</ul>
+
+
+<hr>
+
+<h2><a name="highlevelFiles">High-Level File I/O</a></h2>
+
+<ul>
+  <li>
+      <b>MATLAB data file (.mat)</b>
+
+      <p>
+      <b><tt>save('myData.mat')</tt></b>
+      <br>
+      Saves all variables in your current workspace to the indicated
+      file, using a proprietary binary file format.
+
+      <p>
+      <b><tt>load('myData.mat')</tt></b>
+      <br>
+      Loads varaibles into the current workspace, that were previously saved using the save command.
+  </li>
+</ul>
+
+<HR>
+Originally by
+<ADDRESS>
+<a href="/~goldwasser">Michael Goldwasser</a>
+</ADDRESS>
+<HR>
+  </BODY>
+</HTML>
+

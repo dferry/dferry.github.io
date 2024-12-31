@@ -1,0 +1,93 @@
+Perspective - AI Generated Art
+
+Class plan: 
+  - Demonstrate inpainting technique
+  - Demonstrate outpainting technique or use the blog video
+  - Discussion questions on art
+  - Lecture on how DALL-E system works at high level
+  - Lecture on computability/mechanizability if we have time
+
+Guiding questions:
+1. What is art?
+2. What makes art, art?
+3. Is AI generated art a form of artistic endeavor?
+
+Comments:
+1. Yes, we might put some painters and sketch artists out of work.
+   - Is the physical act of creating the art with pen and paper the central 
+     part of art?
+2. Book imagery from last time: "maggot therapy"
+   - What does DALL-E tell us is an essential part of art, and not part of art?
+   - Do you buy that?
+3. Accessibility
+   - People who don't have manual art skills- drawing, painting, etc. are able
+     to participate.
+   - People who are actually disabled are able to participate.
+
+Discussion questions:
+1. On a scale of 1 to 10, is generating images with DALL-E an artistic
+   endeavor?
+2. In chapter 4 the author uses the image "maggot therapy" where AI eats away
+   everything that is not really a human endeavor.
+   - Does this change your opinion of art?
+   - Does this change your opinion of the "maggot therapy" concept?
+   - Is it true that pure ability is what should differentiate human from not
+     human activity?
+3. Should those who have "art skills" (sketching, painting, etc.) act as
+   gatekeepers for others who want to create art?
+   - Social good of extending art to everyone
+   - Democratization of art- e.g. consider the printing press and access
+     to books
+4. What are the limitations of DALL-E vs. a human artist?
+   - One dimensional art
+   - Every image is totally separate from others, need to be spaitally joined
+     to have a consistent style. Imagine illustrating every page of a single
+     comic book with each page having a varying style.
+
+
+Lecture:
+* How DALL-E works
+  - Text model combined with an image model, then put through "diffusion" process
+  - Input: images and captions
+  - DALL-E learns a "latent space" where each language feature is a dimension
+    and associates each image in the training data with a point in that latent
+    space
+  - Imagine you have a 2D plot, and X axis is labeled Dog and the Y axis
+    is labeled Cat. At (1,0) you have a cluster of dog images, and at (0,1) you
+    have a cluster of cat images, and at (1,1) you have a cluster of images
+    that have both a cat and a dog. 
+  - Then, you enter a new text string, that translates to a point of (0.7, 0.3)
+  - The diffusion process attempts to generate an image that blends all of the
+    input data that it had around that point
+
+Lecture:
+* What things are mechanizable?
+  - Analogous question - What is computable?
+  - Alan Turing: Founder of Computability Theory, 1938
+    - A set of numbers is **computable** if, for any number N, a machine can
+      determine whether the number is in the set and halt (stop computation)
+    - Example- set of even numbers, set of odd numbers, prime numbers,
+              multiples of 5, fibonacci numbers most other sets you can think of
+    - Hard example - (X, Y, S) such that a machine executing program X
+      given input Y halts within S steps
+    - One needs to give an **algorithm** that works for any number and is
+      guaranteed to halt in order for the set to be computable
+    - Turing formalized the notion of a machine and an algorithm, which allowed
+      him to prove statements about whether or not a program could or could not
+      exist that computed certain statements.
+
+  - Even numbers: Given N, start with 2, keep adding 2. If N ever shows up, then
+    we accept. If our number is greater than N, then we reject.
+    - Odds, fibonacci numbers, multiples of 7, etc. are all the same
+
+  - Examples of **undecidable** problems:
+    - a type of computational problem that requires a yes/no answer, but where 
+      there cannot possibly be any computer program that always gives the 
+      correct answer; that is, any possible program would sometimes give the
+      wrong answer or run forever without giving any answer.
+    - Classic example: Halting Problem
+    - Proving Mathematical Theorems
+    - Air travel planning (this is not path finding- it is finding whether
+      a valid air route exists between
+      destinations A and B under a given fare structure- the fare structure
+      used by the airlines is what makes this hard, not the pathing)

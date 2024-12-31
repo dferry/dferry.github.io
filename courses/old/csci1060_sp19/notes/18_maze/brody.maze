@@ -1,0 +1,24 @@
+% maze is described with first half of matrix designating
+% when you are able to move upward, and with second half
+% designating when you are able to move leftward.
+0 0 0 0 0 0 0 0 0 0
+1 0 0 0 1 0 0 1 1 1
+1 1 0 1 1 0 1 1 1 1
+1 1 0 0 0 1 1 0 1 1
+1 1 1 0 1 0 1 1 1 1
+1 1 0 1 0 1 0 0 1 1
+1 1 0 0 0 0 1 1 1 1
+1 1 1 0 1 1 0 1 1 1
+1 0 1 1 1 0 0 0 1 1
+1 1 1 0 0 0 0 1 1 1
+
+0 1 1 1 1 1 1 1 0 1
+0 0 1 1 1 1 1 0 0 0
+0 0 1 0 0 1 0 0 0 0
+0 0 1 1 0 1 0 0 1 0
+0 0 0 1 0 1 0 1 0 0
+0 0 1 1 1 1 1 1 0 0
+0 0 1 1 1 1 0 0 0 0
+0 1 0 0 0 0 1 1 1 0
+0 1 0 0 1 1 0 1 0 0
+0 0 0 1 1 1 1 1 0 1

@@ -1,0 +1,262 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+  <HEAD>
+    <TITLE>Assignment
+05
+</TITLE></HEAD>
+
+  <BODY>
+
+
+
+<HR>
+
+<center>
+<h2>Assignment 05
+<br>User-Defined Functions</h2>
+</center>
+
+
+<hr>
+
+<h3>Contents:</h3>
+<UL>
+  <LI>
+      <a href="#overview">Overview</a>
+  </LI>
+  <LI>
+      <a href="#collaboration">Collaboration Policy</a>
+  </LI>
+  <LI>
+      <a href="#submit">Problems to be Submitted</a>
+  </LI>
+  <LI>
+      <a href="#extra">Extra Credit</a>
+  </LI>
+</UL>
+
+<hr>
+
+<a name="overview"><h3>Overview</h3></a>
+
+<P>
+<b>Topic:</b>  User Defined Functions
+<br>
+<b>Related Reading:</b>  Ch.&nbsp;7 and class notes.
+</P>
+
+<hr>
+
+<H3>
+<a name="collaboration">Assignment Parameters</a>
+</H3>
+
+<p>
+For this assignment, <b>you must work individually</b> in regard to
+the design and implementation of your work.
+Please make sure you adhere to the policies on academic integrity in this regard.
+
+<!--
+<p>
+Please submit your work via email to <a href="mailto:dferry_submit@slu.edu">dferry_submit@slu.edu</a>.
+-->
+<p>
+<a href="https://docs.google.com/forms/d/e/1FAIpQLSdq3LPrCNlxU46KXb2LvYs5jz886dpSv5TXR6LHSQqcVxfv5g/viewform?usp=sf_link">Please submit your work via the web form here.</a>
+</p>
+
+<hr>
+
+<a name="submit"><h3>Problems to be Submitted (20 points)</h3></a>
+
+<ol type='A'>
+  <li> (6 points)<br>
+      MATLAB provides a function <tt>mode</tt> that computes the mode
+      of a set of values, that is, the single most frequently occuring
+      value (in the case of a tie, it returns the smallest value among
+      those having the maximum frequency).  For example, the command
+      <nobr><tt>m = mode([5 8 2 9 2 5 7 2 6 5 4])</tt></nobr> sets
+      variable <tt>m</tt> to the value <tt>2</tt>, as it and 5 occurs three times each, with
+      2 chosen based on the tie-breaking rule.  There is a second form
+      of the command <nobr><tt>[m n] = mode(V)</tt></nobr> where
+      <tt>m</tt> is the value of the mode and <tt>n</tt> is its
+      frequency.  For example, the command
+      <nobr><tt>[m n] = mode([5 8 2 9 2 5 7 2 6 5 4])</tt></nobr> sets
+      <tt>m = 2</tt> and <tt>n = 3</tt>.
+
+      <p>
+      Your task is to <b>implement a function</b> called <tt>myMode(v)</tt> that has
+      similar behavior when called upon a vector of values.  You are
+      not allowed to
+      use the official <tt>mode</tt> function.  However, you may use
+      the built-in function <tt>sort</tt> which sorts values of a
+      vector into non-decreasing order.   Once the data is sorted,
+      finding the mode is equivalent to looking for the longest
+      consecutive streak of equal values.
+  </li>
+      <br>
+  <li> (7 points)<br>
+      This problem is motivated by a previous assignment in
+      which we plotted stock prices.  Assume that the price for a
+      given period of time fluctuates between <tt>low</tt> and
+      <tt>high</tt>.  We want to display a y-axis with grid lines
+      so that the entire range of prices is displayed and so that grid
+      lines are drawn at "nice" values.
+      For example, when stock prices range from 7500 to 13010, eight grid
+      lines should be displayed at 7000, 8000, 9000, 10000, 11000, 12000, 13000,
+      and 14000.  Yet when a stock price ranges from 160 to 426, seven
+      grid lines should be drawn at values 150, 200, 250, 300, 350, 400, and 450.
+      
+      <p>
+      More formally, we want the following requirements met:
+      <ul>
+	<li>
+	    Grid lines for a plot must be drawn at even increments
+	    that are multiples of some fixed <tt>M</tt>, chosen for
+	    the given data set.
+	</li>
+	<li>
+	    That value of <tt>M</tt> must be of
+	    the form <nobr><tt>c * 10 ^ k</tt></nobr>
+	    where <tt>c</tt> is either 1, 2, or 5 and where
+	    <tt>k</tt> can be any integer. 
+	</li>
+	<li>
+	    The lowest grid value must be equal to the greatest
+	    multiple of <tt>M</tt> that is less than or equal to
+	    <tt>low</tt>.
+	</li>
+	<li>
+	    The highest grid value must be equal to the lowest
+	    multiple of <tt>M</tt> that is greater than or equal to
+	    <tt>high</tt>.
+	</li>
+	<li>
+	    There must be at least 5 grid values and at most 10.
+	</li>
+      </ul>
+
+      <p>
+      Write a function of the form
+      <nobr><tt>v = computeGrid(low,high)</tt></nobr> that returns a
+      vector <tt>v</tt> of the grid values that should be used when plotting
+      stocks that range from <tt>low</tt> to <tt>high</tt>.  For
+      example,
+      <tt>computeGrid(7500, 13010)</tt> could return the
+      vector
+      <nobr><tt>[7000 8000 9000 10000 11000 12000 13000
+      14000]</tt></nobr> based on increment of <tt>M=1000</tt>,
+      whereas
+      <tt>computeGrid(160, 426)</tt> could return the
+      vector
+      <nobr><tt>[150 200 250 300 350 400 450]</tt></nobr> based on an
+      increment of <tt>M=50</tt>.
+
+      <p>
+      For this problem, you may assume that a solution exists for some
+      M &ge; 1. That is, you may assume that k &ge; 0 in our
+      notation.  See extra credit for the more general case.
+      
+  </li>
+      <br>
+  <li> (7 points)<br>
+      We have seen the use of the built-in <tt>max</tt> function, for
+      determining the maximum of a vector of elements.  The function
+      is more general, including the following two features.
+      <ul>
+	<li>
+	    In addition to returning the value of the maximum, it can
+	    produce a second output argument that is the
+	    <em>index</em> of where that maximum occurred.  The
+	    calling syntax is
+<pre>
+[Y I] = max(X);	    
+</pre>
+	    where <tt>Y</tt> is the actual maximum and <tt>I</tt> is
+	    the index at which it occurs.  In the special case where
+	    there is a tie for the maximum, the index will be that of
+	    the <em>first</em> occurrence.
+	</li>
+	    <br>
+	<li>
+	    While the standard behavior applies on row vectors and
+	    column vectors, the <tt>max(X)</tt> function has a slightly
+	    different behavior when <tt>X</tt> is a matrix.  It
+	    computes the maximum value and occurring index on a
+	    column-by-column basis.  For example, when run on the
+	    following matrix
+	    <table>
+	      <tr>
+		<td align=right> 5</td><td align=right> 3</td><td align=right>11</td>
+	      </tr>
+	      <tr>
+		<td align=right> 3</td><td align=right> 9</td><td align=right> 3</td>
+	      </tr>
+	      <tr>
+		<td align=right> 8</td><td align=right> 9</td><td align=right> 8</td>
+	      </tr>
+	      <tr>
+		<td align=right>12</td><td align=right> 2</td><td align=right>10</td>
+	      </tr>
+	    </table>
+	    The first output argument is the vector of column-maximums
+	    <table>
+	      <tr>
+		<td align=right><b>12</b></td><td align=right><b>&nbsp;9</b></td><td align=right><b>11</b></td>
+	      </tr>
+	    </table>
+	    and the second output is the corresponding vector of indices
+	    <table>
+	      <tr>
+		<td align=right><b>&nbsp;4</b></td><td align=right><b>&nbsp;2</b></td><td align=right><b>&nbsp;1</b></td>
+	      </tr>
+	    </table>
+	    
+	</li>
+      </ul>
+
+      <p>
+      Your goal for this problem is to write your own version of this
+      function titled <tt>myMax</tt>.  You are to ensure that it works
+      precisely like the official <tt>max</tt> function on both
+      one-dimensional vectors and two-dimensional arrays.  To test
+      your implementation, we have written a function that
+      generates a series of random vectors and arrays and then
+      compares the output of the official function to the output of
+      the <tt>myMax</tt>. You may download it for your own benefit
+      (<a href="testMax.m"><tt>testMax.m</tt></a>). A call to
+      <tt>testMax(n)</tt> will perform n random trials, returning true
+      if the test is a success; otherwise, it reports an error and provides
+      an example of an array that demonstrates the flaw.
+      
+  </li>
+      
+</ol>
+
+
+<hr>
+
+<a name="extra"><h3>Extra Credit (2 points)</h3></a>
+
+<p>
+Write a version of <tt>computeGrid</tt>, that works for any positive
+values low and high, even cases when the increment may be less than 1
+(that is, when <tt>k</tt> might be negative in the original notation).
+For example, <tt>computeGrid(3,6)</tt> might return
+<nobr><tt>[3.0 3.5 4.0 4.5 5.0 5.5 6.0]</tt></nobr> based on increment
+of <tt>M=0.5</tt>, while <tt>computeGrid(103.48, 103.59)</tt> might return
+<nobr><tt>[103.48 103.50 103.52 103.54 103.56 103.58 103.60]</tt></nobr> based on increment
+of <tt>M=0.02</tt>.
+
+
+<!--
+<hr>
+Originally by
+<ADDRESS>
+<a href="/~goldwasser">Michael Goldwasser</a>
+</ADDRESS>
+<br>
+-->
+<HR>
+  </body>
+</html>
+

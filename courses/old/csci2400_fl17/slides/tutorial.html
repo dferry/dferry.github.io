@@ -1,0 +1,289 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+  <head>
+	<title>CSCI 224 / ECE 317 -- Assembler and Debugger Tutorial</title>
+  </head>
+
+  <body bgcolor="#ffffff">
+    <p>
+      <center>
+	<h2>CSCI 224 / ECE 317 -- Assembler and Debugger Tutorial</h2>
+      </center>
+    </p>
+
+    <h3>Introduction</h3>
+
+      <p>This tutorial will introduce you to the GNU tools in the Linux programming environment, which we will be using while covering machine-level programming in CSCI 224 / ECE 317.  It introduces the C compiler, <tt><b>gcc</b></tt>, the assembler, <tt><b>as</b></tt>, and the debugger, <tt><b>gdb</b></tt>.  You will learn how to compile, assemble, execute, and debug C and assembly language programs.</p>
+
+<!--
+      <p><b>Note:</b>  Even though you will only be learning and using <i>x86</i> (aka <i>IA-32</i>) assembly language in CSCI 224, this tutorial also covers C, so that you can compare and contrast C with assembly if you already know or intend to learn C.</p>
+-->
+
+    <h3>Assembling and Executing</h3>
+
+      <ul>
+	<li>Goto and startup a Linux machine <i>(a computer running the Linux operating system on an Intel x86 computer)</i>.
+	  <dl>
+	    <dd>
+	      <p>At SLU, the Linux lab is in Ritter Hall, room 121.  You will be given an account and password on this machine, so that you can use it for the assembly programming assignments.  You can also remotely login in to <tt>turing.slu.edu</tt> -- see <a href="http://mathcs.slu.edu/computing-resources/remote-access">Remote Access</a> for details.</p>
+
+	      <p>If you have access to another Linux machine, you may elect to use that for the class instead.  Be certain though, that <b>it is an x86-based Linux machine <i>(Intel or AMD processor)</i></b>, and that it can <b>produce 32-bit x86 code <i>(vs. 64-bit x86 code)</i></b>.</p>
+	    <dd>
+	  </dl>
+        </li>
+     
+	<li>Login and open a terminal window.
+	  <dl>
+	    <dd>
+<!--
+	      <p>If the computer is not already running Linux, re-boot the computer and select the Linux operating system upon system restart.</p>
+-->
+
+	      <p>Login using your account (Note:  Please talk with the instructor if you don't have an account or password for your account in the Linux lab.).</p>
+
+	      <p>After you are logged in, click on the program menu (usually in the bottom-left corner or top-left corner of the display).  Select the <tt><b>Applications</b></tt> tab, and then select the <tt><b>System -> Terminal</b></tt> application to open a new terminal window.</p>
+
+	      <p>The terminal window will default to the home directory for your account.  If you haven't already, use the <tt><b>mkdir csci224</b></tt> command to create a sub-directory for this course.  Then switch to this directory using the <tt><b>cd csci224</b></tt> command.</p>
+	    </dd>
+	  </dl>
+	</li>
+
+	<li>Download the files for the tutorial.
+	  <dl>
+	    <dd>
+	      <p>Download the files needed for the tutorial into the directory you just created by left-clicking with the mouse on the following link (if left-clicking doesn't work, right-click and select "Save Link Target As..."):  <tt><a href = "../csci224_tutorial.zip">csci224_tutorial.zip</a></tt></p>
+
+	      <p>Unzip the files using the Linux command <tt><b>unzip csci224_tutorial.zip</b></tt>.  This will create a directory named <tt>tutorial</tt> in your directory.  This directory contains the C and assembly files needed for the tutorial.</p>
+	    </dd>
+	  </dl>
+	</li>
+
+	<li>Compile/Assemble the tutorial programs.
+	  <dl>
+	    <dd>
+	      <p>After unzipping the files, use the <tt><b>cd tutorial</b></tt> command to switch to the <tt>tutorial/</tt> directory.  Then compile and assemble the programs using either the <tt><b>make</b></tt> or the <tt><b>make all</b></tt> command (<tt><b>make</b></tt> and <tt><b>make all</b></tt> amount to the same command since typing <tt><b>make</b></tt> by itself defaults to <tt><b>make all</b></tt>).</p>
+
+	      <p>In the process of "making" the programs, you will see a listing of the commands used to compile and assemble the C and assembly programs using <tt>gcc</tt> and <tt>as</tt>.  It is recommended that you try executing each one of these commands on your own and use <tt><b>ls -lt</b></tt> to check what files are generated as a result of each command.  Be sure to use the <tt><b>make clean</b></tt> command to delete all the executables and <tt>.o</tt> files before executing the "make" commands on your own.</p>
+
+	      <p>You may also want to use the <tt><b>less Makefile</b></tt> command to see how the Makefile performs the compilation/assembly process.</p>
+	    </dd>
+	  </dl>
+	</li>
+
+	<li>Execute the C and assembly executables.
+	  <dl>
+	    <dd>
+	      <p>After "making" the programs, try running the C and assembly programs using the <tt><b>tut_cprog</b></tt> and <tt><b>tut_asmprog</b></tt> executables, respectively.  Remember, to run an executable that resides in the current directory, precede the executable name by <tt>./</tt>  For example, to run <tt>tut_cprog</tt>, type <tt>./tut_cprog</tt></p>
+	    </dd>
+	  </dl>
+	</li>
+
+	<li>Debug the C executable, <tt>tut_cprog</tt>.
+	  <dl>
+	    <dd>
+	      <p>To begin debugging the C executable using the gdb debugger, execute the command: <tt><b>gdb tut_cprog</b></tt>.</p>
+
+	      <p>We will start off by introducing a few simple debugging commands in gdb.</p>
+
+	      <ul>
+		<li>First of all, start running the program in gdb.
+		  <dl>
+		    <dd>
+		      <p>To begin debugging, you must first begin executing the program within gdb.  When gdb starts up, the program is merely loaded;  it is not yet executing.  Before running the program, use the <tt><b>break main</b></tt> command to set a break point at the first instruction in <tt>main()</tt>.  Then type <tt><b>run</b></tt> (or <tt><b>r</b></tt>) to begin running the program.  You will note that the program breaks immediately at the entrance to <tt>main()</tt>.</p>
+		    </dd>
+		  </dl>
+		</li>
+
+		<li>Use the <tt><b>step</b></tt> (or <tt><b>s</b></tt>) command to trace <i>into</i> instructions.
+		  <dl>
+		    <dd>
+		      <p>The <tt><b>step</b></tt> (or <tt><b>s</b></tt>) command traces <i>into</i> each instruction.  Effectively, this means that it executes the next single machine/assembly instruction.  For procedure or interrupt calls, this means that it executes only the instruction that transfers control to the procedure, causing it to jump into that procedure/interrupt (i.e. it steps 'into' the procedure/interrupt).</p>
+
+		      <p>Use the <tt><b>s</b></tt> command a couple times to watch the program's progress as you step through the code.  When you get to the function call for <tt>get_number()</tt>, notice that you actually "step into" the procedure so that you can watch the execution of each individual statement in that procedure.  If you ever want to re-start from the beginning of the program, simply use the <tt><b>run</b></tt> (<tt><b>r</b></tt>) command again, which will re-start execution of the program from the beginning, stopping immediately at the first breakpoint (at <tt>main()</tt>).</p>
+		    </dd>
+		  </dl>
+		</li>
+
+		<li>Use the <tt><b>next</b></tt> (or <tt><b>n</b></tt>) command to trace <i>over</i> instructions.
+		  <dl>
+		    <dd>
+		      <p>The <tt><b>next</b></tt> (or <tt><b>n</b></tt>) command traces <i>over</i> each instruction.  Effectively, this means that it executes the next single instruction in the active procedure.  For procedure or interrupt calls, this means that it executes the full procedure or interrupt (i.e. it steps 'over' the procedure/interrupt).</p>
+
+		      <p>Try stepping through the program again, but this time use the <tt><b>n</b></tt> command instead.  Notice that this time, you don't jump into the <tt>get_number()</tt> function.  Stepping "over" this function simply causes it to execute "behind the scenes", so that you don't have to watch all the gory details if you don't want/need to.</p>
+		    </dd>
+		  </dl>
+		</li>
+
+		<li>Watching variables.
+		  <dl>
+		    <dd>
+		      <p>Sometimes it is desirable to watch how the value of a variable changes as you trace through the program.  It is possible to watch variables in this fashion using the <tt><b>display</b> <i>{variable name}</i></tt> command.</p>
+
+		      <p>For example, re-start execution from the beginning of the program again, but this time use the command <tt><b>display n</b></tt> to watch the value of variable "n" as you step through the beginning of the program.  To see a full listing of all the variables that are currently being watched, use the <tt><b>info display</b></tt> command.  Likewise, if you want to delete a variable from being watched, you can use the command <tt><b>delete display</b> <i>{variable number}</i></tt>.</p>
+
+                      <p><i>Note:</i>  gdb can only watch variables that haven't been optimized away by the compiler.  For example, some simple local variables, such as a loop index (like <tt>i</tt> in the tut_cprog.c</tt>) are optimized by the compiler such that they're only stored in registers, and never updated in memory.  Consequently, attempts to watch them will fail -- you can only view their current values by watching the register(s) in which they are stored.</p>
+		    </dd>
+		  </dl>
+		</li>
+
+		<li>Display memory.
+		  <dl>
+		    <dd>
+		      <p>Often, you will want to watch a whole block of memory as opposed to a small set of variables.  There's no way you can automatically have a block of memory displayed after each step like you can with variables, but you can still easily display the contents of memory with a single command after each step.  The command <tt><b>x/</b><i>{number of elements} {start address}</i></tt> will display the specified number of elements starting at the specified address (e.g. <tt><b>x/32 0x841a964</b></tt> will show the first 32 words of memory between addresses 0x841a964 and 0x841a9E3, inclusive).  The default element and display mode is a 4-byte element displayed in hex, but you can specify the desired size and format using appropriate formatting codes.  For example, <tt>x/32d</tt> will display the elements in decimal (<tt>d</tt>).  When debugging C, gdb will attempt to infer the desired size and format from the variable stored at the starting address, but again, you can change as desired -- see <tt>help x</tt> for more info.</p>
+
+<!--
+                      <p>
+Furthermore, to prevent you from having to re-type this command after each step, you can simply use the up and down arrows to scroll through the list of commands recently executed in gdb.</p>
+-->
+
+		      <p>The primary problem in displaying memory is that you must know the address(es) of the memory locations you which to view.  Fortunately, when debugging in C, you can simply use the name of the variable, along with the ampersand (<tt>&</tt>) to denote the address of the variable.  For example, to display the first 64 elements of an array <tt>myArray</tt>, simply use the command <tt>x/64 &myArray</tt>.
+<!--
+Fortunately, the memory addresses of variables can be easily determined in gdb using the <tt><b>print &</b><i>{variable name}</i></tt> command (e.g. <tt><b>print &n</b></tt> will give the address for variable "n").</p>
+-->
+		    </dd>
+		  </dl>
+		</li>
+
+		<li>Display registers.
+		  <dl>
+		    <dd>
+		      <p>It is also often useful (moreso with assembly debugging than C debugging) to view the values in the register file.  Use the <tt><b>info registers</b></tt> (or <tt><b>i r</b></tt>) command to do this.</p>
+		    </dd>
+		  </dl>
+		</li>
+
+		<li>View (local) program code.
+		  <dl>
+		    <dd>
+		      <p>While the <tt><b>s</b></tt> and <tt><b>n</b></tt> commands display the next instruction to execute, you may often want to see more complete sections of code.  You can display the 10 lines of code around the next statement to execute in the debugger using the <tt><b>list</b></tt> (or <tt><b>l</b></tt>) command.  Or if you want to display the 10 lines of code around a function declaration, you can use the <tt><b>list</b> <i>{function name}</i></tt> command (e.g. <tt><b>l main</b></tt>).</p>
+
+<!--
+Note, this debugging feature does not work for assembly code.</p>
+-->
+		    </dd>
+		  </dl>
+		</li>
+
+		<li>View assembly code.
+		  <dl>
+		    <dd>
+		      <p>An alternate way to view the assembly code (or when debugging in C and needing to view the equivalent assembly), use the <tt><b>disassemble</b> <i>{label/function name}</i></tt> (or <tt><b>disas</b> <i>{label/function name}</i></tt>) command (e.g. <tt><b>disas main</b></tt>).</p>
+
+<!--
+Unfortunately, the disassembler uses the GAS assembly format, not the NASM assembly format, so it's not as easy to read as NASM assembly.  However, you will quickly become accustomed to it.  The two major differences between GAS and NASM assembly syntax are:  (1) GAS reverses the order of the operands (i.e. the desintation is the last operand instead of the first), and (2) register names are preceded by the '%' character and immediate values are preceded by the '$' character.  Everything else is the same (except some opcode names have an additional 'l' tacked onto them -- you can ignore this).</p>
+-->
+		    </dd>
+		  </dl>
+		</li>
+
+		<li>Other debugging functions:
+		  <dl>
+		    <dd>
+		      <p>Exit the debugger using the <tt><b>quit</b></tt> (or <tt><b>q</b></tt>) command.</p>
+
+		      <p>Continue executing a program using the <tt><b>continue</b></tt> or (<tt><b>c</b></tt>) command.  Execution will only stop after reaching a breakpoint, the end of the program, or a similar end-of-program procedure/interrupt call.  This function is particularly useful in conjunction with breakpoints.</p>
+
+		      <p>Also feel free to experiment with other debugging functions.  You can use the <tt><b>help</b></tt> (or <tt><b>h</b></tt>) command to find directions for using other debugging utilities.</p>
+
+<!--
+Your textbook, "Beginning Linux Programming", also has a section with additional information on using the gdb debugger in chapter 9. </p>
+-->
+		    </dd>
+		  </dl>
+		</li>
+	      </ul>
+
+	      <p>Continue to trace through <tt>tut_cprog</tt> in gdb and examine what each instruction does.  Be sure to use <tt><b>s</b></tt> and <tt><b>n</b></tt> as needed.</p>
+	    </dd>
+	  </dl>
+	</li>
+
+	<li>Debug the assembly executable, <tt>tut_asmprog</tt>.
+	  <dl>
+	    <dd>
+	      <p>To begin debugging the assembly executable using the gdb debugger, execute the command: <tt><b>gdb tut_asmprog</b></tt>.</p>
+
+	      <p>Proceed to trace through the <tt>tut_asmprog</tt> executable just like you did with the C program -- first start by setting a break point at the main function, run the program, and then proceed to step through following the break point.</p>
+
+              <p><i>Note 1:</i>  In assembly, you'll want to use <tt>si</tt> and <tt>ni</tt> as opposed to <tt>s</tt> and <tt>n</tt>.  To see the difference, try using <tt>si</tt> and <tt>ni</tt> while debugging C...  can you infer the difference?</p>
+
+              <p><i>Note 2:</i>  In assembly, any label in the source code (e.g. <tt>main:</tt>, <tt>i_loop:</tt>, <tt>exit_i_loop:</tt>, <tt>print_loop</tt>, etc.) is treated as a function name, so it works best to use <tt><b>si</b></tt> when stepping through the code, but making sure to use <tt><b>ni</b></tt> on those assembly function calls to external functions (e.g. <tt>get_number</tt> and <tt>printf</tt>).</p>
+	    </dd>
+	  </dl>
+	</li>
+
+	<li>Questions:
+	  <dl>
+	    <dd>
+<!--
+	      <p>Try to answer the following questions.  The instructor can discuss the answers to these questions in class, if requested.</p>
+-->
+	      <p>Answer the following questions:</p>
+
+	      <ol>
+		<li>What number series is produced by the C program?  By the assembly program?  Are the two programs equivalent?
+		</li>
+		<p></p>
+
+		<li>What happens when the user enters a value not in the allowable range?
+		</li>
+		<p></p>
+
+		<li>In <tt>tut_asmprog.s</tt>, what do the <b>CMP</b> and <b>JAE</b> instructions do?  What does <b>JMP</b> do?  How are they similar?  How are they different?
+		</li>
+		<p></p>
+
+		<li>In <tt>tut_asmprog.s</tt>, the <tt>i_loop:</tt> loop contains the instruction <tt>movl  %edx, (%ebx, %esi, 4)</tt>.  Explain the purpose/importance of the <tt>4</tt> in the second operand.
+		</li>
+		<p></p>
+
+		<li>Use either <tt>objdump -d</tt> or use gcc's <tt>-S</tt> option to generate the assembly code corresponding to <tt>tut_cprog.c</tt>...  Inside the first <tt>for</tt> loop the compiler is using the <tt>lea</tt> (<tt>leal</tt>) instruction.  What does it compute?  Why isn't it using <tt>shll</tt> like the assembly program?
+		</li>
+		<p></p>
+
+		<li>What are the <tt>#define</tt> preprocessing directives for in the C program?  Is there an equivalent in the assembly program (and if so, what)?
+		</li>
+		<p></p>
+
+		<li>You likely found the experiences of debugging in C versus debugging in assembly both somewhat similar and somewhat different.  What debugging commands did you find more useful for debugging C?  For debugging assembly?
+<!--
+Did you find any other debugging commands not covered above that were particularly useful with either C or assembly?
+<-->
+		</li>
+		<p></p>
+
+		<li>How would you change the C code so that it printed out every 4<sup>th</sup> number, starting from 2 (i.e. 2, 6, 10, 14, etc.)?  How would you similarly change the assembly code?
+		</li>
+		<p></p>
+
+		<li><b>Challenge Question:</b>  How would you need to change the C code so that it requested two numbers, <tt>n</tt> and <tt>x</tt>, so that the program would print out <tt>n</tt> numbers including every <tt>x</tt><sup>th</sup> number starting from 1 (i.e. if user input 7 for <tt>x</tt>, would print out 1, 8, 15, 22, 29, ...) ?  How about in the assembly code (<b>Note:</b> this is the tricky part...) ? 
+		</li>
+		<p></p>
+	      </ol>
+
+	    </dd>
+	  </dl>
+	</li>
+      </ul>
+
+      <p>
+
+      <ul>Some useful links for further information:
+
+	  <dl>
+            <dd>
+              <a href="http://www-106.ibm.com/developerworks/library/l-gdb/">Linux software debugging with GDB</a> by David Seager
+	      <p>
+	      <a href="http://www.ofb.net/gnu/gdb/gdb_toc.html">Debugging with GDB</a> the official GDB manual
+              <ul>
+	        <li><a href="http://www.ofb.net/gnu/gdb/gdb_37.html#SEC37">Continuing and Stepping</a></li>
+	        <li><a href="http://www.ofb.net/gnu/gdb/gdb_28.html#SEC28">Breakpoints, Watchpoints, and Catchpoints</a></li>
+              </ul>
+	      <p>
+	      <a href="http://sourceware.org/gdb/onlinedocs/gdb/Machine-Code.html">GDB and Assembly/Machine Code</a>
+ 	    </dd>
+	  </dl>
+
+  </body>
+</html>
+

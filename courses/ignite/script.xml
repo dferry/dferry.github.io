@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<data>
+	<chatrule>
+		<input>I feel X</input>
+		<output>What makes you feel X?</output>
+	</chatrule>
+	<chatrule>
+		<input>I think X</input>
+		<output>Tell me more about why you think X.</output>
+		<output>Why do you think X?</output>
+		<output>Do you often think about X?</output>
+	</chatrule>
+	<chatrule>
+		<input>My X says Y</input>
+		<input>X says Y</input>
+		<output>Does X always say Y?</output>
+		<output>What do you think about Y?</output>
+	</chatrule>
+</data>

@@ -1,0 +1,52 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+	<title>System Call Source Code Pointers</title>
+
+	<style>
+	.hang{
+		padding-left: 3em ;
+		text-indent: -3em ;
+	}
+	</style>
+
+</head>
+
+<body>
+
+<h3>System Call Source Code Pointers</h3>
+
+<hr />
+
+<p>These are some of the files essential to system calls on the ARM 
+architecture. System calls are very dependent on architecture, both
+in how they are invoked as well as what calls are available to be made.</p>
+
+<p class="hang"><b>include/linux/syscalls.h</b> - Architecture independent 
+forward declaration of all kernel system calls. This is the kernel's internal
+interface to system call functions.</p>
+
+<p class="hang"><b>arch/arm/include/uapi/asm/unistd.h</b> - Architecture
+dependent definition of system call numbers.</p>
+
+<p class="hang"><b>arch/arm/kernel/calls.S</b> - Assembly language definition
+of the system call table size (see <code>CALL(x)</code>
+ macro in <b>/arch/arm/kernel/entry_common.S</b>)</p>
+
+<hr />
+
+<p>The following files don't actually pertain to system calls, but to system
+boot- one of the few other ways that the kernel can execute.</p>
+
+<p class="hang"><b>init/</b> - Kernel intialization code </p>
+
+<p class="hang"><b>init/main.c</b> - This file sounds important, huh? The 
+function <code>start_kernel(void)</code> is the first C function that is
+executed by the Linux kernel, and it never returns. Prior to this, the kernel
+only exists as architecture dependent assembly code and firmware. 
+<a href="http://lwn.net/Kernel/LDD2/ch16.lwn">Chapter 16 of Linux Device
+Drivers</a> has a great introduction to main.c and <code>start_kernel</code>.
+
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSCI 2510 - Principles of Computer Systems</title></head>
+
+<h2 style="text-align: center;">CSCI 2510: Studio 6<br></h2>
+<h2 style="text-align: center;">Parsing String Input</h2>
+
+<hr style="width: 100%; height: 2px;">
+
+
+<p>Parsing input in C is initially more difficult than in other,
+higher level, languages. However, the C library includes a wide variety
+of functions that make input handling straightforward after you've
+spent a little time in practice.
+
+
+<p>In this studio, you will:</p>
+
+<ol>
+	<li>Get user input with <code>fgets()</code>
+	<li>Parse the input string with <code>strtok()</code>
+	<li>Pack input data into your own <code>char* argv[]</code> structure
+	<li>Execute programs with <code>execvp()</code>
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>
+<p>
+Please complete the required exercises below, as well as any optional
+enrichment exercises that you wish to complete.</p> 
+
+<p>
+As you work through these exercises, please record your answers in a text
+file. When finished, submit your work via the Git repository.</p> 
+
+<!--by sending your text file and
+source code to <strong>dferry_submit@slu.edu</strong>
+with the phrase <strong>
+String Input
+</strong> in the subject line.</p>-->
+
+<p><strong> Make sure that the name of each person who worked on these exercises
+is listed in the first answer, and make sure you number each of your responses
+so it is easy to match your responses with each exercise.</strong></p>
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Required Exercises</h3></p>
+
+<ol>
+<p><li>As the answer to the first exercise, list the names of the people who
+worked together on this studio.</p>
+
+<p><li>Write a short program that:</p>
+<ol>
+<li>Prompts the user to enter input
+<li>Gets user input using the function <code>fgets()</code>
+<li>Prints the user input back to the console with <code>printf("%s\n", input_string)</code>
+</ol>
+
+<p>See the man page for <code>fgets()</code> for more detail. You will need to
+declare a sufficiently large <code>char buffer[]</code> to store user input, 
+and you should read from the standard input stream ('<code>stdin</code>').</p>
+
+<p>Copy and paste the output of your program once it runs correctly.</p>
+
+<p><li>Now we want to parse the input string and divide it into individual
+<i>tokens</i>. For this we can use the function <code>strtok()</code>, which
+parses a string from left to right and returns one token each time you call
+the function. Pull up
+the <code>strtok()</code> manual page and read the first paragraph. What
+difference is there between the initial call to <code>strtok()</code>
+and subsequent calls that parse the same string?</p>
+
+<p><li>The <i>delimiter</i> character tells the <code>strtok()</code> function
+which character marks the boundary of tokens. What delimiter character
+should you use for regular text input?</p>
+
+
+<p><li>Make a call to <code>strtok()</code> so that your program parses
+the first token from the user input. Print this first token on a new line.</p>
+
+<p>Copy and paste your program output once this works correctly.</p>
+
+
+<p><li>Now use an appropriate loop so that your program parses and prints
+each token in the user input on a separate line. Copy and paste your program
+output once this is done.</p>
+
+
+<p><li>One strange artifact you might notice is an extra newline that is
+printed after the last token. This is because your input string automatically
+contains a new line character at its end. For example, if you enter:</p>
+
+<p><code>This is an input string.</code></p>
+
+<p>The actual string recieved by your program is:</p>
+
+<p><code>"This is an input string.\n"</code></p>
+
+<p>We want to <i>strip</i> this trailing newline character, as it will cause
+problems for us later. There are a variety of approaches to doing this, such
+as using the <code>strlen()</code> or <code>strchr()</code> functions, or even 
+the <code>strtok()</code> function itself. Modify your program to strip the
+newline character after your call to <code>fgets()</code>, but before you start
+parsing. Try a Google search for "strip newline character in C" if you would
+like some further inspiration.</p>
+
+<p>As the answer to this exercise, copy and paste your newline stripping
+code.</p>
+
+<p><li>Lastly, we want to re-purpose this studio program as a springboard
+to executing arbitrary programs for Lab 2. Rather than just tokenizing
+input for the fun of it, we will now modify the studio so that it interprets
+our input as a program to execute. For example, if the user inputs the string
+<code>"ls -l"</code> then your program should execute the command <code>
+ls -l</code>. We will use the function <code>execvp()</code>.</p>
+
+<p>The <code>execvp()</code> function takes two arguments. First, a <code>char*</code>
+that contains the command we want to execute (e.g. <code>"ls"</code> from
+above). Second, a <code>char* argv[]</code> structure.</p>
+
+<p>Declare the following variables and leave this answer blank.</p>
+
+<p><code>int max_args = 15;</code><br>
+<code>int max_argv_size = max_args + 2; //one for argv[0], one for null terminator</code><br>
+<code>char* cmd;</code><br>
+<code>char* my_argv[max_argv_size];</code></p>
+
+<p><li>Filling out the <code>cmd</code> variable is easy. This will always
+be the first token returned from <code>strtok()</code>. Note that
+<code>strtok()</code> returns a <code>char*</code> and this is exactly
+the type we have declared for <code>cmd</code>.</p>
+
+<p>Copy and paste your assignment statement as the answer to this exercise.</p>
+
+<p><li>Filling out <code>my_argv</code> is slightly trickier. First, observe
+that <code>my_argv</code> is simply an array of <code>char*</code> pointers.
+Second, recall that the regular <code>argv</code> variable always has the
+name of the command as the first element (<code>argv[0]</code>), and is always
+terminated by a NULL character.</p>
+
+<p>Start by assigning "<code>my_argv[0] = cmd;</code>". Then, parse the 
+rest of the user
+input string and assign each subsequent token to each subsequent position. For
+example, if the result of <code>strtok()</code> is stored as such:</p>
+
+<p><code>res = strtok(NULL, " ");</code></p>
+
+Then assign each token thusly, for an appropriate value of <code>i</code>:
+
+<p><code>my_argv[i] = res;</code></p>
+
+<b>
+<p>IMPORTANT: After there are no more tokens to parse, assign the next element of
+<code>my_argv</code> the NULL character:</p>
+
+<p><code>my_argv[after_last] = '\0';</code></p>
+</b>
+
+<p>Copy and paste your <code>my_argv[]</code> code as the answer.</p>
+
+<p><li>Lastly, after you have constructed <code>cmd</code> and
+<code>my_argv</code>, insert the following call to <code>execvp()</code>:</p>
+
+<p><code>execvp( cmd, my_argv );</code></p>
+
+<p>If the two variables are constructed correctly, your program should read
+the user input, parse it as though it were a new program to execute, and then
+execute that program with <code>execvp()</code></p>
+
+<p>Copy and paste a working output as the answer to this question.</p>
+
+</ol>
+
+<p><h3>Optional Enrichment Exercises</h3></p>
+<ol>
+<li>No optional exercises
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>

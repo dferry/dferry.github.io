@@ -1,0 +1,1216 @@
+#These strings are displayed verbatim on the web page
+CourseNum: "CORE 1000"
+CourseName: "The Most Human Computer"
+CourseWebsite: '<a href="http://cs.slu.edu/~dferry/courses/ignite">http://cs.slu.edu/~dferry/courses/ignite/</a>'
+ClassTime : "Monday, Wednesday, &amp; Friday from 10:00 - 10:50 am, Grand Hall 145"
+Semester : "Fall 2024"
+MidtermTime : "TBD"
+FinalTime : "Thursday, December 12th, 12:00 pm - 1:50 pm" #Displayed at top of page
+FinalDay: "Dec 12"          #Displayed at bottom of schedule
+FinalDayOfWeek: "Thursday"  #Displayed at bottom of schedule
+
+#These strings control the behavior of the scheduler generator
+StartDate: "August 21st, 2024"
+ClassType : "MWF"
+LinkActivationHours: "48" #Links activate on the schedule approx this number of hours
+                          #before the real time gets there
+SchedHeaderColor: 'White' #Colors can be any CSS color
+SchedColor1: '#e6e6e6' 
+SchedColor2: 'White'
+
+
+Holidays :
+  -
+    name: "Labor Day"
+    date: "September 2nd"
+    text: "Labor Day - No Class"
+  -
+    name: "Wellness Day"
+    date: "September 25th"
+    text: "Wellness Day - No Class"
+  -
+    name: "Fall Break"
+    date: "October 25th"
+    text: "Fall Break - No Class"
+  -
+    name: "Thanksgiving"
+    date: "November 27th"
+    text: "Thanksgiving - No Class"
+  -
+    name: "Thanksgiving"
+    date: "November 29th"
+    text: "Thanksgiving - No Class"
+
+FixedDays:
+### New Day ###
+  - 
+    date: "October 13th"
+    topics:  
+      - 
+        text: "No class -<br>SLU AI Conference"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    date: "November 6th"
+    topics:  
+      - 
+        text: "Library with Paige Chant"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: "<i>Topic Reflection Due by Class</i>"
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+### New Day ###
+  - 
+    date: "November 8th"
+    topics:  
+      - 
+        text: "Library with Paige Chant"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+
+
+Schedule :
+
+#Note, any day can have multiple items, e.g. the following
+# template has two topics, one reading, one studio, and one lab
+
+### New Day ###
+#  - 
+#    topics:  
+#      - 
+#        text: ""
+#        link: ""
+#        class: ""
+#      - 
+#        text: ""
+#        link: ""
+#        class: ""
+#    readings: 
+#      - 
+#        text: ""
+#        link: ""
+#        class: ""
+#    studios: 
+#      - 
+#        text: ""
+#        link: ""
+#        class: ""
+#    labs:
+#      - 
+#        text: ""
+#        link: ""
+#        class: ""
+          
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Class Intro<br/>Syllabus (this site)"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "The Imitation Game"
+        link: "slides/ImitationGame.pdf"
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Lecture - Ways of Thinking,<br>Answering Big Questions"  
+        link: "slides/01_Inquiry.pptx"
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Book Discussion - Chapter 1"
+        link: "slides/02_Chapter_1.pdf"
+        class: ""
+      - 
+        text: "Chapter 1 Groups"
+        link: "slides/book_ch_1_groups.pptx"
+        class: ""
+#      - 
+#        text: "(Survey Link)"
+#        link: "https://docs.google.com/forms/d/e/1FAIpQLSegwRUyvtlKWQf3JOvD8NcedAphqnabiSfEA8rtMdSd2_529w/viewform?usp=sf_link"
+#        class: ""
+    readings:
+      - 
+        text: "The Most Human Human - Chapter 1<br>The Most Human Human"
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Sick Day"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Lecture - Ignatian Pedagogical Paradigm"
+        link: "slides/01_Inquiry.pptx"
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Programming 1-<br>Welcome to Python"
+        link: "https://colab.research.google.com/drive/1O66XhdsrDG8-sxtiR66qJGYzOB5h6etw?usp=sharing"
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Identity"
+        link: "slides/Identity.pptx"
+        class: ""
+      - 
+        text: "(PDF)"
+        link: "slides/Identity.pdf"
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: "Reflection 1 Assigned"
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Book Discussion - Chapter 2"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: "The Most Human Human - Chapter 2<br>Authenticating"
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Programming 2 -<br>Word Problems"
+        link: "https://drive.google.com/file/d/14hixYbe8W91RSUoHqf3Ua9jRK-IJbk3u/view?usp=sharing"
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Perspective - Meet the chatbots"
+        link: "perspectives/01_meet_the_bots.html"
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Programming 3 - Conditionals"
+        link: "https://colab.research.google.com/drive/1VSPSslDA2mUBTxY_p1lU_EZg9P-npmjL?usp=sharing"
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Book Discussion - Chapter 3"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: "The Most Human Human - Chapter 3 The Migratory Soul"
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Chapter 3 Reflection<br>What makes us human?"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: "Reflection Homework 3"
+        link: "reflections/migratory_soul.html"
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Programming 4 - Loops"
+        link: "https://colab.research.google.com/drive/1gk0BHkfAWhYWfUTIys4f1--sTyyCoJvw?usp=sharing"
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Book Discussion - Chapter 4"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: "The Most Human Human - Chapter 4<br>Site-Specificity vs. Pure Technique"
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Chapter 4 Reflection"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Search Problems - Maze Solving"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Search Problems - Maze Solving"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Book Discussion - Chapter 5"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: "The Most Human Human - Chapter 5<br>Getting Out of Book"
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Getting Out of Book"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Sick Day"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Sick Day"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Chapter 5 Reflection<br>Chess<br>Game AI"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: "chess.com"
+        link: "https://chess.com"
+        class: ""
+      - 
+        text: "Match Evaluation"
+        link: "https://youtu.be/7RTHNw2Jni4?si=cHGfbO-3cjqDQNG-"
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+#### New Day ###
+#  - 
+#    topics:  
+#      - 
+#        text: "Minimax Tic Tac Toe<br>Plan & Design"
+#        link: ""
+#        class: ""
+#    readings:
+#      - 
+#        text: ""
+#        link: ""
+#        class: ""
+#    studios:
+#      - 
+#        text: ""
+#        link: ""
+#        class: ""
+#    labs :
+#      - 
+#        text: ""
+#        link: ""
+#        class: ""
+#
+#### New Day ###
+#  - 
+#    topics:  
+#      - 
+#        text: "Minimax Tic-Tac-Toe<br>Game State & Player Input"
+#        link: ""
+#        class: ""
+#    readings:
+#      - 
+#        text: ""
+#        link: ""
+#        class: ""
+#    studios:
+#      - 
+#        text: ""
+#        link: ""
+#        class: ""
+#    labs :
+#      - 
+#        text: ""
+#        link: ""
+#        class: ""
+#
+#### New Day ###
+#  - 
+#    topics:  
+#      - 
+#        text: "Minimax Tic-Tac-Toe<br>Rules and Win Conditions"
+#        link: ""
+#        class: ""
+#    readings:
+#      - 
+#        text: ""
+#        link: ""
+#        class: ""
+#    studios:
+#      - 
+#        text: "Programming 5 Due"
+#        link: ""
+#        class: ""
+#    labs :
+#      - 
+#        text: ""
+#        link: ""
+#        class: ""
+#
+#### New Day ###
+#  - 
+#    topics:  
+#      - 
+#        text: "Minimax Tic-Tac-Toe<br>Game AI"
+#        link: ""
+#        class: ""
+#    readings:
+#      - 
+#        text: ""
+#        link: ""
+#        class: ""
+#    studios:
+#      - 
+#        text: ""
+#        link: ""
+#        class: ""
+#    labs :
+#      - 
+#        text: ""
+#        link: ""
+#        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Project Introduction and Topic Discovery"
+        link: ""
+        class: ""
+    readings:
+      -
+        text: "Nature News"
+        link: "https://www.nature.com/nature/articles?type=news"
+        class: ""
+      -
+        text: "IEEE Spectrum"
+        link: "https://spectrum.ieee.org/"
+        class: ""
+      - 
+        text: "AI has arrived in your doctor’s office. Washington doesn’t know what to do about it."
+        link: "https://www.politico.com/news/2023/10/28/ai-doctors-healthcare-regulation-00124051"
+        class: ""
+      - 
+        text: "Can AI Chatbots Ever Replace Human Therapists?"
+        link: "https://time.com/6320378/ai-therapy-chatbots/"
+        class: ""
+      - 
+        text: "If AI becomes conscious, how will we know?"
+        link: "https://www.science.org/content/article/if-ai-becomes-conscious-how-will-we-know"
+        class: ""
+      - 
+        text: "How Generative AI Helped Me Imagine a Better Robot"
+        link: "https://spectrum.ieee.org/ai-design"
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Programming 5 - Lists"
+        link: "https://colab.research.google.com/drive/1dCanCxLuqb_0RgqqUKfrgi1-F9SdazH5?usp=sharing"
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Topic Discovery"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: "Topic Reflection Homework"
+        link: "reflections/topic_discovery.html"
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Book Discussion - Chapter 6"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: "The Most Human Human - Chapter 6<br>The Anti-Expert"
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Programming 6 - Functions"
+        link: "https://colab.research.google.com/drive/1DUYi2cC6Kb0XJgskabPBfTQHT4Pkl5It?usp=sharing"
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Topic Discovery and Refinement"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: "Choosing a Topic Video"
+        link: "https://www.youtube.com/watch?v=GvGVS1S3Rec"
+        class: ""
+      - 
+        text: "Refining a Research Topic Video"
+        link: "https://www.youtube.com/watch?v=zyKC0-PJmtw"
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "AI and Machine Learning"
+        link: ""
+        class: ""
+      - 
+        text: "Model Based Learning"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Model-Free Reinforcement Learning"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: "<i>Research Question Due</i>"
+        link: ""
+        class: ""
+      - 
+        text: "<i>Identify Five References</i>"
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Diffusion Image Generation"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Book Discussion - Chapter 10"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: "The Most Human Human - Chapter 10<br>High Surprisal"
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: ""
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: "<i>Reference Summaries Due</i>"
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: ""
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Book - Epilogue"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: "The Most Human Human - Epilogue<br>The Unsung Beauty of the Glassware Cabinet"
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Research Presentations"
+        link: ""
+        class: "due"
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Research Presentations"
+        link: ""
+        class: "due"
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Research Presentations"
+        link: ""
+        class: "due"
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+

@@ -1,0 +1,223 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSCI 2510 - Principles of Computing Systems</title></head>
+
+<h2 style="text-align: center;">CSCI 2510: Studio 3<br></h2>
+<h2 style="text-align: center;">Strings</h2>
+
+<hr style="width: 100%; height: 2px;">
+
+<p>Language: Rust</p>
+
+<hr style="width: 100%; height: 2px;">
+
+<p>In this studio, you will:</p>
+
+<ol>
+	<li>Refresh your understanding of character representations</li>
+	<li>Work with an array of bytes and convert that into UTF-8 characters in Rust</li>
+	<li>Work with the <code>str</code> and <code>String</code> types
+	<!--<li>Understand <i>copy</i>, <i>move</i>, and <i>borrow</i> semantics</li>-->
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>
+<p>
+Please complete the required exercises below, as well as any optional
+enrichment exercises that you wish to complete.</p> 
+
+<p>
+For this studio, please create a new Rust project with the name 
+<strong>strings</strong> (note, case sensitive). 
+As you work through these exercises, 
+please record your answers in a text file in the root level of that
+project. When finished, please add the entire project and push it
+to the SLU Git repository.
+</p>
+
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Required Exercises</h3></p>
+
+<ol>
+<li><p>Strings are collections of characters, so let's talk about characters for a moment. If your
+	browser supports it, the following character inside the quotation marks should look like a face: "😀".
+	(If your browser doesn't support these characters, it might look like a black diamond or a square with
+	a numeric code inside it.) This is "Grinning Face" defined in the Unicode standard as U+1F600. It is
+	defined in the
+	<a href="https://www.unicode.org/charts/PDF/U1F600.pdf">Emoticon code chart by the Unicode Consortium.</a></p>
+
+	<p>If you are using a command-line terminal for this class, try copy-pasting that character
+	into your terminal. Does it appear as a face, or something else? What terminal and operating
+	system are you using?</p></li>
+
+<li><p>Before Unicode came a character standard called ASCII. With ASCII, characters are represented
+	as a sequence of seven bits. How many total characters can be represented with seven bits?
+	(Recall- a single bit has two possible values: 0 and 1; two bits have four possible values:
+	00, 01, 10, 11; three bits have eight possible values, etc.)</p></li>
+
+<li><p>Find an ASCII table online. How would you encode the characters "SLU"? Give your answer
+	in decimal or hexadecimal.</p></li>
+
+<li><p>Recall that there are 8 bits in a byte. How many bytes does it take to encode SLU?</p></li>
+
+<li><p>ASCII works really well for <i>alphabetic</i> languages like English.
+	In English, every word is represented by some combination of the 26-characters
+	in the alphabet. For example, the sequence "computer" represents the information
+	processing machine you're reading this on, while the sequence "cat pictures" represents 
+	the concept of mega internet points. Does ASCII work for every alphabetic
+	language? Give an argument or a counter-example.</p></li>
+
+<li><p>Some languages are <i>logographic</i> instead. What is a logographic language?
+	Give an example and explain why a 7-bit character set doesn't work for
+	logographic languages. If your editor and browser support it, go find some
+	logographic characters and copy-paste them into this response. If you're having
+	trouble finding characters, look up what parts of the world use logographic
+	characters and then use Google Translate.</p></li>
+
+<li><p>If your browser can represent these characters, clearly there's something other
+	than ASCII being used here. It is <i>Unicode</i>- a character set whose goal is
+	to consistently encode and represent the text expressed in every writing system.</p>
+
+	<p>However, be careful. Unicode identifies characters with <i>code points</i>, 
+	which allows every character to be uniquely identified. However, it doesn't specify a
+	single <i>encoding</i>. The encoding is the mapping of a character to a set of
+	bits and bytes stored in a computer. For example, the the grinning face emoji
+	above has several representations:</p>
+
+	<pre>
+	Encoding of 😀		Hexadecimal
+	-------------------      -----------
+	UTF-8			F0 9F 98 80
+	UTF-16 (big endian)	D8 3D DE 00
+	UTF-32 (big endian)	00 01 F6 00
+	</pre>
+
+	<p>Each encoding has its own historical origins, but one key difference is that
+	UTF-8 and UTF-16 are <i>variable length encodings</i>. This is made clear by
+	looking at the encoding of "S". In UTF-8, the encoding is identical to
+	ASCII.</p>
+
+	<pre>
+	Encoding of S		Hexadecimal
+	-------------------     -----------
+	ASCII			53
+	UTF-8			53
+	UTF-16 (big endian)	00 53
+	UTF-32 (big endian)	00 00 00 53
+	</pre>
+	</li>
+
+<li><p>Give three possible encodings for the sequence "SLU". How many bytes does
+	each encoding use? (Remember that one hex digit is four bits.)</p></li>
+
+<li><p>A <i>string</i> is a sequence of characters. But this begs the question-
+	what is a character? Some programming languages try to sidestep this
+	problem by fixing a given encoding for strings. For example, in C
+	basic strings are ASCII. In Python, strings are UTF-8. 
+	In Java, strings are encoded in UTF-16. The string, "Hello, world!"
+	would be 13 bytes in C and Python, but 26 bytes in Java.</p>
+
+	<p>If you look "under the hood," the familar string can be a little
+	more complicated than some programmers realize!</p>
+
+	<p>Question: A UTF-8 encoded string has 10 characters in it- how
+	many bytes are required to represent that string?</p></li>
+
+<li><p>Create a new Rust project in your Git repository named <i>strings</i> if you
+	have not already done so. Copy the following code into your
+	<code>main()</code> function:</p>
+
+	<pre>
+use std::str;
+
+fn main() {
+
+    //"SLU" followed by a Grinning face emoji encoded in UTF-8
+    let bytes : [u8; 7] = [ 0x53, 0x4C, 0x55, 0xF0, 0x9F, 0x98, 0x80 ];
+
+    let view_into_bytes = &bytes[0..3]; //normally called a slice
+
+    let result = str::from_utf8( view_into_bytes );
+    if result.is_ok(){
+        println!("Found UTF characters {}", result.unwrap() );
+    } else if result.is_err() {
+        println!("Provided bytes were not valid UTF-8");
+    }
+
+}
+</pre></li>
+
+<li><p>There are several things to point out here. First, the variable
+	<code>bytes</code> is declared as an <i>array</i>. In Rust, an
+	array <i>has a fixed size known at compile time</i>. You can see
+	that the type definition of the array includes both <code>u8</code>
+	as well as the number <code>7</code>- which is its size.</p>
+
+	<p>Second, the interfaces in Rust are designed to make us consider
+	the difference between <i>allocation</i> of data- where 
+	data lives inside a program- and <i>application</i> of data- how
+	data is used inside a program. The ampersand (&amp;) is called the
+	<i>borrow</i> operator and makes this explicit.</p>
+	
+	<p>The variable <code>view_into_bytes</code> does not create new data-
+	it creates a different way of looking at the existing data in <code>bytes</code>.
+	That's important! 
+	The function <code>str::from_utf8()</code> also does not create new data- 
+	it creates a third way of looking at the data as a set of UTF-8 characters,
+	rather than a set of bytes. At the end of the program we only have a single array in memory, viewed
+	as a slice, and then viewed as a set of UTF-8 characters. </p>
+
+	<p>Suppose you're working with a program that is handling
+	gigabytes of data- why is it advantageous to make a clear distinction
+	between making <i>copies</i> of data and making new <i>views</i>
+	of existing data?</p></li>
+
+<li><p>Expand the second view into the <code>bytes</code> array so that the so that your final
+	printout countains SLU followed by the grinning face. (If your terminal does not
+	support emoji it should still print some placeholder, and in particular
+	the error message should not print.)</p></li>
+
+<li><p>The <code>str</code> type in Rust is a string type, but it is the most
+	primitive string type. It has some limitations that the full featured
+	<code>String</code> does not. As a beginner Rust programmer, a good rule
+	of thumb is that strings that don't change size are fine as <code>str</code>
+	strings, but strings that need to change size (because you add characters,
+	concatenate strings, etc.) should be <code>String</code> typed.</p> 
+
+				<p>Use <a href="https://doc.rust-lang.org/std/vec/struct.Vec.html#method.to_vec">the <code>to_vec()</code> method</a> 
+				to make a copy of the bytes array as a vector. Recall that an array
+				has fixed-size, while a vector has variable size. Then use this vector
+				to change <code>result</code> from a <code>str</code> type to a 
+				<code>String</code>	type.</p></li>
+
+<li><p>The notion of different views of data is built into the string types in Rust.
+	Try printing the number of UTF-8 characters in <code>result</code> with
+	<code>result.unwrap().chars().count()</code>. Then try printing the
+	number of bytes in the string with <code>result.unwrap().bytes().count()</code></p>
+
+	<p>Are these two numbers equal? Why or why not? Can you tell when they will be equal,
+	and when won't they?</p></li>
+
+<li><p>As the last part of this studio, create some <code>String</code>s in
+	Rust and demo some of the usual string-handling operations you'd expect
+	to find, like concatenation, <code>find()</code>, <code>contains</code>,
+	<code>replace()</code>, <code>split()</code>, etc.</p></li>
+</ol>
+
+<p><h3>Optional Enrichment Exercises</h3></p>
+<ol>
+<p><li>Pick a programming language you are familiar with. What character
+	encodings does that language support? Try building the same
+	SLU-grinning face string we built in Rust above. How is the code the same?
+	How is it different?</li></p>
+
+<p><li>How does that other language handle the difference between
+	<i>creating new data</i> and <i>creating a new view of data</i>?
+	Is the difference made explicit? Do you as a programmer have control
+	over when a piece of data is copied versus when it is viewed
+	differently? How is that exposed in the language semantics?</p></li>
+
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>

@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSCI 3500 - Operating Systems</title></head>
+
+<h2 style="text-align: center;">CSCI 3500: Studio 20<br></h2>
+<h2 style="text-align: center;">File Systems</h2>
+
+<hr style="width: 100%; height: 2px;">
+
+<p>File systems are used to heirarchically organize and store data on
+storage media such as hard drives, DVDs, and solid-state drives.  
+
+<p>In this studio, you will:</p>
+
+<ol>
+<li>Analyze the <i>Contiguous</i> file allocation strategy
+<li>Analyze the <i>Linked-List</i> file allocation strategy
+<li>Analyze the <i>FAT</i> file allocation strategy
+<li>Consider how block size affects read system performance
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>
+<p>
+Please complete the required exercises below, as well as any optional
+enrichment exercises that you wish to complete.</p> 
+
+<p>
+As you work through these exercises, please record your answers in a text
+file. When finished, submit your work by sending your text file and
+source code to <strong>dferry@slu.edu</strong>
+with the phrase <strong>
+File Systems
+</strong> in the subject line.</p>
+
+<p><strong> Make sure that the name of each person who worked on these exercises
+is listed in the first answer, and make sure you number each of your responses
+so it is easy to match your responses with each exercise.</strong></p>
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Required Exercises</h3></p>
+
+<ol>
+<p><li>As the answer to the first exercise, list the names of the people who
+worked together on this studio.</p>
+
+<p><li>Suppose you have a hard drive with 20 blocks of storage. This particular
+drive uses contiguous allocation with a first-fit method of allocating files.
+Compute the hard drive layout after the following operations take place:</p>
+
+<p>
+<pre>
+Create file A - 5 blocks
+Create file B - 3 blocks
+Create file C - 3 blocks
+Create file D - 5 blocks
+Delete file B
+Delete file C
+Create file E - 4 blocks
+Delete file A
+Create file F - 3 blocks
+</pre>
+</p>
+
+<p><li>Suppose you want to measure the <i>disk fragmentation</i> that has
+occurred. Looking at the above trace you realize that most files on this system
+occupy 3 blocks or more. How many free chunks are there of size 2 or less?</p>
+
+<p><li>What percentage of total disk space are these fragmentary chunks?</p>
+
+<p><li>Suppose you have the same hard drive as above, but you've upgraded
+to a linked-list allocation method. Compute the hard drive layout after
+the following operations take place:</p>
+
+<p><pre>
+Create file A - 2 blocks
+Create file B - 4 blocks
+Create file C - 1 block
+Extend file A by 3 blocks
+Reduce file B by 2 blocks
+Create file D - 5 blocks
+Delete file C
+Delete file A
+Create file E - 4 blocks
+</pre>
+</p>
+
+<p><li>How many chunks are there of size 2 or less?</p>
+
+<p><li>Does it still make sense to measure disk fragmentation in this way?</p>
+
+<p><li>Recall that in a linked-list allocation method each individual block of a
+file keeps track of the successor block. How many blocks must be read to locate
+the 3500th byte of file A? Suppose that each block is 1024 bytes.</p>
+
+<p><li>Construct the <i>File Allocation Table</i> (FAT) corresponding to the 
+linked-list allocation above.</p>
+
+<p><li>Suppose you have a 10GB drive (2^30 * 10 bytes). How many entries would
+a FAT need if the block size is 1KB (2^10), 4KB, and 8KB??</p>
+
+<p><li>How large would the FAT be (in bytes) for each size above if each entry
+were 3 bytes? </p>
+
+<p><li>On a traditional hard drive with spinning magnetic platters, the time it
+takes to execute a read is the sum of the <i>seek time</i> and the <i>block
+read time</i>. The seek time is the amount of time it takes the hard drive to
+physically locate the requested data, and the block read time is the amount
+of time it takes the data to be read off the disk. If a file is split
+across multiple blocks, then the drive must seek to each individual block and
+read it.</p>
+
+<p>One study found that the average file size on a Linux system is 2475 bytes
+long. How long does it take to read the average file on a system with 1024-byte (1KB)
+block sizes? What about 2048 bytes (2KB) and 4096 bytes (4KB)? Suppose a seek time 
+of 10 microseconds and a block read time of 3 microseconds.</p>
+
+</ol>
+
+<p><h3>Optional Enrichment Exercises</h3></p>
+<ol>
+<li>No optional exercises
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>

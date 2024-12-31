@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSCI 3500 - Operating Systems</title></head>
+
+<h2 style="text-align: center;">CSCI 3500: Studio 19<br></h2>
+<h2 style="text-align: center;">Files</h2>
+
+<hr style="width: 100%; height: 2px;">
+
+<p>Files are the fundamental abstraction of storage media. 
+User data is stored in files on disks- so files must support reading
+and writing data, as well as facilitating the storage and location of
+data on disk when it is needed. 
+
+<p>In this studio, you will:</p>
+
+<ol>
+<li>Examine ASCII text files
+<li>Examine executable ELF files
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>
+<p>
+Please complete the required exercises below, as well as any optional
+enrichment exercises that you wish to complete.</p> 
+
+<p>
+As you work through these exercises, please record your answers in a text
+file. When finished, submit your work by sending your text file and
+source code to <strong>dferry_submit@slu.edu</strong>
+with the phrase <strong>
+Files
+</strong> in the subject line.</p>
+
+<p><strong> Make sure that the name of each person who worked on these exercises
+is listed in the first answer, and make sure you number each of your responses
+so it is easy to match your responses with each exercise.</strong></p>
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Required Exercises</h3></p>
+
+<ol>
+<p><li>As the answer to the first exercise, list the names of the people who
+worked together on this studio.</p>
+
+<p><li>Files are the essential storage medium for data on a computer. Create
+an empty file using the <code>touch</code> command:</p>
+
+<p><code>touch test.txt</code></p>
+
+<p>Use the command "<code>ls -l</code>" to list all of the files in the current
+directory. What are the permissions on your new file?</p>
+
+<p><li>What is the new file size given by the ls command?</p>
+
+<p><li>Go ahead and fill your new file with at least 50 characters of text
+using a text editor of your choice. What is displayed in your text editor is
+not necessarily everything that is saved on disk. 
+Use the <code>xxd</code> program
+to display the individual bytes of your file. Copy and paste
+the results.</p>
+
+<p><li>Make a few different text files with different contents. Is there anything
+stored in the file that would let you know that this file is an ASCII text file?</p>
+
+<p><li>Identify at least one character saved in the file that is not printed
+to the screen.</p>
+
+<p><li>Find a few executable files. We can also use <code>xxd</code> to
+look at the byte-level data of these files as well. Print their contents to
+your console- what are the first four bytes (eight hex digits) of each file?</p>
+
+<p><li>Look through your executable files- do you recognize any other data
+in there? Copy and paste some section of the program output and speculate
+about what it is.</p>
+
+<p><li>The program <code>xxd</code> is neat, but not very useful for analyzing
+executable files. Fortunately, there is a special program designed to do just
+that. Find an executable file and call it with the program <code>readelf</code>:</p>
+
+<p><code>readelf -h your_program</code></p>
+
+<p>This prints some basic information about your program. Pick out and explain
+two lines of this output.</p>
+
+<p><li>This tool provides a lot of output. Now call the readelf program with the
+"-a" flag instead of the "-h" flag. What <i>offset</i> does the .text segment
+of your program start at? Copy and paste the relevant line. Hint- look at the
+program segment table.</p>
+
+<p><li>What byte does the start of your <code>main</code> function reside? Hint- look at the symbol table.</p> 
+
+</ol>
+
+<p><h3>Optional Enrichment Exercises</h3></p>
+<ol>
+<li>No optional exercises
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>

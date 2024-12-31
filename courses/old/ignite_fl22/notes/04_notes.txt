@@ -1,0 +1,46 @@
+Perspectives: Meet the Bots
+
+Students were asked to interact with four different bots from different times:
+ELIZA		1966
+ALICE		1995
+Cleverbot	1997
+BlenderBot 3	2022
+
+
+1. Ask students to discuss with themselves in group:
+	- Pick one of ELIZA/ALICE and one of Cleverbot/Blenderbot
+	- For both, discuss:
+	- What lines of conversation worked well?
+	- What lines of conversation did not work well?
+	- What surprised you?
+	- After 7-8 minutes, a group rep reports.
+
+2. Introduce concept of Algorithms
+	-Algebra, al-Jabir, the word meant to move a term from one side of an equation to the other
+	-Written by a Persian mathematician (latinization and corruption) into al-Goritmi
+		-Early arithmetic procedures became known as algorithms
+
+	-For example, written algorithm for adding two numbers:
+	1. Write the larger number on top
+	2. Write the smaller number on bottom
+	3. Look at the rightmost column
+	A:
+	4. Sum the column
+	5. Write the ones-digit result below the line
+	6. If greater than 10, write a 1 over the next column
+	7. If anything is to the left of the current column, move one step left and go back to A
+	8. Done
+
+	- Can also write this as a flow chart
+
+	- Algorithms have become commonplace:
+		- Nursing: ADPIE - Assess, Diagnose, Plan, Implement, Evaluate
+		- Jesuit: Context - Experience - Reflection - Action - Eval
+		- Many other contexts as well...
+
+3. Come up with a multiply or divide algorithm in a group?
+	-NOT allowed to use the word "multiply" or "divide"
+
+4. Come up with your own chatbot algorithm in a group
+	- With 10 minutes left, share with group
+

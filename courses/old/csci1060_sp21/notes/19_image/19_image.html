@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+
+<HTML>
+<HEAD>
+<TITLE>Lecture Notes: Image data 
+</TITLE>
+</HEAD>
+
+<BODY>
+
+<HR>
+
+<H2>
+Image Data
+</H2>
+
+<p>
+<b>Reading:</b>  none
+</p>
+
+<hr>
+
+Links:
+<ul>
+<li><a href="slu.png">slu.png</a> (600x800 pixels)
+<br><img src="slu.png" width="400" height="300"/>
+</ul>
+
+<hr>
+
+<H2>Working with image data</H2>
+
+<p>Images are typically stored as a set of pixels. Each pixel
+represents the color of a specific dot of the image.
+Loading a standard image into MATLAB is easy, for example loading
+the image above into MATLAB is done with: 
+
+<pre>
+image = imread('slu.png');
+</pre>
+
+<p>The <tt>slu.png</tt> image has 600 pixel rows and 800 pixel columns, so the
+above command generates a three-dimensional matrix of size 600x400x3. (Each pixel
+is stored with a red, green, and blue channel, so the third dimension is 3.)
+For example, the command:
+
+<pre>
+image(123,234,3)
+</pre>
+
+<p>accesses the blue channel of the pixel in the 123rd row of the picture and the 234th
+column of the picture.</p>
+
+<HR>
+
+<H2>Image Processing with Convolution Matrices</H2>
+
+<p><a href="https://en.wikipedia.org/wiki/Kernel_(image_processing)">Image Convolution on Wikipedia</a>
+
+<HR>
+
+  </BODY>
+</HTML>
+

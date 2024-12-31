@@ -1,0 +1,124 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+	<title>Advanced Operating Systems Class FAQ</title>
+
+	<style>
+	.hang{
+		padding-left: 3em ;
+		text-indent: -3em ;
+	}
+	</style>
+
+</head>
+
+<body>
+
+<h3>Advanced Operating Systems Class FAQ</h3>
+
+<hr />
+
+<h2>Leaving your Pi at home</h2>
+
+<ol>
+<li><p class="hang"><b>How do I get terminal access while leaving my Pi at 
+home?</b></p>
+
+<ul>
+
+<li><p>The first thing to know is your RPI2's username, IP address, and hostname. 
+By default,
+the username is <b>pi</b> and the hostname is <b>raspberrypi</b>. You can
+look up your IP address with the command <code>ifconfig</code>. 
+
+<li><p>The default Raspbian distribution for the RPI2 comes with an 
+SSH server pre-enabled and running. 
+If you are connecting to your RPI2 that is sitting on the same network
+as you are, then depending on how your network is
+configured, you should be able to just ssh to pi@(hostname), or failing that,
+ssh to pi@(IP address).</p>
+
+<li><p>If you have an office in the CSE department somewhere, the campus network
+makes this easy. First, you will have to change your hostname (because there
+are a lot of students with the default <b>raspberrypi</b>, and your device
+will collide with theirs). Second, just plug your RPI2 into the network and
+it will automatically recieve the address (hostname).seas.wustl.edu. To
+connect, just ssh to pi@(hostname).seas.wustl.edu. (<b>NOTE:</b> You can only
+connect to this address if you are inside the WashU firewall. To connect from
+off-campus, you will first need to ssh inside one of WashU's internet-facing
+servers, and then you can ssh to your RPI2 from there. For example, when I
+connect from off campus, I first ssh into ssh.seas.wustl.edu, and then hop
+over to (hostname).seas.wustl.edu.</p>
+
+<li><p>If you would like to set up your RPI2 at home for remote access, you'll need
+access to your internet router. The difficult thing about this is that your
+RPI2 is given one IP address by your home router, while your home is given
+a different IP address by your internet service provider. In order to make this work,
+we need to configure your router so that ssh requests are <i>forwarded</i> to
+your RPI2. By default, ssh communications are sent over port 22, so we need to
+forward port 22 to your RPI2. Go into your router's advanced settings and
+look for port forwarding (not port triggering, which is different). You will
+need to add a custom rule that forwards port 22 to the internal IP address of
+your RPI2. Then, use your router's configuration screen to look up what 
+external IP address it has been assigned by your internet service provider.
+In order to connect to your RPI2 while away from home, you should be able to
+ssh to pi@(external IP address).</p>
+
+<li><p>Note that if you are connecting to home, there is no guarantee that your
+internet service provider will assign you the same IP address for long periods
+of time. If this is the case, your external IP address may change frequently,
+making the above approach difficult. There are two possible solutions.
+First you can try calling your internet company and asking for a static IP
+address. If they say no, or if you would prefer a more robust method, you can
+see if your router supports a Dynamic DNS service. If so, there are 
+many organizations that will give you a path (like david.noip.com) that
+will always map to your home, no matter how often your external IP address
+changes. There are organizations that will do this for free, and some router
+manufacturers (like Netgear) offer this as a free service if you use one of
+their routers.</p>
+
+</ul>
+
+<li><p class="hang"><b>How do I get a remote graphical interface while leaving
+my Pi at home?</b><p>
+
+<p>First, go through the steps for setting up a terminal interface at home
+(above).</p>
+
+<p>A free, open-source solution for getting remote graphical access to your Pi
+is via VNC (Virtual Network Computing). You will need to install a VNC
+server on your PI, and get a VNC client (viewer) in order to connect to your
+server. An excellent open-source implementation of VNC is called
+TightVNC, which provides both a server and a client.</p>
+
+<p>The folks at raspberrypi.org have an excellent walk-through of how to 
+install, configure, and automate the TightVNC server. This only takes a
+few minutes to install and configure.
+<a href="https://www.raspberrypi.org/documentation/remote-access/vnc/README.md">You can access it here.</a>
+Note that if you plan on sitting down and using your Pi through a regular keyboard
+and monitor at home, in addition to connecting remotely, you probably don't want to
+disable the existing display :0</p>
+
+<p>Once you have that complete, you need to install the TightVNC viewer on
+the machine that you'll use to connect to your Pi. The link above has
+instructions if you're connecting from a Linux machine. If you're connecting
+from Windows, go to tightvnc.com and download their viewer from there. If 
+you're connecting from Mac OS, or from any machine that you can't install
+software on, you can go to tightvnc.com and download their self-contained
+Java viewer (which of course requires Java to be installed).</p>
+
+<p>Finally, if you're connecting from outside of your house, you'll need to
+forward ports 5900-5902 on your home router to your Pi. (See previous answer
+for details.)</p>
+
+<p>When connecting with a viewer, you will connect to 
+(external IP address)::(port number). The port number is determined (by default)
+to be 5900 plus the number of your display. So, if your VNC server is running
+display :0, then your port number is 5900. If your VNC server is running
+display :1, then your port number is 5901, etc.</p>
+
+</ol>
+
+</body>
+</html>

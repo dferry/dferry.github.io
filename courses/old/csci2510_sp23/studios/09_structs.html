@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSCI 2510 - Principles of Computing Systems</title></head>
+
+<h2 style="text-align: center;">CSCI 2510: Studio 9<br></h2>
+<h2 style="text-align: center;">Structs</h2>
+
+<hr style="width: 100%; height: 2px;">
+
+<p>Language: Rust</p>
+
+<hr style="width: 100%; height: 2px;">
+
+<p>Explanation of studio</p>
+
+<p>In this studio, you will:</p>
+
+<ol>
+  <li>Learn how Rust encapsulates data and code together
+  <li>Build the Rust version of a Disc object
+  <li>Add methods to a <code>struct</code> using the <code>impl</code> keyword
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>
+<p>
+Please complete the required exercises below, as well as any optional
+enrichment exercises that you wish to complete.</p> 
+
+<p>
+For this studio, please create a new Rust project with the name 
+<strong>Structs</strong> (note, case sensitive). 
+As you work through these exercises, 
+please record your answers in a text file in the root level of that
+project. When finished, please add the entire project and push it
+to the SLU Git repository.
+</p>
+
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Required Exercises</h3></p>
+
+<ol>
+	<li><p>"Object-oriented programming" can mean a lot of things- inheritance,
+		abstract interfaces, polymorphism, and more. At its core, OOP
+		says that we should package data and code that operates on that
+		data together. This principle creates programs out of cleanly separated
+		logical units rather than a spaghetti pile of data and code.
+		That core concept is considered essential in modern programming,
+		but if you look
+		through the Rust documentation, they don't talk about objects,
+		classes, or inheritance structures. What gives?</p>
+
+		<p>What's your gut reaction to the phrase "object-oriented
+		programming? What comes to mind?</p></li>
+
+		<p>Rust, as usual, is <i>opinionated</i>. Rust does support 
+		some object-oriented principles, but does not support the same
+		object-oriented tools seen in languages like Java and Python.
+		I like to describe Rust as being data-focused rather than object-focused,
+		which I think leads to programmers thinking harder about how, when, and
+		where data is allocated, moved, and transformed. A Rust programmer thinks
+		about the data first and builds
+		an object structure to support the efficient management of their data.
+		A traditional Object-Oriented approach would start with the object
+		and inheritance structure, and then work to fit an efficient implementation
+		within that structure. Both are appropriate ways to approach a system
+		building task, but both have tradeoffs.</p>
+
+		<p>Brainstorm: What are the benefits of starting a project by thinking about the
+		object structure? What are the benefits of starting a project by thinking about
+		the underlying data?</p></li>
+
+		<li><p><i>Gedankenexperiment:</i> 
+		Suppose you are creating a program that contains an abstract
+		<code>car</code> object with configurable components, such as
+		different engines, tires, etc. Briefly describe what the object
+		heriarchy for such a <code>car</code> would look like.</p></li>		
+
+		<li><p><i>Gedankenexperiment:</i>
+		Now suppose I ask you to calculate how long it takes to drive your
+		car from St. Louis to Chicago. How does this functionality interact
+		with your object heriarchy?</p></li>
+
+		<p>To go a little bit deeper, Rust's object model is very much
+		composition-based rather than inheritance-based. I won't elaborate
+		more on this now, but I'd encourage you to revisit the thought
+		as you do more programming in both Rust and other languges.</p>
+
+		<p>What are you opinionated about? 
+		What do you like about object-oriented programming?
+	        What do you dislike?</li>
+
+
+	<li><p>In math, a Disc is the region bounded by a circle. In other words, 
+		a disc is a "filled-in" circle. We will implement a Disc object
+		and create a few methods to make using such discs convenient.</p>
+
+		<p>Rust allows you to create a set of related data values with the
+		<code>struct</code> keyword. Look up how <code>struct</code> is
+		used, and then define a struct called Disc that holds three values:
+		<code>x: f32, y: f32, radius: f32</code>. Those are the x-position,
+		y-position, and radius of the disc. The <code>f32</code> type is a
+		32-bit (single precision) floating point number.<p></li>
+
+	<li><p>Declare three discs and print them out. Rust doesn't automatically
+		provide an easy way to print out a struct, but since our data is
+		simple we can use a handy shortcut. Add <code>#[derive(Debug)]</code>
+		immediately above your struct definition and Rust will derive a
+		debug print for us. (Remember how I said Rust objects are
+		composition-based? Because each data element in Disc has the
+		debug-print trait, the composition of these elements can also
+		automatically satisfy the debug-print trait.)</p>
+
+	<p>Remember that you debug-print with the <code>{:?}</code> specifier.
+	For example: <code>println!("My struct: {:?}", my_disc);</code></p></li>
+
+	<li><p>Take one of your discs from above and modify its data.
+		You can access members of a struct with the dot notation.
+		Print out the disc before and after to verify that you've changed
+		the data inside the struct.</p></li>
+
+	<li><p>To really make an object (data + code) we have to implement a method
+		on our struct. This is the purpose of the <code>impl</code> keyword.
+		Below is an example of declaring a method called <code>resize</code>
+		on the Disc struct. This method should take a value called <code>scale</code>, and
+		changes the size of the disc using this as a multiplier. For example,
+		if the original radius is 1.5, and the scale is 3.0, then the scale
+		after resizing will be 1.5*3.0 = 4.5:</p>
+
+<pre>
+impl Disc {
+	//Declare the scale method
+	pub fn resize( &amp;mut self, scale: f32 ) {
+		//Write the code that implments the scale method
+	}
+}
+</pre>
+
+	<p>Note several things. The <code>pub</code> keyword declares this as a public
+	method, so it can be called by other code modules. Second, we explicitly pass
+	in <code>self</code> as a parameter- as in some other languages, this refers
+	to the struct that we call the method on.</p>
+
+	<p>Implement the scale method, and call it on one of your discs from above and
+	verify it works.</p>
+	</li>
+
+	<li><p>Implement another method called <code>offset</code>. This should
+		take three parameters: <code>self</code>, <code>x_offset: f32</code>,
+		and <code>y_offset: f32</code>. This can be thought of translating
+		or moving the disc. For example, if the disc starts at the origin
+		at point <code>(0.0, 0.0)</code>, then <code>disc.offset(2.0,-3.0)</code>
+		should modify the disc so that it is now at point <code>(2.0,-3.0)</code></p>
+
+	<p>Test the method by calling it and printing out the before and after.</p></li>
+
+	<li><p>Lastly, implement a method called <code>intersects_with</code> that
+		takes two parameters- <code>self</code> and a reference to another
+		disc. This method should return <code>true</code> when they intersect
+		in at least one point, and false otherwise.</p>
+
+		<p>Two discs touch at a single point when the distance between their
+		centers is equal to the sum of their radii. Two discs overlap each other
+		significantly when that distance is less than the sum of their radii, and
+		two discs don't intersect at all when that distance is greater than the
+		sum of their radii.</p>
+
+		<p>Implement and print out the result of the following three test cases,
+		which should be true, true and false:</p>
+
+<pre>
+    let mut d1 = Disc{ x: 0.0, y: 0.0, radius:1.0 };
+    let mut d2 = Disc{ x: 2.0, y: 0.0, radius:1.0 };
+    println!("{:?} and {:?} intersect: {}", d1, d2, d1.intersects_with(&amp;d2) );
+
+    let mut d1 = Disc{ x: 0.0, y: 0.0, radius:1.0 };
+    let mut d2 = Disc{ x: 2.0, y: 0.0, radius:2.0 };
+    println!("{:?} and {:?} intersect: {}", d1, d2, d1.intersects_with(&amp;d2) );
+
+    let mut d1 = Disc{ x: 0.0, y: 0.0, radius:1.0 };
+    let mut d2 = Disc{ x: 5.0, y: 0.0, radius:1.0 };
+    println!("{:?} and {:?} intersect: {}", d1, d2, d1.intersects_with(&amp;d2) );
+</pre>
+	</li>
+
+</ol>
+
+<p><h3>Optional Enrichment Exercises</h3></p>
+<ol>
+	<li><p>So far, basic data and code encapsulation isn't all that different from
+	other object-oriented languages. Implment the same program in Python, Java, or
+	any other OOP language and compare and contrast.</p></li>
+
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>

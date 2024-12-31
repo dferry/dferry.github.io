@@ -1,0 +1,356 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSCI 2510 - Prin. of Comp. Sys.</title></head>
+
+<h2 style="text-align: center;">CSCI 2510: Lab 1<br></h2>
+<h2 style="text-align: center;">Logging Component</h2>
+
+
+
+<hr style="width: 100%; height: 2px;">
+<!--
+<p><i>
+Quote
+</i></p>
+<p style="text-indent:10%">&mdash;Character, <i>Book</i>, Chapter N<p>
+-->
+
+<p>Small programs typically display diagnostic information as standard output
+while they are executing, but for larger and longer-lived systems this is insufficient.
+Such systems may execute in many places simultaneously, so we must create some notion
+of a global output stream that correlates all activities of a system.</p>
+
+<p>However, there is necessarily a synchronization issue in this situation.
+If multiple components all try to write or print to the same location
+simultaneously, we are likely to end up with a garbled mess. In this lab
+we will create a single software component whose responsibility it is to
+create, maintain, and synchronize access to a durable log for the entire system.</p>
+
+<p>In this lab, you will:</p>
+
+<ol>
+  <li>Use TcpListener and TcpStream to manage the communication between a server
+  and multiple connected clients.</li>
+  <li>Use non-blocking sockets to maintain connection to many connected clients
+	  simultaneously.</li>
+  <li>Use crates to implement a global configuration file.</li>
+  <li>Use a Cargo <i>workspace</i> and <i>integration tests</i> to start maintaining
+  a multiple Rust packages as part of a larger project.</li>
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Lab Format</h3></p>
+
+<p>This is an individual assignment. Discussion with other students is
+permitted, but sharing code is strictly prohibited.</p>
+
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Packages to Implement</h3></p>
+<p><code>log_component</code> - a logging server that takes log messages via network connection
+from multiple other components and writes them to a single file</p>
+<p><code>send_log</code> - a public-facing library that allows other packages to send messages
+to the logging server</p>
+
+<p><h3>Key Concepts</h3></p>
+<p><code>workspace</code> - multiple Rust projects that are developed, built, and tested together</p>
+<p><code>crates</code> - Rust software libraries that are downloaded and incorporated automatically
+via the Cargo build system</p>
+<p><code>config</code> crate - a general purpose tool that allows for using text configuration files</p>
+<p><code>slumcs</code> - SLU Multi-Component System - the medium scale system we are implementing in
+this course as well as the name of the workspace we are creating in this lab</p>
+<p><code>config.toml</code> - the global configuration file for all components of <code>slumcs</code></p>
+
+<p><h3>send_log</h3></p>
+<p>This component implements the public-facing interface of the logging system in <code>slumcs</code>.</p>
+<p>Since this is our first interface, I have created it for you in the following file:
+<a href="./lib_send_log.rs">lib.rs</a>.</p>
+<p>Please do not add any additional public functions, type declarations, or variables.</p>
+<p>An example of a file that uses this interface is here:
+<a href="./use_send_log.rs">main.rs</a></p>
+
+<p>Upon encountering any error, print a descriptive message and panic.</p>
+
+<p><h3>log_component</h3></p>
+
+<p>This component implements a logging server that accepts and manages multiple
+simultaneous network connections from other components. Each connection is monitored for
+messages, and when one is recieved, that message is written to a global logging
+file. This is necessary for a distributed system, where it assumed that not all
+components will be executing on the same machine.</p>
+
+<p>Your code should not make any assumptions about, or place any limitations on,
+the number of components that may be connected at once. Remember that each time
+<code>TcpListener::accept()</code> returns, it returns a <code>TcpStream</code>
+that corresponds to a new connection. The requirement to support multiple connected
+clients means that your code will have to manage multiple <code>TcpStream</code>
+objects at the same time. These can be stored in a suitable data structure
+such as a list or a vector.</p>
+
+<p>The specific problem of blocking arises when dealing with multiple <code>TcpStream</code>s.
+Previously in studios we have used the functions <code>std::io::read()</code>
+and <code>std::io::read_to_string()</code> to read from the the network. These
+are <i>blocking</i> calls that cause the program to stop and wait until some
+data is available to read. When we have two or more streams, the problem is that
+we may be blocked and waiting on stream A while there exists data on stream B
+that we are not handling. If data never arrives for stream A, then the program
+is effectively dead and non-responsive.</p>
+
+<p>The solution we will pursue in this assignment is to mark our <code>TcpStream</code>s
+as <i>non-blocking</i>. This changes the behavior of read calls such that
+they will always return immediately- if there is data to read then they will return
+<code>Ok()</code> with the number of bytes they read. If there is no data to read
+at that time then they will return an error of type <code>io::ErrorKind::WouldBlock</code>.
+Such reads can also return regular errors, so you will need to distinguish
+"real" errors from "benign" WouldBlock errors.</p>
+
+<p>Whenever data is read from a <code>TcpStream</code>, we can simply write that same
+data to the logging file specified in <code>config.toml</code>.</p>
+
+<p>Upon encountering any error other than WouldBlock, print a descriptive message and 
+panic.</p>
+
+<p><h3>Getting Started</h3></p>
+
+<p>Before getting started, you will need to construct a workspace for <code>slumcs</code>.
+This is a set of projects that are both independent Rust projects and interconnected
+parts of the same system. Create a directory <code>slumcs</code> in your Git
+repository. Inside that directory, create a <code>Cargo.toml</code> file with
+the following contents:</p>
+
+<pre>
+[workspace]
+
+members = [
+        "log_component",
+        "send_log"
+]
+</pre>
+
+<p>Then, you can create the two projects for this lab with the following cargo commands.
+Note that the command for <code>send_log</code> is different, as this is our first
+library project. You may get a warning when executing the first of these commands,
+but it is just saying that it can't find the second project specified (because you
+have not created it yet).</p>
+
+<pre>
+cargo new log_component
+cargo new send_log --lib
+</pre>
+
+<p>Because <code>send_log</code> is a library instead of an executable project,
+the default filename in <code>/send_log/src/</code> is <code>lib.rs</code> instead
+of <code>main.rs</code></p>
+
+<p>Then, inside each of those projects, we want to add the <code>config</code> crate
+to our dependency list. This will cause it to be downloaded next time the project builds.
+Note that the first time you build your project after adding the dependency will cause
+the crate index to be downloaded, and this may take a while. Inside both new directories,
+open the <code>Cargo.toml</code> file and add the following line under
+<code>[dependencies]</code>:
+
+<pre>
+config = "0.13.3"
+</pre>
+
+<p>In this case, the name <code>config</code> is the name of the crate we want, and
+the number is just the current version number at the time of this writing. After both
+dependencies have been added, go back to the <code>slumcs</code> directory and
+run <code>cargo build</code> to verify that everything is working correctly. This
+should automatically build both new projects, as well as downloading and building
+the <code>config</code> crate and its dependencies.</p>
+
+<p>Lastly, to use the <code>config</code> crate you should create a new file called
+<code>config.toml</code> in the <code>slumcs</code> directory. (Note that this file
+has nothing to do with Cargo- toml is a file extension and is not unique to Cargo.
+Inside this file you should place the following contents, though you should change
+the port number to some random number between 10000 and 65000:</p>
+
+<pre>
+log_ip = "127.0.0.1"
+log_port = 23456
+log_file = "systemlog.txt"
+</pre>
+
+<p>You can include the <code>config</code> crate with <code>use config::Config;</code>
+(note the capitalization). Then, you can load and access the contents of the
+<code>config.toml</code> file with the following code:</p>
+
+<pre>
+    let config_path = "../config.toml";
+
+    let settings = match Config::builder()
+        .add_source(config::File::with_name(config_path))
+        .build() {
+            Ok(x) =&gt; x,
+            Err(x) =&gt; panic!("Could not open configuration file: {x}"),
+        };
+
+    let log_ip = settings.get_string("log_ip").unwrap();
+    let log_port = settings.get_string("log_port").unwrap();
+    let log_file = settings.get_string("log_file").unwrap();
+</pre>
+
+<p><h3>Testing</h3></p>
+
+<p>Your code will be tested with the following file: 
+<a href="./test_logger.rs">test_logger.rs</a></p> 
+
+<p>In order to build and run this code, add a new <code>test_logger</code>
+entry to your workspace. Then run <code>cargo new test_logger</code>
+and add the following lines to the cargo dependencies:</p>
+
+<pre>
+send_log = { path = "../send_log" }
+rand = "0.8"
+</pre>
+
+<p>Then, run the code with cargo run. Note that this program requires two arguments,
+so "cargo run 5 10" would create 5 simultaneous connections that transfer ten
+messages each.</p>
+
+<p><h3>Hints</h3></p>
+<p><ol>
+	<li>You must use the interface I have specified for <code>send_log</code>,
+		but you can structure <code>log_component</code> however you would
+		like.</li>
+	<li><code>log_component</code> needs to have a <code>main()</code> function
+		and produce an executable. <code>send_log</code> is a library
+		and does not produce an executable.</li>
+	<li>When opening the log file, make sure to (1) create it if necessary and
+		(2) open it in append mode so as to not overwrite existing data.</li>
+	<li>The <code>log_component</code> will end up checking all connected clients
+		in a loop of some kind- but you should use <code>thread::sleep</code>
+		in that loop so that it is not running continuously at 100% CPU
+		utilization.</li>
+	<li>Keep in mind move semantics and ownership when you manage the lifetime
+		of your <code>TcpStream</code> objects. Ultimately these should
+		"live" on a dynamically resizable data structure such as a
+		list or a vector.</li>
+	<li>Make sure you set the <code>config</code> crate as a dependency in
+		both the <code>send_log</code> and <code>log_component</code>
+		projects. See the examples above for how to use the crate.</li>
+</ol></p>
+
+<!--
+<p><h3>Documentation</h3></p>
+<p>The following man pages may be useful:</p>
+<p><ul>
+<li><code>open</code> (2)
+<li><code>close</code> (2)
+<li><code>read</code> (2)
+<li><code>write</code> (2)
+<li><code>strncmp</code> (3)
+<li><code>memcpy</code> (3)
+<li><code>atoi</code> (3)
+<li><code>strtol</code> (3)
+<li><code>perror</code> (3)
+<li><code>errno</code> (2)
+<li><code>exit</code> (3)
+<li><code>xxd</code> (1)
+<li><code>diff</code> (1)
+</ul></p>
+
+<p><h3>Questions</h3></p>
+
+<ol>
+<p><li>As the answer to the first exercise, list the name(s) of the people who
+worked together on this lab.</p>
+
+<p><li>This compression technique works well in some cases, and poorly in
+others. Give an example of each.</p>
+
+<p><li>The <i>compression ratio</i> can be computed as (size before compression)/(size after compression).
+For example if the original file size is 20,000 bytes and the compressed size is
+15,000 bytes then the compression ratio is 1.33. There are three files above of size
+one million bytes each: 1mil_random, 1mil_weak_bias, and 1mil_strong_bias. Each of
+these files contains the numbers 0-4 in random order, but the random file contains all numbers distrbuted
+evenly, while the weak and strong bias files shift the distribution so that the lower number
+values occur more often. For example, zero occurs about 20% of the time in the random
+file, about 75% of the time in the weak bias file, and about 90% of the time in the
+strong bias file.</p>
+
+<p>Which file do you think will compress best? Compute the compression ratio for each file with a compression length of one.</p>
+
+<p><li>The Bash shell includes the nifty command <code>time</code>, which records how
+long a command runs. Record how long it takes to compress the file <code>test4</code>.
+The syntax in this case is "<code>time ./rle test4 output 1 0</code>". 
+This will report three measurements: real, user,
+and sys. How long does your program take to run in real time? 
+
+<p><li>Try the above command again but with a compression length of ten, how
+long does your program take now? Which operations happen more or less
+frequently now? Formulate a hypothesis as to the difference.</p>
+
+<p><li>Indicate which, if any, extra credit exercises have you have attempted.</p>
+</ol>
+
+<p><h3>Optional Enrichment Exercises</h3></p>
+
+<ul>
+<p><li><b>3% Extra Credit</b>: Download the slu_logo.bmp file above,
+this is an uncompressed image file. Compress the file, then uncompress it. 
+Verify that you can still open the
+image in a photo viewer and that it is not distorted.</p>
+
+<p>The compression algorithm you have implemented
+is a form of lossless compression, meaning that the entire uncompressed
+file can be reconstructed and no data is lost. This approach works well
+for highly structured data with lots of repitition. This can happen
+naturally in a case like slu_logo.bmp, where the whole image has just a
+few colors and lots of large same-color regions. Compute the compression
+ratio of your algorithm with slu_logo.bmp. Then, open the file in a
+photo editor (such as Microsoft Paint, Photoshop, or GIMP) and save it
+as a .png file (lossless compression) and a .jpg file (lossy compression).
+Compute the compression ratio for each method.</p> 
+
+<p><li><b>2% Extra Credit</b>: As it turns out, lossy compression can be far
+more effective in some situations than lossless compression. Compression algorithm
+researchers are very skilled at removing data that is virtually imperceptible.
+Download <a href="lab1/uncompressed.bmp">this file</a> and compute the
+compression ratio using your algorithm. Then, use a standard photo editor
+from before to generate a losslessly compressed .png file and a lossily compressed 
+.jpg file and compute their compression ratios. Inspect the files carefully,
+are you able to discern a difference between the three?</p>
+
+
+</ul>
+-->
+
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Submission</h3></p>
+
+<p>Please submit your lab to your course git repository. Your code should be
+entirely contained in your <code>slumcs</code> directory.</p>
+
+<p><a href="../git-info.pdf">A short guide to accessing SLU's git resources</a></p>
+
+<!-- <p>The plan is to have labs submitted via the course git repo. These are currently
+being set up- check back soon for more details.</p> -->
+
+<!--
+<p>Create a .tgz archive of your lab directory and email it to 
+<code><big><b>dferry_submit@slu.edu</b></big></code>. 
+Your submission must include a makefile
+that will compile your program by simply issuing the command 
+<code>make</code>. You must also include a text file with your
+answers to the required exercises. Please include your name and the names of
+any partners in the body of your email.</p>
+
+<p>The simple syntax for creating a .tgz archive is as follows:</p>
+
+<p><code>tar -zvcf new_archive.tgz lab_directory</code></p>
+
+<p>The syntax for unpacking a .tgz archive is:</p>
+
+<p><code>tar -zvxf archive.tgz</code></p>
+
+<p>Note that your archive <b>must not</b> include any binary executable files,
+meaning any compiled programs or intermediate build objects (.o files, for
+example). This will cause your email to be rejected by most services.</p>
+-->
+

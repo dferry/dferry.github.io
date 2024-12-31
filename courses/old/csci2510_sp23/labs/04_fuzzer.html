@@ -1,0 +1,247 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSCI 2510 - Prin. of Comp. Sys.</title></head>
+
+<h2 style="text-align: center;">CSCI 2510: Lab 4<br></h2>
+<h2 style="text-align: center;">Program Fuzzing</h2>
+
+
+
+<hr style="width: 100%; height: 2px;">
+<!--
+<p><i>
+Quote
+</i></p>
+<p style="text-indent:10%">&mdash;Character, <i>Book</i>, Chapter N<p>
+-->
+
+<p>
+Many code vulnerabilities are related to cases where software fails to handle
+malformed or unexpected input properly. Typically, it is at least
+tractable to check the functional requirements of a program. (I.e. the program
+does what it is supposed to do.) However, it is difficult to impossible to
+verify that a program never does anything it is not supposed to do. 
+In this lab we will explore a basic technique used by software developers and
+security professionals to ensure robust code quality, or used by bad actors
+to find code vulnerabilities to exploit. 
+
+<p>
+In <i>fuzzing</i>, many malformed inputs are generated and sent into a
+program. The goal is to test how well the program handles these abnormal
+conditions. Robust software will produce descriptive error messages
+indicating what is unexpected and will quit gracefully. Insecure software
+will simply crash with segmentation faults, core dumps, aborts, or other
+uncontrolled program terminations.
+</p>
+
+<p>In this lab, you will:</p>
+<ol>
+<li>Select a target program to fuzz
+<li>Generate random malformed or invalid inputs
+<li>Submit malformed inputs to a target program
+<li>Evaluate target program performance
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Lab Format</h3></p>
+
+<p>This is an individual assignment. Discussion with other students is
+permitted, but sharing code is strictly prohibited.</p>
+
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Program to Implement</h3></p>
+<p><code>fuzzer</code> - a runnable file that generates a series of malformed inputs,
+then runs the target program using those malformed inputs. This file can be entirely
+hard-coded for your specific target program. You do not need to write a general-purpose
+fuzzing framework.</p>
+
+<p>When your program is run with <code>cargo run</code>, it should generate at least
+100 malformed inputs and run the target program for each. Your program should print 
+any error output that is produced, but it may redirect or suppress standard program
+outputs if you want.</p>
+
+
+<p><h3>Key Concepts</h3></p>
+
+<p><h4>Error Handling vs. Crashing</h4></p>
+
+<p>The goal of a fuzzer is primarily to find programs that do not handle exceptional
+situations appropriately. Feeding malformed input to a program is not expected to
+produce useful output. Errors like, "Invalid File Format" are normal and good behavior
+during fuzzing, as they indicate that the program under test recognizes the abnormal
+condition and terminates gracefully. In contrast, errors like segmentation faults,
+core dumps, aborts, or other forceful program terminations indicate a failure to handle
+abnormal conditions.</p>
+
+<p>Ideally, a fuzzer should detect such abnormal terminations and log the inputs for
+later analysis. This is not required for this lab. If you were interested, Rust can
+be used to detect why a program terminates in Linux using
+<code>std::os::unix::process::ExitStatusExt</code>. Note that this code will probably
+not be platform-independent.</p>
+
+<p><b>Your program does not need to find such vulnerabilities to qualify for credit.</b>
+Many "core" utilities have already be extensively fuzz-tested. However, your program
+must demonstrate that it is testing some interesting program behavior beyond
+surface level- i.e. beyond simply checking for valid command line argument names
+or for valid magic bytes in binary files.</p>
+
+<p><h4>Target Selection</h4></p>
+
+<p>For our purposes in this lab, you should select (1) a program that exists on Hopper,
+our shared system, and (2) a program that can be tested from
+the command line. Such programs can be run and interacted with easily from Rust.
+Other programs, such as those with network interfaces or graphical interfaces,
+can be fuzz tested, but require more complicated setup and frameworks.</p>
+
+<p>You also need to decide what kind of input you would like to fuzz. For command-line
+utilities, this is mostly command-line arguments or input files. Each of these target
+types entail different fuzzing strategies. See the Input Generation section for more.</p>
+
+<p>Some ideas for programs that could be fuzzed. Play around with a few such programs
+and consider what it would take to generate reasonable but random inputs for each program. 
+Note in particular that you are not required to exhaustively test all features of these
+programs. Some programs may be fuzzed in multiple ways- for example, an image processor
+might be fuzzed by modifying the input image, or by generating combinations of command
+line arguments.</p>
+
+<ul>
+	<li><code>as</code> - The GNU assembler</li>
+	<li><code>gcc</code> - The GNU C compiler</li>
+	<li><code>g++</code> - The GNU C++ compiler</li>
+	<li><code>rustc</code> - The Rust compiler</li>
+	<li><code>awk</code> - Pattern scanning and file processing tool</li>
+	<li><code>grep</code> - Pattern scanning and file processing tool</li>
+	<li><code>sed</code> - Pattern scanning and file processing tool</li>
+	<li><code>cut</code> - Processes row-column oriented data tables</li>
+	<li><code>bc</code> - Calculator utility</li>
+	<li><code>dc</code> - Calculator utility</li>
+	<li><code>gzip</code> - File compression</li>
+	<li><code>zip</code> - File compression</li>
+	<li><code>fmt</code> - Text file auto-formatter</li>
+	<li><code>fold</code> - Text file auto-formatter</li>
+	<li><code>ptx</code> - Text file indexer</li>
+	<li><code>tex</code> - Text formatting and typesetting utility</li>
+	<li><code>jq</code> - JSON processor</li>
+	<li><code>convert</code> - Image conversion utility, plus basic image processing</li>
+	<li><code>htmltree</code> - Processes HTML files and dumps parse tree</li>
+	<li><code>dot</code> - Produces images of graphs from text files</li>
+	<li><code>qpdf</code> - PDF transformation and processing tool</li>
+	<li><code>file</code> - Determines file type</li>
+</ul>
+
+<p><h4>Input Generation</h4></p>
+
+<p>For the purpose of this lab, we will describe three types of input generation strategies. Your
+goal should be to expose interesting behavior of the program, and one of the challenges in fuzzing
+is getting your fuzzer to test behavior below "surface level."</p>
+
+<p>For command line argument fuzzing, we don't want to generate random strings at random.
+Most programs use well-tested, standard libraries for handling complex command line arguments,
+so random strings only trigger a surface-level error message followed by a quit. For example, the
+"ls" program lists programs in a directory, and "ls -l -h" lists all programs in long-list format
+with human-readable numbers. We could fuzz this program by looking up a list of all command line
+arguments and randomly generating lists of arguments to pass. If we pick a command line
+argument totally at random, like "ls -doesnotexist" then the program just returns
+"unrecognized option".</p>
+
+<p>For binary input files, such as images or compressed files, 
+generating a file totally at random is unlikely to get below surface-level behavior 
+for essentially the same reason as before. For example, the "readelf" utility looks
+at the first four bytes of a file to determine if the file is in the ELF format,
+and if not it prints the error, "Error: Not an ELF file - it has the wrong magic bytes at the start."
+Instead, our approach here is to find a valid binary file that could be used as input,
+and then permute that input in various ways. We could generate malformed inputs by
+randomly selecting and modifying existing bytes in the file, randomly adding extra bytes,
+or randomly subtracting bytes.</p>
+
+<p>For structured text files, such as JSON or HTML files, we might want to use a
+content-aware fuzzer. It still makes sense to start with a valid input file,
+but rather than randomly permuting at a byte level, we can randomly permute at
+a semantic level. For example, for an HTML file, we could add or subtract HTML tags at random,
+or we could even parse the HTML heirarchy and do things like swap subtrees around.</p>
+
+<p><h3>Getting Started</h3></p>
+
+<p>Before getting started, you will want to create a <code>fuzzer</code> package, 
+and add them to your workspace for <code>slumcs</code>.
+Inside the <code>slumcs</code> directory, your <code>Cargo.toml</code> file 
+would have at least the following contents:</p>
+
+<pre>
+[workspace]
+
+members = [
+        "log_component",
+        "send_log",
+	"test_logger",
+	"deadlock_detect",
+	"crack",
+	"hash_demo",
+	"fuzzer"
+]
+</pre>
+
+<p>Then, you can create the project for this lab with the following cargo command.</p>
+
+<pre>
+cargo new fuzzer
+</pre>
+
+<p>We don't have any framework code to get you started this time, but you can use
+the discussion we had in class as a starting point. Remember that your code can
+be relatively hard-coded for this lab, and that it only needs to run 100 iterations
+of some fuzzing process when I issue the "cargo run" command. There are no specific
+test cases your code must pass.
+
+<p>If you use external crates in your fuzzer, make sure to add the dependencies 
+to your <code>Cargo.toml</code> file and push those changes to your repository.</p>
+
+<p><h3>Submission</h3></p>
+
+<p>More than any other assignment, please verify that your code builds and
+runs when checked out of a <i>fresh repository</i>. Your fuzzer should
+run successfully "out of the box" when I issue the "cargo run" command
+for the first time in your /slumcs/fuzzer/ directory. This means that 
+any supporting files must be correctly uploaded to your repository
+(such as valid images, text files, or other starting points for
+generating malformed inputs), and your
+cargo workspace in /slumcs/Cargo.toml must be configured correctly.</p>
+
+<p>To test this:</p>
+
+<ol>
+	<li>Upload everything you think you need for your final submission</li>
+	<li>Login to hopper.slu.edu</li>
+	<li>Check out a fresh copy of your Git repository with "git clone" in
+	a new location (not inside your existing Git repository)</li>
+	<li>Navigate to /slumcs/fuzzer/ in the freshly cloned repository</li>
+	<li>Issue the "cargo run" command</li>
+	<li>Verify your code builds and runs on Hopper</li>
+</ol>
+
+<p><h3>Hints</h3></p>
+
+<ul>
+	<li>The <a href="https://doc.rust-lang.org/std/process/index.html"><code>std::process</code> module</a> is used to create and wait for processes.</li>
+
+	<li><code>std::process::Command</code> is used to create a child process and pass
+		command line arguments to it.</li>
+
+	<li>The <a href="https://doc.rust-lang.org/std/process/struct.Command.html#method.output">
+	<code>Command.output()</code> method</a> spawns a process and waits for it
+	to finish, and returns all output the process produced. You can separate this output
+	by standard error and standard output.</li>
+
+	<li>The <a href="https://doc.rust-lang.org/std/process/struct.Command.html#method.spawn">
+	<code>Command.spawn()</code> method</a> creates a child process and returns immediately.
+	You will need to wait for the child process to terminate, similar to how we have used
+	joins to wait for threads to terminate. This is done with the 
+	<a href="https://doc.rust-lang.org/std/process/struct.Child.html">
+		<code>Child.wait()</code> method</a>. This can be more efficient than
+	<code>Command.output()</code>, but efficiency is not a grading criteria for this lab.</li>
+
+</ul>

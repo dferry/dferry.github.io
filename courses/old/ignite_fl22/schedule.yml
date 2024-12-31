@@ -1,0 +1,1094 @@
+#These strings are displayed verbatim on the web page
+CourseNum: "CORE 1000"
+CourseName: "The Most Human Computer"
+CourseWebsite: '<a href="http://cs.slu.edu/~dferry/courses/ignite">http://cs.slu.edu/~dferry/courses/ignite/</a>'
+ClassTime : "Monday, Wednesday, &amp; Friday from 9:00 am - 9:50 am, Ritter Hall 115"
+Semester : "Fall 2022"
+MidtermTime : "TBD"
+FinalTime : "Thursday, December 15th, 8:00 am - 9:50 am" #Displayed at top of page
+FinalDay: "Dec 15"          #Displayed at bottom of schedule
+FinalDayOfWeek: "Thursday"  #Displayed at bottom of schedule
+
+#These strings control the behavior of the scheduler generator
+StartDate: "August 24th, 2022"
+ClassType : "MWF"
+LinkActivationHours: "24" #Links activate on the schedule approx this number of hours
+                          #before the real time gets there
+SchedHeaderColor: 'White' #Colors can be any CSS color
+SchedColor1: '#e6e6e6' 
+SchedColor2: 'White'
+
+
+Holidays :
+  -
+    name: "Labor Day"
+    date: "September 5th"
+    text: "Labor Day - No Class"
+  -
+    name: "No Classes"
+    date: "September 28th"
+    text: "No Class"
+  -
+    name: "Fall Break"
+    date: "October 28th"
+    text: "Fall Break - No Class"
+  -
+    name: "Thanksgiving"
+    date: "November 23rd"
+    text: "Thanksgiving - No Class"
+  -
+    name: "Thanksgiving"
+    date: "November 25th"
+    text: "Thanksgiving - No Class"
+
+FixedDays:
+### New Day ###
+  - 
+    date: "November 7th"
+    topics:  
+      - 
+        text: "Library with Megan Toups"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+### New Day ###
+  - 
+    date: "November 9th"
+    topics:  
+      - 
+        text: "Library with Megan Toups"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+
+
+Schedule :
+
+#Note, any day can have multiple items, e.g. the following
+# template has two topics, one reading, one studio, and one lab
+
+### New Day ###
+#  - 
+#    topics:  
+#      - 
+#        text: ""
+#        link: ""
+#        class: ""
+#      - 
+#        text: ""
+#        link: ""
+#        class: ""
+#    readings: 
+#      - 
+#        text: ""
+#        link: ""
+#        class: ""
+#    studios: 
+#      - 
+#        text: ""
+#        link: ""
+#        class: ""
+#    labs:
+#      - 
+#        text: ""
+#        link: ""
+#        class: ""
+          
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Class Intro"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Lecture - Experiential and Reflective Learning"
+        link: "slides/01_Inquiry.pptx"
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Book Discussion- The Turing Test"
+        link: ""
+        class: ""
+      - 
+        text: "(Survey Link)"
+        link: "https://docs.google.com/forms/d/e/1FAIpQLSegwRUyvtlKWQf3JOvD8NcedAphqnabiSfEA8rtMdSd2_529w/viewform?usp=sf_link"
+        class: ""
+    readings:
+      - 
+        text: "The Most Human Human - Chapter 1<br>The Most Human Human"
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Perspective- Meet the Bots"
+        link: "https://cs.slu.edu/~dferry/courses/ignite/perspectives/01_meet_the_bots.html"
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Class Canceled"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Code- Getting Python to Talk<br>Programming Environment<br>Print Statements<br>Variables<br>Strings<br>Operations"
+        link: "https://colab.research.google.com/drive/1O66XhdsrDG8-sxtiR66qJGYzOB5h6etw?usp=sharing"
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Code- Working With Strings"
+        link: "https://colab.research.google.com/drive/1zb8noFZ6L5pyQM8mHH780-ZAoTb9Uyep?usp=sharing"
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Book Discussion- Identity"
+        link: ""
+        class: ""
+      - 
+        text: "Second Conversation Survey"
+        link: "https://docs.google.com/forms/d/e/1FAIpQLSfmuq3m6f_6pmNMNEqqKCYv-Cxd3PD2HrzxGadIjkzpBbt6NA/viewform?usp=sf_link"
+        class: ""
+      - 
+        text: "Readings Survey"
+        link: "https://docs.google.com/forms/d/e/1FAIpQLSeTBBZ8MomGgYhJDpmfsu34et7aETK7tW6f8egdnQNO229GzQ/viewform?usp=sf_link"
+        class: ""
+      - 
+        text: "Reading 1"
+        link: "https://s3.documentcloud.org/documents/22058315/is-lamda-sentient-an-interview.pdf"
+        class: ""
+      - 
+        text: "Reading 2"
+        link: "https://www.scientificamerican.com/article/google-engineer-claims-ai-chatbot-is-sentient-why-that-matters/"
+        class: ""
+      - 
+        text: "Reading 3"
+        link: "https://www.aiweirdness.com/interview-with-a-squirrel/"
+        class: ""
+    readings:
+      - 
+        text: "The Most Human Human - Chapter 2<br>Authenticating"
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Perspective- Sentience Readings"
+        link: ""
+        class: ""
+      - 
+        text: "Perspective- Increasing Computer Authenticity"
+        link: ""
+        class: ""
+      - 
+        text: "(This Cat Does Not Exist)"
+        link: "https://thiscatdoesnotexist.com/"
+        class: ""
+      - 
+        text: "(This Horse Does Not Exist)"
+        link: "https://thishorsedoesnotexist.com/"
+        class: ""
+      - 
+        text: "(This Person Does Not Exist)"
+        link: "https://thispersondoesnotexist.com/"
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Perspective- Characterization Exercises"
+        link: ""
+        class: ""
+      - 
+        text: "(Creating An Authentic Character)"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Code- Conditional Responses<br>If/Then/Else Statements<br>Substring Searching"
+        link: "https://colab.research.google.com/drive/1VSPSslDA2mUBTxY_p1lU_EZg9P-npmjL?usp=sharing"
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: "Homework #1 Due<br>Homework #2 Assigned"
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "<code>Shall We Play A Game?</code><br>Code- Loops<br>Simple Games<br>More Drawing"
+        link: "https://colab.research.google.com/drive/1gk0BHkfAWhYWfUTIys4f1--sTyyCoJvw?usp=sharing"
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: "Homework #1 Due<br>Homework #2 Assigned"
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Book Discussion- The Seat of Humanity"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: "The Most Human Human - Chapter 3<br>The Migratory Soul"
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Perspective- Defining Humanity"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Code- Hard-coding a Chatbot"
+        link: "https://cs.slu.edu/~dferry/courses/ignite/notes/code_01.html"
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: "Homework #2 Due<br>Homework #3 Assigned"
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Book Discussion- Humanness, mechanization, and automation"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: "The Most Human Human - Chapter 4<br>Site-Specificity vs. Pure Technique"
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Perspective- Economics of Mechanization and Automation"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Code- A little ELIZA<br>String Matching<br>String Replacement"
+        link: "https://colab.research.google.com/drive/1dCanCxLuqb_0RgqqUKfrgi1-F9SdazH5?usp=sharing"
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: "Homework #3 Due<br>Homework #4 Assigned"
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Code- Template Matching Engine"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Code- Template Matching Engine"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Book Discussion- What drives automation and mechanization?"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: "The Most Human Human - Chapter 5<br>Getting Out of Book"
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Perspective - Games of perfect Information:<br>Chess<br>Checkers<br>Tic-Tac-Toe"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Coding- Making the Book: Writing Templates"
+        link: "https://colab.research.google.com/drive/1M3wHV_vYujrhciB_Y0XKuOyVsvCWIfIC?usp=sharing"
+        class: ""
+      -
+        text: "Sick Day Lecture"
+        link: "https://slu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=5801dac3-063a-4e52-b829-af3300f2a2ac"
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Code- Architecting a Simple Bot<br>Lists<br>Maps"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: "Homework #4 Due<br>Homework #5 Assigned"
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Book Discussion- Finding a Purpose"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: "The Most Human Human - Chapter 6<br>The Anti-Expert"
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Perspective- "
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Code- Coding vs. Configuration<br>File Input/Output"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: "Homework #5 Due<br>Homework #6 Assigned"
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Book Discussion- Sounding Like a Machine"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: "The Most Human Human - Chapter 7<br>Barging In"
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Course Presentations Introduction"
+        link: "https://cs.slu.edu/~dferry/courses/ignite/slides/Ignite_Project.pdf"
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Presentation Consultations"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: "Homework #6 Due"
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Artificial Intelligence: The AI Landscape"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Artificial Intelligence- Search Problems<br>Solving mazes with BFS, DFS, and A*"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Artificial Intelligence- Noisy Signals and Model-based Learning<br>Unreliable Robots"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Artificial Intelligence- Model Free Reinforcement Learning<br>Solving Mazes with Traps"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Code- Multiple Input and Multiple Output Rules"
+        link: "https://colab.research.google.com/drive/12GQiaeVl2BDqth_fgGoiG1GzJzfKRwMa?usp=sharing"
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Code- External Configuration Files"
+        link: "https://colab.research.google.com/drive/1xUUb55Eh81JJ2ZgO_PAF0qvW0cdKl5V5?usp=sharing"
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Book Discussion- Epilogue"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Presentations"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Presentations"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+
+### New Day ###
+  - 
+    topics:  
+      - 
+        text: "Presentations"
+        link: ""
+        class: ""
+    readings:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    studios:
+      - 
+        text: ""
+        link: ""
+        class: ""
+    labs :
+      - 
+        text: ""
+        link: ""
+        class: ""
+

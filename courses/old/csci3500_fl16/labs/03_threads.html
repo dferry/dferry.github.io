@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<style>
+.hang {
+	padding-left: 2em ;
+}
+</style>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSCI 3500 - Operating Systems</title></head>
+
+<h2 style="text-align: center;">CSCI 3500: Lab 3<br></h2>
+<h2 style="text-align: center;"><code>crack</code> - Brute Force Password Cracking</h2>
+
+
+
+<hr style="width: 100%; height: 2px;">
+
+<p>Modern computers overwhelmingly use multi-core architectures. Exploiting
+this hardware for parallel programming (creating a program that executes
+simultaneously on more than one processor core) requires the use of multiple
+threads. We will use one of the most basic threading interfaces,
+Pthreads, to create a multi-threaded password cracking program.</p>
+
+<p>In this lab, you will:</p>
+
+<ol>
+<li>Use <code>crypt()</code> and <code>crypt_r()</code> to guess password hashes
+<li>Iterate over aribtrary length strings with characters from 'a' to 'z'
+<li>Create and wait for threads with <code>pthread_create()</code> and <code>pthread_join()</code>
+<li>Divide work between multiple parallel threads
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Parameters</h3></p>
+
+<p>This is a solo assignment. Please do not collaborate with other students on this
+assignment.</p>
+
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Usage</h3></p>
+
+<code>crack &lt;threads&gt; &lt;keysize&gt; &lt;target&gt;</code>
+
+
+<p><h3>Description</h3></p>
+
+<p><code>crack</code> should attempt to find the password associated to the target DES hash.
+It does this by trying all possible lowercase alphabetic (a-z) passwords of length
+up to <code>keysize</code>. The program should run with <code>threads</code> concurrent threads for
+speed.</p>
+
+<p>
+Linux/Unix user passwords are never stored on the system. Instead, a function
+called a hash is applied to the password. Then, the hashed password is stored,
+traditionally in /etc/passwd or more recently in /etc/shadow.
+The classic hash function on Unix systems is crypt(3). To make things harder
+on crackers, crypt also uses a two character string called a salt which it combines
+with the password to create the hash. Schematically:</p>
+
+<p><code>password + salt =&gt; crypt() =&gt; hash</code></p>
+
+
+<p>The salt is visible in the hash as the first two characters. As an example, a
+password <code>'apple'</code> and salt <code>'na'</code> become the hash <code>'na3C5487Wz4zw'</code>.</p>
+
+<p>
+The crack program should extract the salt from the first two characters of
+target, then repeatedly call <code>crypt()</code> using all possible passwords built of up to
+<code>keysize</code> lowercase alphabetic characters.
+</p>
+
+<p>
+When a match to <code>target</code> is found, the program should print the cracked password
+and exit immediately. If the entire space of passwords is searched with no
+match, the program should exit with no output.
+</p>
+
+<p><h3>Hints</h3></p>
+
+<p>
+Start by writing a short program that uses <code>crypt()</code> to encrypt a
+given password and salt. You can also encrypt using
+the one line perl command: <code>perl -e 'print crypt("apple","na")'</code>
+</p>
+
+<p>
+Don't forget to compile with the -lpthread and -lcrypt options.
+</p>
+
+<p>
+The maximum allowed keysize is 8 (since crypt only uses the first 8 characters
+of the password anyway).
+</p>
+
+<p>
+You might want to write this first as a single threaded program. Just remember
+that <code>crypt()</code> won't work with multiple threads - you need to switch to <code>crypt_r()</code>.
+</p>
+<p>
+You need to check passwords of length <code>keysize</code>, but don't forget you also need
+to check the shorter ones. The simplest way is probably to write a function that
+checks all passwords which are exactly a given length, and then have main call
+it in a loop from 1 to <code>keysize</code>.
+</p>
+
+
+<p><h3>Useful man pages</h3></p>
+<p><code>
+pthread_create(3)<br>
+pthread_join(3)<br>
+pthread_exit(3)<br>
+pthread_self(3)<br>
+pthread_mutex_init(3)<br>
+pthread_mutex_lock(3)<br>
+pthread_mutex_unlock(3)<br>
+crypt_r(3)<br>
+strcmp(3)<br>
+strcpy(3)<br>
+strncpy(3)
+</code></p>
+
+<p><h3>Questions</h3></p>
+
+<ol>
+<p><li>As the answer to the first exercise, list your name.</p>
+
+<p><li>What four-letter password corresponds to the following target: '<code>abccBcrPOxnLU</code>'?</p>
+
+<p><li>What five-letter password corresponds to the following target: '<code>xyxMB6gxuiBZg</code>'?</p>
+
+<p><li>The following hash does not correspond to any password, so your program will exhaust the entire search
+space without finding any match. Use the <code>time</code> command to measure how long your program takes to
+search the entire space of five-letter passwords. Hash '<code>nomatchingpass</code>'</p>
+
+<p><li>Re-run the previous experiment but with two threads, four threads, six threads, eight threads,
+ten threads, and twelve threads. Record how long each run takes.</p>
+
+<p><li>Calculate the <i>speedup</i> your program gets as a result of using multiple threads. The speedup is
+defined to be the execution time with one thread divided by the execution time with multiple threads. Do this
+for each of the two, four, six, eight, ten, and twelve threads.</p>
+
+<p><li>Plot your program's speedup versus number of threads on a graph. Save your graph as a graphics
+file such as png or jpg and submit it alongside these answers.</p>
+
+<p><li>Interpret the results on your graph. Does your program run twice as fast with two threads? Does it
+run ten times faster with ten threads? How does this relate to the way you have written your program?</p>
+
+<p><li>Use one thread and run your program against the hash '<code>nomatchingpass</code>' for keysizes of one, two, three,
+four, and five. Time each execution. Estimate how long it takes to run your program for keysizes of six, seven, and eight.
+
+<p><li>Describe any known bugs or ways that your submission deviates from the
+above specification.</p>
+
+<p><li>Indicate which, if any, extra credit exercises you have attempted.</p>
+
+</ol>
+
+<p><h3>Optional Enrichment Exercises</h3></p>
+
+<ul>
+<p><li><b>2% Extra Credit</b>: Crack the following five-letter password hashes:</p>
+
+<p><code>
+abA.g8pU2Iffo<br>
+cdfnIXMyMCpPg<br>
+efgC/gw8PDKhs<br>
+ghLneTdBMxJP.<br>
+ijSsXTgIC7QRU<br>
+klr7dT7cAODsk<br>
+mn4iWfK0m76t6<br>
+opjPsgpXaahxM<br>
+qr6ncfvfqecME<br>
+</code></p>
+
+<p><li><b>2% Extra Credit</b>: Explain why password salts are useful, even if they're
+not secret.<p>
+
+<p><li><b>2% Extra Credit</b>: Add a fourth paramter to your program which, if present, causes
+your program to search all uppercase and lowercase characters, plus numbers and symbols.
+<i>Hint: look at an ASCII table.</i>
+</ul>
+
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Submission</h3></p>
+<p>Create a .tgz archive of your lab directory and email it to
+<code><big><b>dferry@slu.edu</b></big></code>.
+Your submission must include a makefile
+that will compile your program by simply issuing the command
+<code>make</code>. You must also include a text file with your
+answers to the required exercises. Please include your name and the names of
+any partners in the body of your email.</p>
+
+<p>The simple syntax for creating a .tgz archive is as follows:</p>
+
+<p><code>tar -zvcf new_archive.tgz lab_directory</code></p>
+
+<p>The syntax for unpacking a .tgz archive is:</p>
+
+<p><code>tar -zvxf archive.tgz</code></p>
+
+<p>Note that your archive <b>must not</b> include any binary executable files,
+meaning any compiled programs or intermediate build objects (.o files, for
+example). This will cause your email to be rejected by most services.</p>

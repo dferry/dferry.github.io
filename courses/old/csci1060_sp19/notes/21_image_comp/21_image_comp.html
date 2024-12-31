@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+
+<HTML>
+<HEAD>
+<TITLE>Lecture Notes: Finding monochromatic components of an image
+</TITLE>
+</HEAD>
+
+<BODY>
+
+
+
+<HR>
+
+<H2>
+Finding components of an image
+</H2>
+
+<hr>
+
+
+Here are six different
+versions of a function for finding components of an image, as well as
+two sample images (billiken.gif and billiken.png).
+
+<p>
+<b>m-files</b>
+<br>
+<ol type=1>
+  <li>
+      <a href="findComponent1.m"><tt>findComponent1.m</tt></a><br>
+      A "depth-first" exploration, that maintains a fringe in similar
+      form to our maze solver, always expanding one-step from the end
+      of the fringe, or removing that end if no further steps are possible.
+  </li>
+      <br>
+  <li>
+      <a href="findComponent2.m"><tt>findComponent2.m</tt></a><br>
+      The same exploration approach as <tt>findComponent1.m</tt>, but
+      this time implemented using a recursive function, rather than an
+      explicit management of the fringe.   From each spot, we
+      recursively explore all of its legal neighbors, in turn.
+  </li>
+      <br>
+  <li>
+      <a href="findComponent3.m"><tt>findComponent3.m</tt></a><br>
+      A variant of the first program in which we add all legal
+      neighbors of a position to the fringe and the component at once
+      (the original program would add one neighbor of a given
+      position, then iterate an exploration of that neighbor, and then
+      later add another neighbor of the given position).
+  </li>
+      <br>
+  <li>
+      <a href="findComponent4.m"><tt>findComponent4.m</tt></a><br>
+      A "breadth-first" variant of <tt>findComponenet3.m</tt>.  When
+      choosing which item of the fringe to explore next, this variants
+      chooses the <em>first</em> entry of the fringe rather than the
+      last.  The first entry is the earliest fringe element to have
+      been discovered.   This breadth-first variant can be used to
+      find shortest paths from the starting point, as it first finds
+      all locations that are one step from the start, then all that
+      are two steps from the start, and so on.
+  </li>
+      <br>
+  <li>
+      <a href="findComponent5.m"><tt>findComponent5.m</tt></a><br>
+      A variant of <tt>findComponent4.m</tt> in which we relax the
+      requirement that a neighboring color be an exact match to be
+      included in the component.
+      <p>
+      This version is written for images (such as
+      <tt>billiken.gif</tt>) that use a color map.  In this case, we
+      can not determine the similarity between colors by the color
+      indices, but rather must go into the color map to get the
+      (r,g,b) values associated with two different indices.
+  </li>
+      <br>
+  <li>
+      <a href="findComponent6.m"><tt>findComponent6.m</tt></a><br>
+      A variant of <tt>findComponent4.m</tt> in which we relax the
+      requirement that a neighboring color be an exact match to be
+      included in the component.
+      <p>
+      This version is written for images (such as
+      <tt>billiken.png</tt>) that provide full (r,g,b) color
+      information in the image array.
+  </li>
+</ol>
+
+<p>
+<b>Images</b>
+<br>
+<ul>
+  <li>
+      <a href="billiken.gif"><tt>billiken.gif</tt></a>
+      <br>
+      <img src="billiken.gif">
+      <p>
+      You may load this file in MATLAB using the command
+      <pre>
+      [A map] = imread('billiken.gif');
+      </pre>
+      The array <tt>A</tt> is a 126-by-126 array of 8-bit integers
+      that are indices into a colormap.  <tt>map</tt> is a 256-by-3
+      array that provides the (r,g,b) values for the color indices.
+      For example, <tt>map(k, :)</tt> is a vector of length three with
+      the corresponding red, green, and blue values (between 0.0 and 1.0)
+      for index&nbsp;<tt>k</tt> of the color map.
+  </li>
+      <br>
+  <li>
+      <a href="billiken.png"><tt>billiken.png</tt></a><br>
+      <img src="billiken.png">
+      <p>
+      You may load this file in MATLAB using the command
+      <pre>
+      A = imread('billiken.png');
+      </pre>
+      The returned array&nbsp;<tt>A</tt> is a three-dimensional array
+      of size 202-by-320-by-3, where entry <tt>A(r,c,:)</tt> is a
+      vector of length three with the corresponding red, green and
+      blue values (integers from 0 to 255).
+  </li>
+</ul>
+
+<HR>
+By:
+<ADDRESS>
+<a href="/~goldwasser">Michael Goldwasser</a>
+</ADDRESS>
+<br>
+
+
+<HR>
+
+  </BODY>
+</HTML>
+

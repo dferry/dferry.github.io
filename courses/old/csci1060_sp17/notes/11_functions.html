@@ -1,0 +1,249 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+
+<HTML>
+<HEAD>
+<TITLE>Lecture Notes: Functions
+</TITLE>
+</HEAD>
+
+<BODY>
+
+
+
+<HR>
+
+<H2>
+Notes 10: Functions
+</H2>
+
+<HR>
+
+We have used many of MATLAB's functions.   We can create our own
+functions as well. There are many advantages to
+organizing our operations within a function.
+<ul>
+  <li>
+      It provides another form of repetition.  While loops can provide
+      immediate repetions of a piece of code, a function encapsulate a
+      piece of code that can be called intermittently.
+  </li>
+      <br>
+  <li>
+      Use of a function allows us to get needed results without
+      polluting the workspace with irrelevant variables from
+      intermediate calculations.
+  </li>
+      <br>
+  <li>
+      Encapsulating complex calculations within a function makes the
+      primary piece of code more legible.
+  </li>
+</ul>
+
+<p>
+We will examine two approaches for defining functions:  anonymous
+functions and stored functions.
+
+<hr>
+
+<h3>Anonymous Functions</h3>
+
+General syntax uses a format
+<pre>
+<em>fhandle = @(arglist) expr</em>
+</pre>
+
+<p>
+As a concrete example, here is an anonymous function that computes
+the volume of a cylinder with a known height and radius.
+<pre>
+cylinder = @(height, radius) pi * radius^2 * height;
+</pre>
+After defining this function, we may call it as
+<pre>
+v = cylinder(5, 3);   % returns 141.37
+</pre>
+
+<h4>limitations</h4>
+<ul>
+  <li>
+      The returned value must be expressible as a single expression on
+      the remainder of the line.  Although if clever, you can sneak in
+      a bit of control structures such as the following.
+      <pre>
+      mymax = @(a, b) if a > b a else b end;
+      </pre>
+  </li>
+  <li>
+      Extra care is needed if returning more than one value (although
+      it is easy to return a value that is a vector of other values).
+  </li>
+</ul>
+
+
+<hr>
+
+<h3>Stored Functions</h3>
+
+<p>
+While an anonymous function can be called from elsewhere within the
+file, it cannot be reused from other files.
+
+To make a function for more general use, it must be named and stored
+in an m-file based upon that name.
+
+<p>
+As an example, here is a function that computes the volume of a
+cylinder, given the height and radius.
+<pre>
+function volume = cylinder(height, radius)
+% function to compute the volume of a cylinder
+% Usage:  volume = cylinder(height, radius)
+  base = pi * radius^2;
+  volume = base * height;        % the final answer
+</pre>
+
+With this file in the current directory, it can be called from
+elsewhere using the syntax <tt>cylinder(h,&nbsp;r)</tt> for parameters
+<tt>h</tt> and <tt>r</tt>.
+
+<h4>Returning multiple values</h4>
+<pre>
+function [area, volume]  = cylinder(height, radius)
+% function to compute the surface area and volume of a cylinder
+% Usage:  [area, volume] = cylinder(height, radius)
+  base = pi * radius^2;
+  volume = base * height;                        % the second result
+  area = 2 * pi * radius * height + 2 * base;    % the first result
+</pre>
+
+<p>
+The caller can retrieve both values using whatever variable names they
+want.
+<pre>
+[a v] = cylinder(5, 3);
+</pre>
+The caller can also choose to accept only some of the return values,
+but in that case, the number of returned values will be selected from
+left to right.  It does not matter what variable name is used.
+<pre>
+v = cylinder(5, 3);     % WILL BE THE AREA
+</pre>
+
+
+
+<h4>Being aware of the number of arguments sent by caller</h4>
+
+We can determine the number of parameters passed in with the keyword
+<tt>nargin</tt>.
+
+<pre>
+function volume = cylinder(height, radius)
+% function to compute the volume of a cylinder
+% Usage:  volume = cylinder(height, radius)
+%
+% If not specified, radius is assumed to be 1        
+  if nargin == 1
+    radius = 1;                  % default value for second parameter
+  end
+  base = pi * radius^2;
+  volume = base * height;        % the final answer
+</pre>
+
+<h4>Being aware of the number of return values being caputred by caller</h4>
+
+We can determine the number of captured return values, with the 
+keyword <tt>nargout</tt>.  We can use this knowledge to avoid
+unnecessary work.
+<pre>
+function [area, volume]  = cylinder(height, radius)
+% function to compute the surface area and volume of a cylinder
+% Usage:  [area, volume] = cylinder(height, radius)
+%
+% If not specified, radius is assumed to be 1        
+  if nargin == 1
+    radius = 1;                  % default value for second parameter
+  end
+  base = pi * radius^2;
+  area = 2 * pi * radius * height + 2 * base;    % the first result
+  if nargout == 2
+    volume = base * height;                      % the second result
+  end
+</pre>
+
+
+<h4>Writing vectorized functions</h4>
+
+What if we wanted the above to work for a vector of heights and a
+vector of radius? 
+
+<pre>
+function [area, volume]  = cylinder(height, radius)
+% function to compute the surface area and volume of a cylinder
+% Usage:  [area, volume] = cylinder(height, radius)
+%
+% If parameters are vectors of equal length, or if one parameter is a
+% scalar and the other is a vector, this returns a corresponding
+% vector of areas and a vector of volumes.
+%
+% If not specified, radius is assumed to be 1        
+  if nargin == 1
+    radius = 1;                 % default value for second parameter
+  end
+  base = pi .* radius.^2;
+  area = 2 .* pi .* radius .* height + 2 .* base;    % the first result
+  if nargout == 2
+    volume = base .* height;                         % the second result
+  end
+</pre>
+
+
+<h4>Subfunctions</h4>
+
+You can define several functions in the same m-file, with the first
+one being the publically available one, and the others being used
+privately to support the first.
+
+<hr>
+
+<h3><a name="peaks">Case Study: Finding the Maximum Iteratively</a></h3>
+
+<p>
+Given a vector, we have discussed the basic algorithm for fiding the
+maximum, by keep track of the maximum thus far while iterating through
+the vector.
+
+<p>
+Question: how many different elements qualify as being the 
+maximum thus far during that process?
+
+<p>
+Goal: Develop a function <tt>peaks(v)</tt> that returns the number of
+elements that have value surpassing all previous elements in the vector.
+For example, <nobr><tt>peaks([5 1 8 3 8 11 10])</tt></nobr> should return
+<tt>3</tt>, as the first element, the third element and the sixth
+elements are new maximums (we do not count the fifth, because that
+value 8 did not surpass the previously visited maximum of 8).
+
+
+<p>
+Goal: Rewrite the function so that it can provide a second return
+value, which is a vector of indices achieving those peaks (akin to the
+second return value of the built-in <tt>max</tt> function).  Thus
+<nobr><tt>peaks([5 1 8 3 8 11 10])</tt></nobr> should return the pair
+<nobr><tt>[ 3  [1 3 6] ]</tt></nobr>.
+
+
+<HR>
+<ADDRESS>
+Originally by
+<a href="/~goldwasser">Michael Goldwasser</a>
+</ADDRESS>
+<br>
+
+
+
+
+</BODY>
+</HTML>
+

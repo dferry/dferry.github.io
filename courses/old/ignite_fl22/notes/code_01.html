@@ -1,0 +1,130 @@
+<html>
+<head>
+	<title>Starting on a Chatbot</title>
+</head>
+<body>
+	<h2>Starting on a Chatbot</h2>
+	<p>In this class, we will start building our own chat bot from scratch.
+	This asks you to use everything we have learned so far on our programming
+	days.</p>
+
+	<p>Being a good programmer isn't about knowing how to write all the code
+	you will never need to write! Veteran programmers get stuck all the time.
+	The key to being a good programmer is knowing how to quickly and
+	efficiently get yourself un-stuck.</p>
+
+	<p>When you get stuck, go back to your Colab notebooks from previous
+	days and use the code you wrote then as a template. You can always ask the
+	instructor for help as well!</p>
+
+	<hr/>
+
+	<ul>
+		<li><b>Part 1 - Set up a new Colab Notebook for your project.</b></li>
+		<p>Go to<code>colab.research.oogle.com</code>
+		and create a new notebook. Give it a meaningful title. At the top of
+		the notebook, create a text box that describes the contents of the
+		notebook.</p>
+		<li><b>Part 2 - Start with a minimum working product.</b></li>
+		<p>Any software is written as an iterative process. Think about what
+		is the smallest and easiest functionality you will want to implement
+		in your project. Then, build that easiest piece first, even if it
+		is just a single line of code. Then, stop and test your code
+		completely until you are satisfied it is always correct.</p>
+		<p>For this project, the smallest and easiest function will be for
+		your chatbot to print a statement welcoming the user and asking them
+		what they would like to say. Create a code box, if you have not already,
+		and write a line of code that does that. Then, test your code by
+		running it to confirm it works correctly.</p>
+		<p>Refer to "Getting Python to Talk" if you want a refresher on how to
+		have Python produce output.</p>
+		<li><b>Part 3 - Iterate on the program.</b></li>
+		<p>Once you have a working set of features done, 
+		start over by thinking about the next smallest or
+		easiest functionality and repeat the cycle.</p>
+		<p>For us, the next feature we would like to add is to accept input
+		from the user. Your program should print out the user's input to confirm
+		that it was accepted correctly.
+		</p>
+		<p>Refer to "Conditional Responses" for a refresher on how to have Python
+		accept input.</p>
+		<li><b>Part 4 - Start providing tailored responses</b></li>
+		<p>When your program accepts input, it should make a response rather
+		than just repeating the user's input back to them. Inspect the user
+		input for at least five key words, and provide a tailored output
+		for each of them. For example, if the user input includes the
+		word "computer," your bot could respond by saying, "I'm not a computer,
+		why would you think that?"</p>
+		<p>Refer to "Conditional Responses" for a refresher on how to search
+		input and provide a tailored response.</p>
+		<li><b>Part 5 - Provide a generic catch-all response</b></li>
+		<p>If the user input does not include a keyword corresponding to
+		a specific tailored response, then it should provide a generic response
+		that is suitable for any input but not specific to any input.</p>
+		<p>This is a good feature for the else clause in an if-elseif-else
+		statement, but that is by no means the only way to implement this feature.
+		Refer to "Conditional Responses" for a refresher on the if-elseif-else
+		statement.</p>
+		<li><b>Part 6 - Have the conversation keep going</b></li>
+		<p>Rather than having just one input each time you press the button to
+		run your code, your chat bot should keep talking until you tell it you
+		are done. Use a loop from last time to have your bot exchange multiple
+		statements in a single session.</p>
+		<p>Remember, if your bot gets stuck in an infinite loop you can use the
+		stop button to terminate it.</p>
+		<p>Refer to "Shall we Play a Game?" for a refresher on loops.
+		<li><b>Part 7 - Quit the conversation</b></li>
+		<p>Add an extra tailored response keyword such as "bye" or "quit" that
+		causes your bot to stop executing the loop and terminate.  
+		You can use the <code>break</code> keyword
+		for this purpose. We used the
+		<code>break</code> keyword at the end of "Shall we Play a Game?" to
+		terminate a loop on command.</p>
+		<p>When you provide the appropriate keyword, your bot should acknowledge
+		the end of the conversation, execute the <code>break</code> statement,
+		and finish the code block.</p>
+		<li><b>Part 8 - Keep Iterating!</b></li>
+		<p>You now have a basic working chat bot! Fleshing out additional
+		conversation topics can be done entirely with the code we have
+		developed above. Start by having a conversation with your chat bot,
+		or by having a partner have a conversation, and think of some improvements
+		that (1) you would like to make, and (2) you know how to make.
+		For example, note down some additional keywords that you want to handle with
+		tailored responses, and then do so.</p>
+		<p>When you would like, take a look at the challenge options below.</p>
+		
+		<li><b>Challenge - Multiple Keywords</b></li>
+		<p>Try implementing tailored response keywords that require two or
+		more specific keywords. For example, an input that contains the words
+		"good" and "weather" is likely expressing something very different
+		from an input containing the words "bad" and "weather."
+
+		<li><b>Challenge - Branching Conversation Trees</b></li>
+		<p>Some user inputs might prompt your chat bot to ask its own question,
+		or the chat bot output might depend on more than one input. Try using
+		an if-statement inside an if-statement to provide some context-dependent
+		responses.</p>
+
+		<p>For example, think about how your code might generate the following
+		two conversations.</p>
+
+		<p><b>Conversation 1</b><br>
+		<b>Human:</b> I love The Eagles!<br>
+		<b>Response:</b> Hotel California is one of my favorite songs!
+		</p>
+
+		<p><b>Conversation 2</b><br>
+		<b>Human:</b> Do you like the Lord of the Rings?<br>
+		<b>Response:</b> I love it!<br>
+		<b>Human:</b> Why didn't Frodo and Sam just ride the Eagles to Mordor?<br>
+		<b>Response:</b> This conversation is over. Never talk to me again.
+		</p>
+
+		<li><b>Challenge - Memory</b></li>
+		<p>Use one or more variables to get your chatbot to remember specific
+		things that the user has said. For example, try to remember their name
+		and then work that name into conversation responses.</p>
+
+	</ul>
+</body>
+</html>

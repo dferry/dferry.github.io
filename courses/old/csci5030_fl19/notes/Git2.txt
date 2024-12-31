@@ -1,0 +1,147 @@
+This guide assumes that you're working in the SLU CS Linux environment:
+
+We will be working with branches and rebasing today.
+
+Again, we can use the "sandbox" repository from last time, but we probably shouldn't work
+with the master branch. Rebasing modifies the commit tree, so if we have multiple people
+all trying to modify the commit tree on the master branch simultaneously there will be
+chaos. 
+
+Go ahead and make a new branch that you will pretend is your master branch. I will call
+this "newMaster" in the course of this exercise. You should call your version something
+different, or else you will again have a conflict with someone else working on the exercise.
+(Or, alternately, you can use the fork of sandbox that you created last time. Your fork
+is your own private copy of the repository.)
+
+$ git checkout -b newMaster
+
+Then go ahead and make a file in this new branch and commit it. For example, I'll make a file
+called myMath.c, and it will contain this:
+
+int add( int a, int b ){
+	return a + b;
+}
+
+Commit this as you did before:
+
+$ git add myMath.c
+$ git commit myMath.c -m "adding myMath.c file with add function"
+
+This commit will serve as the "common ancestor" that was referenced in the lecture slides.
+Now we want to set up a divergent commit tree, so first we will create a new branch.
+
+$ git checkout -b newFeature [this will be a branch of newMaster]
+
+Now we will add two more commits on the newFeature branch. I will add the following
+functions to myMath.c:
+
+int sub( int a, int b ){
+	return a - b;
+}
+
+int mult( int a, int b ){
+	return a * b;
+}
+
+Add them separately, meaning add one function to the file and then save and commit.
+Then add the second function, save, and commit again.
+
+$ git commit myMath.c -m "adding subtraction function"
+$ git commit myMath.c -m "adding multiplication function"
+
+You can now inspect the commit history with:
+
+$ git log
+
+Now, let's switch back to the first branch.
+
+$ git checkout newMaster
+
+As an aside, let's take a note of what this means in Git. Switching branches has
+automatically modified our working files to reflect the state of the files as
+they are in that branch. In particular, if you open up the myMath.c file
+in a text editor, you should no longer see the sub() or mult() functions, because
+those functions don't exist in this branch. You can inspect the log to verify
+this is the case:
+
+$ git log
+
+We can now build a divergent commit history by adding two more functions as we did
+before:
+
+int div( int a, int b ){
+	return a/b;
+}
+
+int mod( int a, int b ){
+	return a%b;
+}
+
+$ git commit myMath.c -m "adding division function"
+$ git commit myMath.c -m "adding modulus function"
+
+So, now we have a common ancestor commit (the add function) and two branches with
+divergent histories. Our commit history looks like this: 
+
+       /- sub --- mult  branch: newFeature
+      /
+- add --- div --- mod   branch: newMaster
+
+Suppose it is now release day and we want to combine all our work into a single,
+up-to-date branch. We saw two ways to reconcile this code in class: merging and
+rebasing. We will use rebasing today. 
+
+Git makes this easy. We will rebase our newFeature branch on top of our newMaster
+branch with the following command, so that we get a structure like this:
+
+                       /- sub --- mult   branch: newFeature
+                      /
+- add --- div --- mod                    branch: newMaster
+
+$ git rebase newMaster newFeature
+
+If you're like me, at this point you get a merge conflict. This is because the
+small changes we made in each commit don't give Git enough information to know
+whether the subtraction and multiplication functions should come immediately after
+the addition function, or whether division and modulus should.
+
+Open up the conflicted file with a text editor, such as:
+
+$ vi myMath.c
+
+You will see the conflict markers <<<<<<<, =======, and >>>>>>>. In this case we
+want to keep all the changes we see, so we can just delete these merge markers
+and then take a moment to make sure our code isn't mangled. Then we need to tell
+Git that we have resolved the merge conflict, so we save our file and then:
+
+$ git add .
+$ git commit -m "resovled merge conflict by reorganizing both commits"
+$ git rebase --skip
+
+In this case, that third command tells the rebase process to skip the current
+commit (in this case the subtraction function commit) because we have just
+provided a new commit to take its place. The rebase process should then
+finish. You can now inspect your commit log with:
+
+$ git log
+
+You should see four commits (three of your original commits, and one conflict
+merge commit, if you had it) on top of your original addition commit. 
+
+Lastly, if you wanted to squash some of those commit messages thinking they're
+too little to now live in your rebased commit history, then you could do the
+following:
+
+$ git rebase -i HEAD~3
+
+The -i flag here stands for interactive mode, so Git will open a text editor showing
+these commits. Change all but the first one from "pick" to "squash" and quit/save
+the editor. This opens a second editor that allows you to compose a new commit
+message for the single combined commit.  
+
+Then, use:
+
+$ git log
+
+again to see how you've changed the commit history.
+

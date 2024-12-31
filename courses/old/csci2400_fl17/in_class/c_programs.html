@@ -1,0 +1,318 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSCI 2400 - Computer Architecture</title></head>
+
+<h2 style="text-align: center;">CSCI 2400: C Programming Exercises<br></h2>
+
+<hr style="width: 100%; height: 2px;">
+
+
+<p>Welcome to C programming! Over the next few days you will have time in class
+to work on a variety of programming exercises. These exercises will count
+towards your in-class participation grade. You are expected to turn in 
+all programs from category A, one program from category B, and
+one program from category C. These will be due the class day before Homework 3
+is assigned.</p>
+
+
+<ol>
+<h3>Category A</h3>
+<li>"Hello, world!" Program
+<li>Basic input/output
+<h3>Category B</h3>
+<li>Approximate pi with a partial sum
+<li>Random integers: compute min, max, average
+<h3>Category C</h3>
+<li>Dice Simulator
+<li>Bitfield FizzBuzz
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>
+<p><h3>Exercises</h3></p>
+
+<p>Create a .tgz archive of your C programs and email it to
+<code><big><b>dferry_submit@slu.edu</b></big></code>.
+Please include your name and the names of any partners in the body of your email.</p>
+
+<p>The simple syntax for creating a .tgz archive is as follows:</p>
+
+<p><code>tar -zvcf archive_name.tgz your_directory</code></p>
+
+<p>The syntax for unpacking a .tgz archive is:</p>
+
+<p><code>tar -zvxf archive.tgz</code></p>
+
+<p>Note that your archive <b>must not</b> include any binary executable files,
+meaning any compiled programs or intermediate build objects (.o files, for
+example). This will cause your email to be rejected by most services.</p>
+
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Exercises</h3></p>
+
+<ol>
+
+<h2><li>Hello, world!</h2>
+
+<p>In this exercise you will create a program that does simple output to the console.</p>
+
+<p>First we need a Linux environment, so we will remotely connect to the department
+server at <i>hopper.slu.edu</i>. 
+Alternatively, you can login locally to the classroom machines and do work there. 
+In general you will only ever need Linux terminal
+access for these exercises, though you're welcome to use NoMachine if you'd
+like the GUI desktop. If you're using one of the classroom machines and would
+like to login to Hopper, you can login by typing at a terminal:</p>
+
+<p><code>ssh username@hopper.slu.edu</code></p>
+
+<p>Make a new directory for this class with the command <code>mkdir 2400</code>, then
+change to that directory with the command <code>cd 2400</code></p>
+
+<p>First, open a new file called 'hello.c' in the text editor of your choice. At the
+top of your file include some comments indicating your authorship and the purpose
+of the program. Then, include the standard input/output header file with the line:</p>
+
+<p><code>#include &lt;stdio.h&gt;</code></p> 
+
+<p>Next, create the entry point for your program, which is a function called <code>main</code>,
+your main function should almost always look like this:</p>
+
+<pre>
+int main( int argc, char* argv[] ){
+   //Your code goes here
+
+   return 0;
+}
+</pre>
+
+<p>The <code>argc</code> and <code>argv</code> parameters are used to get <i>program arguments</i>
+from the command line. We'll use them in a bit. Also notice that your program returns an integer.
+This is the return value of the program- returning zero indicates the program terminated normally,
+while a non-zero value indicates the program quit because of an error.</p>
+
+<p>Next, insert the output statement inside your <code>main</code> function:</p>
+
+<p>printf("Hello, world!\n");</p>
+
+<p>You can now compile and run your program with the commands:</p>
+
+<p><code>gcc hello.c -o hello</code></p>
+<p><code>./hello</code></p>
+
+<p>Your program should print the string "Hello, world!" to the console. If it
+doesn't, ask the instructor for help.</p>
+
+<p>Next, modify your program so that it prints out the array called <code>argv</code>.
+To do so, you will need to use a <code>for</code> loop. The input argument <code>argc</code>
+tells you how many elements are in <code>argv</code>, and recall that in C that arrays
+are zero-indexed. Also, beware that the first element of <code>argv</code> is always the
+name of the program that is being run. Thus, if you executed your program as such:</p>
+
+<p><code>./hello abcd 123 45.5</code></p>
+
+<p>Then argv would have the string values:</p>
+
+<pre>
+argv[0] = "hello"
+argv[1] = "abcd"
+argv[2] = "123"
+argv[3] = "45.5"
+</pre>
+
+<p>For now, we just want to print out each argument in turn. For example, if
+you ran your program with the above arguments it should print out something like:</p>
+
+<pre>
+Hello, world!
+Argument 0 is 'hello'
+Argument 1 is 'abcd'
+Argument 2 is '123'
+Argument 3 is '45.5'
+</pre>
+
+<p>You can do this by calling the <code>printf()</code> function like so:</p>
+
+<p><code>printf("Argument %d is %s\n", index, argv[index]);</code></p>
+
+<p>The "<code>%d</code>" and "<code>%s</code>" are called <i>format specifiers</i>, and the
+first one specifies that an integer is going to be printed at that location, while the second
+one specifies that a string is going to be printed at its location. The second parameter to
+<code>printf</code> (which is <code>index</code> above) matches the first format specifier,
+the <code>%d</code>, while the second parameter matches the second specifier. You can see
+the full documentation by typing <code>man 3 printf</code> at a terminal, but it's probably
+easier to look up examples online.</p>
+
+<p>Write a <code>for</code> loop that prints out all arguments of your program. Then run
+your program a few times with different sets of arguments to make sure that it runs the
+way you think it should.</p>
+
+
+<hr style="width: 100%; height: 2px;"><p>
+<h2><li>Basic input</h2>
+
+<p>Write a program that takes a single argument, converts it to an integer with
+the <code>strtol()</code> function, and casts that value to an <code>unsigned char</code>.
+Then, print out both the signed and unsigned values. The output should look something
+like:</p>
+
+<p><code>Signed representation: -1, unsigned representation: 255</code></p>
+
+<p>The function <code>strtol()</code> converts a string to an integer, and can be used by calling:</p>
+
+<p><code>int input = strtol(argv[1], NULL, 10);</code></p>
+
+<p>Which specifies that the string to convert is <code>argv[1]</code>, and to use a base-10 number
+system. The second parameter is for extra functionality we don't need for this program.</p>
+
+<p>You can cast an integer to an unsigned char simply by assignment. E.g.:</p>
+<p><code>unsigned char output = input;</code></p>
+
+<p>Remember that an unsigned char is an 8-bit data type.
+What happens when you pass a negative number to your program? What happens
+when you pass a number above 255 to your program? Can you confirm that this is what
+should happen by looking at the numbers binary representation?</p>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h2><li>Approximate pi</h2>
+
+<p>The value of pi can be approximated by evaluating a partial sum of the form:</p>
+
+<img src="pi_approx.png" />
+
+<p>Write a program that sums up the first <i>N</i> places of this expression, where
+<i>N</i> is given as a command line input.  Use <code>strtol()</code> to convert the input to an
+integer as in the previous exercise.</p>
+
+<p>Be careful of the difference between integer division and floating point division:</p>
+
+<pre>
+double x = 1/5;           //Integer division, value of x is 0
+double x = 1.0/(double)5; //Floating point division, value of x is 0.2
+</pre>
+
+<p>In the second statement the one is explictly given to be a floating point number by
+including the decimal point, and the integer five is cast to be of type <code>double</code>.</p>
+
+<p>You can print out a floating point number with the statement:</p>
+
+<p><code>printf("My value of Pi: %0.5f\n", myPi);</code></p>
+
+<p>Note that the format specifier for floating point numbers is <code>%f</code>,
+and the <code>0.5</code> specifies that the function will print five places
+after the decimal point.</p>
+
+<p>Run your program for values of <i>N</i> equal to 1, 10, 100, 1000, etc. You should see
+the value converging to pi, which is:</p>
+
+<p><code>3.141592653589793<i>...</i></code></p>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h2><li>Random array: min, max, average</h2>
+
+<p>The <tt>rand()</tt> function will generate random non-negative integers. Write
+a program that takes as command line arguments an integer <i>N</i> and <i>S</i>, 
+seeds the random number generator with the value <i>S</i>,
+generates <i>N</i> random integers, and then prints the minimum, maximum,
+and average of all values generated.</p>
+
+<p>You can seed the random number generator with the function <tt>srand()</tt>,
+which determines the sequence of random numbers generated. Be sure to include the 
+header file <tt>stdlib.h</tt> for both <tt>rand()</tt> and <tt>srand()</tt>. See
+the man pages (<tt>man 3 rand</tt> and <tt>man 3 srand</tt>) for details.</p>
+
+<p>Be careful of floating point division versus integer division!
+You can print out a floating point number with the statement:</p>
+
+<p><code>printf("Average: %0.5f\n", avg);</code></p>
+
+<p><i>Hint:</i> If you'd like a sequence to test your code, you can use the
+following numbers:
+
+<pre>
+1 1 2 3 5 7 9 16 25
+min:     1
+max:     25
+average: 7.666 repeating
+</pre>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h2><li>Dice simulator</h2>
+
+<p>If you roll a six-sided dice the probability of any value between 1 and 6 coming
+up is exactly 1/6. If you roll a <i>pair</i> of six sided dice then the odds of getting
+a combined two is not the same as getting a combined ten- there's a 1/36 chance of
+rolling a two, but there's a 3/36 chance of rolling a combined 10. This is a situation
+that's not obvious to analyze but easy to simulate!</p>
+
+<p>Write a program that takes two command line inputs, <i>N</i> and <i>D</i>.
+Your program should simulate <i>N</i> throws of <i>D</i> dice, and then print the
+experimentally observed probability of each combination. For example, if <i>N=50</i>
+and <i>D=5</i> then you would simulate 50 throws of 5 dice. If you saw the number
+14 show up 3 times, then the observed probability of 14 would be 3/50.</p>
+
+<p>In general, the observed probability of a number <i>X</i> is:
+
+<pre>(number of times you saw X)/N</pre>
+
+<p><i>Hint:</i> The maximum possible value from thowing <i>D</i> dice is <i>D*6</i>. You
+can declare an array of length <i>D*6</i> with the line:
+</p>
+
+<pre>
+int *array = malloc( D*6*sizeof(int) );
+</pre>
+
+<p><i>Hint:</i> The <tt>rand()</tt> function generates non-negative integers.
+Use the modulus operator (<tt>%</tt>) with <tt>rand()</tt> to generate a
+single random dice roll like so:</p>
+
+<p><code>one_dice = rand()%6 + 1;</code></p>
+
+<hr style="width: 100%; height: 2px;"><p>
+<h2><li>Bitwise FizzBuzz</h2>
+
+<p>FizzBuzz is a miraculous and/or awful test of programming proficiency. (Look it
+up and read the internet comments... trust me.) This is FizzBuzz with a twist.</p>
+
+<p>Write a program that takes a 32-bit integer <i>N</i>, and for each bit in <i>N</i>
+do the following (starting with the least significant bit):</p>
+
+<ul>
+<li>If the bit is 1 and the bit's position is divisible by 3, then print "F"
+<li>If the bit is 1 and the bit's position is divizible by 5, then print "B"
+<li>If you don't print Fizz or Buzz, then print the value of the bit
+</ul>
+
+<p>Also, separate every four bits by a space, to make the output readable.
+As an example, if you gave your program the number 16405, which has the binary
+representation</p>
+
+<pre>
+0000 0000 0000 0000 0100 0000 0001 0101
+</pre>
+
+<p>Your program should print</p>
+
+<pre>
+0000 0000 0000 0000 0FB00 0000 000B 0F01
+</pre>
+
+<p>Notice that the bit in place 1 is printed as a 1 because place 1 is not divisible by
+either 3 or 5. However, the bit in place 3 is printed as F, because 3 is divisible by 3.
+Note also that the bit in place 15 prints FB because 15 is divisble by 3 and 5.</p>
+
+<p><i>Hint:</i> You can get the value of the first place by doing a bitwise AND with 1, or the value of the last place by doing a bitwise AND with 0x80000000 (or 2147483648 in decimal) e.g.:</p>
+
+<pre>
+int X = input;
+printf("%d", X&amp;0x1); //Prints 1 if first bit is 1, 0 if first bit is 0
+printf("%d", X&amp;0x8000000); //Prints 1 if last bit is 1, 0 if last bit is 0
+</pre>
+
+<p><i>Hint:</i> Also consider using bit shifts. First write a program that prints out each bit of the input correctly, then add the FizzBuzz functionality.</p>
+
+<hr style="width: 100%; height: 2px;"><p>
+</ol>
+

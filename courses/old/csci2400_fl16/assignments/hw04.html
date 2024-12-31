@@ -1,0 +1,542 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+  <HEAD>
+    <TITLE>Assignment #4:  Intel x86 Assembly, Conditionals, and Loops
+    </TITLE>
+  </HEAD>
+
+  <BODY>
+
+    <CENTER>
+      <H2>Assignment #4:  Intel x86 Assembly, Conditionals, and Loops</H2>
+    </CENTER>
+
+
+<h3>Contents:</h3>
+<UL>
+  <LI>
+      <a href="#overview">Overview</a>
+  </LI>
+  <LI>
+      <a href="#practice">Practice Problems</a>
+  </LI>
+  <LI>
+      <a href="#submit">Problems to be Submitted</a>
+  </LI>
+</UL>
+
+<HR>
+
+<a name="overview"><h3>Overview</h3></a>
+
+<P>
+<b>Topic:</b>  The Intel x86 ISA, x86 Assembly Programming, Conditionals (if-then-else), and Loops (while, for, and do-while)
+<br>
+<b>Related Reading:</b>  Chapter 3 and class notes
+</P>
+
+<hr>
+
+<a name="practice"><h3>Practice Problems</h3></a>
+
+<!--
+<P>
+  Make sure you have a complete understanding of all parts of the tutorial program given with the <a href = "../software/">Assembler and Debugger Tutorial</a>, including it's use of variables in memory, and it's use of the stack frame when calling other procedures, which in this case are the C procedures, <tt>printf</tt> (from the C standard library) and <tt>get_number</tt> (from the file <a href="../software/tutorial/input.c">input.c</a>).
+-->
+
+<p>
+Practice problems from the textbook <i>(answers are at the end of the chapter)</i>:
+<ul>
+  <li>
+    Practice Problems 3.16-3.18
+  </li>
+  <p>
+  <li>
+    Practice Problem 3.20
+  </li>
+  <p>
+  <li>
+    Practice Problem 3.21
+  </li>
+  <p>
+  <li>
+    Practice Problem 3.22
+  </li>
+  <p>
+  <li>
+    Practice Problem 3.23
+  </li>
+  <p>
+  <li>
+    Practice Problem 3.31
+  </li>
+  <p>
+  <li>
+    Practice Problem 3.33
+  </li>
+  <p>
+  <li>
+    Practice Problem 3.34
+  </li>
+  <p>
+  <li>
+    Practice Problem 3.35
+  </li>
+  <p>
+  <li>
+    Practice Problem 3.36
+  </li>
+  <p>
+  <li>
+    Practice Problem 3.38
+  </li>
+</ul>
+
+<HR>
+
+<a name="submit"><h3>Problems to be Submitted (25 points)</h3></a>
+
+<P>
+When you turn in your assignment, you must include a signed <a href="./cover-sheet.html">cover sheet</a> (<a href="./cover-sheet.pdf">PDF version</a>) with your assignment (<i>you're assignment will not be graded without a completed cover sheet</i>).
+
+<p>
+You are allowed to submit your assignment via email, but if you choose to do so, you must bring a hardcopy of your assignment along with a completed cover sheet to the instructor at the next class.  (<i>Note:  Do not email the instructor any .zip file attachments, as SLU's email may not accept these emails; i.e. the instructor may not receive your email.</i>)
+
+
+<!--
+<P>
+  <b>Please type your answers to all of the problems in a single document, and email it to the instructor by midnight on the due date.</b>
+</P>
+
+<P>
+  <b>Note:</b>  Whereas Homework #2 had you just use registers and constants, now please use variables and memory addressing (to access those variables), as well as registers and constants.
+</P>
+-->
+
+
+<OL type=1>
+
+  <LI> <b>(5 points)</b>
+    <p>
+      Given the following C code:
+    </p>
+<pre>
+         if (a - 3 > b)
+	     c = a + 7;
+	 else if (b > (c & 7))
+             c = b >> 3;
+	 else
+	     c = -1;
+</pre>
+    <p>
+      Given the equivalent Intel x86 assembly code.
+    </p>
+    <p>
+      <b>Assume that:</b> variables <tt>a</tt>, <tt>b</tt>, and <tt>c</tt> are in registers <tt>%eax</tt>, <tt>%ebx</tt>, and <tt>%ecx</tt>, respectively.
+    </p>
+  </LI>
+
+  <LI> <b>(5 points)</b>
+    <P>
+      Given the following assembly program, <a href="./hw4_prob2.s">hw4_prob2.s</a>, determine the equivalent C code corresponding to the procedure <tt>hw4_prob2()</tt>, and fill in the blanks below:
+    </P>
+    <P>
+      <i>Note:</i>  <b>These blanks may include assignment statements and/or other conditional (if-then-else) statements.</b>  Also, you may not need to use all the blanks (in the conditional's true and false code bodies).
+    </P>
+<pre>
+    int hw4_prob2 (int x, int y)
+    {
+        int result = ________________________________________;
+
+        if (( x ___________________________) || ( ___________________________))
+        {
+            _________________________________________________;		// one or more of these lines will start with:   result = 
+
+            _________________________________________________;
+
+            _________________________________________________;
+
+            _________________________________________________;
+
+            _________________________________________________;
+        }
+        else
+        {
+            _________________________________________________;		// one or more of these lines will start with:   result = 
+
+            _________________________________________________;
+
+            _________________________________________________;
+
+            _________________________________________________;
+
+            _________________________________________________;
+        }
+
+        return result;
+    }
+</pre>
+    </p>
+  </LI>
+
+  <P>
+
+  <LI> <b>(5 points)</b>
+    <P>
+<pre>
+Consider the following assembly code:
+
+Note: x at %ebp+8, n at %ebp+12
+
+1	movl 8(%ebp), %esi
+2	movl 12(%ebp), %ebx
+3	movl $-1, %edi
+4	movl $1, %edx
+5	.L2:
+6	movl %edx, %eax
+7	andl %esi, %eax
+8	xorl %eax, %edi
+9	movl %ebx, %ecx
+10	sall %cl, %edx
+11	testl %edx, %edx
+12	jne .L2
+13	movl %edi, %eax
+
+The preceding code was generated by compiling C code that had the following
+overall form:
+
+1	int loop(int x, int n)
+2	{
+3	int result = __________;
+4	int mask;
+5	for (mask = __________; mask __________; mask = __________) {
+6		result ^= __________;
+7	}
+8	return result;
+9	}
+
+Your task is to fill in the missing parts of the C code to get a program equivalent
+to the generated assembly code. Recall that the result of the function is returned
+in register %eax. You will find it helpful to examine the assembly code before,
+during, and after the loop to form a consistent mapping between the registers and
+the program variables.
+
+A. Which registers hold program values x, n, result, and mask?
+B. What are the initial values of result and mask?
+C. What is the test condition for mask?
+D. How does mask get updated?
+E. How does result get updated?
+F. Fill in all the missing parts of the C code.
+</pre>
+   
+    </P>
+  </LI>
+
+  <P>
+
+<!--
+  <LI> <b>(3 points)</b>
+    <P>
+      Problem 3.62 at the end of Chapter 3 (p. 301).
+    </P>
+  </LI>
+
+  <P>
+
+  <LI> <b>(5 points)</b>
+    <P>
+      <b>Create an assembly program that computes the total <u>annual</u> cost of parking</b> for an individual that works 5 days per week, and spends $3 per workday on parking.
+    </P>
+    <P>
+      Use a procedure to compute the annual parking cost, and have that procedure take two input arguments:  the cost to park each day, and the total number of days parking was paid that year, as follows:
+    </P>
+    <P>
+      &nbsp;&nbsp;&nbsp;&nbsp;<tt>totCost = annualParkingFees (cost, days);</tt>
+    </P>
+    <P>
+      <i>Assume:</i> For this problem, use a variable size of 4 bytes (32 bits) for variables <tt>cost</tt>, <tt>days</tt>, <tt>totCost</tt>, etc.
+    </P>
+    <P>
+      You're welcome to use a similar program, like <a href="../schedule/abs_asm.s">abs_asm.s</a>, as a starting point for your answer.
+    </P>
+  </LI>
+
+  <P>
+
+
+  <LI> <b>(8 points)</b>
+    <p>
+      For this problem you are given the assembly code:  <a href="./hw3_code.s">hw3_code.s</a>.  This code contains a procedure, <tt>some_procedure</tt>, which performs some computation over the elements in an array.
+    <p>
+      Given this code, answer the questions below: 
+     
+    <p>
+    <ol type = a>
+      <li>
+        <p>
+          In the procedure, which register holds the loop counter?  How many iterations does the loop execute (i.e. how many times is the loop body executed) ?
+        </p>
+      </li>
+      <li>
+        <p>
+          Where is the array stored (in which area of memory, relative to the virtual memory organization for the process)?  Within the procedure, which register holds the address of the array?  Which register holds the value of an individual array element?
+        </p>
+      </li>
+      <li>
+        <p>
+	  Why are there <u>two</u> <tt>imul</tt> instructions in the procedure? 
+        </p>
+      </li>
+      <li>
+        <p>
+	  What is the purpose of the &nbsp;<tt>sarl $2, %eax</tt>&nbsp; instruction? &nbsp; <i>Hint:</i>  There is some correlation with both the answer from part <tt>a.</tt>, and the number of elements in the array...
+        </p>
+      </li>
+      <li>
+          What mathematical formula does this procedure compute?
+        </p>
+      </li>
+      <li>
+        <p>
+	  What is the purpose of the &nbsp;<tt>pushl %esi</tt>&nbsp; and &nbsp;<tt>pushl %ebx</tt>&nbsp; instructions, and the &nbsp;<tt>popl %ebx</tt>&nbsp; and &nbsp;<tt>popl %esi</tt>&nbsp; instructions, at the top and bottom of <tt>some_procedure</tt>, respectively?
+        </p>
+      </li>
+      <li>
+        <p>
+	  Assuming the processor is currently executing the loop in <tt>some_procedure</tt>, give a diagram showing the organization of the stack, including the stack frames for both <tt>main</tt> and <tt>some_procedure</tt>.  As done in class, identify (via value or description) the contents of each element on the stack.
+        </p>
+      </li>
+    </ol>
+
+    <p>
+      <i>Hint:</i>  This code is relatively similar to an example covered in class.
+  </LI>
+-->
+
+  <LI> <b>(5 points)</b>
+    <p>
+      Given the following x86 assembly code that sums the numbers from 1 to N:
+    </p>
+<pre>
+      movl  $0, %eax			# %eax:  sum = 0
+      movl  $1, %ecx			# %ecx:  i = 1
+
+      LOOP:
+	 addl  %ecx, %eax
+         addl  $1, %ecx
+
+         cmpl  %edi, %ecx
+         jle   LOOP
+
+      LOOP_EXIT:
+	 ...
+</pre>
+    <p>
+      <i>Note:</i> The variables of <tt>i</tt>, <tt>N</tt>, and <tt>sum</tt> are stored in registers <tt>%ecx</tt>, <tt>%edi</tt>, and <tt>%eax</tt>, respectively.
+    </p>
+    <ol type = a>
+      <li>
+        <p>
+          What one line would you need to add and/or change in order to sum the following number sequence?<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 4 7 10 13 16 19 22 25 28 ...
+        </p>
+      </li>
+      <li>
+        <p>
+          What <u>two</u> lines (of the original code) would you need to add and/or change in order to compute the factorial of N?
+        </p>
+      </li>
+      <li>
+        <p>
+          What lines (of the original code) would you need to add and/or change in order to compute the sum of squares from 1 to N?<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i.e. 1^2 + 2^2 + 3^2 + 4^2 + 5^2 + ... <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  =  1 + 4 + 9 + 16 + 25 + ... 
+        </p>
+      </li>
+      <li>
+        <p>
+          Add a conditional to the loop that checks if the number is even or odd, and negates the value if it's odd.  In essence, this will generate the sum:
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  -1 + 2 - 3 + 4 - 5 + 6 - 7 + 8 - 9 + ...
+        </p>
+        <p>
+          <i>Hint:</i>  What <u>one</u> bit in a binary integer representation indicates whether the number is even or odd?  And what bit-wise Boolean operation can you use to isolate that number?
+        </p>
+      </li>
+    </ol>
+  </LI>
+
+  <P>
+
+  <LI> <b>(5 points)</b>
+    <P>
+      Using the following C program for the Fibonacci sequence:
+    </P>
+<!--
+    <P>
+      <b>Create an assembly program that computes the first <tt><i>N</i></tt> values of the <a href="http://en.wikipedia.org/wiki/Padovan_sequence">Padovan sequence</a>.</b>  The equation for the Padovan sequence is:
+    </P>
+<pre>
+      P(k) = 1                   for k = 0, 1, 2
+      P(k) = P(k-2) + P(k-3)     for k >= 3
+</pre>
+-->
+<pre>
+      a = 0;			 // F(0)
+      b = 1;			 // F(1)
+
+      for (i = 2; i &lt n; i++)
+      {
+          c = b + a;		 // F(i)
+          a = b;
+          b = c;
+      }
+</pre>
+    </p>
+    <p>Give the equivalent sequence of assembly instructions for computing the <i><tt>N</tt>th</i> value of the Fibonacci sequence <!-- Padovan sequence, and print them out using the <tt>printf</tt> procedure.-->
+    </p>
+    <ol type = a>
+      <li>
+        First, give the equivalent assembly in the form of a WHILE or FOR loop.
+      </li>
+      <li>
+        Then, give the equivalent assembly in the form of a (converted) DO-WHILE loop.
+      </li>
+    </ol>
+    </P>
+<!--
+    <p>
+      The program will need a number of registers and/or variables to manage the values of <tt><i>k</i></tt>, <tt><i>N</i></tt>, <tt><i>P(k)</i></tt>, <tt><i>P(k-2)</i></tt>, and <tt><i>P(k-3)</i></tt> for the current <tt><i>k</i></tt>.
+    </p>
+      <i>Hint 1:</i>  You will find it easiest if you first compute all <tt></i>N</i></tt> values of the sequence, store them in an array, and then use a separate loop to print them all.
+    </P>
+    <P>
+      <i>Hint 2:</i>  This problem is relatively straightforward if you have a solid understanding of the <a href="../software/tutorial/tut_asmprog.s">tut_asmprog.s</a> from the tutorial...
+    </P>
+-->
+  </LI>
+
+<!--
+  <LI> <b>(3 points)</b>
+    <ol type = a>
+      <li>
+        <P>
+          What are the four aspects of the software architecture (a.k.a. the instruction set architecture, or ISA) of a computer processor?
+        </P>
+      </li>
+      <li>
+        <P>
+          What are the details of the Intel x86 ISA with respect to each of these four parts?  Please be specific.
+        </P>
+      </li>
+    </ol>
+  </LI>
+
+  <LI> <b>(3 points)</b>
+    <p>
+      Assume that %esp = 0x007CFF2D, %ax = 0x3291, %ebx = 0x29A0F43C, %ch = 0x09, and %dx = 0xF21B. 
+    </p>
+    <ol type = a>
+      <li>
+        <p>
+          Show the contents of the stack and value of the stack pointer after the execution of <b>each</b> of the following instructions: 
+        </p>
+<pre>
+      pushb  %ch 
+      pushl  %ebx 
+      pushw  %ax 
+</pre>
+      </li>
+      <li>
+        <p>
+          What operation is performed by the following sequence of instructions? 
+        </p>
+<pre>
+      pushw  %ax 
+      pushw  %dx 
+      popw   %ax 
+      popw   %dx 
+</pre>
+        </p>
+      </li>
+    </ol>
+  </LI>
+
+  <LI> <b>(3 points)</b>
+    <p>
+      Given the following code and data sections, indicate what addressing mode is used by each of the instructions.  
+    </p>
+    <p>
+      <b>Note:</b>  The number, 0b0110101111010001, is a 16-bit binary number.
+    </p>
+<pre>
+      .text 
+          leal  elements(,1), %esi
+          movw  %bx, 6(%esi)
+          movb  num_elements(,1), %al
+          addb  %dh, %al
+          movl  $4, %edi
+          movl  num_elements(%edi), %edx 
+          movw  $520, (%esi)
+
+      .section .data
+          num_elements:
+              .byte  4 
+          elements:
+              .word  -15, 0x0AC1F, 0b0110101111010001, 5132 
+</pre>
+  </LI>
+
+  <LI> <b>(6 points)</b>
+    <p>
+      Given the following code:
+    </p>
+    <p>
+      <b>Note:</b>  Assume that all data are unsigned.
+    </p>
+<pre>
+      SomeProcedure:
+            cmpw  %bx, %ax
+            jle   L1
+            subw  %bx, %ax
+            jmp   L2
+
+         L1:
+            subw  %ax, %bx
+            movw  %bx, %ax
+
+         L2:
+            movl  $0, %ecx
+            addw  %ax, %cx
+            addl  %ecx, %edx
+            ret
+</pre>
+    <ol type = a>
+      <li>
+        <p>
+          What does the above procedure do?  This implementation is fairly inefficient;  how could it be made more efficient?
+        </p>
+      </li>
+      <li>
+        <p>
+          What is the calling protocol for the procedure?  (i.e. what data are passed in, and how?  what data are passed out, and how?)
+        </p>
+      </li>
+      <li>
+        <p>
+          Modify the procedure to use a stack frame (including passing arguments on the stack).  Show both the modified version of this procedure, and an example parent procedure calling this procedure.
+        </p>
+      </li>
+    </ol>
+  </LI>
+-->
+
+</OL>
+
+<hr>
+<!--
+Last modified: Friday, 24 February 2006
+-->
+
+  </body>
+</html>
+

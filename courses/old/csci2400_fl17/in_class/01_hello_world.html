@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>CSCI 2400 - Computer Architecture</title></head>
+
+<h2 style="text-align: center;">CSCI 2400: Assembly Class 1<br></h2>
+<h2 style="text-align: center;">Hello, world!</h2>
+
+<hr style="width: 100%; height: 2px;">
+
+
+<p>Welcome to assembly programming!
+Let's get started with a simple "Hello, world!" program.<p>
+
+
+<p>In today's class you will:</p>
+
+<ol>
+  <li>Log in to hopper.slu.edu
+  <li>Assemble and run our template program
+  <li>Modify this program's behavior
+</ol>
+
+<hr style="width: 100%; height: 2px;"><p>
+
+<p><h3>Exercises</h3></p>
+
+<ol>
+<p><li>First we need a Linux environment, so we will remotely connect to the department
+server at <i>hopper.slu.edu</i>. 
+Alternatively, you can login locally and then
+also connect to hopper so that you can always access your work remotely.
+In general you will only ever need Linux terminal
+access for these exercises, though you're welcome to use NoMachine if you'd
+like the GUI desktop. If you're using one of the classroom machines, login by typing at a terminal:</p>
+
+<p><code>ssh username@hopper.slu.edu</code></p>
+
+<p><li>Make a new directory for your work with the command <code>mkdir new_dir_name</code>, then
+change to that directory with the command <code>cd new_dir_name</code></p>
+
+<p><li>Now, download the template program to Hopper with the command wget:</p>
+
+<p><code>wget http://cs.slu.edu/~dferry/courses/csci2400/asm/template.s</code></p>
+
+<p><li>First, take a moment and look at the program in a text editor of your choice. There are only
+a few lines of code between the comments "Our code starts here" and "Our code ends here". Can you
+describe what the first set of lines does? Can you describe what the second set of lines does? If you can't,
+try to remember the "program stack" that we talked about in class. If you're still not clear, call
+the instructor over to explain.</p>
+
+<p><li>There are currently two variables in this program- what are they called and what
+are their values?</p>
+
+<p><li>What will this program print to the console?</p>
+
+<p><li>Assemble the program and run it with the commands:</p>
+
+<p><code>gcc -m32 template.s -o template</code></p>
+<p><code>./template</code></p>
+
+<p><li>Change the output of the program by modifying the variable
+"string" and the variable "a". Make sure that you still print the value of the
+variable "a". Re-assemble and re-run your program to make sure it works correctly.</p>
+
+<p><li>Now change the output of your program by inserting an <code>addl</code> instruction
+before the first <code>pushl</code> instruction. The first operand should be an
+immediate instruction, and the second operand should be the variable name "a" without
+dollar signs or percent signs.</p>
+
+<p><li>Modify your program so that it contains a second variable named "b", and
+so that your program prints both the value of a and b. (Use a single call to printf)</p>
+
+<p><li>Did the variables print in the order you expected? Why or why not?</p>
+
+<p><li>Keep your program for submission with the next homework. Have a nice day!</p>
+
+
+
+<hr style="width: 100%; height: 2px;"><p>
